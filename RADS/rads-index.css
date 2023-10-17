@@ -1,0 +1,29 @@
+main {
+  width: 80%;
+  max-width: 80%;
+  margin: auto;
+  display: flex;
+  flex: 20em;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+
+a::after {
+  content: "\a";
+  white-space: pre;
+}
+
+
+div {
+  display: block;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+@media (max-width: 50em) {
+  main {
+    display: block;
+    margin: auto;
+  }
+}

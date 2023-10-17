@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width initial-scale=1'>
+    <meta name=”robots” content=”noindex”>
+    <link href='/RADS/rads.css' rel='stylesheet' type='text/css' />
+    <link href='/RADS/rads-chapter.css' rel='stylesheet' type='text/css' />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,500;0,400;0,600;0,900;1,500;1,400;1,600;1,900&display=swap" rel="stylesheet">
+    <title>RADS: Combat Time</title>
+  </head>
+  <nav>
+    <a href='/RADS/'><img src='/RADS/rads.svg' alt='RADS' id='indexlink'></a><br><br>
+    <a class='nav1' href='/RADS/introduction/'>1: Introduction</a>
+    <a class='nav1' href='/RADS/character-creation/'>2: Character Creation</a>
+    <a class='nav1' href='/RADS/energy/'>3: Energy</a>
+    <a class='nav1' href='/RADS/scenic-time/'>4: Scenic Time</a>
+    <a class='nav1' href='/RADS/combat-time/' style='color:var(--text-color);'>5: Combat Time</a>
+    <a class='nav2' href='#your-turn-in-combat'>Your turn in combat</a>
+    <a class='nav2' href='#aspects-and-approaches'>Aspects and approaches</a>
+    <a class='nav2' href='#turn-order'>Turn order</a>
+    <a class='nav3' href='#ties'>Ties</a>
+    <a class='nav2' href='#movement'>Movement</a>
+    <a class='nav2' href='#attacking-and-defending'>Attacking and defending</a>
+    <a class='nav3' href='#weapon-types-and-damae'>Weapon types and damage</a>
+    <a class='nav2' href='#using-tactical-moves'>Using tactical moves</a>
+    <a class='nav2' href='#other-actions-in-combat-time'>Other actions in combat time</a>
+    <a class='nav3' href='#fleeing'>Fleeing</a>
+    <a class='nav2' href='#ending-combat-time'>Ending combat time</a>
+    <a class='nav1' href='/RADS/the-world-of-RADS'>6: The world of <em>RADS</em></a>
+  </nav>
+  <main>
+    <h1 id='combat-time'><span>Combat Time</span></h1>
+    <p><span>Combat is a dangerous but inevitable part of the life of a Free Rad. When you come into conflict with a hostile force and cannot find a peaceful solution, the timescale of play shifts to track every movement and action. </span></p>
+    <p><span>Combat in </span><em><span>RADS</span></em><span> is fast-paced and unpredictable. Attributes and day jobs mean nothing when it comes to conflict—whether they rely on body or mind, force or finesse, all player characters are assumed to be equally competent in battle. Likewise Powers, whose effects are measured in minutes, hours and days, are insignificant compared to the immediate reality of violence. What matters more than anything else are the choices you make from second to second.</span></p>
+    <p><span>Fighting is noisy and obvious, potentially drawing unwanted attention to the characters. Tricking, trapping or otherwise overcoming an opponent of any kind using nonviolent means are all valid options and will often be a more sensible approach than all-out violence.</span></p>
+    <h2 id='your-turn-in-combat'><span>Your turn in combat</span></h2>
+    <p><span>Combat time is divided into </span><strong><span>rounds</span></strong><span>, each lasting about ten seconds, and each combatant has their own </span><strong><span>turn</span></strong><span> to act. A round of combat looks like this:</span></p>
+    <ol>
+      <li>At the start of each round of combat, you’ll decide your priorities and <a href='#aspects-and-approaches'>assign dice</a>.</li>
+      <li>Then, you’ll <a href='#turn-order'>determine turn order</a>.</li>
+      <li>On your turn, you can make an <a href='#attacking-and-defending'>attack</a>, use one of your two <a href='#using-tactical-moves'>tactical moves</a>, and <a href='#movement'>move</a> a number of spaces equal to your speed, or you can choose to forgo an attack and either <a href='#other-actions-in-combat-time'>attempt another action</a> or <a href='#fleeing'>flee</a>.</li>
+      <li>Certain tactical moves allow you to act at times outside your turn.</li>
+      <li>You roll defence whenever you are attacked.</li>
+      <li>When every combatant has had a turn, the round ends and a new round begins.</li>
+    </ol>
+    <blockquote>
+      <h3 id='battle-stance'><span>Battle stance</span></h3>
+      <p><strong><span>GM</span></strong><span>: The demon bears its teeth and howls at you, readying to attack. We’re entering combat time. Everyone pick an approach and roll tactics for turn order.</span></p>
+      <p><strong><span>Sam</span></strong><span> </span><em><span>(playing Sam Carter):</span></em><span> I want to get in there quick and trip it over. I’m taking a focused approach and putting 2d6 on tactics.</span></p>
+      <p><strong><span>Chelsea</span></strong><span> </span><em><span>(playing Diana Weathers):</span></em><span> I’m already low on Energy. I’m prioritising defence. I guess attack second, since my combat speciality is ‘brutal’? Ooh, and I want to slow the demon as well with my tactical move!</span></p>
+      <p><strong><span>Will</span></strong><span> </span><em><span>(playing Enoch Rutherford):</span></em><span> I’m going d8s all round, see how this goes. </span></p>
+      <p><strong><span>GM</span></strong><span>: Alright, roll tactics for me. Chelsea, roll twice and give me the lower result.</span></p>
+      <p><strong><span>Chelsea</span></strong><span>: That’s a 2.</span></p>
+      <p><strong><span>GM</span></strong><span>: Cool, the demon’s tactics is reduced by 2. What are you doing to slow it down?</span></p>
+      <p><strong><span>Chelsea</span></strong><span>: It growled at us, I’m… going to growl back!</span></p>
+      <p><strong><span>GM</span></strong><span>: That’s confusing enough to startle it into hesitating. Good idea. Okay, I’m going to count down, when I reach your tactics roll result, you can act. 15, 14, 13, 12, 11, 10—</span></p>
+      <p><strong><span>Sam</span></strong><span>: I got a 10! I’m going to debuff the demon with my tactical move. I want to flash my torch in its eyes to blind it, so it can’t attack as easily. I roll 2d6 for a result of 7, and I have the ‘strategic’ combat speciality, so that’s a 9.</span></p>
+      <p><strong><span>GM</span></strong><span>: That beats its defence score, so it’s now slowed and debuffed. Well done! And an attack?</span></p>
+      <p><strong><span>Sam</span></strong><span>: I’m going to get up close and attack with my radknife. I’ve only got a d6… oh, that’s a 6!</span></p>
+      <p><strong><span>GM</span></strong><span>: That meets its defence score, so you deal 3 damage from your blade. The demon roars in pain. You staying right up next to it?</span></p>
+      <p><strong><span>Sam</span></strong><span>: I’ve moved as much as I can, so I guess so. Here’s hoping that being blinded will save me!</span></p>
+    </blockquote>
+    <h2 id='aspects-and-approaches'><span>Aspects and approaches</span></h2>
+    <p><span>In the </span><em><span>RADS</span></em><span> system, there are three </span><strong><span>aspects</span></strong><span> of combat:</span></p>
+    <ul>
+      <li><em><span>Attack</span></em><span> represents your ability to hit and deal damage to another combatant.</span></li>
+      <li><em><span>Defence</span></em><span> is your ability to avoid taking damage.</span></li>
+      <li><em><span>Tactics</span></em><span> is your ability to act more quickly than other combatants and perform tactical moves. </span></li>
+    </ul>
+    <p><span> At the start of each round, each player chooses which aspect they will prioritise, and to what extent, by choosing one of three </span><strong><span>approaches</span></strong><span>:</span></p>
+    <ul>
+      <li><span>A </span><em><span>balanced</span></em><span> approach lets you assign 1d8 to each aspect.</span></li>
+      <li><span>A </span><em><span>tilted</span></em><span> approach lets you assign 1d10 to one aspect, 1d8 to a second aspect and 1d6 to the third aspect.</span></li>
+      <li><span>A </span><em><span>focused</span></em><span> approach lets you assign 2d6 to one aspect you wish to prioritise, and 1d6 to each of the remaining aspects.</span></li>
+    </ul>
+    <p><span>For example, a player might decide they want to be aggressive, but not at the expense of their safety, while they don’t mind acting later than others. In this case, they would use a tilted approach and assign 1d10 to attack, 1d8 to defence and 1d6 to tactics.</span></p>
+    <h2 id='turn-order'><span>Turn order</span></h2>
+    <p><span>Every combatant takes one turn per round. At the start of each round, players roll their tactics die for that round to determine the order in which they will act. The GM will count down from 15, with players acting when the result of their tactics roll is reached. Creatures controlled by the GM act on their tactics score.</span></p>
+    <h3 id='ties'><span>Ties</span></h3>
+    <p><span>Sometimes multiple combatants will have the same tactics roll result or tactics score as one another. Ties are resolved as follows:</span></p>
+    <ul>
+      <li><span>In a tie between players, the players decide who acts first.</span></li>
+      <li><span>In a tie between your opponents, the GM decides who acts first.</span></li>
+      <li><span>In a tie between a player and a human opponent, such as an agent or a civilian, the player acts first.</span></li>
+      <li><span>In a tie between a player and a demon opponent, the demon acts first.</span></li>
+    </ul>
+    <h2 id='movement'><span>Movement</span></h2>
+    <p><em><span>RADS</span></em><span> is  designed to be played on a hexagonal battle mat and tokens to represent your character. On your turn, you can move your character around the battle mat up to 6 spaces. A space represents about 6 metres. Hexes are recommended over squares, because squares suck and hexes are great, but feel free to work with whatever you’ve got. You can spread out your movement between and around actions. </span></p>
+    <p><span>You can also play </span><em><span>RADS</span></em><span> using ‘Theatre of the Mind’ without tokens or a map, instead approximating distances and keeping a rough mental picture of the orientation and positioning of combatants in your head. If using Theatre of the Mind, each space equates to approximately 6 feet. </span></p>
+    <h2 id='attacking-and-defending'><span>Attacking and defending</span></h2>
+    <p><span>To attack, roll your attack die against an opponent’s defence score. If you meet or beat the score, you succeed. The target of your attack loses Energy equal to the difference between their defence score and the result of your roll, plus additional </span><strong><span>weapon damage</span></strong><span> depending on the implement you used.</span></p>
+    <p><span>When you are attacked by an opponent, roll your defence die against the opponent’s attack score. If you fail, you lose Energy equal to the difference between the result of your roll and their attack score, plus their weapon damage.</span></p>
+    <h3 id='weapon-types-and-damage'><span>Weapon types and damage</span></h3>
+    <p><span>Rather than an exhaustive list of items, </span><em><span>RADS</span></em><span> groups weapons together into four abstract categories:</span></p>
+    <ul>
+      <li><strong><span>Small weapons</span></strong><span> deal +1 weapon damage. Lightweight and easily concealed, small weapons include knives, knuckle dusters and broken bottles. </span></li>
+      <li><strong><span>Large weapons</span></strong><span> deal +2 weapon damage. Although they are more powerful, these weapons are hard to conceal or justify if seen by a bystander. A large weapon might be a golf club, a sword or a table leg.</span></li>
+      <li><strong><span>Guns</span></strong><span> deal +2 weapon damage and can be used at a distance, but will draw attention if fired in earshot of bystanders.</span></li>
+      <li><strong><span>Unarmed attacks</span></strong><span> and </span><strong><span>thrown weapons</span></strong><span>  deal no additional weapon damage. This means that if you exactly meet your target’s defence score with the roll, you hit but deal no damage. This still counts as a successful attack roll for the purpose of tactical moves. </span></li>
+    </ul>
+    <h4 id='demons-and-radknives'><span>Demons and Radknives</span></h4>
+    <p><span>Demons are practically invulnerable to routine sources of damage. Regardless of how they fare against other targets, most weapons have  -3 weapon damage against demons.</span></p>
+    <p><span>Demons have one weakness: the pale green radioactive glass produced by the Trinity test in 1945. Due to the limited supply of </span><em><span>trinitite</span></em><span>—which has not been successfully reproduced since its first appearance—Free Rads are equipped with a ‘</span><strong><span>radknife</span></strong><span>’, a short trinitite dagger, as their primary weapon against demonkind. A radknife deals +3 weapon damage against a demon; against any other opponent, it acts like a normal small weapon, dealing +1 weapon damage.</span></p>
+    <h2 id='using-tactical-moves'><span>Using tactical moves</span></h2>
+    <p><span>During character creation, you pick two </span><a href='/RADS/character-creation#tactical-moves'><span>tactical moves</span></a><span> for your character. These are two fighting techniques that your character has practiced until they are like second nature, and can be performed with minimal additional effort during a combat situation. </span></p>
+    <p><span>Tactical moves use your tactical die and cost 1 Energy to use. Tactical moves specify at what point during a round they can be used; you can only use one a round. </span></p>
+    <h2 id='other-actions-in-combat-time'><span>Other actions in combat time</span></h2>
+    <p><span>Instead of attacking on your turn, you can attempt to do something else to affect the situation. This could simply be replicating the effect of another tactical move, or creating an advantage more specific to your situation.</span></p>
+    <p><span>Describe what you want to do to the GM, who will decide whether it is feasible to attempt this action within the timeframe of a single round of combat (5-10 seconds). If so, you can make an </span><strong><span>attribute roll</span></strong><span> as you would during scenic time. You cannot benefit from a bonus from your </span><strong><span>day job</span></strong><span>, and you always act alone.</span></p>
+    <p><span>Attempting something other than fighting exposes you to greater risk. On a round where you attempt to make an attribute roll, you cannot attack or use a tactical move, and your tactics and defence dice are both 1d6.</span></p>
+    <h3 id='fleeing'><span>Fleeing</span></h3>
+    <p><span>At any point, you can choose to flee combat. Your attack die becomes a </span><em><span>retreat die</span></em><span>, which you roll at the start of your turn, increasing the number of spaces you can move that turn by half the result (rounded up).</span></p>
+    <p><span>Civilians, opposing Rads and demons will usually also flee once they are sufficiently intimidated or injured.</span></p>
+    <p><span>Most civilians will be less powerful than you, while other Rads are often an equal match. Demons are generally stronger in some ways and weaker in others. Some demons you encounter will be entirely beyond your ability to defeat in combat. </span></p>
+    <p><span>If you do find yourself in combat against an overwhelmingly superior foe, fleeing, surrendering or even allowing yourselves to be beaten into submission are all reasonable alternatives to fighting until you reach negative Energy or die.</span></p>
+    <h2 id='ending-combat-time'><span>Ending combat time</span></h2>
+    <p><span>Combat time ends when the outcome of a fight is settled and it is no longer necessary to track actions from moment to moment. This might be because one side has been killed, forced to surrender or routed. Once the relentless pace of combat has ended, you will be able to regain some composure as long as you are not seriously injured. After you drop out of combat time, you gain 1d6 Energy if you have 0 or more Energy, up to your maximum (usually 24). Characters with negative Energy remain at their current Energy value.</span></p>
+    <p><span>Once the outcome of a conflict has been determined, the scene may well be over. However, if there are people to be healed, damages to be repaired or other loose ends to tie up, you can return to scenic time. If anyone has a negative Energy value at the end of combat time, you will always have a chance to save them from catastrophe.</span></p>
+  </main>
+  <hr>
+  <footer>
+    <a class='back' href='/RADS/scenic-time/'>4: Scenic Time</a>
+    <a class ='top' href='/RADS/'>Index</a>
+    <a class='forward' href='/RADS/the-world-of-RADS'>6: The world of <em>RADS</em></a>
+  </footer>
+</html>

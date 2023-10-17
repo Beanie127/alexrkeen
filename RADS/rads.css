@@ -1,0 +1,237 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,600;0,900;1,400;1,500;1,600;1,900&display=swap');
+
+:root {
+  --bg-color: #0f0d06;
+  --text-color: #f7efd7;
+  --header-color: #F59D7A;
+  --accent-color: #cf794e;
+  --quote-color: #2C2611;
+}
+
+html {
+  background: var(--bg-color);
+  color: var(--text-color);
+  font-family: "Barlow", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+body {
+  margin: 0;
+}
+
+nav {
+  display: none;
+  position: fixed;
+  overflow-y: auto;
+  top: 0;
+  width: 15em;
+  height: calc(100% - 6em);
+  padding: 3em 0 1em 0.5em;
+  background: var(--bg-color);
+  z-index: 3;
+}
+
+nav a {
+  display: block;
+  text-decoration: none;
+}
+
+nav a::after {
+  content:'\a';
+}
+
+.nav1 {
+  font-weight: 600;
+  font-size: 1.5em;
+  margin-top: 0.2em;
+  line-height: 1.2em;
+}
+
+.nav2 {
+  font-weight: 500;
+  padding-left: 1em;
+  line-height: 1.5em;
+}
+
+.nav3 {
+  font-size: 0.9em;
+  font-weight: 400;
+  font-style: italic;
+  padding-left: 2em;
+}
+
+#indexlink {
+  width: 4em;
+  height: 4em;
+  position: absolute;
+  left: 50%;
+  top: 1em;
+  margin-left: -2em;
+  margin-bottom: 1em;
+  filter: invert(43%) sepia(61%) saturate(3769%) hue-rotate(352deg) brightness(89%) contrast(98%);
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 2em;
+  padding: .5em 0 .5em;
+  background-color: var(--quote-color);
+  display: grid;
+  grid-template-columns: 40% auto 40%;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 1em;
+  z-index: 4;
+}
+
+.back {
+  grid-column: 1;
+  justify-self: left;
+  text-align: left;
+  padding-left: 1em;
+}
+
+.top {
+  grid-column: 2;
+  justify-self: center;
+  text-align: center;
+}
+
+.forward {
+  grid-column: 3;
+  justify-self: right;
+  padding-right: 1em;
+  text-align: right;
+}
+
+::selection {
+  background: var(--text-color);
+  color: var(--bg-color);
+}
+
+main {
+  line-height: 1.5em;
+  max-width: 50em;
+  margin: auto;
+  padding-bottom: 4em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--header-color);
+  font-family: "Barlow", sans-serif;
+  font-weight: 600;
+}
+
+h1, h2 {
+  background-color: var(--bg-color);
+  position: sticky;
+  top: 0;
+  left: 0;
+}
+
+h1 {
+  text-align: center;
+  column-span: all;
+  font-weight: 900;
+  padding-top: 0.2em;
+  padding-bottom: 0.4em;
+  z-index: 1;
+}
+
+h2 {
+  border-bottom: 2px solid var(--accent-color);
+  padding: 0.2em 0.2em 0.3em;
+  margin: 0.8em 0;
+  page-break-inside: avoid;
+  clear: both;
+  z-index: 2;
+}
+
+h3,
+h5 {
+  font-style: italic;
+}
+
+blockquote {
+  text-align: center;
+  font-size: 0.9em;
+  background: var(--quote-color);
+  border-radius: 1em;
+  padding: 1em;
+  margin: 0.5em 1em;
+  page-break-inside: avoid;
+}
+
+blockquote h3 {
+  color: var(--text-color);
+  border: none;
+  font-size: 1.2em;
+  margin: 0 0 0.2em;
+  padding: 0 0 0.2em;
+}
+
+strong {
+  font-weight: 600;
+}
+
+code {
+  font-size: .9em;
+  border: 1px solid var(--accent-color);
+  border-radius: .25rem;
+  padding: 0 .125rem;
+}
+
+a {
+  color: var(--accent-color);
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+hr {
+  height: 60px;
+  width: 100%;
+  background: url("/RADS/rads.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 0;
+  margin-top: 5em;
+  margin-bottom: 5em;
+  filter: invert(43%) sepia(61%) saturate(3769%) hue-rotate(352deg) brightness(89%) contrast(98%);
+}
+
+table {
+  padding: 5px;
+  font-size: 0.8em;
+  width: 100%;
+}
+
+th {
+  border-bottom: 2px solid var(--header-color);
+}
+
+td {
+  border-bottom: 1px dashed var(--accent-color);
+}
+
+th, td {
+  padding: 5px;
+}
+
+ul {
+  list-style-type: disc;
+}
+
+ul li ul {
+  list-style-type: circle;
+}
+
+ol {
+  list-style-type: decimal;
+}

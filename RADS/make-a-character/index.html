@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow&display=swap"
+      rel="stylesheet"
+    />
+    <script type="text/javascript" src="./scripts.js"></script>
+    <title>RADS Character Generator</title>
+  </head>
+  <body>
+    <main>
+      <div class="wrapper">
+        <h1><em>RADS</em> Character Generator</h1>
+        <h2>Pick your character details</h2>
+        <form action="" id="character-form">
+          <!-- #i-[X] is input, #o-[X] is output-->
+          <label for="i-name">My name is&nbsp;</label
+          ><input name="name" id="i-name" type="text" /><span>.&nbsp;</span>
+          <br />
+          <label for="i-best-approach">I'm great at being</label>
+          <select name="i-best-approach" id="i-best-approach">
+            <option value="" disabled selected hidden></option>
+            <option value="Forceful">forceful</option>
+            <option value="Quick">quick</option>
+            <option value="Careful">careful</option>
+          </select>
+          <label for name="i-worst-approach">, but not so good at being</label>
+          <select name="i-worst-approach" id="i-worst-approach">
+            <option value="" disabled selected hidden></option>
+            <option value="Forceful">forceful</option>
+            <option value="Quick">quick</option>
+            <option value="Careful">careful</option>
+          </select>
+          <span>.</span>
+          <br />
+          <label for="i-day-job">By day, I work as a</label>
+          <select name="i-day-job" id="i-day-job">
+            <option value="" disabled selected hidden></option>
+            <option value="Law Enforcement Officer">
+              law enforcement officer
+            </option>
+            <option value="Driver">driver</option>
+            <option value="Bureaucrat">bureaucrat</option>
+            <option value="Medic">medic</option>
+            <option value="Manual Labourer">manual labourer</option>
+            <option value="Performer">performer</option>
+            <option value="Criminal">criminal</option>
+            <option value="Journalist">journalist</option>
+          </select>
+          <label for="i-gift">and I have the superhuman gift of</label>
+          <select name="i-gift" id="i-gift">
+            <option value="" disabled selected hidden></option>
+            <option value="Warding">warding</option>
+            <option value="Illusion">illusion</option>
+            <option value="Wildspeech">wildspeech</option>
+            <option value="Compulsion">compulsion</option>
+            <option value="Divination">divination</option>
+          </select>
+          <span>.</span>
+          <br />
+          <label for="i-combat-speciality">In a fight, I am particularly</label>
+          <select name="i-combat-speciality" id="i-combat-speciality">
+            <option value="" disabled selected hidden></option>
+            <option value="Brutal">brutal</option>
+            <option value="Tough">tough</option>
+            <option value="Alert">alert</option>
+            <option value="Strategic">strategic</option>
+            <option value="Speedy">speedy</option>
+            <option value="Unconventional">unconventional</option>
+          </select>
+          <label for="i-tactical-1">and I can</label>
+          <select name="i-tactical-1" id="i-tactical-1">
+            <option value="" disabled selected hidden></option>
+            <option value="Advance">advance</option>
+            <option value="Delay">delay</option>
+            <option value="Aid">aid</option>
+            <option value="Sabotage">sabotage</option>
+            <option value="Quicken">quicken</option>
+            <option value="Slow">slow</option>
+            <option value="Flurry">flurry</option>
+            <option value="Savage">savage</option>
+            <option value="Counter">counter</option>
+            <option value="Protect">protect</option>
+          </select>
+          <label for="i-tactical-2">and</label>
+          <select name="i-tactical-2" id="i-tactical-2">
+            <option value="" disabled selected hidden></option>
+            <option value="Advance">advance</option>
+            <option value="Delay">delay</option>
+            <option value="Aid">aid</option>
+            <option value="Sabotage">sabotage</option>
+            <option value="Quicken">quicken</option>
+            <option value="Slow">slow</option>
+            <option value="Flurry">flurry</option>
+            <option value="Savage">savage</option>
+            <option value="Counter">counter</option>
+            <option value="Protect">protect</option>
+          </select>
+          <span>.</span>
+        </form>
+        <h2>Or, generate a random character</h2>
+        <button id="random-character">Create a random character</button>
+      </div>
+      <hr />
+      <div class="wrapper">
+        <h2>Your Character</h2>
+      </div>
+      <div id="character-sheet">
+        <div class="card" id="name-container">
+          <h2>NAME: <span id="name"></span></h2>
+        </div>
+        <div class="column">
+          <div class="card" id="approaches">
+            <h3>Approaches</h3>
+            <div class="subcard">
+              <span id="best-approach">&nbsp;</span>
+            </div>
+            <div class="subcard">
+              <span id="avg-approach">&nbsp;</span>
+            </div>
+            <div class="subcard">
+              <span id="worst-approach">&nbsp;</span>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Everyday</h3>
+            <div class="subcard">
+              <span id="day-job">&nbsp;</span>
+            </div>
+            <div class="subcard">
+              <span id="talent-1">&nbsp;</span>
+            </div>
+            <div class="subcard">
+              <span id="talent-2">&nbsp;</span>
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="card" id="energy">
+            <h3>Energy</h3>
+            <div id="energy-grid">
+              <div class="energy-cell"></div>
+              <div class="energy-cell"></div>
+              <div class="energy-cell"></div>
+              <div class="energy-cell"></div>
+              <div class="energy-cell"></div>
+              <div class="energy-cell"></div>
+              <div class="energy-cell"></div>
+              <div class="energy-cell"></div>
+              <div class="energy-cell"></div>
+              <div class="energy-cell"></div>
+              <div class="energy-cell"></div>
+              <div class="energy-cell"></div>
+              <div class="energy-cell"></div>
+              <div class="energy-cell"></div>
+              <div class="energy-cell"></div>
+              <div class="energy-cell"></div>
+              <div class="energy-cell"></div>
+              <div class="energy-cell"></div>
+              <div class="energy-cell"></div>
+              <div class="energy-cell"></div>
+              <div class="energy-cell"></div>
+              <div class="energy-cell"></div>
+              <div class="energy-cell"></div>
+              <div class="energy-cell"></div>
+              <div class="energy-cell negative minus-1"></div>
+              <div class="energy-cell negative minus-2"></div>
+              <div class="energy-cell negative minus-3"></div>
+              <div class="energy-cell negative minus-4"></div>
+              <div class="energy-cell negative minus-5"></div>
+              <div class="energy-cell negative dead"></div>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Combat Time</h3>
+            <div class="subcard" id="combat-speciality">&nbsp;</div>
+            <div class="subcard" id="tactical-1">&nbsp;</div>
+            <div class="subcard" id="tactical-2">&nbsp;</div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="card" id="powers">
+            <h3>Gift & Powers</h3>
+            <div class="subcard">
+              <span id="gift">&nbsp;</span>
+            </div>
+            <div class="subcard" id="power-1">&nbsp;</div>
+            <div class="subcard" id="power-2">&nbsp;</div>
+            <div class="subcard" id="power-3">&nbsp;</div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+  <script>
+    const randomCharacter = document.querySelector("#random-character");
+    const iName = document.querySelector("#i-name");
+    const iBestApproach = document.querySelector("#i-best-approach");
+    const iWorstApproach = document.querySelector("#i-worst-approach");
+    const iDayJob = document.querySelector("#i-day-job");
+    const iGift = document.querySelector("#i-gift");
+    const iCombatSpeciality = document.querySelector("#i-combat-speciality");
+    const iTactical1 = document.querySelector("#i-tactical-1");
+    const iTactical2 = document.querySelector("#i-tactical-2");
+
+    const name = document.querySelector("#name");
+    const bestApproach = document.querySelector("#best-approach");
+    const worstApproach = document.querySelector("#worst-approach");
+    const avgApproach = document.querySelector("#avg-approach");
+    const dayJob = document.querySelector("#day-job");
+    const talent1 = document.querySelector("#talent-1");
+    const talent2 = document.querySelector("#talent-2");
+    const gift = document.querySelector("#gift");
+    const power1 = document.querySelector("#power-1");
+    const power2 = document.querySelector("#power-2");
+    const power3 = document.querySelector("#power-3");
+    const combatSpeciality = document.querySelector("#combat-speciality");
+    const tactical1 = document.querySelector("#tactical-1");
+    const tactical2 = document.querySelector("#tactical-2");
+
+    const character = {
+      name: false,
+      approaches: {
+        best: false,
+        average: false,
+        worst: false,
+      },
+      dayJob: {
+        name: false,
+        talent1: {
+          name: false,
+          description: false,
+        },
+        talent2: {
+          name: false,
+          description: false,
+        },
+      },
+      gift: {
+        name: false,
+        power1: {
+          name: false,
+          effect: false,
+        },
+        power2: {
+          name: false,
+          effect: false,
+        },
+        power3: {
+          name: false,
+          effect: false,
+        },
+      },
+      combatSpeciality: false,
+      tacticalMove1: false,
+      tacticalMove2: false,
+    };
+
+    iName.addEventListener("keyup", (event) => {
+      character.name = event.currentTarget.value;
+      name.textContent = character.name;
+    });
+
+    iBestApproach.addEventListener("change", (event) => {
+      character.approaches.best = event.currentTarget.value;
+      console.log(character.approaches.best);
+      if (character.approaches.best === character.approaches.worst) {
+        iBestApproach.classList.add("error");
+        return;
+      } else {
+        iBestApproach.classList.remove("error");
+        bestApproach.innerHTML = `Roll 2d10 when being ${character.approaches.best}`;
+        updateAvgApproach();
+      }
+    });
+
+    iWorstApproach.addEventListener("change", (event) => {
+      character.approaches.worst = event.currentTarget.value;
+      if (character.approaches.worst === character.approaches.best) {
+        iWorstApproach.classList.add("error");
+      } else {
+        iWorstApproach.classList.remove("error");
+        worstApproach.innerHTML = `Roll 2d6 when being ${character.approaches.worst}`;
+        updateAvgApproach();
+      }
+    });
+
+    const updateAvgApproach = () => {
+      if (character.approaches.best && character.approaches.worst) {
+        delete character.approaches.average;
+        character.approaches.average = approaches
+          .filter((approach) => approach !== character.approaches.best)
+          .filter((approach) => approach !== character.approaches.worst);
+        avgApproach.innerHTML = `Roll 2d8 when being ${character.approaches.average}`;
+      }
+    };
+
+    iDayJob.addEventListener("change", (event) => {
+      const input = event.currentTarget.value;
+      character.dayJob = talents[input];
+      dayJob.innerHTML = `
+        <strong>DAY JOB: ${character.dayJob.name}</strong>`;
+      talent1.innerHTML = `
+        <strong>TALENT: ${character.dayJob.talent1.name}</strong><br>
+        ${character.dayJob.talent1.description}`;
+      talent2.innerHTML = `
+        <strong>TALENT: ${character.dayJob.talent2.name}</strong><br>
+        ${character.dayJob.talent2.description}`;
+    });
+
+    iGift.addEventListener("change", (event) => {
+      const input = event.currentTarget.value;
+      character.gift = gifts[input];
+      gift.innerHTML = `<strong>GIFT: ${character.gift.name}</strong>`;
+      if (character.gift.power1.resist) {
+        power1.innerHTML = `
+        <strong>POWER: ${character.gift.power1.name}</strong><br>
+        <em>Resist: ${character.gift.power1.resist}</em><br>
+          ${character.gift.power1.effect}`;
+        power2.innerHTML = `
+        <strong>POWER: ${character.gift.power2.name}</strong><br>
+        <em>Resist: ${character.gift.power2.resist}</em><br>
+          ${character.gift.power2.effect}`;
+        power3.innerHTML = `
+        <strong>POWER: ${character.gift.power3.name}</strong><br>
+        <em>Resist: ${character.gift.power3.resist}</em><br>
+          ${character.gift.power3.effect}`;
+      } else {
+        power1.innerHTML = `
+          <strong>POWER: ${character.gift.power1.name}</strong><br>
+            ${character.gift.power1.effect}`;
+        power2.innerHTML = `
+            <strong>POWER: ${character.gift.power2.name}</strong><br>
+            ${character.gift.power2.effect}`;
+        power3.innerHTML = `
+          <strong>POWER: ${character.gift.power3.name}</strong><br>
+            ${character.gift.power3.effect}`;
+      }
+    });
+
+    iCombatSpeciality.addEventListener("change", (event) => {
+      const input = event.currentTarget.value;
+      character.combatSpeciality = combatSpecialities[input];
+      combatSpeciality.innerHTML = `
+        <strong>COMBAT SPECIALITY: ${character.combatSpeciality.name}</strong><br>
+        ${character.combatSpeciality.description}`;
+    });
+
+    iTactical1.addEventListener("change", (event) => {
+      const input = event.currentTarget.value;
+      character.tacticalMove1 = tacticalMoves[input];
+      document.querySelector(
+        `#i-tactical-2 option[value=${input}]`
+      ).disabled = true;
+      tactical1.innerHTML = `
+        <strong>TACTICAL MOVE: ${input}</strong><br>
+        <em>Use: ${character.tacticalMove1.use}</em><br>
+        ${character.tacticalMove1.effect}`;
+    });
+
+    iTactical2.addEventListener("change", (event) => {
+      const input = event.currentTarget.value;
+      character.tacticalMove2 = tacticalMoves[input];
+      document.querySelector(
+        `#i-tactical-1 option[value=${input}]`
+      ).disabled = true;
+      tactical2.innerHTML = `
+        <strong>TACTICAL MOVE: ${input}</strong><br>
+        <em>Use: ${character.tacticalMove2.use}</em><br>
+        ${character.tacticalMove2.effect}`;
+    });
+
+    const randomNumber = (value) => {
+      return Math.floor(Math.random() * value.length);
+    };
+    const randomiseCharacter = () => {
+      // randomize name{
+      character.name = `${firstNames[randomNumber(firstNames)]} ${
+        lastNames[randomNumber(lastNames)]
+      }`;
+
+      // randomise approaches
+      let _approaches = ["Forceful", "Careful", "Quick"];
+      character.approaches.best = _approaches[randomNumber(_approaches)];
+      _approaches = _approaches.filter(
+        (approach) => approach != character.approaches.best
+      );
+      randApproach = randomNumber(_approaches);
+      character.approaches.average = _approaches[randApproach];
+      _approaches = _approaches.filter(
+        (approach) => approach != character.approaches.average
+      );
+      character.approaches.worst = _approaches[0];
+
+      // randomise dayjob
+      const _talents = [
+        "Bureaucrat",
+        "Criminal",
+        "Driver",
+        "Journalist",
+        "Law Enforcement Officer",
+        "Medic",
+        "Performer",
+        "Manual Labourer",
+      ];
+      const _dayJob = _talents[randomNumber(_talents)];
+      character.dayJob = talents[_dayJob];
+
+      // randomise gift
+      const _gifts = [
+        "Warding",
+        "Wildspeech",
+        "Illusion",
+        "Divination",
+        "Compulsion",
+      ];
+      const _gift = _gifts[randomNumber(_gifts)];
+      character.gift = gifts[_gift];
+
+      // randomise combat speciality
+      const _combatSpecialities = [
+        "Brutal",
+        "Tough",
+        "Alert",
+        "Strategic",
+        "Unconventional",
+        "Speedy",
+      ];
+      const _combatSpeciality =
+        _combatSpecialities[randomNumber(_combatSpecialities)];
+      character.combatSpeciality = combatSpecialities[_combatSpeciality];
+
+      // randomise tactical moves
+      let _tacticalMoves = [
+        "Advance",
+        "Delay",
+        "Aid",
+        "Sabotage",
+        "Slow",
+        "Flurry",
+        "Quicken",
+        "Savage",
+        "Counter",
+        "Protect",
+      ];
+      const _tacticalMove1 = _tacticalMoves[randomNumber(_tacticalMoves)];
+      character.tacticalMove1 = tacticalMoves[_tacticalMove1];
+      _tacticalMoves = _tacticalMoves.filter((move) => move != _tacticalMove1);
+      console.log(_tacticalMoves);
+      const _tacticalMove2 = _tacticalMoves[randomNumber(_tacticalMoves)];
+      character.tacticalMove2 = tacticalMoves[_tacticalMove2];
+
+      // render time!
+      name.textContent = character.name;
+      bestApproach.innerHTML = `Roll 2d10 when being ${character.approaches.best}`;
+      worstApproach.innerHTML = `Roll 2d6 when being ${character.approaches.worst}`;
+      avgApproach.innerHTML = `Roll 2d8 when being ${character.approaches.average}`;
+      dayJob.innerHTML = `
+        <strong>DAY JOB: ${character.dayJob.name}</strong>`;
+      talent1.innerHTML = `
+        <strong>TALENT: ${character.dayJob.talent1.name}</strong><br>
+        ${character.dayJob.talent1.description}`;
+      talent2.innerHTML = `
+        <strong>TALENT: ${character.dayJob.talent2.name}</strong><br>
+        ${character.dayJob.talent2.description}`;
+      gift.innerHTML = `<strong>GIFT: ${character.gift.name}</strong>`;
+      if (character.gift.power1.resist) {
+        power1.innerHTML = `
+          <strong>POWER: ${character.gift.power1.name}</strong><br>
+          <em>Resist: ${character.gift.power1.resist}</em><br>
+          ${character.gift.power1.effect}`;
+        power2.innerHTML = `
+          <strong>POWER: ${character.gift.power2.name}</strong><br>
+          <em>Resist: ${character.gift.power2.resist}</em><br>
+          ${character.gift.power2.effect}`;
+        power3.innerHTML = `
+          <strong>POWER: ${character.gift.power3.name}</strong><br>
+          <em>Resist: ${character.gift.power3.resist}</em><br>
+          ${character.gift.power3.effect}`;
+      } else {
+        power1.innerHTML = `
+          <strong>POWER: ${character.gift.power1.name}</strong><br>
+          ${character.gift.power1.effect}`;
+        power2.innerHTML = `
+          <strong>POWER: ${character.gift.power2.name}</strong><br>
+          ${character.gift.power2.effect}`;
+        power3.innerHTML = `
+          <strong>POWER: ${character.gift.power3.name}</strong><br>
+          ${character.gift.power3.effect}`;
+      }
+      combatSpeciality.innerHTML = `
+        <strong>COMBAT SPECIALITY: ${_combatSpeciality}</strong><br>
+      ${character.combatSpeciality.description}`;
+      tactical1.innerHTML = `
+        <strong>TACTICAL MOVE: ${character.tacticalMove1.name}</strong><br>
+        <em>Use: ${character.tacticalMove1.use}</em><br>
+      ${character.tacticalMove1.effect}`;
+      tactical2.innerHTML = `
+        <strong>TACTICAL MOVE: ${character.tacticalMove2.name}</strong><br>
+        <em>Use: ${character.tacticalMove2.use}</em><br>
+      ${character.tacticalMove2.effect}`;
+    };
+
+    randomCharacter.addEventListener("click", (event) => {
+      event.preventDefault();
+      randomiseCharacter();
+    });
+
+    const energyCells = document.querySelectorAll(".energy-cell")
+
+    energyCells.forEach(energyCell => {
+      energyCell.addEventListener("click", event => {
+      event.currentTarget.classList.toggle("used")
+    })
+  })
+
+  </script>
+</html>
