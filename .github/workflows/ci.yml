@@ -2,7 +2,8 @@ name: Deploy to neocities
 
 on:
   push:
-    branches: -main
+    branches:
+      - main
 
 concurrency:
   group: deploy-to-neocities
@@ -19,4 +20,4 @@ jobs:
         with:
           api_token: ${{ secrets.NEOCITIES_API_KEY }}
           cleanup: false
-          dist_dir: /
+          dist_dir: public
