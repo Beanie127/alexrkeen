@@ -117,6 +117,10 @@ main {
 
 /* AESTHETICS */
 
+a {
+  color: var(--dark-pink);
+}
+
 hr {
   border: 0;
   margin-block: 3rem;
@@ -131,6 +135,39 @@ hr {
 .workshop + .workshop,
 hr {
   border-block-start: thin dashed var(--dark-blue);
+}
+
+table {
+  border-collapse: separate;
+}
+
+summary h2 {
+  display: inline;
+}
+
+table details[open] {
+  margin-inline-start: -13ch;
+  margin-block-end: 1rem;
+}
+table details[open] summary {
+  margin-inline-start: 13ch;
+}
+th {
+  text-align: start;
+}
+
+td {
+  border-block-start: thin solid var(--light-blue);
+}
+.table-time {
+  text-align: end;
+  padding-inline-end: 1ch;
+  inline-size: 11ch;
+  vertical-align: top;
+}
+
+.table-event {
+  padding-inline-start: 1ch;
 }
 
 /* NAVIGATION */

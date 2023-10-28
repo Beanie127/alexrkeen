@@ -99,7 +99,7 @@ const createListingContent = (timeslot) => {
 
 // utility functions
 
-const convertTime = (int) => {
+export const convertTime = (int) => {
   const timestamp = new Date(int);
   const time = timestamp.toLocaleTimeString("en-UK", {
     hour: "2-digit",
