@@ -253,7 +253,7 @@ well-rounded than the dreaded “two people standing at 45 degrees, taking it in
   {
     id: "jamMontage",
     name: "Montage Jam",
-    teacher: "Alex Keen",
+    teacher: "SomerSand",
     description: `Our usual fare, with each scene inspired by the 
 one before it.`,
     skills: [],
@@ -279,7 +279,7 @@ players to pay close attention to each other.`,
   {
     id: "jamArmando",
     name: "Armando Jam",
-    teacher: "Jack Greenway",
+    teacher: "Alex Keen",
     description: `Multiple, premise-based scenes inspired by the same
 monologue.`,
     skills: [],
@@ -336,12 +336,14 @@ export const sessions = [
           3 miles away, but has limited connections.
         </li>
         <li>
-          Post your train arrival time in the Facebook event page and ask if
+          Post your train arrival time on <a href="https://spond.com/client/sponds/E15BA15B56BF4CE4AE4B74D8F7899051">SPOND</a> and ask if
           anyone who is driving can swing by the station to pick you up.
         </li>
         <li>
-          Alternatively, book a taxi with one of these local firms: (01785)
-          822822 / 501804 / 593019.
+          Alternatively, book a taxi with one of these local firms:
+          <ul><li>Star Private Hire: <a href="tel:+441785822822">01785 822822</a></li>
+          <li>A Cabs Taxis: <a href="tel:+441785501804">01785 501804</a></li>
+          </ul>
         </li>
       </ul>
       <h4>Checking in</h4>
@@ -528,7 +530,7 @@ export const teachers = [
   {
     id: "greenway",
     name: "Jack Greenway",
-    workshopId: [`ensemble`, `jamArmando`],
+    workshopId: [`ensemble`],
     pic: ``,
     bio: `Jack is a Sheffield based improviser who has been a member of <em>Stürike Comedy</em> for the past 6 years. He got his start in shortform improv with the University of Sheffield&apos;s <em>The Shrimps</em>, and eventually went on to serve as the group&apos;s artistic director, leading workshops and hosting shows. Jack has since moved into long form improv with <em>Stürike</em> and <em>Work in Progress</em>.`,
   },
@@ -563,7 +565,7 @@ export const teachers = [
   {
     id: `keen`,
     name: `Alex Keen`,
-    workshopId: [`jamMontage`],
+    workshopId: [`jamArmando`],
     pic: ``,
     bio: `Alex has been performing and teaching improv for over a decade. He created and performs in the award-winning black comedy <em>Sex, Lies &amp; Improvisation</em>, <em>Mates: The Improvised &apos;90s Sitcom</em> and <em>Stürike Comedy</em>, which he co-directs with Bobby Anderson. Alex and Bobby also perform together as <em>Joined at the Quip</em>, and founded and run the Sheffield Improv Jam.  Alex believes great improv happens when we exist unapologetically in each moment and take play seriously. Everything else — theory, format, technique — is just a matter of taste.</p>
 <p><a href='http://www.alexrkeen.com' target='_blank' class='url'>www.alexrkeen.com</a>`,
@@ -650,6 +652,15 @@ export const teachers = [
     pic: ``,
     bio: `Northern improviser Jen is half of <em>Mystery Laugh</em>, a murder mystery where even they don&apos;t know what&apos;s happened most of the time. Having worked in Liverpool&apos;s only all-female troupe (<em>Boss Birds</em>) and the city&apos;s first UCB style team (<em>Regular Job</em>), she&apos;s most recently in <em>The Incomplete Works of Shakespeare</em>, which is hitting the Pleasance Courtyard at this year&apos;s Edinburgh Fringe, and shows what it means to really enjoy being on stage.</p>
 <p>Jen is a trained teacher, and currently teaches a range of courses at Liverpool Comedy Improv, having also done 1:1 coaching with improvisers and teams across the North West. Focusing on physicality, character and how to really enjoy the scenes you&apos;re in, a class with Jen promises to give you loads of food for thought as well as being a proper good laugh.`,
+  },
+  {
+    id: `somersand`,
+    name: `SomerSand`,
+    workshopId: [`jamMontage`],
+    pic: ``,
+    bio: `<em>SomerSand</em> is a UK-Belgium twoprov, made up by Maggie Sand and Johan Somers. We perform live and online, and love to bring dramatic theatrical improvised performances. Online we record our show, add music and background and post them on our YouTube channel. On our YouTube channel there’s a section ‘Chats about Improv&#39;, where we talk with a guest about a specific improv related topic.  Maggie and Johan are both improv teachers (online and live ) and co-teach as a duo.</p>
+<p><a href='http://www.youtube.com/SomerSand' target='_blank' class='url'>www.youtube.com/SomerSand</a></p>
+<p><a href='http://www.facebook.com/SomerSand' target='_blank' class='url'>www.facebook.com/SomerSand</a>`,
   },
 ];
 

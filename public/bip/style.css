@@ -139,6 +139,7 @@ hr {
 
 table {
   border-collapse: separate;
+  inline-size: 100%;
 }
 
 summary h2 {
