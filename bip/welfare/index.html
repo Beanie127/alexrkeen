@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../style.css" />
+    <title>Your Stay | BIP</title>
+  </head>
+  <body>
+    <main>
+      <h1>Wellbeing, Health &amp; Safety</h1>
+      <em>by Alex Keen</em>
+      <p>
+        Hi, we&apos;re Alex, Bobby, Carly, Jen &amp; Jo and we are your Welfare
+        team for this BIP weekend. We&apos;re here for you to talk to if you
+        have any concerns or issues with anything at BIP, or if you just fancy a
+        chat. Come and find us at any point over the weekend — we&apos;ll be the
+        ones wearing pink BIP shirts.
+      </p>
+      <h2>Incident reporting</h2>
+      <p>
+        To report an urgent incident, please find one of us, Geoff or Tom. If
+        you cannot find a person,
+        <a href="tel:+447517723666">call Alex on 0751 772 3666</a>. For
+        non-urgent incidents or complaints, please use the form below. There is
+        no required information and we will respect any requests for privacy,
+        but the more you are willing to share, the better we will be equipped to
+        solve any immediate or ongoing problems and make things better in the
+        future.
+      </p>
+      <iframe
+        data-tally-src="https://tally.so/embed/nWRXkj?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+        loading="lazy"
+        width="100%"
+        height="222"
+        frameborder="0"
+        marginheight="0"
+        marginwidth="0"
+        title="BIP Incident Reporting"
+      ></iframe>
+      <script>
+        var d = document,
+          w = "https://tally.so/widgets/embed.js",
+          v = function () {
+            "undefined" != typeof Tally
+              ? Tally.loadEmbeds()
+              : d
+                  .querySelectorAll("iframe[data-tally-src]:not([src])")
+                  .forEach(function (e) {
+                    e.src = e.dataset.tallySrc;
+                  });
+          };
+        if ("undefined" != typeof Tally) v();
+        else if (d.querySelector('script[src="' + w + '"]') == null) {
+          var s = d.createElement("script");
+          (s.src = w), (s.onload = v), (s.onerror = v), d.body.appendChild(s);
+        }
+      </script>
+      <h2>Code of conduct and behaviour at the venue</h2>
+      <ul>
+        <li>
+          The BIP code of conduct is
+          <a href="http://britishimprovproject.com/code-of-conduct"
+            >available on our website</a
+          >
+          and has been emailed to you.
+        </li>
+        <li>
+          The venue sells drinks. Do not consume your own in public areas such
+          as the lobby, be discreet.
+        </li>
+        <li>
+          Do not leave cans, bottles and glasses in the function rooms after a
+          show, please clean up your own drink empties, snacks etc and take
+          venue glasses back to the bar.
+        </li>
+        <li>
+          Please address any event concerns to the reception immediately if
+          there is a problem with your room or to a food and beverage manager if
+          you have a concern about the food. Also make Geoff aware and
+          we&apos;ll try to resolve the issue. It will be too late after the
+          event!
+        </li>
+        <li>
+          Let us all maintain an environment in which people are treated with
+          dignity, decency and respect. Our welfare team is made up of
+          volunteers who have all attended most of the BIP events since 2015.
+        </li>
+      </ul>
+      <h2>Trigger warning: noise</h2>
+      <p>
+        At various points over the weekend, 90 improvisers will be in one room
+        together — this can get very noisy. Please be aware of this if you have
+        sound sensitivities, especially during warm up/get to know you games, or
+        the evening entertainment.
+      </p>
+      <h2>Your event, your feedback</h2>
+      <p>
+        Since 2021, we&apos;ve shared a feedback form after each event to
+        understand where the event shines and where we can make improvements.
+        The overall tone of feedback has been consistently positive (every year,
+        95% or more say they would come back again, which says it all), but has
+        also highlighted areas ripe for improvement. Here are a few of the
+        bigger adjustments we&apos;ve made with your help:
+      </p>
+    </main>
+    <button type="button" aria-controls="sidebar" id="toggle-nav">Menu</button>
+    <nav id="sidebar">
+      <ul>
+        <li><a href="../">Home</a></li>
+        <li><a href="../workshops">Workshops</a></li>
+        <li><a href="../teachers">Teachers</a></li>
+        <li><a href="../venue">Your Stay</a></li>
+        <li><a href="../welfare">Welfare</a></li>
+      </ul>
+    </nav>
+  </body>
+  <script type="module" src="../menu.js"></script>
+</html>

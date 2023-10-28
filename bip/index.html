@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>BIP Autumn 2023 Program</title>
+  </head>
+  <body>
+    <main>
+      <h1>British Improv Project</h1>
+      <h2>Now</h2>
+      <div id="current"></div>
+      <h2>Next</h2>
+      <div id="next"></div>
+    </main>
+    <button type="button" aria-controls="sidebar" id="toggle-nav">Menu</button>
+    <nav id="sidebar">
+      <ul>
+        <li><a href="./">Home</a></li>
+        <li><a href="./workshops">Workshops</a></li>
+        <li><a href="./teachers">Teachers</a></li>
+        <li><a href="./venue">Your Stay</a></li>
+        <li><a href="./welfare">Welfare</a></li>
+      </ul>
+    </nav>
+  </body>
+  <script type="module" src="./data.js"></script>
+  <script type="module" src="./main.js"></script>
+  <script type="module" src="./menu.js"></script>
+</html>
