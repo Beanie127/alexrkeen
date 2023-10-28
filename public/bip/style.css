@@ -79,6 +79,11 @@ img {
 
 ul {
   margin-block-start: 0.5em;
+  padding-inline-start: 30px;
+}
+
+ul ul {
+  margin-block-start: 0;
 }
 
 h1,
@@ -147,11 +152,11 @@ summary h2 {
 }
 
 table details[open] {
-  margin-inline-start: -13ch;
+  margin-inline-start: -12ch;
   margin-block-end: 1rem;
 }
 table details[open] summary {
-  margin-inline-start: 13ch;
+  margin-inline-start: 12ch;
 }
 th {
   text-align: start;
