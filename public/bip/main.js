@@ -40,13 +40,13 @@ const renderNowNext = () => {
   console.log("Rendering...");
   // check if BIP has started and display relevant message
   if (slotCurrent == 1) {
-    displayNow.innerHTML = `BIP hasn't started yet! Check out the workshop descriptions, pack your bags and plan your journey.`;
+    displayNow.innerHTML = `<p>BIP hasn't started yet! Check out the workshop descriptions, pack your bags and plan your journey.</p>`;
   } else {
     displayNow.innerHTML = createListingContent(slotCurrent);
   }
   // check if BIP has finished and display relevant message
   if (slotNext == 1714694400000) {
-    displayNext.innerHTML = `BIP WILL RETURN on Friday 3 May 2024! Keep an eye on <a href="https://group.spond.com/KYDCU">SPOND</a> to be first to register.`;
+    displayNext.innerHTML = `<p>BIP WILL RETURN on Friday 3 May 2024! Keep an eye on <a href="https://group.spond.com/KYDCU">SPOND</a> to be first to register.</p>`;
   } else {
     displayNext.innerHTML = createListingContent(slotNext);
   }
@@ -99,7 +99,7 @@ const createListingContent = (timeslot) => {
 
 // utility functions
 
-const convertTime = (int) => {
+export const convertTime = (int) => {
   const timestamp = new Date(int);
   const time = timestamp.toLocaleTimeString("en-UK", {
     hour: "2-digit",

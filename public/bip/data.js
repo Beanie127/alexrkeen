@@ -15,7 +15,7 @@ tricks to help keep the scene coherent when we have a packed stage!`,
     name: "Caf&eacute; Scenes",
     teacher: "James Cannon",
     description: `Improv often feels a pressure to find out what&apos;s happening in a scene really quickly, seeking the
-‘What&apos; of the ‘Who What Where&apos; trinity in order to allow the scene to progress. This often leaves
+&lsquo;What&rsquo; of the &lsquo;Who What Where&rsquo; trinity in order to allow the scene to progress. This often leaves
 little room for slower, more thoughtful, slice-of-life scenes. This workshop asks what would happen
 in an improv scene where there are two friends just hanging out. No activities, no prominent
 conflicts, and how to get the audience invested and make it interesting. Expect some chilled-out
@@ -311,7 +311,56 @@ export const sessions = [
     description: `BIP hasn't started yet!`,
     details: `Check out the workshop descriptions, pack your bags  and plan your journey.`,
   },
-  { timeslot: 1699635600000, category: "group", description: `Arrivals` },
+  {
+    timeslot: 1699635600000,
+    category: "group",
+    description: `Arrivals`,
+    details: `</em><h4>Transport</h4>
+      <ul>
+        <li>
+          <strong>Your contact on the day is Geoff</strong> —
+          <a href="tel:+447834624831">0783 462 4831</a>. Please use text unless
+          really urgent.
+        </li>
+        <li>
+          <strong>The event starts from 5pm Friday 10th</strong> and ends
+          usually by 3pm after lunch on Sunday 12th.
+        </li>
+        <li>
+          The address is <strong>Yarnfield Park, ST15 0NL</strong>. There is
+          plenty of free parking for those travelling by car.
+        </li>
+        <li>
+          The <strong>main railway station is Stafford</strong>, 9 miles from
+          the venue; the <strong>nearest local train station is Stone</strong>,
+          3 miles away, but has limited connections.
+        </li>
+        <li>
+          Post your train arrival time in the Facebook event page and ask if
+          anyone who is driving can swing by the station to pick you up.
+        </li>
+        <li>
+          Alternatively, book a taxi with one of these local firms: (01785)
+          822822 / 501804 / 593019.
+        </li>
+      </ul>
+      <h4>Checking in</h4>
+      <ul>
+        <li><strong>Check in is available from 2pm.</strong></li>
+        <li>
+          Ask reception about your bedroom and key. If you are sharing, they
+          will tell you who with.
+        </li>
+        <li>
+          Bedrooms are not attached to the main building. After collecting your
+          key you will be directed to your lodge.
+        </li>
+        <li>
+          Please fill in your own “Hello My Name is” sticker when you check in.
+        </li>
+        <li>Tweet if you know how! @BritishImprov use #BIPAutumn23</li>
+      </ul><em>`,
+  },
   {
     timeslot: 1699639200000,
     category: "group",
@@ -361,7 +410,7 @@ export const sessions = [
     Howden: "musicBasic",
     Maple: "edits",
     "Meet 4": "brainOn",
-    "Meet 5": "personal",
+    "Meet 5": "upClose",
     "Meet 11": "scenework",
     "Meet 12": "jamScenes",
   },
@@ -420,7 +469,7 @@ export const sessions = [
     e: "Theatre Games with the Superteams",
   },
   {
-    timeslot: 1699740000000,
+    timeslot: 1699743600000,
     category: "group",
     description: `End of today's programming`,
     details: `Bar remains open until 11pm. Don't stay up too late!`,
@@ -453,8 +502,8 @@ export const sessions = [
     Howden: "jamMusical",
     Maple: "loveLanguages",
     "Meet 4": "memory",
-    "Meet 5": "bingo",
-    "Meet 11": "personal",
+    "Meet 5": "edits",
+    "Meet 11": "upClose",
     "Meet 12": "responsiveness",
   },
   { timeslot: 1699792200000, category: "group", description: `Lunch!` },
@@ -544,7 +593,7 @@ export const teachers = [
   },
   {
     id: `towers`,
-    name: `Cathy Towers`,
+    name: "Cathy Towers",
     workshopId: [`upClose`],
     pic: ``,
     bio: `Cathy Towers teaches improv independently and with Creative Culture South West. She performs with local group Improperly and acts with Exe Ensemble. Cathy also enjoys improvised dances: argentine tango,contact improv, five rhythms.</p>
@@ -608,7 +657,7 @@ export const timeslots = [
   1, 1699635600000, 1699639200000, 1699642800000, 1699644600000, 1699651800000,
   1697061600000, 1699686000000, 1699693200000, 1699698600000, 1699700400000,
   1699705800000, 1699709400000, 1699714800000, 1699716600000, 1699725600000,
-  1699731000000, 1699740000000, 1699772400000, 1699779600000, 1699785000000,
+  1699731000000, 1699743600000, 1699772400000, 1699779600000, 1699785000000,
   1699786800000, 1699792200000, 1699795800000, 1699797600000, 1714694400000,
 ];
 
@@ -998,7 +1047,7 @@ export const rooms = [
 //     description: `Evening Entertainment in Howden.
 //     Room set up from 19:00, bar will be open. Please aim to be seated by 19:20.`,
 //   },
-//   1699740000000: {
+//   1699743600000: {
 //     category: "group",
 //     description: `End of today's programming. Bar remains open!`,
 //   },
