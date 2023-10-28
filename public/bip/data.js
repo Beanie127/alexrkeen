@@ -468,7 +468,7 @@ export const sessions = [
     b: "Barnish &amp; Carmichael",
     c: "Improv On Demand",
     d: "SomerSand: Into The Soul",
-    e: "Theatre Games with the Superteams",
+    e: "Battle of the Superteams",
   },
   {
     timeslot: 1699743600000,
