@@ -61,7 +61,6 @@ svg {
   margin-inline: auto;
 }
 
-h1,
 h2,
 h3,
 h4,
@@ -70,23 +69,6 @@ h6 {
   margin-block-start: 1em;
 }
 
-p,
-img {
-  margin-block-start: 0.75em;
-}
-
-/* :is(h1, h2, h3, h4, h5, h6) + :is(h1, h2, h3, h4, h5, h6) { */
-
-ul {
-  margin-block-start: 0.5em;
-  padding-inline-start: 30px;
-}
-
-ul ul {
-  margin-block-start: 0;
-}
-
-h1,
 h2,
 h3,
 h4,
@@ -99,6 +81,25 @@ li,
 blockquote,
 table {
   line-height: calc(1em + 0.6rem);
+}
+
+p,
+img {
+  margin-block-start: 0.75em;
+}
+
+h1 {
+  line-height: 1.2;
+  margin-block-start: 1rem;
+}
+
+ul {
+  margin-block-start: 0.5em;
+  padding-inline-start: 30px;
+}
+
+ul ul {
+  margin-block-start: 0;
 }
 
 /* TYPOGRAPHY & BASE DESIGN */
