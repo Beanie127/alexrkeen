@@ -1,4 +1,4 @@
-const quotes = [
+export const quotes = [
   {
     Author: "Thomas Carlyle",
     quote: "The merit of originality is not novelty, it is sincerity.",
@@ -494,15 +494,19 @@ in you`,
   },
 ];
 
-function newQuote() {
+export const newQuote = () => {
+  console.log("generating new quote");
   const randomNumber = Math.floor(Math.random() * quotes.length);
   const quote = quotes[randomNumber];
-  document.getElementById(
-    "quoteDisplay"
+  document.querySelector(
+    "#display-quote"
   ).innerHTML = `<blockquote>${quote.quote}<cite>${quote.Author}</cite></blockquote>`;
-}
+};
 
 window.addEventListener("load", newQuote);
+
+const refreshQuote = document.querySelector("#refresh-quote");
+refreshQuote.addEventListener("click", newQuote);
 
 // copy this to add a new quote
 // &apos;<blockquote></blockquote><cite></cite>&apos;,

@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width initial-scale=1" />
     <link rel="stylesheet" href="../style.css" />
-    <script src="quotes.js"></script>
     <title>Alex Keen</title>
   </head>
   <body>
@@ -12,8 +11,8 @@
     <p>
       I collect quotes. I made this random quote display to practice javascript.
     </p>
-    <button onclick="newQuote()">New Quote</button>
-    <div id="quoteDisplay"></div>
+    <button type="button" id="refresh-quote">New Quote</button>
+    <div id="display-quote"></div>
     <p>
       <em>© Alex Keen 2021&ndash;<span id="current-date"></span></em>
     </p>
@@ -28,5 +27,6 @@
       <li><a href="../links/">Links</a></li>
     </ul>
   </footer>
+  <script type="module" src="quotes.js"></script>
   <script type="module" src="../scripts/date.js"></script>
 </html>

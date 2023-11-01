@@ -270,7 +270,7 @@ hr {
 }
 
 /* blockquotes */
-#quoteDisplay {
+#display-quote {
   background-color: var(--mg-color);
   text-align: center;
   margin: 2em 1em 0em;
