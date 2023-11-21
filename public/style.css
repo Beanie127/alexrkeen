@@ -273,10 +273,15 @@ hr {
 #display-quote {
   background-color: var(--mg-color);
   text-align: center;
-  margin: 2em 1em 0em;
+  margin: 0;
+  margin-block: 2rem;
   border-style: solid;
   border-color: var(--h-color);
   border-width: 0px 5px;
+}
+
+#quote-filter-results {
+  margin-block: 2rem;
 }
 
 blockquote {
