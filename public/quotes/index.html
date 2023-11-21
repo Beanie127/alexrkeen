@@ -1,32 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width initial-scale=1" />
-    <link rel="stylesheet" href="../style.css" />
-    <title>Alex Keen</title>
-  </head>
-  <body>
-    <h1 id="alex-keen">Quotes</h1>
-    <p>
-      I collect quotes. I made this random quote display to practice javascript.
-    </p>
-    <button type="button" id="refresh-quote">New Quote</button>
-    <div id="display-quote"></div>
-    <p>
-      <em>© Alex Keen 2021&ndash;<span id="current-date"></span></em>
-    </p>
-    <br />
-  </body>
-  <footer>
-    <ul>
-      <li><a href="../">Home</a></li>
-      <li><a href="../improv/">Improv</a></li>
-      <li><a href="../games/">Games</a></li>
-      <li><a href="../writing/">Writing</a></li>
-      <li><a href="../links/">Links</a></li>
-    </ul>
-  </footer>
-  <script type="module" src="quotes.js"></script>
-  <script type="module" src="../scripts/date.js"></script>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <link rel="stylesheet" href="../style.css" />
+  <title>Alex Keen</title>
+</head>
+
+<body>
+  <h1 id="alex-keen">Quotes</h1>
+  <h2>Random quote</h2>
+  <div id="display-quote"></div>
+  <button type="button" id="refresh-quote">New random quote</button>
+  <h2>All quotes</h2>
+  <label for="quote-filter">Filter quotes</label>
+  <input type="text" name="quote-filter" id="quote-filter">
+  <div id="quote-filter-results"></div>
+  <p>
+    <em>© Alex Keen 2021&ndash;<span id="current-date"></span></em>
+  </p>
+  <br />
+</body>
+<footer>
+  <ul>
+    <li><a href="../">Home</a></li>
+    <li><a href="../improv/">Improv</a></li>
+    <li><a href="../games/">Games</a></li>
+    <li><a href="../writing/">Writing</a></li>
+    <li><a href="../links/">Links</a></li>
+  </ul>
+</footer>
+<script type="module" src="quotes.js"></script>
+<script type="module" src="../scripts/date.js"></script>
+
 </html>
