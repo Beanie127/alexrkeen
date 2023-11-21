@@ -234,26 +234,7 @@ export const quotes = [
   },
   {
     author: "Charles Bukowski",
-    quote: `your life is your life
-don&apos;t let it be clubbed into dank submission.
-be on the watch.
-there are ways out.
-there is light somewhere.
-it may not be much light but
-it beats the darkness.
-be on the watch.
-the gods will offer you chances.
-know them.
-take them.
-you can&apos;t beat death but
-you can beat death in life, sometimes.
-and the more often you learn to do it,
-the more light there will be.
-your life is your life.
-know it while you have it.
-you are marvelous
-the gods wait to delight
-in you`,
+    quote: `your life is your life / don&apos;t let it be clubbed into dank submission. / be on the watch. / there are ways out. / there is light somewhere. / it may not be much light but / it beats the darkness. / be on the watch. / the gods will offer you chances. / know them. / take them. / you can&apos;t beat death but / you can beat death in life, sometimes. / and the more often you learn to do it, / the more light there will be. / your life is your life. / know it while you have it. / you are marvelous / the gods wait to delight / in you`,
   },
   {
     author: "Sahil Bloom",
