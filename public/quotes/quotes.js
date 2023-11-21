@@ -13,22 +13,24 @@ export const newQuote = () => {
 
 refreshQuote.addEventListener("click", newQuote);
 
-const renderQuotes = (filterContent = false) => {
+const renderQuotes = (filterContent) => {
   let output = "";
   quotes.forEach((quote) => {
     if (
+      // if there is a search term, but it doesn't match the quote or author, go to next
       filterContent &&
-      !quote.quote.toLowerCase().includes(filterContent.toLowerCase())
+      !quote.quote.toLowerCase().includes(filterContent.toLowerCase()) &&
+      !quote.author.toLowerCase().includes(filterContent.toLowerCase())
     ) {
       return;
-    } else {
-      output += `<blockquote>${quote.quote}<cite>${quote.author}</cite></blockquote><br>`;
-    }
+    } // otherwise render the quote
+    output += `<blockquote>${quote.quote}<cite>${quote.author}</cite></blockquote><br>`;
   });
   quoteFilterResults.innerHTML = output;
 };
 
 quoteFilter.addEventListener("keyup", (e) => {
+  console.log(quoteFilter.value);
   renderQuotes(quoteFilter.value);
 });
 
