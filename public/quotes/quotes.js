@@ -17,13 +17,13 @@ const renderQuotes = (filterContent) => {
   let output = "";
   quotes.forEach((quote) => {
     if (
-      // if there is a search term, but it doesn't match the quote or author, go to next
+      // if there is a search term, but it doesn't match the quote or author, skip
       filterContent &&
       !quote.quote.toLowerCase().includes(filterContent.toLowerCase()) &&
       !quote.author.toLowerCase().includes(filterContent.toLowerCase())
     ) {
       return;
-    } // otherwise render the quote
+    } // render the quote
     output += `<blockquote>${quote.quote}<cite>${quote.author}</cite></blockquote><br>`;
   });
   quoteFilterResults.innerHTML = output;
@@ -41,6 +41,11 @@ window.addEventListener("load", () => {
 });
 
 export const quotes = [
+  {
+    author: "Jim Hollan &amp; Scott Stornetta",
+    quote:
+      "Requiring one medium to imitate the other inevitably pits strengths of the old medium against weaknesses of the new.",
+  },
   {
     author: "Anne Rice",
     quote: "To write something, you have to risk making a fool of yourself.",
