@@ -42,6 +42,11 @@ window.addEventListener("load", () => {
 
 export const quotes = [
   {
+    author: "Jim Hollan &amp; Scott Stornetta",
+    quote:
+      "Requiring one medium to imitate the other inevitably pits strengths of the old medium against weaknesses of the new.",
+  },
+  {
     author: "Anne Rice",
     quote: "To write something, you have to risk making a fool of yourself.",
   },
