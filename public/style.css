@@ -291,6 +291,7 @@ blockquote {
   border-inline-start: thin solid var(--accent-color);
   font-weight: 300;
   margin: 0;
+  margin-block: 1rem;
 }
 
 cite {
