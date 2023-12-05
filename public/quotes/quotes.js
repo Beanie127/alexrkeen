@@ -24,7 +24,7 @@ const renderQuotes = (filterContent) => {
     ) {
       return;
     } // render the quote
-    output += `<blockquote>${quote.quote}<cite>${quote.author}</cite></blockquote><br>`;
+    output += `<blockquote>${quote.quote}<cite>${quote.author}</cite></blockquote>`;
   });
   quoteFilterResults.innerHTML = output;
 };
@@ -41,6 +41,40 @@ window.addEventListener("load", () => {
 });
 
 export const quotes = [
+  {
+    author: "Elder Sophrony of Essex",
+    quote:
+      "Stand at the brink of the abyss of despair, and when you see that you cannot bear it anymore, draw back a little and have a cup of tea.",
+  },
+  {
+    author: "Eliezer Yudkowsky",
+    quote: `<h3>Litany of Gendlin</h3>
+      What is true is already so.<br/>
+      Owning up to it doesn't make it worse<br/>.
+      Not being open about it doesn't make it go away.<br/>
+      And because it's true, it is what is there to be interacted with.<br/>
+      Anything untrue isn't there to be lived.<br/>
+      People can stand what is true,<br/>
+      for they are already enduring it.<br/>`,
+  },
+  {
+    author: "Eliezer Yudkowsky",
+    quote: `<h3>Litany of Tarski</h3>
+      If X, I desire to believe that X<br/>
+      If not X, I desire to believe that not X.<br/>
+      Let me not become attached to beliefs I may not want.`,
+  },
+  {
+    author:
+      "Lee, 'If The Chosen One Can&apos;t Defy Heteronormative Structures, Who Can?'",
+    quote:
+      "We live in the world that exists. The best we can do for the world we want to live in is build it.",
+  },
+  {
+    author: "Oscar Wilde",
+    quote:
+      "A map of the world that does not include Utopia is not worth even glancing at, for it leaves out the one country at which Humanity is always landing. And when Humanity lands there, it looks out, and, seeing a better country, sets sail. Progress is the realisation of Utopias.",
+  },
   {
     author: "Jim Hollan &amp; Scott Stornetta",
     quote:
@@ -128,7 +162,7 @@ export const quotes = [
       "If the muse comes to your bedside, don't tell her you'll fuck her later.",
   },
   {
-    author: "Holden Caulfield, The Catcher in the Rye",
+    author: "Holden Caulfield, 'The Catcher in the Rye'",
     quote:
       "Lots of times you don&apos;t know what interests you most until you start talking.",
   },
@@ -225,7 +259,7 @@ export const quotes = [
       "A man who procrastinates in his choosing will inevitably have his choice made for him by circumstance.",
   },
   {
-    author: "Jean-Luc Picard, Star Trek: The Next Generation",
+    author: "Jean-Luc Picard, 'Star Trek: The Next Generation'",
     quote:
       "It's possible to make no mistakes and still lose. That is not a weakness. That is life.",
   },
@@ -241,7 +275,28 @@ export const quotes = [
   },
   {
     author: "Charles Bukowski",
-    quote: `your life is your life / don&apos;t let it be clubbed into dank submission. / be on the watch. / there are ways out. / there is light somewhere. / it may not be much light but / it beats the darkness. / be on the watch. / the gods will offer you chances. / know them. / take them. / you can&apos;t beat death but / you can beat death in life, sometimes. / and the more often you learn to do it, / the more light there will be. / your life is your life. / know it while you have it. / you are marvelous / the gods wait to delight / in you`,
+    quote: `
+      <h3>The Laughing Heart</h3>
+      your life is your life<br/>
+      don&apos;t let it be clubbed into dank submission.<br/>
+      be on the watch.<br/>
+      there are ways out.<br/>
+      there is light somewhere.<br/>
+      it may not be much light but<br/>
+      it beats the darkness.<br/>
+      be on the watch.<br/>
+      the gods will offer you chances.<br/>
+      know them.<br/>take them.<br/>
+      you can&apos;t beat death but<br/>
+      you can beat death in life, sometimes.<br/>
+      and the more often you learn to do it,<br/>
+      the more light there will be.<br/>
+      your life is your life.<br/>
+      know it while you have it.<br/>
+      you are marvelous<br/>
+      the gods wait to delight<br/>
+      in you
+    `,
   },
   {
     author: "Sahil Bloom",
