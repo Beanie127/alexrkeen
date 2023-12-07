@@ -50,7 +50,7 @@ export const quotes = [
     author: "Eliezer Yudkowsky",
     quote: `<h3>Litany of Gendlin</h3>
       What is true is already so.<br/>
-      Owning up to it doesn't make it worse<br/>.
+      Owning up to it doesn't make it worse.<br/>
       Not being open about it doesn't make it go away.<br/>
       And because it's true, it is what is there to be interacted with.<br/>
       Anything untrue isn't there to be lived.<br/>
@@ -60,7 +60,7 @@ export const quotes = [
   {
     author: "Eliezer Yudkowsky",
     quote: `<h3>Litany of Tarski</h3>
-      If X, I desire to believe that X<br/>
+      If X, I desire to believe that X.<br/>
       If not X, I desire to believe that not X.<br/>
       Let me not become attached to beliefs I may not want.`,
   },
