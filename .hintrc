@@ -9,7 +9,8 @@
         "image-alt": "off"
       }
     ],
-    "no-inline-styles": "off"
+    "no-inline-styles": "off",
+    "apple-touch-icons": "off"
   },
   "browserslist": [
     "defaults",
