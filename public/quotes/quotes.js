@@ -6,15 +6,24 @@ export const newQuote = () => {
   console.log("generating new quote");
   const randomNumber = Math.floor(Math.random() * quotes.length);
   const quote = quotes[randomNumber];
-  document.querySelector(
-    "#display-quote"
-  ).innerHTML = `<blockquote>${quote.quote}<cite>${quote.author}</cite></blockquote>`;
+  if (!document.startViewTransition) {
+    document.querySelector(
+      "#display-quote"
+    ).innerHTML = `<blockquote>${quote.quote}<cite>${quote.author}</cite></blockquote>`;
+    return;
+  }
+  document.startViewTransition(() => {
+    document.querySelector(
+      "#display-quote"
+    ).innerHTML = `<blockquote>${quote.quote}<cite>${quote.author}</cite></blockquote>`;
+  });
 };
 
 refreshQuote.addEventListener("click", newQuote);
 
-const renderQuotes = (filterContent) => {
+const filter = (filterContent) => {
   let output = "";
+  let index = 0;
   quotes.forEach((quote) => {
     if (
       // if there is a search term, but it doesn't match the quote or author, skip
@@ -24,20 +33,31 @@ const renderQuotes = (filterContent) => {
     ) {
       return;
     } // render the quote
-    output += `<blockquote>${quote.quote}<cite>${quote.author}</cite></blockquote>`;
+    output += `<blockquote style="view-transition-name:quote-${index}">${quote.quote}<cite>${quote.author}</cite></blockquote>`;
+    index++;
   });
-  quoteFilterResults.innerHTML = output;
+  return output;
+};
+
+const render = (input) => {
+  if (!document.startViewTransition) {
+    quoteFilterResults.innerHTML = input;
+    return;
+  }
+  document.startViewTransition(() => {
+    quoteFilterResults.innerHTML = input;
+  });
 };
 
 quoteFilter.addEventListener("keyup", (e) => {
   console.log(quoteFilter.value);
-  renderQuotes(quoteFilter.value);
+  render(filter(quoteFilter.value));
 });
 
 window.addEventListener("load", () => {
   newQuote();
   quotes.sort(() => Math.random() - 0.5);
-  renderQuotes("");
+  render(filter(""));
 });
 
 export const quotes = [

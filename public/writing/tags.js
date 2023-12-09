@@ -1,29 +1,42 @@
 const tags = ["improv", "tech", "marketing"];
-const essays = document.querySelectorAll("li.filterable");
+const buttons = document.querySelectorAll("[data-target]");
+const essays = document.querySelectorAll("#essays li");
 
-tags.forEach((tag) => {
-  console.log(tag);
-  const button = document.querySelector(`button.filter.${tag}`);
-  console.log(button);
-  button.addEventListener("click", (e) => {
-    e.preventDefault;
-    resetFilter();
-    essays.forEach((essay) => {
-      if (!essay.classList.contains(tag)) {
-        essay.classList.add("is-hidden");
+buttons.forEach((button) => {
+  const tag = button.dataset.target;
+  button.addEventListener("click", () => {
+    if (tag == "all") {
+      if (!document.startViewTransition) {
+        essays.forEach((essay) => essay.removeAttribute("hidden"));
+      } else {
+        document.startViewTransition(() => {
+          essays.forEach((essay) => essay.removeAttribute("hidden"));
+        });
       }
-    });
-    button.classList.add("is-active");
+    } else {
+      if (!document.startViewTransition) {
+        essays.forEach((essay) => {
+          hideEssay(essay, tag);
+        });
+      } else {
+        document.startViewTransition(() => {
+          essays.forEach((essay) => {
+            hideEssay(essay, tag);
+          });
+        });
+      }
+    }
   });
 });
 
-const resetFilter = () => {
-  essays.forEach((essay) => essay.classList.remove("is-hidden"));
-  document
-    .querySelectorAll("button.filter")
-    .forEach((button) => button.classList.remove("is-active"));
+const hideEssay = (essay, tag) => {
+  if (essay.classList.contains(tag)) {
+    essay.removeAttribute("hidden");
+  } else {
+    essay.setAttribute("hidden", "hidden");
+  }
 };
 
 document
-  .querySelector("button.filter.all")
-  .addEventListener("click", resetFilter);
+  .querySelector("button[data-target='all']")
+  .addEventListener("click", () => {});

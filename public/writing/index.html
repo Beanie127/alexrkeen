@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width initial-scale=1" />
 	<link rel="stylesheet" href="../style.css" />
 	<title>Alex Keen | Writing</title>
-	<script src="https://unpkg.com/hyperscript.org@0.9.11"></script>
+	<!-- <script src="https://unpkg.com/hyperscript.org@0.9.11"></script> -->
 </head>
 
 <body _="def filter(subject, caller)
@@ -19,16 +19,16 @@
 		<h2>Essays</h2>
 		<div class="filter-list">
 			<strong>Filter:</strong>
-			<button class="is-active" type="button" _="on click filter(<li/>, me)">
+			<button class="is-active" data-target="all" type="button" _="on click filter(<li/>, me)">
 				All
 			</button>
-			<button type="button" _="on click filter(.improv, me)">
+			<button type="button" data-target="improv" _="on click filter(.improv, me)">
 				#improv
 			</button>
-			<button type="button" _="on click filter(.marketing, me)">
+			<button type="button" data-target="marketing" _="on click filter(.marketing, me)">
 				#marketing
 			</button>
-			<button type="button" _="on click filter(.tech, me)">
+			<button type="button" data-target="tech" _="on click filter(.tech, me)">
 				#technology
 			</button>
 		</div>
@@ -43,27 +43,29 @@
 			</li>
 		</ul>
 	</section>
-	<h2>Other publications</h2>
-	<div class="flex-container">
-		<div class="card shadow">
-			<h3>Alphabet of Hope</h3>
-			<p>
-				An anthology of stories written for a teen audience by
-				members of the LGBTQ+ community from around the world. I
-				contributed my coming out story.
-			</p>
-			<a href="https://www.amazon.co.uk/Alphabet-Hope-Mr-Trevor-Ritchie/dp/1777568803/"><em>Alphabet of Hope</em> on
-				Amazon</a>
+	<section style="view-transition-name: other;">
+		<h2>Other publications</h2>
+		<div class="flex-container">
+			<div class="card shadow">
+				<h3>Alphabet of Hope</h3>
+				<p>
+					An anthology of stories written for a teen audience by
+					members of the LGBTQ+ community from around the world. I
+					contributed my coming out story.
+				</p>
+				<a href="https://www.amazon.co.uk/Alphabet-Hope-Mr-Trevor-Ritchie/dp/1777568803/"><em>Alphabet of Hope</em> on
+					Amazon</a>
+			</div>
+			<div class="card shadow">
+				<h3>Steel City Improv</h3>
+				<p>
+					A blog about improv written by Sheffield improvisers. I’m
+					the founder, lead editor and occasional contributor.
+				</p>
+				<a href="https://medium.com/steel-city-improv"><em>Steel City Improv</em> on Medium.com</a>
+			</div>
 		</div>
-		<div class="card shadow">
-			<h3>Steel City Improv</h3>
-			<p>
-				A blog about improv written by Sheffield improvisers. I’m
-				the founder, lead editor and occasional contributor.
-			</p>
-			<a href="https://medium.com/steel-city-improv"><em>Steel City Improv</em> on Medium.com</a>
-		</div>
-	</div>
+	</section>
 	<br />
 	<p>
 		<em>© Alex Keen 2021&ndash;<span id="current-date"></span></em>
@@ -79,7 +81,7 @@
 		<li><a href="../links/">Links</a></li>
 	</ul>
 </footer>
-<!-- <script type="module" src="./tags.js"></script> -->
+<script type="module" src="./tags.js"></script>
 <script type="module" src="../scripts/date.js"></script>
 
 </html>
