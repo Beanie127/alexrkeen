@@ -29,6 +29,15 @@ buttons.forEach((button) => {
   });
 });
 
+const activateButton = (tag) => {
+  buttons.forEach((button) => {
+    if (button.dataset.target == tag) {
+      button.classList.add("is-active");
+    } else {
+      button.classList.remove("is-active");
+    }
+  });
+};
 const hideEssay = (essay, tag) => {
   if (essay.classList.contains(tag)) {
     essay.removeAttribute("hidden");
