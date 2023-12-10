@@ -5,6 +5,7 @@ const essays = document.querySelectorAll("#essays li");
 buttons.forEach((button) => {
   const tag = button.dataset.target;
   button.addEventListener("click", () => {
+    activateButton(tag);
     if (tag == "all") {
       if (!document.startViewTransition) {
         essays.forEach((essay) => essay.removeAttribute("hidden"));
@@ -29,6 +30,15 @@ buttons.forEach((button) => {
   });
 });
 
+const activateButton = (tag) => {
+  buttons.forEach((button) => {
+    if (button.dataset.target == tag) {
+      button.classList.add("is-active");
+    } else {
+      button.classList.remove("is-active");
+    }
+  });
+};
 const hideEssay = (essay, tag) => {
   if (essay.classList.contains(tag)) {
     essay.removeAttribute("hidden");

@@ -6,29 +6,24 @@
 	<meta name="viewport" content="width=device-width initial-scale=1" />
 	<link rel="stylesheet" href="../style.css" />
 	<title>Alex Keen | Writing</title>
-	<!-- <script src="https://unpkg.com/hyperscript.org@0.9.11"></script> -->
 </head>
 
-<body _="def filter(subject, caller)
-			remove .is-active from .is-active 
-			hide <#essays li/>
-			add .is-active to caller
-			show subject">
+<body>
 	<h1 id="alex-keen">Writing</h1>
 	<section id="essays">
 		<h2>Essays</h2>
 		<div class="filter-list">
 			<strong>Filter:</strong>
-			<button class="is-active" data-target="all" type="button" _="on click filter(<li/>, me)">
+			<button class="is-active" data-target="all" type="button">
 				All
 			</button>
-			<button type="button" data-target="improv" _="on click filter(.improv, me)">
+			<button type="button" data-target="improv">
 				#improv
 			</button>
-			<button type="button" data-target="marketing" _="on click filter(.marketing, me)">
+			<button type="button" data-target="marketing">
 				#marketing
 			</button>
-			<button type="button" data-target="tech" _="on click filter(.tech, me)">
+			<button type="button" data-target="tech">
 				#technology
 			</button>
 		</div>
@@ -71,17 +66,17 @@
 		<em>© Alex Keen 2021&ndash;<span id="current-date"></span></em>
 	</p>
 	<br />
+	<footer>
+		<ul>
+			<li><a href="../">Home</a></li>
+			<li><a href="../improv/">Improv</a></li>
+			<li><a href="../games/">Games</a></li>
+			<li class="current-page"><a href="../writing/">Writing</a></li>
+			<li><a href="../links/">Links</a></li>
+		</ul>
+	</footer>
+	<script type="module" src="./tags.js"></script>
+	<script type="module" src="../scripts/date.js"></script>
 </body>
-<footer>
-	<ul>
-		<li><a href="../">Home</a></li>
-		<li><a href="../improv/">Improv</a></li>
-		<li><a href="../games/">Games</a></li>
-		<li class="current-page"><a href="../writing/">Writing</a></li>
-		<li><a href="../links/">Links</a></li>
-	</ul>
-</footer>
-<script type="module" src="./tags.js"></script>
-<script type="module" src="../scripts/date.js"></script>
 
 </html>
