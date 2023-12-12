@@ -1,66 +1,46 @@
 const refreshQuote = document.querySelector("#refresh-quote");
+const displayQuote = document.querySelector("#display-quote");
 const quoteFilter = document.querySelector("#quote-filter");
 const quoteFilterResults = document.querySelector("#quote-filter-results");
 
-export const newQuote = () => {
+function newQuote() {
   console.log("generating new quote");
-  const randomNumber = Math.floor(Math.random() * quotes.length);
-  const quote = quotes[randomNumber];
-  if (!document.startViewTransition) {
-    document.querySelector(
-      "#display-quote"
-    ).innerHTML = `<blockquote>${quote.quote}<cite>${quote.author}</cite></blockquote>`;
-    return;
-  }
-  document.startViewTransition(() => {
-    document.querySelector(
-      "#display-quote"
-    ).innerHTML = `<blockquote>${quote.quote}<cite>${quote.author}</cite></blockquote>`;
-  });
-};
+  const randomNumber = Math.floor(Math.random() * quoteData.length);
+  const quote = quoteData[randomNumber];
+  const output = `<blockquote>${quote.quote}<cite>${quote.author}</cite></blockquote>`;
+  displayQuote.innerHTML = output;
+}
 
-refreshQuote.addEventListener("click", newQuote);
+function filter(searchTerm) {
+  return quoteData.filter(
+    (quote) =>
+      quote.quote.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      quote.author.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+}
 
-const filter = (filterContent) => {
+function render(input) {
   let output = "";
-  let index = 0;
-  quotes.forEach((quote) => {
-    if (
-      // if there is a search term, but it doesn't match the quote or author, skip
-      filterContent &&
-      !quote.quote.toLowerCase().includes(filterContent.toLowerCase()) &&
-      !quote.author.toLowerCase().includes(filterContent.toLowerCase())
-    ) {
-      return;
-    } // render the quote
-    output += `<blockquote style="view-transition-name:quote-${index}">${quote.quote}<cite>${quote.author}</cite></blockquote>`;
-    index++;
-  });
-  return output;
-};
-
-const render = (input) => {
-  if (!document.startViewTransition) {
-    quoteFilterResults.innerHTML = input;
-    return;
-  }
-  document.startViewTransition(() => {
-    quoteFilterResults.innerHTML = input;
-  });
-};
+  input.forEach(
+    (quote) =>
+      (output += `<blockquote>${quote.quote}<cite>${quote.author}</cite></blockquote>`)
+  );
+  quoteFilterResults.innerHTML = output;
+}
 
 quoteFilter.addEventListener("keyup", (e) => {
-  console.log(quoteFilter.value);
   render(filter(quoteFilter.value));
 });
 
+refreshQuote.addEventListener("click", newQuote);
+
 window.addEventListener("load", () => {
   newQuote();
-  quotes.sort(() => Math.random() - 0.5);
+  quoteData.sort(() => Math.random() - 0.5);
   render(filter(""));
 });
 
-export const quotes = [
+const quoteData = [
   {
     author: "Elder Sophrony of Essex",
     quote:
