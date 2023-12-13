@@ -42,6 +42,11 @@ window.addEventListener("load", () => {
 
 const quoteData = [
   {
+    author: "Ludwig van Beethoven",
+    quote:
+      "To play a wrong note is insignificant; to play without passion is inexcusable.",
+  },
+  {
     author: "Elder Sophrony of Essex",
     quote:
       "Stand at the brink of the abyss of despair, and when you see that you cannot bear it anymore, draw back a little and have a cup of tea.",
