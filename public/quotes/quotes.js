@@ -42,6 +42,11 @@ window.addEventListener("load", () => {
 
 const quoteData = [
   {
+    author: "Primo Levi",
+    quote:
+      "I have travelled as a loner and have followed a winding path, forming for myself a haphazard culture, full of gaps, a smattering of knowledge. In recompense, I have enjoyed looking at the world from unusual angles, inventing, so to speak, the instrumentation: examining matters of technique with the eye of a literary man, and literature with the eye of a technician.",
+  },
+  {
     author: "Ludwig van Beethoven",
     quote:
       "To play a wrong note is insignificant; to play without passion is inexcusable.",
