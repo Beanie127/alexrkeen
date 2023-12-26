@@ -29,15 +29,17 @@ html {
 }
 
 /* layout */
-body {
+
+main {
   -webkit-margin-before: clamp(1rem, 2vh, 3rem);
   margin-block-start: clamp(1rem, 2vh, 3rem);
   -webkit-margin-after: 6rem;
   margin-block-end: 6rem;
-  margin-inline: auto;
+  /* margin-inline: auto; */
   max-inline-size: 80ch;
   padding: 0rem 1rem;
   font-weight: 400;
+  grid-column: 2 / 3;
 }
 
 .flex-container {
@@ -50,7 +52,7 @@ body {
 .card {
   container: card/inline-size;
   display: block;
-  min-inline-size: calc(100vw - 3rem);
+  min-inline-size: calc(100vw - 10rem);
   max-inline-size: 100%;
   flex: 1;
   align-items: stretch;
@@ -415,8 +417,68 @@ body::-webkit-scrollbar-thumb {
   border-radius: 10px;
 }
 
+/* animations */
+
+/* main {
+  animation: 500ms reveal 3200ms linear both;
+} */
+
+#load-content {
+  position: fixed;
+  inset: 0;
+  inline-size: 100svi;
+  block-size: 100svb;
+  display: flex;
+  place-items: center;
+  justify-content: center;
+  background: var(--bg-color);
+  animation-name: reveal;
+  animation-duration: 50ms;
+  animation-delay: 3s;
+  animation-timing-function: linear;
+  animation-fill-mode: both;
+  animation-direction: reverse;
+  z-index: 100;
+}
+
+.load-span {
+  font-size: 5rem;
+  font-family: "Nimbus Mono PS", "Nimbus", monospace;
+  animation-name: reveal;
+  animation-duration: 50ms;
+  animation-timing-function: linear;
+  animation-fill-mode: both;
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    z-index: -1;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 /* responsive design */
 @media (min-width: 67em) {
+  body {
+    margin-block-start: 2rem;
+    display: grid;
+    grid-template-columns: max(3rem, 1fr) min(1fr, 80ch);
+  }
+  h1 {
+    grid-column: 1 / 2;
+    align-self: start;
+    justify-self: end;
+    position: sticky;
+    inset-inline-start: 1rem;
+    margin: 0;
+    margin-inline-start: 1rem;
+    padding: 0;
+    writing-mode: vertical-lr;
+    text-align: unset;
+  }
   .card {
     min-inline-size: 20em;
     display: grid;
