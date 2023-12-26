@@ -51,11 +51,12 @@ main {
 
 .card {
   container: card/inline-size;
-  display: block;
+  display: grid;
+  gap: 0;
+  grid-template-rows: auto 1fr auto;
   min-inline-size: calc(100vw - 10rem);
   max-inline-size: 100%;
   flex: 1;
-  align-items: stretch;
   padding: 0.8em;
   background: var(--mg-color);
   border-radius: 15px;
@@ -448,9 +449,6 @@ body::-webkit-scrollbar-thumb {
   }
   .card {
     min-inline-size: 20em;
-    display: grid;
-    gap: 0;
-    grid-template-rows: auto 1fr auto;
   }
   #quote-display {
     margin: 2em 3em 0em;
