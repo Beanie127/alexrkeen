@@ -423,43 +423,6 @@ body::-webkit-scrollbar-thumb {
   animation: 500ms reveal 3200ms linear both;
 } */
 
-#load-content {
-  position: fixed;
-  inset: 0;
-  inline-size: 100svi;
-  block-size: 100svb;
-  display: flex;
-  place-items: center;
-  justify-content: center;
-  background: var(--bg-color);
-  animation-name: reveal;
-  animation-duration: 50ms;
-  animation-delay: 3s;
-  animation-timing-function: linear;
-  animation-fill-mode: both;
-  animation-direction: reverse;
-  z-index: 100;
-}
-
-.load-span {
-  font-size: 5rem;
-  font-family: "Nimbus Mono PS", "Nimbus", monospace;
-  animation-name: reveal;
-  animation-duration: 50ms;
-  animation-timing-function: linear;
-  animation-fill-mode: both;
-}
-
-@keyframes reveal {
-  from {
-    opacity: 0;
-    z-index: -1;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
 /* responsive design */
 @media (min-width: 67em) {
   body {
@@ -497,5 +460,42 @@ body::-webkit-scrollbar-thumb {
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
+  }
+
+  #load-content {
+    position: fixed;
+    inset: 0;
+    inline-size: 100svi;
+    block-size: 100svb;
+    display: flex;
+    place-items: center;
+    justify-content: center;
+    background: var(--bg-color);
+    animation-name: reveal;
+    animation-duration: 50ms;
+    animation-delay: 3s;
+    animation-timing-function: linear;
+    animation-fill-mode: both;
+    animation-direction: reverse;
+    z-index: 100;
+  }
+
+  .load-span {
+    font-size: 5rem;
+    font-family: "Nimbus Mono PS", "Nimbus", monospace;
+    animation-name: reveal;
+    animation-duration: 50ms;
+    animation-timing-function: linear;
+    animation-fill-mode: both;
+  }
+
+  @keyframes reveal {
+    from {
+      opacity: 0;
+      z-index: -1;
+    }
+    to {
+      opacity: 1;
+    }
   }
 }
