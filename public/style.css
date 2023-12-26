@@ -417,6 +417,10 @@ body::-webkit-scrollbar-thumb {
   border-radius: 10px;
 }
 
+#load-content {
+  display: none;
+}
+
 /* animations */
 
 /* main {
