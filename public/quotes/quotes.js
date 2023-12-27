@@ -42,6 +42,15 @@ window.addEventListener("load", () => {
 
 const quoteData = [
   {
+    author: "Blaise Pascal",
+    quote:
+      "All of humanity's problems stem from man's inability to sit quietly in a room alone.",
+  },
+  {
+    author: "E. M. Forster",
+    quote: "How do I know what I think until I see what I say?",
+  },
+  {
     author: "Primo Levi",
     quote:
       "I have travelled as a loner and have followed a winding path, forming for myself a haphazard culture, full of gaps, a smattering of knowledge. In recompense, I have enjoyed looking at the world from unusual angles, inventing, so to speak, the instrumentation: examining matters of technique with the eye of a literary man, and literature with the eye of a technician.",
