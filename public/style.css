@@ -319,7 +319,7 @@ cite::before {
   content: "— ";
 }
 
-blockquote,
+#display-quote,
 cite {
   text-wrap: balance;
 }
