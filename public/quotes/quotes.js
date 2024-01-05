@@ -42,6 +42,10 @@ window.addEventListener("load", () => {
 
 const quoteData = [
   {
+    author: "Richard Feynman",
+    text: "Fall in love with some activity, and do it! Nobody ever figures out what life is all about, and it doesn't matter. Explore the world. Nearly everything is really interesting if you go into it deeply enough. Work as hard and as much as you want to on the things you like to do the best. Don't think about what you want to be, but what you want to do. Keep up some kind of a minimum with other things so that society doesn't stop you from doing anything at all.",
+  },
+  {
     author: "Ursula K. Le Guin",
     text: "For we each of us deserve everything, every luxury that was ever piled in the tombs of the dead kings, and we each of us deserve nothing, not a mouthful of bread in hunger. Have we not eaten while another starved? Will you punish us for that? Will you reward us for the virtue of starving while others ate? No man earns punishment, no man earns reward. Free your mind of the idea of deserving, the idea of earning, and you will begin to be able to think.",
   },
