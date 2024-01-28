@@ -42,6 +42,10 @@ window.addEventListener("load", () => {
 
 const quoteData = [
   {
+    author: "J Matthews",
+    text: "We cannot get anything 'out' of life. There is no little pocket, situated outside of life, where we could steal life's provisions and squirrel them away. The life of this moment has no outside.",
+  },
+  {
     author: "Paulo Coelho",
     text: "The reward of our work is not what we get, but what we become.",
   },
