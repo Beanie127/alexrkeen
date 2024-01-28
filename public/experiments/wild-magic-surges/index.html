@@ -83,8 +83,15 @@
       text-align: center;
     }
 
-    #display-surge em {
-      display: block;
+    #display-surge {
+      & h2 {
+        margin-block: 1rem 0.5rem;
+      }
+
+      & em {
+        display: block;
+        margin-block-end: 0.5ch;
+      }
     }
   </style>
   <div id="display-surge"></div>
