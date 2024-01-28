@@ -54,7 +54,7 @@ html {
   background: hsl(0 0% 5%);
   color: hsl(40 60% 80%);
   font-family: "linotype-sabon", system-serif, system-ui;
-  font-size: 150%;
+  font-size: clamp(100%, 90% + 2dvi, 150%);
   line-height: 1.2;
 }
 body {
@@ -70,6 +70,7 @@ body {
 
 button {
   all: unset;
+  margin-block-start: 1ch;
   border: 1px solid hsl(0 70% 25%);
   border-radius: 10px;
   padding: 0.5rem 1rem;
