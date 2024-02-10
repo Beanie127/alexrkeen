@@ -20,12 +20,15 @@ html {
   box-sizing: border-box;
 }
 
+body {
+  scrollbar-gutter: stable both-edges;
+}
+
 /* box-sizing fix */
 *:not(img),
 *:before,
 *:after {
   box-sizing: inherit;
-  scrollbar-gutter: stable both-edges;
 }
 
 /* layout */
