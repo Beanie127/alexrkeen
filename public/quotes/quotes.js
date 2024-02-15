@@ -42,6 +42,14 @@ window.addEventListener("load", () => {
 
 const quoteData = [
   {
+    author: "Harry Ruby",
+    text: "The best bridge between despair and hope is a good night's sleep.",
+  },
+  {
+    author: "Adam Grant",
+    text: "It&apos;s impossible to please everyone. The question is whether you're disappointing the right people.",
+  },
+  {
     author: "David McRaney",
     text: "Until we know we are wrong, being wrong feels exactly like being right.",
   },
