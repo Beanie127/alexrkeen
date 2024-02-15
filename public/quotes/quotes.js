@@ -42,6 +42,26 @@ window.addEventListener("load", () => {
 
 const quoteData = [
   {
+    author: "David McRaney",
+    text: "Until we know we are wrong, being wrong feels exactly like being right.",
+  },
+  {
+    author: "Aldous Huxley",
+    text: "Experience is not what happens to you; it is what you do with what happens to you.",
+  },
+  {
+    author: "Haruki Murakami",
+    text: "[A]s I write I think about all sorts of things. I don&apos;t necessarily write down what I&apos;m thinking; It&apos;s just that as I write I think about things. As I write, I arrange my thoughts. And rewriting and revising takes my thinking down even deeper paths. No matter how much I write, though, I never reach a conclusion. And no matter how much I rewrite, I never reach the destination. Even after decades of writing, the same still holds true.",
+  },
+  {
+    author: "Walter Anderson",
+    text: "The most sincere compliment we can pay is attention.",
+  },
+  {
+    author: "C.S. Lewis",
+    text: "Friendship is unnecessary, like philosophy, like art, like the universe itself… It has no survival value; Rather it is one of those things which give value to survival.",
+  },
+  {
     author: "J Matthews",
     text: "We cannot get anything 'out' of life. There is no little pocket, situated outside of life, where we could steal life's provisions and squirrel them away. The life of this moment has no outside.",
   },
