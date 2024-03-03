@@ -33,12 +33,13 @@ body {
 
 /* layout */
 
-main {
+main,
+article {
   -webkit-margin-before: clamp(1rem, 2vh, 3rem);
   margin-block-start: clamp(1rem, 2vh, 3rem);
   -webkit-margin-after: 6rem;
   margin-block-end: 6rem;
-  /* margin-inline: auto; */
+  margin-inline: auto;
   max-inline-size: 80ch;
   padding: 0rem 1rem;
   font-weight: 400;
@@ -300,7 +301,7 @@ hr {
 }
 
 blockquote {
-  padding-block: 1rem 0rem;
+  padding-block: 0rem;
   padding-inline: 1rem;
   -webkit-border-start: thin solid var(--accent-color);
   border-inline-start: thin solid var(--accent-color);
@@ -440,7 +441,7 @@ body::-webkit-scrollbar-thumb {
 
 /* responsive design */
 @media (min-width: 67em) {
-  body {
+  /* body {
     margin-block-start: 2rem;
     display: grid;
     grid-template-columns: max(3rem, 1fr) min(1fr, 80ch);
@@ -456,7 +457,8 @@ body::-webkit-scrollbar-thumb {
     padding: 0;
     writing-mode: vertical-lr;
     text-align: unset;
-  }
+  } */
+
   .card {
     min-inline-size: 20em;
   }
@@ -467,6 +469,7 @@ body::-webkit-scrollbar-thumb {
     font-size: 1.2em;
     line-height: 1.8em;
   }
+
   hr {
     background: url("/images/hr-big.svg");
     background-repeat: no-repeat;
