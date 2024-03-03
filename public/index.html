@@ -67,11 +67,12 @@
 		if (animationShown == "true") {
 			console.log("Load animation has been shown this session. Hiding #load-content")
 			document.querySelector("#load-content").hidden = true;
+		} else {
+			setTimeout(() => {
+				console.log("Load amination shown. Hiding #load-content")
+				sessionStorage.setItem("animationShown", "true")
+			}, "2000")
 		}
-		setTimeout(() => {
-			console.log("Load amination shown. Hiding #load-content")
-			sessionStorage.setItem("animationShown", "true")
-		}, "2000")
 	</script>
 </body>
 
