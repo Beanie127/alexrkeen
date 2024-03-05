@@ -294,6 +294,9 @@ hr {
   border-color: var(--h-color);
   border-width: 0px 5px;
   view-transition-name: quote;
+  & blockquote {
+    padding-block-start: 1rem;
+  }
 }
 
 #quote-filter-results {
