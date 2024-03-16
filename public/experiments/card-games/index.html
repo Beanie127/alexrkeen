@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alex R. Keen | Card Games</title>
+  <link rel="stylesheet" href="../../style.css">
+  <style>
+    .playing-card {
+      inline-size: clamp(6rem, 25%, 10rem);
+      aspect-ratio: 9 / 14;
+      border: thin solid black;
+      border-radius: calc(7in / 64);
+      background: white;
+      color: black;
+      padding: 1ch;
+      display: grid;
+      place-items: center;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Card Games</h1>
+  <main>
+    <div class="card shadow">
+      <h3>Play the Tarot</h3>
+      <div class="flex-container">
+        <button type="button" id="draw-card">Draw a card</button>
+        <button type="button" id="shuffle">Reshuffle</button>
+      </div>
+      <div id="display-card" class="flex-container">
+      </div>
+    </div>
+  </main>
+  <script type="module" src="./main.js"></script>
+</body>
+</div>
+
+</html>
