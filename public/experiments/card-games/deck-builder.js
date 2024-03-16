@@ -11,6 +11,7 @@ class Card {
     this.suit = suit;
     this.rank = rank;
     this.value = false;
+    this.id = 0;
   }
 }
 
@@ -79,24 +80,25 @@ const parametersTarot = {
 
 class Deck {
   constructor() {
-    this.cards = [];
     this.backup = [];
+    this.cardsInDeck = [];
+    this.currentCard;
   }
 
   draw() {
-    if (this.cards.length == 0) {
+    if (this.cardsInDeck.length == 0) {
       alert("You've run out of cards!");
       return;
     }
-    const card = getRandomFromArray(this.cards);
-    this.cards = this.cards.filter((obj) => obj != card);
-    console.log(this.cards);
-    return card;
+    this.currentCard = getRandomFromArray(this.cardsInDeck);
+    this.cardsInDeck = this.cardsInDeck.filter(
+      (card) => card != this.currentCard
+    );
+    return this.currentCard;
   }
 
   shuffle() {
-    this.cards = this.backup;
-    console.log(this.cards);
+    this.cardsInDeck = this.backup;
   }
 }
 
@@ -114,10 +116,13 @@ class FiftyTwoDeck extends Deck {
           card.type = "Number";
         }
         card.value = 1 + parametersFiftyTwo.ranks.indexOf(rank);
-        this.cards.push(card);
+        this.cardsInDeck.push(card);
       });
     });
-    this.backup = this.cards;
+    this.cardsInDeck.forEach((card) => {
+      card.id = cardsInDeck.indexOf(card) + 1;
+    });
+    this.backup = this.cardsInDeck;
   }
 }
 
@@ -128,7 +133,7 @@ class TarotDeck extends Deck {
       const rank = parametersTarot.majors.indexOf(major);
       const card = new Card(rank, "Major Arcana", major);
       card.type = "Major Arcana";
-      this.cards.push(card);
+      this.cardsInDeck.push(card);
     });
     parametersTarot.suits.forEach((suit) => {
       parametersTarot.ranks.forEach((rank) => {
@@ -146,10 +151,13 @@ class TarotDeck extends Deck {
           card.type = "Number";
         }
         card.value = 1 + parametersTarot.ranks.indexOf(rank);
-        this.cards.push(card);
+        this.cardsInDeck.push(card);
       });
     });
-    this.backup = this.cards;
+    this.cardsInDeck.forEach((card) => {
+      card.id = this.cardsInDeck.indexOf(card) + 1;
+    });
+    this.backup = this.cardsInDeck;
   }
 }
 

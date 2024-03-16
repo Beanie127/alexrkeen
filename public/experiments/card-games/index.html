@@ -5,21 +5,30 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Alex R. Keen | Card Games</title>
-  <link rel="stylesheet" href="../../style.css">
   <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
   <h1>Card Games</h1>
-  <main>
+  <section id="draw-tarot">
     <h2>Draw the Tarot</h2>
-    <div class="flex-container">
+    <div class="flex-row">
       <button type="button" id="draw-card">Draw a card</button>
       <button type="button" id="shuffle">Reshuffle</button>
     </div>
-    <div id="display-card" class="flex-container">
+    <div id="display-card" class="flex-row">
     </div>
-  </main>
+  </section>
+  <section id="dungeon-solitaire" style="display:none">
+    <h2>Dungeon Solitaire</h2>
+    <div class="flex-row">
+      <button type="button" id="ds-draw-card">Draw</button>
+      <button id="ds-turn">Turn Back</button>
+    </div>
+    <div id="ds-delve" class="flex-row"></div>
+    <div id="ds-return" class="flex-row"></div>
+  </section>
+  <div id="draw-display" class="card"></div>
   <script type="module" src="./main.js"></script>
 </body>
 </div>
