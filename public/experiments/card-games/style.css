@@ -1,0 +1,34 @@
+.playing-card {
+  inline-size: clamp(3rem, 20%, 10rem);
+  font-size: clamp(0.7rem, 0.65rem + 1dvi, 1.2rem);
+  aspect-ratio: 9 / 14;
+  border: thin solid black;
+  border-radius: calc(7in / 64);
+  background: white;
+  color: black;
+  padding: 1ch;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  perspective: 100px;
+}
+
+.card {
+  padding-inline: 1ch;
+}
+
+.place-card {
+  animation-name: card-flip;
+  animation-duration: 600ms;
+}
+
+@keyframes card-flip {
+  from {
+    inline-size: 0;
+    opacity: 0;
+    transform: rotateY(180deg);
+  }
+  to {
+    transform: rotateY(0deg);
+  }
+}
