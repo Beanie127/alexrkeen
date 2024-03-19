@@ -30,7 +30,7 @@ drawCard.addEventListener("click", () => {
     document.querySelector(".fade-in").classList.remove("fade-in");
   }, 1400);
   setTimeout(() => {
-    drawCard.setAttribute("disabled", false);
+    drawCard.removeAttribute("disabled");
   }, 1401);
 });
 

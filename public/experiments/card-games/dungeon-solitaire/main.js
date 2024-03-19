@@ -24,7 +24,7 @@ class Run {
     this.corruption = 0;
     this.active = {
       stack: {
-        elem,
+        elem: {},
         cards: [],
       },
       card: {},
@@ -66,12 +66,12 @@ class Run {
     this.active.stack.cards = [];
     // - assign that stack to this.active.stackElem so you can manipulate it
     if (this.retreating) {
-      this.active.stack.elem = delve.querySelector(
-        `[data-depth="${this.depth}"]`
+      this.active.stack.elem = document.querySelector(
+        `#delve-retreat [data-depth="${this.depth}"]`
       );
     } else {
-      this.active.stack.elem = delveRetreat.querySelector(
-        `[data-depth="${this.depth}"]`
+      this.active.stack.elem = document.querySelector(
+        `#delve [data-depth="${this.depth}"]`
       );
     }
     if (this.depth == 1) {
@@ -82,14 +82,15 @@ class Run {
     this.drawACard();
   }
 
-  //wip
+  //wip -- add line to disable button until the animatoin cycle is completed from ../main.js
   drawACard() {
     // draw a new card from the deck and make it the active card
     this.active.card = this.deck.draw();
     // add it to the active stack
-    this.active.stack.push(this.active.card);
+    this.active.stack.cards.push(this.active.card);
     // flash it on the screen
     showCurrentCard(this.active.card);
+    this.active.stack.elem.innerHTML += renderCard(this.active.card);
     // work out what's going on!
     // check if this is a torch and if so, burn it
     if (this.active.card.type == "Ace") {
