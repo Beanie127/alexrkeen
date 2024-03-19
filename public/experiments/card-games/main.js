@@ -1,37 +1,40 @@
 import { TarotDeck } from "./deck-builder.js";
+import { buildCard } from "./utils.js";
 
-const btnDrawCard = document.querySelector("#draw-card");
-const btnShuffle = document.querySelector("#shuffle");
-const displayCard = document.querySelector("#display-card");
-const drawDisplay = document.querySelector("#draw-display");
-
-const deck = new TarotDeck();
-
-let cardsPlayed = 0;
-let currentCard;
+const drawCard = document.querySelector("#draw-card");
+const shuffle = document.querySelector("#shuffle");
+const cardTray = document.querySelector("#card-tray");
+const displayCurrentCard = document.querySelector("#display-current-card");
 
 function showCurrentCard() {
-  drawDisplay.textContent = currentCard.name;
-  drawDisplay.classList.add("show-card");
+  displayCurrentCard.textContent = deck.currentCard.name;
+  displayCurrentCard.classList.add("show-card");
   setTimeout(() => {
-    drawDisplay.classList.remove("show-card");
+    displayCurrentCard.classList.remove("show-card");
   }, 1201);
 }
 
-btnDrawCard.addEventListener("click", (e) => {
-  cardsPlayed++;
-  currentCard = deck.draw();
+// Draw the Tarot features
+
+const deck = new TarotDeck();
+
+drawCard.addEventListener("click", (e) => {
+  drawCard.setAttribute("disabled", true);
+  deck.currentCard = deck.draw();
   showCurrentCard();
-  displayCard.innerHTML += `
-  <div class="card fade-in" data-id="${currentCard.id}">${currentCard.name}</div>
-  `;
+  cardTray.innerHTML += buildCard(deck.currentCard);
+  document
+    .querySelector(`[data-id="${deck.currentCard.id}"`)
+    .classList.add("fade-in");
   setTimeout(() => {
     document.querySelector(".fade-in").classList.remove("fade-in");
   }, 1400);
+  setTimeout(() => {
+    drawCard.setAttribute("disabled", false);
+  }, 1401);
 });
 
-btnShuffle.addEventListener("click", (e) => {
-  displayCard.innerHTML = ``;
+shuffle.addEventListener("click", (e) => {
+  cardTray.innerHTML = ``;
   deck.shuffle();
-  cardsPlayed = 0;
 });

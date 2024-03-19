@@ -1,0 +1,20 @@
+.stack-horizontal {
+  display: grid;
+  inline-size: max-content;
+  grid-template-columns: repeat(10, 1.5em);
+}
+
+.stack-vertical {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(10, 1.5em);
+}
+
+#delve-retreat {
+  flex-direction: row-reverse;
+}
+
+.card:hover {
+  z-index: 100;
+  background: hsl(0 40% 60%);
+}

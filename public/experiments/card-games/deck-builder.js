@@ -3,7 +3,7 @@ import { getRandomFromArray } from "./utils.js";
 class Card {
   constructor(rank, suit, name) {
     if (suit == "Major Arcana") {
-      this.name = `${rank}. ${name}`;
+      this.name = name;
     } else {
       this.name = `${rank} of ${suit}`;
     }
@@ -78,6 +78,12 @@ const parametersTarot = {
   ],
 };
 
+const parametersDungeon = {
+  suits: ["Swords", "Cups", "Coins", "Wands", "Major Arcana"],
+  actionValues: [2, 3, 4, 5, 6, 7, 8, 9, 10],
+  basicCards: ["Ace", "Page", "Knight", "Queen", "King"],
+};
+
 class Deck {
   constructor() {
     this.backup = [];
@@ -85,15 +91,23 @@ class Deck {
     this.currentCard;
   }
 
-  draw() {
+  add(card) {
+    this.cardsInDeck.push(card);
+  }
+  draw(fn) {
     if (this.cardsInDeck.length == 0) {
       alert("You've run out of cards!");
       return;
     }
     this.currentCard = getRandomFromArray(this.cardsInDeck);
+    console.log(this.currentCard);
     this.cardsInDeck = this.cardsInDeck.filter(
       (card) => card != this.currentCard
     );
+    if (fn) {
+      fn(this.currentCard);
+      return;
+    }
     return this.currentCard;
   }
 
@@ -116,7 +130,7 @@ class FiftyTwoDeck extends Deck {
           card.type = "Number";
         }
         card.value = 1 + parametersFiftyTwo.ranks.indexOf(rank);
-        this.cardsInDeck.push(card);
+        this.add(card);
       });
     });
     this.cardsInDeck.forEach((card) => {
@@ -132,8 +146,9 @@ class TarotDeck extends Deck {
     parametersTarot.majors.forEach((major) => {
       const rank = parametersTarot.majors.indexOf(major);
       const card = new Card(rank, "Major Arcana", major);
-      card.type = "Major Arcana";
-      this.cardsInDeck.push(card);
+      card.suit = "Major Arcana";
+      card.value = card.rank;
+      this.add(card);
     });
     parametersTarot.suits.forEach((suit) => {
       parametersTarot.ranks.forEach((rank) => {
@@ -151,13 +166,61 @@ class TarotDeck extends Deck {
           card.type = "Number";
         }
         card.value = 1 + parametersTarot.ranks.indexOf(rank);
-        this.cardsInDeck.push(card);
+        this.add(card);
       });
     });
     this.cardsInDeck.forEach((card) => {
       card.id = this.cardsInDeck.indexOf(card) + 1;
     });
     this.backup = this.cardsInDeck;
+  }
+}
+
+class DungeonDeck extends Deck {
+  constructor() {
+    super();
+    // add all the action cards
+    parametersDungeon.suits.forEach((suit) => {
+      parametersDungeon.actionValues.forEach((value) => {
+        const card = new Card(value, suit);
+        card.challenge;
+        switch (suit) {
+          case "Swords":
+            card.challenge.monster;
+          case "Coins":
+            card.challenge.trap;
+            card.worth = value;
+          case "Wands":
+            card.challenge.door;
+          case "Major Arcana":
+            card.challenge.maze;
+        }
+        this.add(card);
+      });
+    });
+    // add Aces, Pages, Knights, Queens, Kings
+    parametersDungeon.basicCards.forEach((rank) => {
+      parametersDungeon.suits.forEach((suit) => {
+        if ((suit = "Major Arcana")) {
+          return;
+        }
+        const card = new Card(rank, suit);
+        switch (rank) {
+          case "Ace":
+            card.torch;
+          case "Page":
+            card.companion;
+          case "Knight":
+            card.skill;
+          case "Queen":
+            card.favour;
+          case "King":
+            card.hoard;
+            card.worth = 10;
+        }
+        this.add(card);
+      });
+    });
   }
 }
 
