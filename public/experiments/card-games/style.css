@@ -2,6 +2,7 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  /* outline: thin solid red; */
 }
 
 /* colours & typography */
@@ -54,7 +55,7 @@ section {
   border-radius: calc(7in / 64);
   background: HSL(40 40% 80%);
   color: black;
-  padding: 1ch;
+  padding: 0.5ch;
   display: grid;
   text-align: center;
 }
