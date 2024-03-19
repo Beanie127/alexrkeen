@@ -23,8 +23,10 @@ class Run {
     this.torchesRemaining = 4;
     this.corruption = 0;
     this.active = {
-      stackElem: false,
-      stack: [],
+      stack: {
+        elem,
+        cards: [],
+      },
       card: {},
       challenge: {
         type: false,
@@ -34,7 +36,6 @@ class Run {
       },
     };
     this.deck = new TarotDeck();
-    5338;
   }
 
   lose(reason) {
@@ -62,15 +63,17 @@ class Run {
     // increase the turn count
     this.turnCount++;
     // - empty the active stack array
-    this.active.stack = [];
-    // - create a new div with a unique data attribtute in the target div
-    target.innerHTML += `
-    <div class="stack" data-turn="${this.turnCount}"></div>
-    `;
+    this.active.stack.cards = [];
     // - assign that stack to this.active.stackElem so you can manipulate it
-    this.active.stackElem = document.querySelector(
-      `[data-turn="${this.turnCount}"]`
-    );
+    if (this.retreating) {
+      this.active.stack.elem = delve.querySelector(
+        `[data-depth="${this.depth}"]`
+      );
+    } else {
+      this.active.stack.elem = delveRetreat.querySelector(
+        `[data-depth="${this.depth}"]`
+      );
+    }
     if (this.depth == 1) {
       updateMessage(`You are ${this.depth} room deep into the dungeon.`, true);
     } else {
