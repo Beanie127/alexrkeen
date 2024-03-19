@@ -1,5 +1,5 @@
 import { TarotDeck } from "./deck-builder.js";
-import { buildCard } from "./utils.js";
+import { renderCard } from "./utils.js";
 
 const drawCard = document.querySelector("#draw-card");
 const shuffle = document.querySelector("#shuffle");
@@ -18,11 +18,11 @@ function showCurrentCard() {
 
 const deck = new TarotDeck();
 
-drawCard.addEventListener("click", (e) => {
+drawCard.addEventListener("click", () => {
   drawCard.setAttribute("disabled", true);
   deck.currentCard = deck.draw();
   showCurrentCard();
-  cardTray.innerHTML += buildCard(deck.currentCard);
+  cardTray.innerHTML += renderCard(deck.currentCard);
   document
     .querySelector(`[data-id="${deck.currentCard.id}"`)
     .classList.add("fade-in");
@@ -34,7 +34,7 @@ drawCard.addEventListener("click", (e) => {
   }, 1401);
 });
 
-shuffle.addEventListener("click", (e) => {
+shuffle.addEventListener("click", () => {
   cardTray.innerHTML = ``;
   deck.shuffle();
 });
