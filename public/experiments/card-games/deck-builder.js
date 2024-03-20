@@ -11,7 +11,9 @@ class Card {
     this.suit = suit;
     this.rank = rank;
     this.value = false;
+    this.worth = 0;
     this.id = 0;
+    this.challenge = {};
   }
 }
 
@@ -79,7 +81,7 @@ const parametersTarot = {
 };
 
 const parametersDungeon = {
-  suits: ["Swords", "Cups", "Coins", "Wands"],
+  suits: ["Swords", "Cups", "Pentacles", "Wands"],
   actionRanks: [2, 3, 4, 5, 6, 7, 8, 9, 10],
   basicCards: ["Ace", "Page", "Knight", "Queen", "King"],
   majors: [
@@ -239,14 +241,13 @@ class DungeonDeck extends Deck {
       parametersDungeon.actionRanks.forEach((rank) => {
         const card = new Card(rank, suit);
         card.type = "action";
-        card.challenge = {};
         switch (suit) {
           case "Swords":
             card.challenge.type = "monster";
             break;
-          case "Coins":
+          case "Pentacles":
             card.challenge.type = "trap";
-            card.worth = rank;
+            card.worth = card.rank;
             break;
           case "Wands":
             card.challenge.type = "door";
@@ -279,7 +280,6 @@ class DungeonDeck extends Deck {
         case 8:
         case 9:
         case 10:
-          card.challenge = {};
           card.challenge.type = "maze";
           card.type = "action";
           break;

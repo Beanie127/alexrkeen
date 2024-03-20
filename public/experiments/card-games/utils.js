@@ -6,14 +6,9 @@ function getRandomFromArray(array) {
   return array[getRandomInt(array.length)];
 }
 
-function renderCard(card, destination = false) {
-  const constructedElement = `
+function renderCard(card) {
+  return `
   <div class="card" data-id="${card.id}">${card.name}</div> `;
-  if (destination) {
-    destination.innerHTML += constructedElement;
-    return;
-  }
-  return constructedElement;
 }
 
 function removeItemOnce(arr, value) {
