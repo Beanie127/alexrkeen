@@ -1,13 +1,20 @@
-import { Deck, TarotDeck } from "../deck-builder.js";
+import { DungeonDeck } from "../deck-builder.js";
 import { renderCard, delay } from "../utils.js";
-
+// controls
 const btnDrawCard = document.querySelector("#draw-card");
 const btnRetreat = document.querySelector("#retreat");
+// notifications
 const message = document.querySelector("#message");
+const displayCurrentCard = document.querySelector("#display-current-card");
+// card placements
 const torchTrack = document.querySelector("#torch-track");
+const treasureTrack = document.querySelector("#treasure-track");
+const companionTrack = document.querySelector("#companion-track");
+const handTrack = document.querySelector("#hand-track");
+const corruptionTrack = document.querySelector("#corruption-track");
 const delve = document.querySelector("#delve");
 const delveRetreat = document.querySelector("#delve-reteat");
-const displayCurrentCard = document.querySelector("#display-current-card");
+const hpDisplay = document.querySelector("#hp");
 
 class Run {
   constructor() {
@@ -17,9 +24,9 @@ class Run {
     this.retreating = false;
     this.companions = [];
     this.hand = [];
-    this.haul = [];
+    this.treasure = [];
     this.discards = [];
-    this.haulValue = 0;
+    this.score = 0;
     this.torchesRemaining = 4;
     this.corruption = 0;
     this.active = {
@@ -30,35 +37,100 @@ class Run {
       card: {},
       challenge: {
         type: false,
-        treasures: [],
-        damage: 0,
-        aides: [],
+        rating: 0,
       },
     };
-    this.deck = new TarotDeck();
+    this.deck = new DungeonDeck();
   }
 
-  lose(reason) {
-    updateMessage(reason);
-    this.gameOver;
+  // TODO: disable button until the animation cycle is completed (from ../main.js)
+  drawCard() {
+    this.active.card = this.deck.draw();
+    showCurrentCard(this.active.card);
   }
 
-  advance() {
-    this.depth++;
-    this.newTurn(delve);
+  // move a card from one place to another
+  placeCard(array, element) {
+    const id = this.active.card.id;
+    const oldCopy = document.querySelector(`[data-id="${id}"]`);
+    oldCopy?.remove();
+    renderCard(this.active.card, element);
+    array.push(this.active.card);
+    removeItemOnce(this.active.stack.cards, this.active.card);
   }
 
-  retreat() {
-    this.depth--;
-    if (this.depth == 0) {
-      updateMessage(`You escaped the dungeon!`);
-      this.gameOver;
-      return;
+  // place the card in the appropriate track
+  sortCard() {
+    switch (this.active.card.type) {
+      case "torch":
+        this.placeCard(this.discards, torchTrack);
+        this.burnTorch(this.active.card);
+      case "companion":
+        this.placeCard(this.companions, companionTrack);
+      case "skill":
+        this.placeCard(this.hand, handTrack);
+      case "treasure" || "blessing" || "action" || "item" || "favour":
+        this.placeCard(this.active.stack.cards, this.active.stack.elem);
     }
-    this.newTurn(delveRetreat);
+    if (this.active.card.type == "action") {
+      this.processActionCard();
+    }
   }
 
-  newTurn(target) {
+  processActionCard() {
+    // if it's an action, do the thing
+    if (this.active.card.type == "action") {
+      console.log("Action card drawn");
+      // if we're not yet in a challenge, make this the active challenge
+      if (this.active.challenge.type == false) {
+        updateMessage("Challenge Started!");
+        this.active.challenge.type = this.active.card.challenge.type;
+        this.active.challenge.rating = this.active.card.rank;
+        // win if the stack already contains a blessing
+        this.active.stack.cards.forEach((card) => {
+          if (card.type == "blessing") {
+            this.winChallenge();
+          }
+        });
+      } else {
+        // if we're in an active challenge, see if this card wins the challenge
+        if (this.active.card.value >= this.active.challenge.rating) {
+          console.log("Challenge won");
+          this.winChallenge();
+        } else {
+          // otherwise, see what kind of challenge it is and deal damage accordingly
+          const shortfall = this.active.challenge.rating - card.value;
+          switch (this.active.challenge.type) {
+            case "monster":
+              this.takeDamage(shortfall, this.active.challenge.type);
+            case "trap":
+              this.takeDamage(shortfall, this.active.challenge.type);
+            case "locked door":
+              this.discard(shortfall);
+            case "maze":
+            // TODO some shit if maze
+          }
+        }
+      }
+    }
+  }
+
+  discard(lostTime) {
+    for (let i = 1; i <= lostTime; i++) {
+      const discard = this.deck.draw();
+      showCurrentCard(discard);
+      if (discard.type == "Ace") {
+        this.burnTorch(card);
+      } else {
+        this.discards.push(discard);
+      }
+      delay(600);
+    }
+    updateMessage(
+      `The door will not budge. You waste ${lostTime} hours as you seek another path.`
+    );
+  }
+  newTurn() {
     // when you start a new turn:
     // increase the turn count
     this.turnCount++;
@@ -79,97 +151,65 @@ class Run {
     } else {
       updateMessage(`You are ${this.depth} rooms deep into the dungeon.`, true);
     }
-    this.drawACard();
+    this.drawCard();
+  }
+  loseRun(reason) {
+    updateMessage(reason);
+    this.gameOver;
   }
 
-  //wip -- add line to disable button until the animatoin cycle is completed from ../main.js
-  drawACard() {
-    // draw a new card from the deck and make it the active card
-    this.active.card = this.deck.draw();
-    // add it to the active stack
-    this.active.stack.cards.push(this.active.card);
-    // flash it on the screen
-    showCurrentCard(this.active.card);
-    this.active.stack.elem.innerHTML += renderCard(this.active.card);
-    // work out what's going on!
-    // check if this is a torch and if so, burn it
-    if (this.active.card.type == "Ace") {
-      this.burnTorch(this.active.card);
-      return;
-      // then check if it's a number
-    } else if ((this.active.card.type = "Number")) {
-      if (!this.active.challenge.type) {
-        //
-        // if it is, then
-        switch (this.active.card.suit) {
-          case "Swords":
-          case "Pentacles":
-          case "Wands":
-          case "Major Arcana": {
-          }
-        }
-      }
-      // TODO sorting logic - definitely split these into their own functions for the challenge types
-      if (this.active.challenge.type) {
-        if (this.active.card.value >= this.active.challenge.rating) {
-          this.winChallenge();
-        } else {
-          if (
-            this.active.challenge.type == "monster" ||
-            this.active.challenge.type == "trap"
-          ) {
-            const damage = this.active.challenge.rating - card.value;
-            this.takeDamage(damage, this.active.challenge.type);
-          } else if (this.active.challenge.type == "locked door") {
-            const lostTime = this.active.challenge.rating - card.value;
-            this.discard(lostTime);
-          } else if (this.active.challenge.type == "maze") {
-            // TODO some shit if maze
-          }
-        }
-      }
-      // this.active.stackElem.innerHTML += renderCard(this.active.card);
-    }
+  advance() {
+    this.depth++;
+    this.newTurn(delve);
   }
+
+  retreat() {
+    this.depth--;
+    if (this.depth == 0) {
+      updateMessage(`You escaped the dungeon!`);
+      this.gameOver;
+      return;
+    }
+    this.newTurn(delveRetreat);
+  }
+
   winChallenge() {
-    this.haul.push(this.active.challenge.treasures);
-    this.hand.push(this.active.challenge.aides);
+    // find all cards that are treasure and make them treasure
+    // TODO: enable buttons to progress or retreat
+    this.active.stack.cards.forEach((card) => {
+      if (card.suit == "Pentacles") {
+        card.type = "treasure";
+      }
+      switch (card.type) {
+        case "treasure":
+          this.placeCard(this.treasure, treasureTrack);
+          this.score += card.worth;
+        case "companion":
+          this.placeCard(this.companions, companionTrack);
+        case "blessing" || "item":
+          this.placeCard(this.hand, handTrack);
+      }
+    });
     delveRetreat.removeAttribute("disabled");
     updateMessage(`You overcome the ${this.active.challenge.type}.`);
-  }
-
-  discard(lostTime) {
-    for (let i = 1; i <= lostTime; i++) {
-      const discard = this.deck.draw();
-      showCurrentCard(discard);
-      if (discard.type == "Ace") {
-        this.burnTorch(card);
-      } else {
-        this.discards.push(discard);
-      }
-      delay(600);
-    }
-    updateMessage(
-      `The door will not budge. You waste ${lostTime} hours as you seek another path.`
-    );
   }
 
   takeDamage(damage, source) {
     this.hp -= damage;
     console.log(`Current HP = ${this.hp}`);
+    hpDisplay.textContent = `${this.hp} of Cups`;
     if (this.hp <= 0) {
-      this.lose(
+      this.loseRun(
         `You fall foul of ${source} and perish in the dungeon. GAME OVER`
       );
     } else {
       updateMessage(`You lose ${damage} HP. You have ${this.hp} remaining.`);
     }
   }
-  burnTorch(card) {
-    renderCard(torchTrack);
+  burnTorch() {
     this.torchesRemaining--;
     if (this.torchesRemaining == 0) {
-      this.lose(
+      this.loseRun(
         "Your last torch goes out. You are lost in the darkness of the dungeon. GAME OVER"
       );
     } else {
@@ -181,7 +221,7 @@ class Run {
   gainCorruption(card) {
     this.corruption++;
     if (this.corruption == 0) {
-      this.lose("The corruption of the dungeon consumes you.");
+      this.loseRun("The corruption of the dungeon consumes you.");
     }
   }
 }
@@ -198,7 +238,7 @@ function showCurrentCard() {
   }, 1201);
 }
 
-async function updateMessage(newMessage, fresh = false) {
+function updateMessage(newMessage, fresh = false) {
   if (fresh) {
     message.textContent = "";
   }
@@ -208,7 +248,7 @@ btnDrawCard.addEventListener("click", (e) => {
   if (run.turnCount == 0) {
     run.advance();
   } else {
-    run.drawACard();
+    run.drawCard();
   }
   showCurrentCard();
 });
