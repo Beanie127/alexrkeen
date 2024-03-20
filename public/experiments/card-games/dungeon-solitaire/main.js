@@ -48,7 +48,7 @@ class Run {
     this.active.card = this.deck.draw();
     showCurrentCard(this.active.card);
     setTimeout(() => {
-      drawCard.removeAttribute("disabled");
+      btnDrawCard.removeAttribute("disabled");
     }, 1401);
   }
 
