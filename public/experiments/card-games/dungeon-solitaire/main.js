@@ -43,10 +43,13 @@ class Run {
     this.deck = new DungeonDeck();
   }
 
-  // TODO: disable button until the animation cycle is completed (from ../main.js)
   drawCard() {
+    btnDrawCard.setAttribute("disabled", true);
     this.active.card = this.deck.draw();
     showCurrentCard(this.active.card);
+    setTimeout(() => {
+      drawCard.removeAttribute("disabled");
+    }, 1401);
   }
 
   // move a card from one place to another
@@ -65,12 +68,20 @@ class Run {
       case "torch":
         this.placeCard(this.discards, torchTrack);
         this.burnTorch(this.active.card);
+        break;
       case "companion":
         this.placeCard(this.companions, companionTrack);
+        break;
       case "skill":
         this.placeCard(this.hand, handTrack);
-      case "treasure" || "blessing" || "action" || "item" || "favour":
+        break;
+      case "treasure":
+      case "blessing":
+      case "action":
+      case "item":
+      case "favour":
         this.placeCard(this.active.stack.cards, this.active.stack.elem);
+        break;
     }
     if (this.active.card.type == "action") {
       this.processActionCard();
@@ -103,10 +114,13 @@ class Run {
           switch (this.active.challenge.type) {
             case "monster":
               this.takeDamage(shortfall, this.active.challenge.type);
+              break;
             case "trap":
               this.takeDamage(shortfall, this.active.challenge.type);
+              break;
             case "locked door":
               this.discard(shortfall);
+              break;
             case "maze":
             // TODO some shit if maze
           }
@@ -184,14 +198,17 @@ class Run {
         case "treasure":
           this.placeCard(this.treasure, treasureTrack);
           this.score += card.worth;
+          break;
         case "companion":
           this.placeCard(this.companions, companionTrack);
+          break;
         case "blessing" || "item":
           this.placeCard(this.hand, handTrack);
+          break;
       }
     });
     delveRetreat.removeAttribute("disabled");
-    updateMessage(`You overcome the ${this.active.challenge.type}.`);
+    updateMessage(`You overcome the ${this.active.challenge.type}!`);
   }
 
   takeDamage(damage, source) {
