@@ -1,7 +1,6 @@
 .stack-horizontal {
   display: grid;
-  min-inline-size: 12ch;
-  aspect-ratio: 9 / 14;
+  min-inline-size: 10ch;
   grid-template-columns: repeat(10, 1.5em);
 }
 
@@ -9,7 +8,7 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: repeat(10, 1.5em);
-  inline-size: 12ch;
+  inline-size: 10ch;
   block-size: max-content;
 }
 
@@ -20,8 +19,4 @@
 
 aside {
   float: right;
-}
-
-#hp {
-  font-weight: bold;
 }

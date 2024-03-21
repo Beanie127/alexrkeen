@@ -19,6 +19,4 @@ function removeItemOnce(arr, value) {
   return arr;
 }
 
-const delay = (ms) => new Promise((res) => setTimeout(res, ms));
-
-export { getRandomFromArray, getRandomInt, renderCard, delay, removeItemOnce };
+export { getRandomFromArray, renderCard, removeItemOnce };

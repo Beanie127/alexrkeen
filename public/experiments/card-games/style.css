@@ -47,10 +47,10 @@ section {
 }
 
 .card {
-  inline-size: 12ch;
+  inline-size: 10ch;
   flex-shrink: 0;
   aspect-ratio: 9 / 14;
-  font-size: clamp(0.7rem, 0.65rem + 1dvi, 1.1rem);
+  font-size: clamp(0.7rem, 0.65rem + 1dvi, 1rem);
   border: 5px solid black;
   border-radius: calc(7in / 64);
   background: HSL(40 40% 80%);
