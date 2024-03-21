@@ -223,7 +223,6 @@ class Run {
           );
           break;
         case "maze":
-          // TODO: check maze logic works
           this.active.encounter.failedMaze = true;
           switch (this.active.card.encounter.type) {
             case "monster":
