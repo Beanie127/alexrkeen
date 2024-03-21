@@ -194,7 +194,7 @@ class Run {
     this.active.challenge.exists = false;
     this.active.challenge.type = "";
     this.active.challenge.rating = 0;
-    if (this.retreating) {
+    if (this.retreating == true) {
       this.active.stack.elem = document.querySelector(
         `#delve-retreat [data-depth="${this.depth}"]`
       );
@@ -228,6 +228,7 @@ class Run {
 
   retreat() {
     this.depth--;
+    this.retreating == true;
     btnAdvance.setAttribute("hidden", true);
     btnRetreat.setAttribute("hidden", true);
     if (this.depth == 0) {
@@ -242,13 +243,15 @@ class Run {
   takeDamage(damage) {
     this.hp -= damage;
     console.log(`Current HP = ${this.hp}`);
-    hpDisplay.textContent = `${this.hp} of Cups`;
-    if (this.hp <= 0) {
+    if (this.hp <= 1) {
       this.loseRun(
         "Your injury is fatal. You perish in the dungeon. GAME OVER"
       );
     } else {
-      updateMessage(`You lose ${damage} HP. You have ${this.hp} remaining.`);
+      hpDisplay.textContent = `${this.hp} of Cups`;
+      updateMessage(
+        `You lose ${damage} HP. You have ${this.hp - 1} remaining.`
+      );
     }
   }
 
@@ -314,7 +317,9 @@ class Run {
   failChallenge(reason) {
     updateMessage(reason);
     btnDraw.setAttribute("hidden", true);
-    btnAdvance.removeAttribute("hidden");
+    if (this.retreating == false) {
+      btnAdvance.removeAttribute("hidden");
+    }
     btnRetreat.removeAttribute("hidden");
   }
 }
@@ -366,7 +371,6 @@ btnAdvance.addEventListener("click", () => {
 });
 
 btnRetreat.addEventListener("click", () => {
-  run.retreating == true;
   btnAdvance.setAttribute("hidden", true);
   run.retreat();
 });
