@@ -1,19 +1,16 @@
 .stack-horizontal {
   display: grid;
-  inline-size: max-content;
+  min-inline-size: 12ch;
+  aspect-ratio: 9 / 14;
   grid-template-columns: repeat(10, 1.5em);
-  block-size: 18.7ch;
 }
 
 .stack-vertical {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: repeat(10, 1.5em);
-  min-block-size: 18.7ch;
-}
-
-#delve-retreat {
-  flex-direction: row-reverse;
+  inline-size: 12ch;
+  block-size: max-content;
 }
 
 .card:hover {

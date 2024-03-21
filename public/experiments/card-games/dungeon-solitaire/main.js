@@ -37,38 +37,90 @@ class Run {
         cards: [],
       },
       card: {},
-      challenge: {
+      encounter: {
         exists: false,
+        failedMaze: false,
         type: "",
         rating: 0,
       },
-      failedMaze: false,
     };
     this.deck = new DungeonDeck();
   }
 
+  advance() {
+    this.depth++;
+    btnAdvance.setAttribute("hidden", true);
+    btnRetreat.setAttribute("hidden", true);
+    btnDraw.removeAttribute("hidden");
+    this.newTurn(delve);
+  }
+
+  retreat() {
+    if (this.retreating == false) {
+      updateMessage(
+        "Daring to go no further, you turn around and begin to seek the exit."
+      );
+    }
+    this.retreating = true;
+    this.depth--;
+    btnAdvance.setAttribute("hidden", true);
+    btnRetreat.setAttribute("hidden", true);
+    if (this.depth == 0) {
+      // TODO: create win function with score
+      updateMessage(`You escaped the dungeon!`);
+      btnStart.removeAttribute("hidden");
+      return;
+    }
+    btnDraw.removeAttribute("hidden");
+    this.newTurn(delveRetreat);
+  }
+
+  newTurn() {
+    this.turnCount++;
+    this.active.stack.cards = [];
+    this.active.encounter.exists = false;
+    this.active.encounter.type = "";
+    this.active.encounter.rating = 0;
+    if (this.retreating == true) {
+      this.active.stack.elem = document.querySelector(
+        `#delve-retreat [data-depth="${this.depth}"]`
+      );
+    } else {
+      this.active.stack.elem = document.querySelector(
+        `#delve [data-depth="${this.depth}"]`
+      );
+    }
+    if (this.depth == 1) {
+      updateMessage(`You are ${this.depth} room deep into the dungeon.`, true);
+    } else {
+      updateMessage(`You are ${this.depth} rooms deep into the dungeon.`, true);
+    }
+    this.drawCard();
+  }
+
   drawCard() {
     btnDraw.setAttribute("disabled", true);
-    this.active.card = this.deck.draw();
-    showCurrentCard(this.active.card);
     setTimeout(() => {
       btnDraw.removeAttribute("disabled");
-    }, 1401);
+    }, 801);
+    this.active.card = this.deck.draw();
+    showCurrentCard(this.active.card);
     this.sortCard();
   }
 
-  // move a card from one place to another
   placeCard(card, targetArray, targetElement, sourceArray) {
     const oldCopy = document.querySelector(`[data-id="${card.id}"]`);
     oldCopy?.remove();
-    targetElement.innerHTML += ` <div class="card" data-id="${card.id}">${card.name}</div> `;
+    targetElement.innerHTML += `<div class="card fade-in" data-id="${card.id}">${card.name}</div> `;
+    setTimeout(() => {
+      document.querySelector(".fade-in").classList.remove("fade-in");
+    }, 1200);
     targetArray.push(card);
     sourceArray?.filter((x) => {
       x != card;
     });
   }
 
-  // place the card in the appropriate track
   sortCard() {
     const cardToSort = this.active.card;
     switch (cardToSort.type) {
@@ -80,17 +132,29 @@ class Run {
         this.placeCard(cardToSort, this.corruption, corruptionTrack);
         this.gainCorruption();
         break;
-      case "companion":
-        this.placeCard(cardToSort, this.companions, companionTrack);
-        // TODO: add companion function
-        break;
       case "skill":
-        this.placeCard(cardToSort, this.hand, handTrack);
+        this.placeCard(
+          cardToSort,
+          this.active.stack.cards,
+          this.active.stack.elem
+        );
+        updateMessage(
+          `You find ${this.active.card.name} and add it to your hand. Use it wisely.`
+        );
+        setTimeout(() => {
+          this.placeCard(
+            cardToSort,
+            this.hand,
+            handTrack,
+            this.active.stack.elem
+          );
+        }, 600);
         // TODO: add skill logic
         break;
       case "treasure":
       case "blessing":
       case "item":
+      case "companion":
         this.placeCard(
           cardToSort,
           this.active.stack.cards,
@@ -111,56 +175,57 @@ class Run {
           this.active.stack.cards,
           this.active.stack.elem
         );
-        if (this.active.challenge.exists) {
-          this.winChallenge();
+        if (this.active.encounter.exists) {
+          this.winEncounter();
         }
         break;
     }
   }
 
   processActionCard() {
-    console.log(this.active.challenge.exists);
-    // if we're not yet in a challenge, make this the active challenge
-    if (this.active.challenge.exists == false) {
+    console.log(this.active.encounter.exists);
+    // if we're not yet in a encounter, make this the active encounter
+    if (this.active.encounter.exists == false) {
       btnRetreat.setAttribute("hidden", true);
-      updateMessage("Challenge Started!");
-      this.active.challenge.exists = true;
-      this.active.challenge.type = this.active.card.challenge.type;
-      this.active.challenge.rating = this.active.card.rank;
+      this.active.encounter.exists = true;
+      this.active.encounter.type = this.active.card.encounter.type;
+      this.active.encounter.rating = this.active.card.rank;
+      updateMessage(`You encounter a ${this.active.encounter.type}.`);
       this.active.stack.cards.forEach((card) => {
         // win if the stack already contains a blessing
         if (card.type == "favour") {
-          this.winChallenge();
+          this.winEncounter();
         }
       });
       return;
     }
-    if (this.active.card.rank >= this.active.challenge.rating) {
-      console.log("Challenge won");
-      this.winChallenge();
+    if (this.active.card.rank >= this.active.encounter.rating) {
+      console.log("Encounter won");
+      this.winEncounter();
     } else {
-      // otherwise, see what kind of challenge it is and deal damage accordingly
-      const shortfall = this.active.challenge.rating - this.active.card.rank;
+      // otherwise, see what kind of encounter it is and deal damage accordingly
+      const shortfall = this.active.encounter.rating - this.active.card.rank;
       console.log(`shortfall of ${shortfall}`);
-      switch (this.active.challenge.type) {
+      switch (this.active.encounter.type) {
         case "monster":
           this.takeDamage(shortfall);
           break;
         case "trap":
           this.takeDamage(shortfall);
-          this.failChallenge(
+          this.failEncounter(
             "You set off the trap, destroying any chance of retrieving the treasure."
           );
           break;
         case "door":
           this.discard(shortfall);
-          this.failChallenge(
+          this.failEncounter(
             "The door will not budge. You waste hours as you seek another path."
           );
           break;
         case "maze":
           // TODO: check maze logic works
-          switch (this.active.card.challenge.type) {
+          this.active.encounter.failedMaze = true;
+          switch (this.active.card.encounter.type) {
             case "monster":
             case "trap":
               this.takeDamage(1);
@@ -174,84 +239,28 @@ class Run {
     }
   }
 
-  runMaze() {}
-
   discard(shortfall) {
     for (let i = 1; i <= shortfall; i++) {
-      console.log("discarding");
-      const discard = this.deck.draw();
-      showCurrentCard(discard);
-      if (discard.type == "Ace") {
-        this.burnTorch(card);
-      } else {
-        this.discards.push(discard);
-      }
+      setTimeout(() => {
+        const discard = this.deck.draw();
+        showCurrentCard(discard);
+        if (discard.type == "Ace") {
+          this.burnTorch(card);
+        } else {
+          this.discards.push(discard);
+        }
+      }, (i - 1) * 1200);
     }
-  }
-  newTurn() {
-    this.turnCount++;
-    this.active.stack.cards = [];
-    this.active.challenge.exists = false;
-    this.active.challenge.type = "";
-    this.active.challenge.rating = 0;
-    if (this.retreating == true) {
-      this.active.stack.elem = document.querySelector(
-        `#delve-retreat [data-depth="${this.depth}"]`
-      );
-    } else {
-      this.active.stack.elem = document.querySelector(
-        `#delve [data-depth="${this.depth}"]`
-      );
-    }
-    if (this.depth == 1) {
-      updateMessage(`You are ${this.depth} room deep into the dungeon.`, true);
-    } else {
-      updateMessage(`You are ${this.depth} rooms deep into the dungeon.`, true);
-    }
-    this.drawCard();
-  }
-  loseRun(reason) {
-    updateMessage(reason);
-    btnAdvance.setAttribute("hidden", true);
-    btnRetreat.setAttribute("hidden", true);
-    btnDraw.setAttribute("hidden", true);
-    btnStart.removeAttribute("hidden");
-  }
-
-  advance() {
-    this.depth++;
-    btnAdvance.setAttribute("hidden", true);
-    btnRetreat.setAttribute("hidden", true);
-    btnDraw.removeAttribute("hidden");
-    this.newTurn(delve);
-  }
-
-  retreat() {
-    this.depth--;
-    this.retreating == true;
-    btnAdvance.setAttribute("hidden", true);
-    btnRetreat.setAttribute("hidden", true);
-    if (this.depth == 0) {
-      updateMessage(`You escaped the dungeon!`);
-      btnStart.removeAttribute("hidden");
-      return;
-    }
-    btnDraw.removeAttribute("hidden");
-    this.newTurn(delveRetreat);
   }
 
   takeDamage(damage) {
     this.hp -= damage;
     console.log(`Current HP = ${this.hp}`);
     if (this.hp <= 1) {
-      this.loseRun(
-        "Your injury is fatal. You perish in the dungeon. GAME OVER"
-      );
+      this.loseRun("Your injury is fatal. You perish in the dungeon.");
     } else {
       hpDisplay.textContent = `${this.hp} of Cups`;
-      updateMessage(
-        `You lose ${damage} HP. You have ${this.hp - 1} remaining.`
-      );
+      updateMessage(`You lose ${damage} HP.`);
     }
   }
 
@@ -259,7 +268,7 @@ class Run {
     this.torchesRemaining--;
     if (this.torchesRemaining == 0) {
       this.loseRun(
-        "Your last torch goes out. You are lost in the darkness of the dungeon. GAME OVER"
+        "Your last torch goes out. You are lost in the darkness of the dungeon."
       );
     } else {
       updateMessage(
@@ -273,48 +282,67 @@ class Run {
       this.loseRun("The corruption of the dungeon consumes you.");
       return;
     }
-    updateMessage(`You feel the touch of corruption in your soul.`);
+    updateMessage(
+      `The dungeon is starting to affect you. You feel the swell of corruption in your soul.`
+    );
   }
 
-  winChallenge() {
-    if (this.active.failedMaze == false) {
-      this.active.stack.cards.sort((a, b) => a.worth - b.worth);
-      this.active.stack.cards.forEach((card) => {
-        if (card.worth > 0 && this.active.stack.cards.length > 1) {
-          this.placeCard(
-            card,
-            this.treasure,
-            treasureTrack,
-            this.active.stack.cards
-          );
-          // TODO: add "drop treasure" functionality
-        }
-        switch (card.type) {
-          case "companion":
+  winEncounter() {
+    if (this.active.encounter.failedMaze == true) {
+      updateMessage(
+        `You escape the maze, leaving behind any companions, items and treasure.`
+      );
+    } else {
+      updateMessage(
+        `You overcome the ${this.active.encounter.type}, rescue any companions and collect any items and treasure.`
+      );
+    }
+    setTimeout(() => {
+      if (this.active.encounter.failedMaze == false) {
+        this.active.stack.cards.sort((a, b) => a.worth - b.worth);
+        this.active.stack.cards.forEach((card) => {
+          if (card.worth > 0 && this.active.stack.cards.length > 1) {
             this.placeCard(
               card,
-              this.companions,
-              companionTrack,
+              this.treasure,
+              treasureTrack,
               this.active.stack.cards
             );
-            break;
-          case "blessing":
-          case "item":
-            this.placeCard(card, this.hand, handTrack, this.active.stack.cards);
-            break;
-        }
-      });
-    }
-    updateMessage(`You overcome the ${this.active.challenge.type}!`);
-    this.active.failedMaze = false;
-    btnDraw.setAttribute("hidden", true);
-    if (this.retreating == false) {
-      btnAdvance.removeAttribute("hidden");
-    }
-    btnRetreat.removeAttribute("hidden");
+            // TODO: add "drop treasure" functionality
+          }
+          switch (card.type) {
+            case "companion":
+              // TODO: add companion function
+
+              this.placeCard(
+                card,
+                this.companions,
+                companionTrack,
+                this.active.stack.cards
+              );
+              break;
+            case "blessing":
+            case "item":
+              this.placeCard(
+                card,
+                this.hand,
+                handTrack,
+                this.active.stack.cards
+              );
+              break;
+          }
+        });
+      }
+      this.active.encounter.failedMaze = false;
+      btnDraw.setAttribute("hidden", true);
+      if (this.retreating == false) {
+        btnAdvance.removeAttribute("hidden");
+      }
+      btnRetreat.removeAttribute("hidden");
+    }, 2000);
   }
 
-  failChallenge(reason) {
+  failEncounter(reason) {
     updateMessage(reason);
     btnDraw.setAttribute("hidden", true);
     if (this.retreating == false) {
@@ -322,11 +350,16 @@ class Run {
     }
     btnRetreat.removeAttribute("hidden");
   }
+
+  loseRun(reason) {
+    updateMessage(reason);
+    btnAdvance.setAttribute("hidden", true);
+    btnRetreat.setAttribute("hidden", true);
+    btnDraw.setAttribute("hidden", true);
+    btnStart.removeAttribute("hidden");
+  }
 }
-
-let run = new Run();
-
-console.log(run.deck);
+// local functions
 
 function showCurrentCard() {
   displayCurrentCard.textContent = run.active.card.name;
@@ -352,6 +385,14 @@ function refreshPlayArea() {
     element.remove();
   });
 }
+
+// start the game
+
+let run = new Run();
+
+console.log(run.deck);
+
+// API
 
 btnStart.addEventListener("click", () => {
   refreshPlayArea();
