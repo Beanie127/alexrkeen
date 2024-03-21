@@ -283,6 +283,7 @@ class Run {
     }
     this.active.stack.cards.sort((a, b) => a.worth - b.worth);
     // delay so everything doesn't pop out of the stack immediately and you can see what's happening
+    // TODO: check this works
     setTimeout(() => {
       if (this.active.encounter.failedMaze == false) {
         this.active.stack.cards.forEach((card) => {
@@ -368,6 +369,7 @@ class Run {
   }
 
   discard(shortfall) {
+    // TODO: solve this complete mess
     let leftToDiscard = shortfall;
     console.log(`You should be about to discard ${leftToDiscard} cards`);
     let i = 0;
