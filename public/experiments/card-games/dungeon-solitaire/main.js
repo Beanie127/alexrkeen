@@ -287,37 +287,34 @@ class Run {
     setTimeout(() => {
       if (this.active.encounter.failedMaze == false) {
         this.active.stack.cards.sort((a, b) => a.worth - b.worth);
-        this.active.stack.cards.forEach((card) => {
-          if (card.worth > 0 && this.active.stack.cards.length != 1) {
+        if (this.active.stack.cards.length > 1) {
+          this.active.stack.cards.forEach((card) => {
+            if (card.worth > 0) {
+              this.placeCard(
+                card,
+                this.treasure,
+                treasureTrack,
+                this.active.stack.cards
+              );
+              // TODO: add "drop treasure" functionality
+            }
+          });
+        }
+        switch (card.type) {
+          case "companion":
             this.placeCard(
               card,
-              this.treasure,
-              treasureTrack,
+              this.companions,
+              companionTrack,
               this.active.stack.cards
             );
-            // TODO: add "drop treasure" functionality
-          }
-          switch (card.type) {
-            case "companion":
-              this.placeCard(
-                card,
-                this.companions,
-                companionTrack,
-                this.active.stack.cards
-              );
-              updateMessage(`${card.name} joins your party.`);
-              break;
-            case "blessing":
-            case "item":
-              this.placeCard(
-                card,
-                this.hand,
-                handTrack,
-                this.active.stack.cards
-              );
-              break;
-          }
-        });
+            updateMessage(`${card.name} joins your party.`);
+            break;
+          case "blessing":
+          case "item":
+            this.placeCard(card, this.hand, handTrack, this.active.stack.cards);
+            break;
+        }
       }
       this.active.encounter.failedMaze = false;
       if (this.retreating == false) {
