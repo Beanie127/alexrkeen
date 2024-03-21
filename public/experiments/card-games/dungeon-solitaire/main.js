@@ -42,6 +42,7 @@ class Run {
         type: "",
         rating: 0,
       },
+      failedMaze: false,
     };
     this.deck = new DungeonDeck();
   }
@@ -158,10 +159,22 @@ class Run {
           );
           break;
         case "maze":
-        // TODO some shit if maze
+          // TODO: check maze logic works
+          switch (this.active.card.challenge.type) {
+            case "monster":
+            case "trap":
+              this.takeDamage(1);
+              break;
+            case "maze":
+            case "door":
+              this.discard(1);
+              break;
+          }
       }
     }
   }
+
+  runMaze() {}
 
   discard(shortfall) {
     for (let i = 1; i <= shortfall; i++) {
@@ -261,33 +274,36 @@ class Run {
   }
 
   winChallenge() {
-    this.active.stack.cards.sort((a, b) => a.worth - b.worth);
-    this.active.stack.cards.forEach((card) => {
-      if (card.worth > 0 && this.active.stack.cards.length > 1) {
-        this.placeCard(
-          card,
-          this.treasure,
-          treasureTrack,
-          this.active.stack.cards
-        );
-        // TODO: add "drop treasure" functionality
-      }
-      switch (card.type) {
-        case "companion":
+    if (this.active.failedMaze == false) {
+      this.active.stack.cards.sort((a, b) => a.worth - b.worth);
+      this.active.stack.cards.forEach((card) => {
+        if (card.worth > 0 && this.active.stack.cards.length > 1) {
           this.placeCard(
             card,
-            this.companions,
-            companionTrack,
+            this.treasure,
+            treasureTrack,
             this.active.stack.cards
           );
-          break;
-        case "blessing":
-        case "item":
-          this.placeCard(card, this.hand, handTrack, this.active.stack.cards);
-          break;
-      }
-    });
+          // TODO: add "drop treasure" functionality
+        }
+        switch (card.type) {
+          case "companion":
+            this.placeCard(
+              card,
+              this.companions,
+              companionTrack,
+              this.active.stack.cards
+            );
+            break;
+          case "blessing":
+          case "item":
+            this.placeCard(card, this.hand, handTrack, this.active.stack.cards);
+            break;
+        }
+      });
+    }
     updateMessage(`You overcome the ${this.active.challenge.type}!`);
+    this.active.failedMaze = false;
     btnDraw.setAttribute("hidden", true);
     if (this.retreating == false) {
       btnAdvance.removeAttribute("hidden");
