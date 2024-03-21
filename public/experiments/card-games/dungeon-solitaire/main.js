@@ -116,9 +116,11 @@ class Run {
       document.querySelector(".fade-in").classList.remove("fade-in");
     }, 1200);
     targetArray.push(card);
-    sourceArray?.filter((x) => {
-      x != card;
-    });
+    if (sourceArray) {
+      sourceArray.filter((x) => {
+        x != card;
+      });
+    }
   }
 
   sortCard() {
@@ -190,7 +192,7 @@ class Run {
       this.active.encounter.exists = true;
       this.active.encounter.type = this.active.card.encounter.type;
       this.active.encounter.rating = this.active.card.rank;
-      updateMessage(`You encounter a ${this.active.encounter.type}.`);
+      updateMessage(`You are confronted by a ${this.active.encounter.type}.`);
       this.active.stack.cards.forEach((card) => {
         // win if the stack already contains a blessing
         if (card.type == "favour") {
@@ -211,18 +213,21 @@ class Run {
           this.takeDamage(shortfall);
           break;
         case "trap":
-          this.takeDamage(shortfall);
           this.failEncounter(
-            "You set off the trap, destroying any chance of retrieving the treasure."
+            "You set off the trap and scurry away, abandoning all gains."
           );
+          this.takeDamage(shortfall);
           break;
         case "door":
           this.discard(shortfall);
           this.failEncounter(
-            "The door will not budge. You waste hours as you seek another path."
+            `The door will not budge. You waste ${shortfall} hours as you seek another path.`
           );
           break;
         case "maze":
+          if (this.active.encounter.failedMaze == false) {
+            updateMessage("You lose yourself in the maze.");
+          }
           this.active.encounter.failedMaze = true;
           switch (this.active.card.encounter.type) {
             case "monster":
@@ -240,15 +245,17 @@ class Run {
 
   discard(shortfall) {
     for (let i = 1; i <= shortfall; i++) {
-      setTimeout(() => {
-        const discard = this.deck.draw();
-        showCurrentCard(discard);
-        if (discard.type == "Ace") {
-          this.burnTorch(card);
-        } else {
-          this.discards.push(discard);
-        }
-      }, (i - 1) * 1200);
+      (function (i) {
+        setTimeout(() => {
+          const discard = this.deck.draw();
+          showCurrentCard(discard);
+          if (discard.type == "Ace") {
+            this.burnTorch(card);
+          } else {
+            this.discards.push(discard);
+          }
+        }, (i - 1) * 1200);
+      });
     }
   }
 
@@ -256,10 +263,14 @@ class Run {
     this.hp -= damage;
     console.log(`Current HP = ${this.hp}`);
     if (this.hp <= 1) {
-      this.loseRun("Your injury is fatal. You perish in the dungeon.");
+      this.loseRun(
+        `The ${this.active.encounter.type} deals you a mortal injury. You perish in the dungeon.`
+      );
     } else {
       hpDisplay.textContent = `${this.hp} of Cups`;
-      updateMessage(`You lose ${damage} HP.`);
+      updateMessage(
+        `The ${this.active.encounter.type} injures you. You lose ${damage} HP.`
+      );
     }
   }
 
@@ -289,7 +300,7 @@ class Run {
   winEncounter() {
     if (this.active.encounter.failedMaze == true) {
       updateMessage(
-        `You escape the maze, leaving behind any companions, items and treasure.`
+        `You escape the maze, leaving behind all gains you saw along the way.`
       );
     } else {
       updateMessage(
@@ -351,7 +362,7 @@ class Run {
   }
 
   loseRun(reason) {
-    updateMessage(reason);
+    updateMessage(`${reason} GAME OVER.`, true);
     btnAdvance.setAttribute("hidden", true);
     btnRetreat.setAttribute("hidden", true);
     btnDraw.setAttribute("hidden", true);

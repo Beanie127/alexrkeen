@@ -13,7 +13,7 @@ class Card {
     this.value = false;
     this.worth = 0;
     this.id = 0;
-    this.challenge = {};
+    this.encounter = {};
   }
 }
 
@@ -243,14 +243,14 @@ class DungeonDeck extends Deck {
         card.type = "action";
         switch (suit) {
           case "Swords":
-            card.challenge.type = "monster";
+            card.encounter.type = "monster";
             break;
           case "Pentacles":
-            card.challenge.type = "trap";
+            card.encounter.type = "trap";
             card.worth = card.rank;
             break;
           case "Wands":
-            card.challenge.type = "door";
+            card.encounter.type = "door";
             break;
         }
         this.add(card);
@@ -280,7 +280,7 @@ class DungeonDeck extends Deck {
         case 8:
         case 9:
         case 10:
-          card.challenge.type = "maze";
+          card.encounter.type = "maze";
           card.type = "action";
           break;
         case 12:
