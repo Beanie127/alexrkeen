@@ -126,7 +126,7 @@ class Deck {
       return;
     }
     this.currentCard = getRandomFromArray(this.cardsInDeck);
-    console.log(this.currentCard);
+    console.log(`Drew ${this.currentCard.name}`);
     this.cardsInDeck = this.cardsInDeck.filter(
       (card) => card != this.currentCard
     );

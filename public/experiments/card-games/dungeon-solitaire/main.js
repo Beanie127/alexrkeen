@@ -19,6 +19,7 @@ const hpDisplay = document.querySelector("#hp");
 
 class Run {
   constructor() {
+    this.isLost = false;
     this.hp = 10;
     this.turnCount = 0;
     this.depth = 0;
@@ -72,10 +73,12 @@ class Run {
 
   newTurn() {
     this.turnCount++;
+    // reset this.active
     this.active.stack.cards = [];
     this.active.encounter.exists = false;
     this.active.encounter.type = "";
     this.active.encounter.rating = 0;
+    // set the active stack based on direction and current depth
     if (this.retreating == true) {
       this.active.stack.elem = document.querySelector(
         `#delve-retreat [data-depth="${this.depth}"]`
@@ -99,108 +102,92 @@ class Run {
       btnDraw.removeAttribute("disabled");
     }, 1405);
     this.active.card = this.deck.draw();
-    showCurrentCard(this.active.card);
+    showCard(this.active.card);
     this.sortCard();
   }
 
   placeCard(card, targetArray, targetElement, sourceArray) {
+    // if the card's already on the table, 'pick it up' i.e. remove from the previous stack/array
     const oldCopy = document.querySelector(`[data-id="${card.id}"]`);
     oldCopy?.remove();
-    targetElement.innerHTML += `<div class="card fade-in" data-id="${card.id}">${card.name}</div> `;
-    setTimeout(() => {
-      document.querySelector(".fade-in")?.classList.remove("fade-in");
-    }, 1200);
-    targetArray.push(card);
     if (sourceArray) {
       sourceArray.filter((x) => {
         x != card;
       });
     }
+    // put it in the target stack/array
+    targetElement.innerHTML += `<div class="card fade-in" data-id="${card.id}">${card.name}</div> `;
+    setTimeout(() => {
+      document.querySelector(".fade-in")?.classList.remove("fade-in");
+    }, 1200);
+    targetArray.push(card);
   }
 
   sortCard() {
     const cardToSort = this.active.card;
-    switch (cardToSort.type) {
-      case "torch":
-        this.placeCard(cardToSort, this.discards, torchTrack);
-        this.burnTorch();
-        break;
-      case "corruption":
-        this.placeCard(cardToSort, this.corruption, corruptionTrack);
-        this.gainCorruption();
-        break;
-      case "event":
-        switch (cardToSort.name) {
-          case "The Tower":
-            this.shiftingTerrain();
-            break;
-        }
-        break;
-      case "skill":
-        this.placeCard(
-          cardToSort,
-          this.active.stack.cards,
-          this.active.stack.elem
-        );
-        updateMessage(
-          `You find ${this.active.card.name} and add it to your hand. Use it wisely.`
-        );
-        setTimeout(() => {
+    // put the card in the active stack first so it's visible
+    this.placeCard(cardToSort, this.active.stack.cards, this.active.stack.elem);
+    // then wait 600 ms before doing anything with it
+    setTimeout(() => {
+      switch (cardToSort.type) {
+        case "torch":
+          this.placeCard(cardToSort, this.discards, torchTrack);
+          this.burnTorch();
+          break;
+        case "corruption":
+          this.placeCard(cardToSort, this.corruption, corruptionTrack);
+          this.gainCorruption();
+          break;
+        case "event":
+          switch (cardToSort.name) {
+            case "The Tower":
+              this.shiftingTerrain();
+              break;
+          }
+          break;
+        case "skill":
+          updateMessage(
+            `You find ${this.active.card.name} and add it to your hand. Use it wisely.`
+          );
           this.placeCard(
             cardToSort,
             this.hand,
             handTrack,
             this.active.stack.cards
           );
-        }, 600);
-        // TODO: add skill logic
-        break;
-      case "treasure":
-      case "blessing":
-      case "item":
-      case "companion":
-        this.placeCard(
-          cardToSort,
-          this.active.stack.cards,
-          this.active.stack.elem
-        );
-        break;
-      case "action":
-        this.placeCard(
-          cardToSort,
-          this.active.stack.cards,
-          this.active.stack.elem
-        );
-        if (this.active.encounter.exists == false) {
-          this.startEncounter();
-        } else {
-          this.continueEncounter();
-        }
-        break;
-      case "favour":
-        this.placeCard(
-          cardToSort,
-          this.active.stack.cards,
-          this.active.stack.elem
-        );
-        if (this.active.encounter.exists) {
-          this.winEncounter();
-        }
-        break;
-    }
+          // TODO: add skill logic
+          break;
+        case "action":
+          if (this.active.encounter.exists == false) {
+            this.startEncounter();
+          } else {
+            this.continueEncounter();
+          }
+          break;
+        case "favour":
+          updateMessage("You feel the favour of the divine wash over you.");
+          if (this.active.encounter.exists) {
+            this.winEncounter();
+          }
+          break;
+      }
+    }, 600);
   }
 
   checkParty() {
+    if ((this.companions.length = 0)) return;
     if (
       this.companions.some((companion) => companion.name === "The Magician")
     ) {
       this.active.encounter.rating--;
+      console.log(`Encounter rating reduced by ${companion.name}`);
     }
     if (
       this.active.encounter.type == "monster" &&
       this.companions.some((companion) => companion.name === "Page of Swords")
     ) {
       this.active.encounter.rating--;
+      console.log(`Encounter rating reduced by ${companion.name}`);
     }
     if (
       this.active.encounter.type == "trap" &&
@@ -209,33 +196,43 @@ class Run {
       )
     ) {
       this.active.encounter.rating--;
+      console.log(`Encounter rating reduced by ${companion.name}`);
     }
     if (
       this.active.encounter.type == "door" &&
       this.companions.some((companion) => companion.name === "Page of Wands")
     ) {
       this.active.encounter.rating--;
+      console.log(`Encounter rating reduced by ${companion.name}`);
+    }
+    if (this.active.encounter.rating == 0) {
+      updateMessage(
+        `With the help of your companions, the ${this.active.encounter.type} prevents little challenge.`
+      );
+      this.winEncounter();
     }
   }
 
   startEncounter() {
-    btnRetreat.setAttribute("hidden", true);
-    this.active.encounter.exists = true;
+    this.active.encounter.exists = true; // we're in an encounter
+    btnRetreat.setAttribute("hidden", true); // no going back now
     this.active.encounter.type = this.active.card.encounter.type;
     this.active.encounter.rating = this.active.card.rank;
-    this.checkParty();
     updateMessage(`You are confronted by a ${this.active.encounter.type}.`);
+    // adjust the active encounter rating depending on what companions you have
+    this.checkParty();
     if (this.active.stack.cards.some((card) => card.type == "favour")) {
       this.winEncounter();
     }
   }
 
   continueEncounter() {
+    // if the current card meets or beats the encounter rating, you win
     if (this.active.card.rank >= this.active.encounter.rating) {
       console.log("Encounter won");
       this.winEncounter();
     } else {
-      // otherwise, see what kind of encounter it is and deal damage accordingly
+      // suffer the difference between the party
       const shortfall = this.active.encounter.rating - this.active.card.rank;
       console.log(`shortfall of ${shortfall}`);
       switch (this.active.encounter.type) {
@@ -243,10 +240,10 @@ class Run {
           this.takeDamage(shortfall);
           break;
         case "trap":
-          this.loseEncounter(
-            "You set off the trap and scurry away, abandoning all gains."
-          );
           this.takeDamage(shortfall);
+          if (!this.isLost) {
+            this.loseEncounter("You wisely retreat, abandoning all gains.");
+          }
           break;
         case "door":
           this.discard(shortfall);
@@ -284,11 +281,12 @@ class Run {
         `You overcome the ${this.active.encounter.type}, rescue any companions and collect any items and treasure.`
       );
     }
+    this.active.stack.cards.sort((a, b) => a.worth - b.worth);
+    // delay so everything doesn't pop out of the stack immediately and you can see what's happening
     setTimeout(() => {
       if (this.active.encounter.failedMaze == false) {
-        this.active.stack.cards.sort((a, b) => a.worth - b.worth);
-        if (this.active.stack.cards.length > 1) {
-          this.active.stack.cards.forEach((card) => {
+        this.active.stack.cards.forEach((card) => {
+          if (this.active.stack.cards.length > 1) {
             if (card.worth > 0) {
               this.placeCard(
                 card,
@@ -298,23 +296,28 @@ class Run {
               );
               // TODO: add "drop treasure" functionality
             }
-          });
-        }
-        switch (card.type) {
-          case "companion":
-            this.placeCard(
-              card,
-              this.companions,
-              companionTrack,
-              this.active.stack.cards
-            );
-            updateMessage(`${card.name} joins your party.`);
-            break;
-          case "blessing":
-          case "item":
-            this.placeCard(card, this.hand, handTrack, this.active.stack.cards);
-            break;
-        }
+            switch (card.type) {
+              case "companion":
+                this.placeCard(
+                  card,
+                  this.companions,
+                  companionTrack,
+                  this.active.stack.cards
+                );
+                updateMessage(`${card.name} joins your party.`);
+                break;
+              case "blessing":
+              case "item":
+                this.placeCard(
+                  card,
+                  this.hand,
+                  handTrack,
+                  this.active.stack.cards
+                );
+                break;
+            }
+          }
+        });
       }
       this.active.encounter.failedMaze = false;
       if (this.retreating == false) {
@@ -331,17 +334,6 @@ class Run {
       btnAdvance.removeAttribute("hidden");
     }
     btnRetreat.removeAttribute("hidden");
-  }
-
-  loseRun(reason) {
-    updateMessage(
-      `${reason} GAME OVER. For your records: X ${this.active.card.type}/${this.turnCount}`,
-      true
-    );
-    btnAdvance.setAttribute("hidden", true);
-    btnRetreat.setAttribute("hidden", true);
-    btnDraw.setAttribute("hidden", true);
-    btnStart.removeAttribute("hidden");
   }
 
   winRun() {
@@ -363,20 +355,41 @@ class Run {
     }
   }
 
+  loseRun(message, cause) {
+    this.isLost == true;
+    updateMessage(
+      `${message} GAME OVER. For your records: X ${cause}/${this.turnCount}`,
+      true
+    );
+    btnAdvance.setAttribute("hidden", true);
+    btnRetreat.setAttribute("hidden", true);
+    btnDraw.setAttribute("hidden", true);
+    btnStart.removeAttribute("hidden");
+  }
+
   discard(shortfall) {
-    for (let i = 1; i <= shortfall; i++) {
-      (function (i) {
-        console.log(i);
-        setTimeout(() => {
-          const discard = this.deck.draw();
-          showCurrentCard(discard);
-          if (discard.type == "Ace") {
-            this.burnTorch(card);
-          } else {
-            this.discards.push(discard);
-          }
-        }, (i - 1) * 1200);
-      });
+    let leftToDiscard = shortfall;
+    console.log(`You should be about to discard ${leftToDiscard} cards`);
+    let i = 0;
+    let timeout = 0;
+    for (leftToDiscard; leftToDiscard > 0; leftToDiscard--) {
+      console.log("Discarding...");
+      timeout = i * 1200 + 1; // repeat at 1.2s intervals
+      setTimeout(() => {
+        console.log(`Setting timeout for ${timeout}`);
+        const discard = this.deck.draw();
+        updateMessage(discard.name);
+        console.log(`${discard.name} drawn.`);
+        showCard(discard);
+        if (discard.type == "Ace") {
+          this.placeCard(discard, this.discards, torchTrack);
+          this.burnTorch(card);
+        } else {
+          this.discards.push(discard);
+        }
+      }, timeout);
+      i++;
+      console.log(`${leftToDiscard} cards to discard`); // count down number of cards to discard
     }
   }
 
@@ -385,6 +398,7 @@ class Run {
       this.companions.some((companion) => companion.name === "Page of Cups")
     ) {
       damage--;
+      console.log("Damage reduced by the Page of Cups");
     }
     if (damage == 0) {
       updateMessage("The Page of Cups protects you from harm.");
@@ -394,7 +408,8 @@ class Run {
     console.log(`Current HP = ${this.hp}`);
     if (this.hp <= 1) {
       this.loseRun(
-        `The ${this.active.encounter.type} deals you a mortal injury. You perish in the dungeon.`
+        `The ${this.active.encounter.type} deals you a mortal injury. You perish in the dungeon.`,
+        this.active.encounter.type
       );
     } else {
       hpDisplay.textContent = `${this.hp} of Cups`;
@@ -408,7 +423,8 @@ class Run {
     this.torchesRemaining--;
     if (this.torchesRemaining == 0) {
       this.loseRun(
-        "Your last torch goes out. You are lost in the darkness of the dungeon."
+        "Your last torch goes out. You are lost in the darkness of the dungeon.",
+        "torch"
       );
     } else {
       updateMessage(
@@ -419,7 +435,7 @@ class Run {
 
   gainCorruption() {
     if (this.corruption.length == 2) {
-      this.loseRun("The corruption of the dungeon consumes you.");
+      this.loseRun("The corruption of the dungeon consumes you.", "corruption");
       return;
     }
     updateMessage(
@@ -442,8 +458,9 @@ class Run {
 }
 // local functions
 
-function showCurrentCard() {
-  displayCurrentCard.textContent = run.active.card.name;
+function showCard(card) {
+  console.log(`Showing ${card.name}`);
+  displayCurrentCard.textContent = card.name;
   displayCurrentCard.classList.add("show-card");
   setTimeout(() => {
     displayCurrentCard.classList.remove("show-card");
@@ -467,19 +484,15 @@ function refreshPlayArea() {
   });
 }
 
-// start the game
-
 let run = new Run();
-
-console.log(run.deck);
 
 // API
 
 btnStart.addEventListener("click", () => {
   refreshPlayArea();
   run = new Run();
+  console.log(run.deck);
   run.advance();
-  showCurrentCard();
   btnDraw.removeAttribute("hidden");
   btnRetreat.removeAttribute("hidden");
   btnStart.setAttribute("hidden", true);
