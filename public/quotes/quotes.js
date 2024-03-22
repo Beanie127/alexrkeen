@@ -42,6 +42,10 @@ window.addEventListener("load", () => {
 
 const quoteData = [
   {
+    author: "Richard N. Bolles",
+    text: 'One of the saddest pieces of advice in the world is "Oh come now — be realistic." The best parts of this world were not fashioned by those who were "realistic."',
+  },
+  {
     author: "Linus Pauling",
     text: "The best way to have a good idea is to have a lot of ideas.",
   },
