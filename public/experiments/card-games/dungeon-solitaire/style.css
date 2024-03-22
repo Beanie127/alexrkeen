@@ -20,3 +20,7 @@
 aside {
   float: right;
 }
+
+#button-track {
+  min-block-size: 3ch;
+}
