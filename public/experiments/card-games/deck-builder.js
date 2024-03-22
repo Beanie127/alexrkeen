@@ -90,7 +90,7 @@ const parametersDungeon = {
     "The High Priestess",
     "The Empress",
     "The Emperor",
-    "The Heirophant",
+    "The Hierophant",
     "The Lovers",
     "The Chariot",
     "Strength",
