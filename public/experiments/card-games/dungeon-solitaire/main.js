@@ -76,6 +76,7 @@ class Run {
     this.retreating = true;
     this.depth--;
     btnAdvance.setAttribute("hidden", true);
+    btnRetreat.setAttribute("hidden", true);
     if (this.depth == 0) {
       this.winRun();
       return;
@@ -91,6 +92,7 @@ class Run {
     // reset this.active
     this.active.stack.cards = [];
     this.active.encounter.exists = false;
+    this.active.encounter.failedMaze = false;
     this.active.encounter.type = "";
     this.active.encounter.rating = 0;
     // set the active stack based on direction and current depth
@@ -182,7 +184,13 @@ class Run {
         case "favour":
           updateMessage("You feel the favour of the divine wash over you.");
           if (this.active.encounter.exists) {
-            this.winEncounter();
+            if (this.active.encounter.failedMaze == true) {
+              this.loseEncounter(
+                "You escape the maze, leaving behind all gains you saw along the way."
+              );
+            } else {
+              this.winEncounter();
+            }
           }
           break;
       }
@@ -192,19 +200,19 @@ class Run {
   // encounter processing
 
   checkParty() {
-    if ((this.companions.length = 0)) return;
+    if (this.companions.length == 0) return;
     if (
       this.companions.some((companion) => companion.name === "The Magician")
     ) {
       this.active.encounter.rating--;
-      console.log(`Encounter rating reduced by ${companion.name}`);
+      console.log(`Encounter rating reduced by The Magician`);
     }
     if (
       this.active.encounter.type == "monster" &&
       this.companions.some((companion) => companion.name === "Page of Swords")
     ) {
       this.active.encounter.rating--;
-      console.log(`Encounter rating reduced by ${companion.name}`);
+      console.log(`Encounter rating reduced by the Page of Swords`);
     }
     if (
       this.active.encounter.type == "trap" &&
@@ -213,14 +221,14 @@ class Run {
       )
     ) {
       this.active.encounter.rating--;
-      console.log(`Encounter rating reduced by ${companion.name}`);
+      console.log(`Encounter rating reduced by the Page of Pentacles`);
     }
     if (
       this.active.encounter.type == "door" &&
       this.companions.some((companion) => companion.name === "Page of Wands")
     ) {
       this.active.encounter.rating--;
-      console.log(`Encounter rating reduced by ${companion.name}`);
+      console.log(`Encounter rating reduced by the Page of Wands`);
     }
     if (this.active.encounter.rating == 0) {
       updateMessage(
@@ -246,8 +254,13 @@ class Run {
   continueEncounter() {
     // if the current card meets or beats the encounter rating, you win
     if (this.active.card.rank >= this.active.encounter.rating) {
-      console.log("Encounter won");
-      this.winEncounter();
+      if (this.active.encounter.failedMaze == true) {
+        this.loseEncounter(
+          "You escape the maze, leaving behind all gains you saw along the way."
+        );
+      } else {
+        this.winEncounter();
+      }
     } else {
       // suffer the difference between the party
       const shortfall = this.active.encounter.rating - this.active.card.rank;
@@ -258,8 +271,10 @@ class Run {
           break;
         case "trap":
           this.takeDamage(shortfall);
-          if (!this.isLost) {
-            this.loseEncounter("You wisely retreat, abandoning all gains.");
+          if (this.isLost == false) {
+            setTimeout(() => {
+              this.loseEncounter("You retreat, abandoning all gains.");
+            }, 650);
           }
           break;
         case "door":
@@ -291,15 +306,9 @@ class Run {
 
   winEncounter() {
     btnDraw.setAttribute("hidden", true);
-    if (this.active.encounter.failedMaze == true) {
-      updateMessage(
-        `You escape the maze, leaving behind all gains you saw along the way.`
-      );
-    } else {
-      updateMessage(
-        `You overcome the ${this.active.encounter.type}, rescue any companions and collect any items and treasure.`
-      );
-    }
+    updateMessage(
+      `You overcome the ${this.active.encounter.type}, rescue any companions and collect any items and treasure.`
+    );
     // sort active stack in order of worth
     this.active.stack.cards.sort((a, b) => a.worth - b.worth);
     // delay so everything doesn't pop out of the stack immediately and you can see what's happening
@@ -319,7 +328,7 @@ class Run {
                 treasureTrack,
                 this.active.stack.cards
               );
-              this.makeUsable(card, fn);
+              // this.makeUsable(card);
             }
             switch (card.type) {
               case "companion":
@@ -370,12 +379,12 @@ class Run {
     let gemCount = 0;
     this.treasure.forEach((card) => {
       this.score += card.worth;
-      if ((card.suit = "Major Arcana")) {
+      if (card.suit == "Major Arcana") {
         gemCount++;
       }
     });
     updateMessage(`You scored ${gemCount}/${this.score}.`);
-    if (gemCount == 60 && this.score == 178) {
+    if (gemCount == 3 && this.score == 178) {
       updateMessage("A perfect score!");
     }
   }
@@ -393,37 +402,29 @@ class Run {
   }
 
   // TODO: items and skills and treasure drops, oh my!
-  makeUsable(card, fn) {
+  makeUsable(card) {
     const elem = document.querySelector(`[data-id="${card.id}"]`);
-    elem.addEventListener("click", fn);
+    // elem.addEventListener("click", fn);
   }
 
   // Card consequences
 
   discard(shortfall) {
-    // TODO: solve this complete mess
-    let leftToDiscard = shortfall;
-    console.log(`You should be about to discard ${leftToDiscard} cards`);
-    let i = 0;
-    let timeout = 0;
-    for (leftToDiscard; leftToDiscard > 0; leftToDiscard--) {
-      console.log("Discarding...");
-      timeout = i * 1200 + 1; // repeat at 1.2s intervals
+    for (let leftToDiscard = shortfall; leftToDiscard > 0; leftToDiscard--) {
+      const timeout = (shortfall - leftToDiscard + 1) * 1400; // repeat at 1.4s intervals
+      console.log(
+        `${leftToDiscard} remaining to discard. Setting timeout for card #${leftToDiscard} as ${timeout}`
+      );
       setTimeout(() => {
-        console.log(`Setting timeout for ${timeout}`);
         const discard = this.deck.draw();
-        updateMessage(discard.name);
-        console.log(`${discard.name} drawn.`);
         showCard(discard);
         if (discard.type == "torch") {
           this.placeCard(discard, this.discards, torchTrack);
-          this.burnTorch(card);
+          this.burnTorch(discard);
         } else {
           this.discards.push(discard);
         }
       }, timeout);
-      i++;
-      console.log(`${leftToDiscard} cards to discard`); // count down number of cards to discard
     }
   }
 
@@ -440,17 +441,19 @@ class Run {
     }
     this.hp -= damage;
     console.log(`Current HP = ${this.hp}`);
-    if (this.hp <= 1) {
-      this.loseRun(
-        `The ${this.active.encounter.type} deals you a mortal injury. You perish in the dungeon.`,
-        this.active.encounter.type
-      );
-    } else {
-      hpDisplay.textContent = `${this.hp} of Cups`;
-      updateMessage(
-        `The ${this.active.encounter.type} injures you. You lose ${damage} HP.`
-      );
-    }
+    setTimeout(() => {
+      if (this.hp <= 1) {
+        this.loseRun(
+          `The ${this.active.encounter.type} deals you a mortal injury. You perish in the dungeon.`,
+          this.active.encounter.type
+        );
+      } else {
+        hpDisplay.textContent = `${this.hp} of Cups`;
+        updateMessage(
+          `The ${this.active.encounter.type} injures you. You lose ${damage} HP.`
+        );
+      }
+    }, 600);
   }
 
   burnTorch() {
@@ -503,10 +506,12 @@ function showCard(card) {
 }
 
 function updateMessage(newMessage, fresh = false) {
-  if (fresh) {
-    message.textContent = "";
-  }
-  message.textContent += newMessage + " ";
+  setTimeout(() => {
+    if (fresh) {
+      message.textContent = "";
+    }
+    message.textContent += newMessage + " ";
+  }, 200);
 }
 
 // UI buttons
@@ -536,5 +541,9 @@ btnRetreat.addEventListener("click", () => {
 // initialise
 
 let run = new Run();
+
+setInterval(() => {
+  console.log(run);
+}, 10000);
 
 //////////// END OF FILE ////////////
