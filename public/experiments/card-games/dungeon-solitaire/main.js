@@ -47,6 +47,19 @@ class Run {
     this.deck = new DungeonDeck();
   }
 
+  // dungeon navigation
+
+  startRun() {
+    const leftOverCards = document.querySelectorAll(".card");
+    leftOverCards.forEach((element) => {
+      if (element.id == "hp" || element.id == "display-current-card") {
+        return;
+      }
+      element.remove();
+    });
+    run.advance();
+  }
+
   advance() {
     this.depth++;
     btnAdvance.setAttribute("hidden", true);
@@ -70,6 +83,8 @@ class Run {
     btnDraw.removeAttribute("hidden");
     this.newTurn(delveRetreat);
   }
+
+  // card manipulation
 
   newTurn() {
     this.turnCount++;
@@ -174,6 +189,8 @@ class Run {
     }, 600);
   }
 
+  // encounter processing
+
   checkParty() {
     if ((this.companions.length = 0)) return;
     if (
@@ -254,6 +271,8 @@ class Run {
         case "maze":
           if (this.active.encounter.failedMaze == false) {
             updateMessage("You lose yourself in the maze.");
+            this.active.encounter.failedMaze = true;
+            break;
           }
           this.active.encounter.failedMaze = true;
           switch (this.active.card.encounter.type) {
@@ -281,21 +300,26 @@ class Run {
         `You overcome the ${this.active.encounter.type}, rescue any companions and collect any items and treasure.`
       );
     }
+    // sort active stack in order of worth
     this.active.stack.cards.sort((a, b) => a.worth - b.worth);
     // delay so everything doesn't pop out of the stack immediately and you can see what's happening
-    // TODO: check this works
     setTimeout(() => {
+      // only take cards if player didn't fail in the maze
       if (this.active.encounter.failedMaze == false) {
+        // run through cards in active stack...
         this.active.stack.cards.forEach((card) => {
+          // ...until there's only one left
           if (this.active.stack.cards.length > 1) {
+            // if it's worth anything, move it into treasure
             if (card.worth > 0) {
+              // TODO: there should always be one card left behind, even if the whole stack is treasure. Check this works
               this.placeCard(
                 card,
                 this.treasure,
                 treasureTrack,
                 this.active.stack.cards
               );
-              // TODO: add "drop treasure" functionality
+              this.makeUsable(card, fn);
             }
             switch (card.type) {
               case "companion":
@@ -328,8 +352,8 @@ class Run {
     }, 2000);
   }
 
-  loseEncounter(reason) {
-    updateMessage(reason);
+  loseEncounter(cause) {
+    updateMessage(cause);
     btnDraw.setAttribute("hidden", true);
     if (this.retreating == false) {
       btnAdvance.removeAttribute("hidden");
@@ -368,6 +392,14 @@ class Run {
     btnStart.removeAttribute("hidden");
   }
 
+  // TODO: items and skills and treasure drops, oh my!
+  makeUsable(card, fn) {
+    const elem = document.querySelector(`[data-id="${card.id}"]`);
+    elem.addEventListener("click", fn);
+  }
+
+  // Card consequences
+
   discard(shortfall) {
     // TODO: solve this complete mess
     let leftToDiscard = shortfall;
@@ -383,7 +415,7 @@ class Run {
         updateMessage(discard.name);
         console.log(`${discard.name} drawn.`);
         showCard(discard);
-        if (discard.type == "Ace") {
+        if (discard.type == "torch") {
           this.placeCard(discard, this.discards, torchTrack);
           this.burnTorch(card);
         } else {
@@ -458,6 +490,7 @@ class Run {
     }
   }
 }
+
 // local functions
 
 function showCard(card) {
@@ -476,25 +509,12 @@ function updateMessage(newMessage, fresh = false) {
   message.textContent += newMessage + " ";
 }
 
-function refreshPlayArea() {
-  const leftOverCards = document.querySelectorAll(".card");
-  leftOverCards.forEach((element) => {
-    if (element.id == "hp" || element.id == "display-current-card") {
-      return;
-    }
-    element.remove();
-  });
-}
-
-let run = new Run();
-
-// API
+// UI buttons
 
 btnStart.addEventListener("click", () => {
-  refreshPlayArea();
   run = new Run();
   console.log(run.deck);
-  run.advance();
+  run.startRun();
   btnDraw.removeAttribute("hidden");
   btnRetreat.removeAttribute("hidden");
   btnStart.setAttribute("hidden", true);
@@ -512,3 +532,9 @@ btnRetreat.addEventListener("click", () => {
   btnAdvance.setAttribute("hidden", true);
   run.retreat();
 });
+
+// initialise
+
+let run = new Run();
+
+//////////// END OF FILE ////////////
