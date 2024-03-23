@@ -45,6 +45,7 @@ class Run {
         exists: false,
         failedMaze: false,
         type: "",
+        suit: "",
         rating: 0,
       },
     };
@@ -107,7 +108,10 @@ class Run {
   placeCard(card, targetArray, targetElement, sourceArray) {
     // if the card's already on the table, 'pick it up' i.e. remove from the previous stack/array
     const oldCopy = document.querySelector(`[data-id="${card.id}"]`);
-    oldCopy?.classList.add("fade-out");
+    if (oldCopy != undefined) {
+      oldCopy.style.pointerEvents = "none";
+      oldCopy.classList.add("fade-out");
+    }
     if (sourceArray) {
       sourceArray.filter((x) => {
         x != card;
@@ -146,7 +150,7 @@ class Run {
           break;
         case "skill":
           updateMessage(
-            `You find ${this.active.card.name} and add it to your hand. Use it wisely.`
+            `You find ${cardToSort.name} and add it to your hand. Use it wisely.`
           );
           this.placeCard(
             cardToSort,
@@ -154,7 +158,6 @@ class Run {
             handTrack,
             this.active.stack.cards
           );
-          // TODO: this.makeUsable(cardToSort)
           break;
         case "action":
           if (this.active.encounter.exists == false) {
@@ -188,6 +191,7 @@ class Run {
     this.active.encounter.exists = false;
     this.active.encounter.failedMaze = false;
     this.active.encounter.type = "";
+    this.active.encounter.suit = "";
     this.active.encounter.rating = 0;
     // set the active stack based on direction and current depth
     if (this.retreating == true) {
@@ -251,6 +255,7 @@ class Run {
     btnRetreat.setAttribute("hidden", true); // no going back now
     this.active.encounter.type = this.active.card.encounter.type;
     this.active.encounter.rating = this.active.card.rank;
+    this.active.encounter.suit = this.active.card.suit;
     updateMessage(`You are confronted by a ${this.active.encounter.type}.`);
     // adjust the active encounter rating depending on what companions you have
     this.checkParty();
@@ -316,6 +321,7 @@ class Run {
   }
 
   winEncounter() {
+    this.active.encounter.exists = false;
     btnDraw.setAttribute("hidden", true);
     updateMessage(
       `You overcome the ${this.active.encounter.type} and collect any items and treasure.`
@@ -325,26 +331,15 @@ class Run {
     this.active.stack.cards.forEach((card) => {
       if (card.worth != 0) {
         card.type = "treasure";
-        console.log(`Marking ${card.name} as treasure`);
       }
     });
 
-    // sort active stack in order of worth
-    this.active.stack.cards.sort((a, b) => a.worth - b.worth);
-    console.log("Sorting active stack by worth...");
-    console.log(this.active.stack.cards);
-
-    // find a useless card
-    let lastCard = this.active.stack.cards.find(
-      (card) =>
-        card.type == "action" || card.type == "event" || card.type == "favour"
-    );
-
-    // if there's no useless cards, find the lowest value treasure card (hopefully)
-    if (lastCard == undefined) {
-      lastCard = this.active.stack.cards.find((card) => card.worth > 0);
+    // if all cards are collectable, make the least valuable treasure card non-collectable
+    if (!this.active.stack.cards.find((card) => card.collectable == false)) {
+      this.active.stack.cards.sort((a, b) => a.worth - b.worth);
+      const remainder = this.active.stack.cards.find((card) => card.worth > 0);
+      remainder.collectable = false;
     }
-    console.log(`Keeping ${lastCard.name}`);
 
     // delay so everything doesn't pop out of the stack immediately and you can see what's happening
     setTimeout(() => {
@@ -352,38 +347,35 @@ class Run {
       if (this.active.encounter.failedMaze == false) {
         // run through cards in active stack...
         this.active.stack.cards.forEach((card) => {
-          // if it's worth anything, move it into treasure, unless it's the last card
-          if (card.worth > 0 && card != lastCard) {
-            this.placeCard(
-              card,
-              this.treasure,
-              treasureTrack,
-              this.active.stack.cards
-            );
-            setTimeout(() => {
-              this.makeUsable(card);
-            }, 2000);
-            // TODO: this.makeUsable(card);
-          }
-          switch (card.type) {
-            case "companion":
-              this.placeCard(
-                card,
-                this.companions,
-                companionTrack,
-                this.active.stack.cards
-              );
-              updateMessage(`${card.name} joins your party.`);
-              break;
-            case "blessing":
-            case "item":
-              this.placeCard(
-                card,
-                this.hand,
-                handTrack,
-                this.active.stack.cards
-              );
-              break;
+          if (card.collectable) {
+            switch (card.type) {
+              case "treasure":
+                this.placeCard(
+                  card,
+                  this.treasure,
+                  treasureTrack,
+                  this.active.stack.cards
+                );
+                break;
+              case "companion":
+                this.placeCard(
+                  card,
+                  this.companions,
+                  companionTrack,
+                  this.active.stack.cards
+                );
+                updateMessage(`${card.name} joins your party.`);
+                break;
+              case "blessing":
+              case "item":
+                this.placeCard(
+                  card,
+                  this.hand,
+                  handTrack,
+                  this.active.stack.cards
+                );
+                break;
+            }
           }
         });
       }
@@ -445,37 +437,66 @@ class Run {
     btnStart.removeAttribute("hidden");
   }
 
-  // TODO: items and skills and treasure drops, oh my!
+  // TODO: items & blessings
+  // TODO: when returning an item/blessing to its stack, make it not collectable
+
   makeUsable(card) {
-    console.log(`makeUsable received ${card.name}`);
+    // replace the card with a clone to remove all existing event listeners
+    const target = document.querySelector(`[data-id="${card.id}"]`);
+    const clone = target.cloneNode(true);
+    target.replaceWith(clone);
     switch (card.type) {
       case "treasure":
-        document
-          .querySelector(`[data-id="${card.id}"]`)
-          .addEventListener("click", () => {
-            this.dropTreasure(card);
-          });
+        clone.addEventListener("click", () => {
+          console.log(this);
+          this.dropTreasure(card);
+        });
         break;
       case "skill":
-        // skill logic
+        clone.addEventListener("click", () => {
+          console.log(this);
+          this.useSkill(card);
+        });
+        break;
+      case "blessing":
+        break;
+      case "item":
         break;
     }
   }
 
-  // TODO: fix this mess
-  dropTreasure(card) {
-    console.log(`dropTreasure triggered on ${card.name}`);
-    const treasure = this.treasure.find((obj) => obj.id == card.id);
-    console.log(treasure.name);
-    if (this.active.encounter.type != "monster") {
-      alert("This card cannot be used!");
+  useSkill(card) {
+    const skill = this.hand.find((obj) => obj.id == card.id);
+    if (!this.active.encounter.exists) {
       return;
     }
-    if (treasure.worth < this.active.encounter.rating) {
+    if (this.active.encounter.suit == card.suit) {
+      this.winEncounter();
+      this.placeCard(
+        skill,
+        this.active.stack.cards,
+        this.active.stack.elem,
+        this.hand
+      );
+    } else {
+      alert("This skill isn't suitable!");
+    }
+  }
+
+  dropTreasure(card) {
+    console.log(`dropTreasure triggered on ${card.name}`);
+    if (this.active.encounter.exists == false) {
+      return;
+    }
+    const treasure = this.treasure.find((obj) => obj.id == card.id);
+    if (this.active.encounter.type != "monster") {
+      alert("This card cannot be used!");
+    } else if (treasure.worth < this.active.encounter.rating) {
       alert(
         `The monster won't be distracted by a treasure worth less than ${this.active.encounter.rating}`
       );
     } else {
+      this.treasure.filter((card) => card.id != treasure.id);
       this.placeCard(
         treasure,
         this.active.stack.cards,
@@ -510,6 +531,22 @@ class Run {
   }
 
   takeDamage(damage) {
+    // TODO: when you take damage, injure the newest companion
+    let absorbDamage = false;
+    if (this.hand.find((card) => card.id == 8)) {
+      absorbDamage = confirm("Use the Knight of Cups?");
+    }
+    if (absorbDamage) {
+      let knightOfCups = this.hand.find((card) => card.id == 8);
+      updateMessage("The Knight of Cups protects you from damage.");
+      this.placeCard(
+        knightOfCups,
+        this.active.stack.cards,
+        this.active.stack.elem,
+        this.hand
+      );
+      return;
+    }
     if (
       this.companions.some((companion) => companion.name === "Page of Cups")
     ) {
@@ -640,8 +677,18 @@ btnTestMode.addEventListener("click", () => {
 
 let run = new Run();
 console.log(run);
+
 setInterval(() => {
   console.log(run);
 }, 10000);
+
+setInterval(() => {
+  run.treasure.forEach((card) => {
+    run.makeUsable(card);
+  });
+  run.hand.forEach((card) => {
+    run.makeUsable(card);
+  });
+}, 5000);
 
 //////////// END OF FILE ////////////

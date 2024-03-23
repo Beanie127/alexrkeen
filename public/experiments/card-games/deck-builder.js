@@ -14,6 +14,7 @@ class Card {
     this.worth = 0;
     this.id = 0;
     this.encounter = {};
+    this.collectable = false;
   }
 }
 
@@ -212,9 +213,11 @@ class DungeonDeck extends Deck {
             break;
           case "Page":
             card.type = "companion";
+            card.collectable = true;
             break;
           case "Knight":
             card.type = "skill";
+            card.collectable = false;
             break;
           case "Queen":
             card.type = "favour";
@@ -222,6 +225,7 @@ class DungeonDeck extends Deck {
           case "King":
             card.type = "treasure";
             card.worth = 10;
+            card.collectable = true;
             break;
         }
         this.add(card);
@@ -244,6 +248,7 @@ class DungeonDeck extends Deck {
           case "Pentacles":
             card.encounter.type = "trap";
             card.worth = card.rank;
+            card.collectable = true;
             break;
           case "Wands":
             card.encounter.type = "door";
@@ -263,9 +268,11 @@ class DungeonDeck extends Deck {
         case 14:
         case 20:
           card.type = "item";
+          card.collectable = true;
           break;
         case 1:
           card.type = "companion";
+          card.collectable = true;
           break;
         case 2:
         case 3:
@@ -282,6 +289,7 @@ class DungeonDeck extends Deck {
         case 12:
         case 21:
           card.type = "blessing";
+          card.collectable = true;
           break;
         case 13:
         case 15:
@@ -295,6 +303,7 @@ class DungeonDeck extends Deck {
         case 19:
           card.type = "treasure";
           card.worth = 20;
+          card.collectable = true;
       }
       this.add(card);
     });
