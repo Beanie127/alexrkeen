@@ -304,6 +304,13 @@ class DungeonDeck extends Deck {
     });
     this.backup = this.cardsInDeck;
   }
+
+  enterTestMode() {
+    this.cardsInDeck = this.cardsInDeck.filter(
+      (card) =>
+        card.encounter.type == "trap" || card.encounter.type == "monster"
+    );
+  }
 }
 
 export { Card, Deck, TarotDeck, FiftyTwoDeck, DungeonDeck };
