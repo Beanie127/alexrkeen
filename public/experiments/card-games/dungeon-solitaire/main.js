@@ -336,6 +336,7 @@ class Run {
               treasureTrack,
               this.active.stack.cards
             );
+            this.makeUsable(card);
             // TODO: this.makeUsable(card);
           }
           switch (card.type) {
@@ -419,12 +420,14 @@ class Run {
 
   // TODO: items and skills and treasure drops, oh my!
   makeUsable(card) {
-    const elem = document.querySelector(`[data-id="${card.id}"]`);
+    console.log(`Making ${card.name} usable`);
     switch (card.type) {
       case "treasure":
-        elem.addEventListener("click", (event) => {
-          this.dropTreasure(event.target);
-        });
+        document
+          .querySelector(`[data-id="${card.id}"]`)
+          .addEventListener("click", (event) => {
+            this.dropTreasure(event.currentTarget);
+          });
         break;
       case "skill":
         // skill logic
