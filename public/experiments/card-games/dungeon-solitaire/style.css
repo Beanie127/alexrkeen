@@ -24,3 +24,42 @@ aside {
 #button-track {
   min-block-size: 3ch;
 }
+
+#narrator {
+  color: hsl(140 100% 40%);
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1em;
+  &::before {
+    content: "NARRATOR: ";
+  }
+}
+
+.card.flipped {
+  position: relative;
+  overflow: hidden;
+  &::before {
+    content: "";
+    animation-name: fade-in;
+    animation-duration: 600ms;
+    animation-fill-mode: both;
+    position: absolute;
+    inset: 0;
+    background-color: hsl(20 40% 80%);
+    background-image: linear-gradient(
+        45deg,
+        hsl(0 60% 60% / 0.5) 50%,
+        hsl(0 60% 60% / 0) 50%
+      ),
+      linear-gradient(135deg, hsl(0 60% 60% / 0.5) 50%, hsl(0 60% 60% / 0) 50%);
+    background-size: 20px 20px;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

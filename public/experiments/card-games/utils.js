@@ -11,6 +11,13 @@ function renderCard(card) {
   <div class="card" data-id="${card.id}">${card.name}</div> `;
 }
 
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+
 function removeItemOnce(arr, value) {
   var index = arr.indexOf(value);
   if (index > -1) {
@@ -19,4 +26,4 @@ function removeItemOnce(arr, value) {
   return arr;
 }
 
-export { getRandomFromArray, renderCard, removeItemOnce };
+export { getRandomFromArray, renderCard, removeItemOnce, shuffle };

@@ -1,4 +1,4 @@
-import { getRandomFromArray } from "./utils.js";
+import { getRandomFromArray, shuffle } from "./utils.js";
 
 class Card {
   constructor(rank, suit, name) {
@@ -120,24 +120,20 @@ class Deck {
   add(card) {
     this.cardsInDeck.push(card);
   }
-  draw(fn) {
+
+  shuffleDeck() {
+    shuffle(this.cardsInDeck);
+  }
+
+  draw() {
     if (this.cardsInDeck.length == 0) {
       alert("You've run out of cards!");
       return;
     }
-    this.currentCard = getRandomFromArray(this.cardsInDeck);
-    console.log(`Drew ${this.currentCard.name}`);
-    this.cardsInDeck = this.cardsInDeck.filter(
-      (card) => card != this.currentCard
-    );
-    if (fn) {
-      fn(this.currentCard);
-      return;
-    }
-    return this.currentCard;
+    return this.cardsInDeck.pop();
   }
 
-  shuffle() {
+  reset() {
     this.cardsInDeck = this.backup;
   }
 }

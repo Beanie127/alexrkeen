@@ -18,15 +18,6 @@ a {
   color: hsl(355 100% 60%);
 }
 
-#message {
-  color: hsl(140 100% 40%);
-  font-family: "Courier New", Courier, monospace;
-  font-size: 1.2em;
-  &::before {
-    content: "NARRATOR: ";
-  }
-}
-
 /* layout */
 
 body {
@@ -53,7 +44,7 @@ section {
   font-size: clamp(0.7rem, 0.65rem + 1dvi, 1rem);
   border: 5px solid black;
   border-radius: calc(7in / 64);
-  background: HSL(40 40% 80%);
+  background: hsl(40 40% 80%);
   color: black;
   padding: 0.5ch;
   display: grid;
@@ -86,18 +77,32 @@ section {
   z-index: -1;
 }
 
-.show-card {
+.show-card,
+.hide-card {
   animation-name: show-card;
   animation-duration: 1200ms;
   animation-fill-mode: both;
 }
 
+.hide-card {
+  animation-direction: reverse;
+}
+
 @keyframes fade-in {
-  from {
+  0% {
     opacity: 0;
+    transform: scale(1);
+    background: hsl(0 40% 80%);
   }
-  to {
+  20% {
+    background: hsl(0 40% 80%);
+  }
+  90% {
+    transform: scale(1.2);
+  }
+  100% {
     opacity: 1;
+    transform: scale(1);
   }
 }
 
