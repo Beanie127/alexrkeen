@@ -6,6 +6,7 @@ const btnStart = document.querySelector("#btn-start");
 const btnDraw = document.querySelector("#btn-draw");
 const btnAdvance = document.querySelector("#btn-advance");
 const btnRetreat = document.querySelector("#btn-retreat");
+const btnTestMode = document.querySelector("#btn-test");
 // notifications
 const narrator = document.querySelector("#narrator");
 const displayCurrentCard = document.querySelector("#display-current-card");
@@ -93,37 +94,11 @@ class Run {
 
   // card manipulation
 
-  newTurn() {
-    this.turnCount++;
-    // reset this.active
-    this.active.stack.cards = [];
-    this.active.encounter.exists = false;
-    this.active.encounter.failedMaze = false;
-    this.active.encounter.type = "";
-    this.active.encounter.rating = 0;
-    // set the active stack based on direction and current depth
-    if (this.retreating == true) {
-      this.active.stack.elem = document.querySelector(
-        `#delve-retreat [data-depth="${this.depth}"]`
-      );
-    } else {
-      this.active.stack.elem = document.querySelector(
-        `#delve [data-depth="${this.depth}"]`
-      );
-    }
-    if (this.depth == 1) {
-      updateMessage(`You are ${this.depth} room deep into the dungeon.`, true);
-    } else {
-      updateMessage(`You are ${this.depth} rooms deep into the dungeon.`, true);
-    }
-    this.drawCard();
-  }
-
   drawCard() {
     btnDraw.setAttribute("disabled", true);
     setTimeout(() => {
       btnDraw.removeAttribute("disabled");
-    }, 1405);
+    }, 2000);
     this.active.card = this.deck.draw();
     showCard(this.active.card);
     this.sortCard();
@@ -206,6 +181,32 @@ class Run {
 
   // encounter processing
 
+  newTurn() {
+    this.turnCount++;
+    // reset this.active
+    this.active.stack.cards = [];
+    this.active.encounter.exists = false;
+    this.active.encounter.failedMaze = false;
+    this.active.encounter.type = "";
+    this.active.encounter.rating = 0;
+    // set the active stack based on direction and current depth
+    if (this.retreating == true) {
+      this.active.stack.elem = document.querySelector(
+        `#delve-retreat [data-depth="${this.depth}"]`
+      );
+    } else {
+      this.active.stack.elem = document.querySelector(
+        `#delve [data-depth="${this.depth}"]`
+      );
+    }
+    if (this.depth == 1) {
+      updateMessage(`You are ${this.depth} room deep into the dungeon.`, true);
+    } else {
+      updateMessage(`You are ${this.depth} rooms deep into the dungeon.`, true);
+    }
+    this.drawCard();
+  }
+
   checkParty() {
     if (this.companions.length == 0) return;
     if (
@@ -278,11 +279,11 @@ class Run {
           break;
         case "trap":
           this.takeDamage(shortfall);
-          if (this.isLost == false) {
-            setTimeout(() => {
+          setTimeout(() => {
+            if (!this.islost) {
               this.loseEncounter("You retreat, abandoning all gains.");
-            }, 650);
-          }
+            }
+          }, 650);
           break;
         case "door":
           this.discard(shortfall);
@@ -319,24 +320,49 @@ class Run {
     updateMessage(
       `You overcome the ${this.active.encounter.type} and collect any items and treasure.`
     );
+
+    // label all cards with worth as treasure
+    this.active.stack.cards.forEach((card) => {
+      if (card.worth != 0) {
+        card.type = "treasure";
+        console.log(`Marking ${card.name} as treasure`);
+      }
+    });
+
     // sort active stack in order of worth
     this.active.stack.cards.sort((a, b) => a.worth - b.worth);
-    const lastCard = this.active.stack.cards.shift();
+    console.log("Sorting active stack by worth...");
+    console.log(this.active.stack.cards);
+
+    // find a useless card
+    let lastCard = this.active.stack.cards.find(
+      (card) =>
+        card.type == "action" || card.type == "event" || card.type == "favour"
+    );
+
+    // if there's no useless cards, find the lowest value treasure card (hopefully)
+    if (lastCard == undefined) {
+      lastCard = this.active.stack.cards.find((card) => card.worth > 0);
+    }
+    console.log(`Keeping ${lastCard.name}`);
+
     // delay so everything doesn't pop out of the stack immediately and you can see what's happening
     setTimeout(() => {
       // only take cards if player didn't fail in the maze
       if (this.active.encounter.failedMaze == false) {
         // run through cards in active stack...
         this.active.stack.cards.forEach((card) => {
-          // if it's worth anything, move it into treasure
-          if (card.worth > 0) {
+          // if it's worth anything, move it into treasure, unless it's the last card
+          if (card.worth > 0 && card != lastCard) {
             this.placeCard(
               card,
               this.treasure,
               treasureTrack,
               this.active.stack.cards
             );
-            this.makeUsable(card);
+            setTimeout(() => {
+              this.makeUsable(card);
+            }, 2000);
             // TODO: this.makeUsable(card);
           }
           switch (card.type) {
@@ -361,7 +387,8 @@ class Run {
           }
         });
       }
-      this.active.stack.cards.unshift(lastCard);
+
+      // reset maze
       this.active.encounter.failedMaze = false;
       if (this.retreating == false) {
         btnAdvance.removeAttribute("hidden");
@@ -396,7 +423,7 @@ class Run {
     let gemCount = 0;
     this.treasure.forEach((card) => {
       this.score += card.worth;
-      if (card.suit == "Major Arcana") {
+      if (64 < card.id < 68) {
         gemCount++;
       }
     });
@@ -420,13 +447,13 @@ class Run {
 
   // TODO: items and skills and treasure drops, oh my!
   makeUsable(card) {
-    console.log(`Making ${card.name} usable`);
+    console.log(`makeUsable received ${card.name}`);
     switch (card.type) {
       case "treasure":
         document
           .querySelector(`[data-id="${card.id}"]`)
-          .addEventListener("click", (event) => {
-            this.dropTreasure(event.currentTarget);
+          .addEventListener("click", () => {
+            this.dropTreasure(card);
           });
         break;
       case "skill":
@@ -435,7 +462,11 @@ class Run {
     }
   }
 
-  dropTreasure(treasure) {
+  // TODO: fix this mess
+  dropTreasure(card) {
+    console.log(`dropTreasure triggered on ${card.name}`);
+    const treasure = this.treasure.find((obj) => obj.id == card.id);
+    console.log(treasure.name);
     if (this.active.encounter.type != "monster") {
       alert("This card cannot be used!");
       return;
@@ -599,10 +630,16 @@ btnRetreat.addEventListener("click", () => {
   run.retreat();
 });
 
+btnTestMode.addEventListener("click", () => {
+  console.log("Entering Test Mode");
+  run.deck.enterTestMode();
+  console.log(run.deck.cardsInDeck);
+});
+
 // initialise
 
 let run = new Run();
-
+console.log(run);
 setInterval(() => {
   console.log(run);
 }, 10000);
