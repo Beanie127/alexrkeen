@@ -209,10 +209,13 @@ class DungeonDeck extends Deck {
       const card = new Card(rank, "Major Arcana", major);
       switch (card.rank) {
         case 0:
+          card.type = "scroll";
+          card.worth = 6;
+          card.collectable = true;
         case 11:
         case 14:
         case 20:
-          card.type = "item";
+          card.type = "potion";
           card.worth = 6;
           card.collectable = true;
           break;
