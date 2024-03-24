@@ -55,6 +55,11 @@ aside {
   }
 }
 
+.injured-companion {
+  transform: rotate(90deg);
+  transform-origin: center;
+}
+
 @keyframes fade-in {
   from {
     opacity: 0;
