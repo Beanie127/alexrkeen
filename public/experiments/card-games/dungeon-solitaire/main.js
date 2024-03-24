@@ -471,17 +471,20 @@ class Run {
       return;
     }
     if (this.active.encounter.suit == card.suit) {
-      this.winEncounter();
-      this.placeCard(
+      card.this.placeCard(
         skill,
         this.active.stack.cards,
         this.active.stack.elem,
         this.hand
       );
+      card.collectable = false;
+      this.winEncounter();
     } else {
       alert("This skill isn't suitable!");
     }
   }
+
+  useItem(card) {}
 
   dropTreasure(card) {
     console.log(`dropTreasure triggered on ${card.name}`);
@@ -503,6 +506,7 @@ class Run {
         this.active.stack.elem,
         this.treasure
       );
+      treasure.collectable = false;
       this.loseEncounter(
         `You drop ${treasure.name} and distract the monster, giving yourself a chance to scurry away.`
       );
@@ -538,7 +542,7 @@ class Run {
     }
     if (absorbDamage) {
       let knightOfCups = this.hand.find((card) => card.id == 8);
-      updateMessage("The Knight of Cups protects you from damage.");
+      updateMessage("You dodge out of the way, taking no damage.");
       this.placeCard(
         knightOfCups,
         this.active.stack.cards,
@@ -568,22 +572,57 @@ class Run {
       } else {
         hpDisplay.textContent = `${this.hp} of Cups`;
         updateMessage(
-          `The ${this.active.encounter.type} injures you. You lose ${damage} HP.`
+          `You lose ${damage} HP as the ${this.active.encounter.type} injures you.`
         );
+        this.injureCompanion();
       }
     }, 600);
+  }
+
+  injureCompanion() {
+    if (this.companions.length == 0) return;
+    const victim = this.companions.at(-1);
+    if (victim.injured) {
+      updateMessage(`${victim.name} dies protecting you.`);
+      victim.collectable = false;
+      this.placeCard(
+        victim,
+        this.active.stack.cards,
+        this.active.stack.elem,
+        this.companions
+      );
+    }
+    victim.injured = true;
+    const id = victim.id;
+    document
+      .querySelector(`[data-id="${id}"`)
+      .classList.add("injured-companion");
   }
 
   burnTorch() {
     this.torchesRemaining--;
     if (this.torchesRemaining == 0) {
-      this.loseRun(
-        "Your last torch goes out. You are lost in the darkness of the dungeon.",
-        "torch"
-      );
+      const fool = this.hand.find((card) => card.id == 48);
+      if (fool) {
+        updateMessage("You use your torch of light!");
+        this.torchesRemaining++;
+        this.deck.cardsInDeck.unshift(this.active.card);
+        this.placeCard(
+          fool,
+          this.active.stack.cards,
+          this.active.stack.elem,
+          this.hand
+        );
+        this.active.card.elem.remove();
+      } else {
+        this.loseRun(
+          "Your last torch goes out. You are lost in the darkness of the dungeon.",
+          "torch"
+        );
+      }
     } else {
       updateMessage(
-        `One of your torches burns out. You have ${this.torchesRemaining} torches remaining.`
+        `Your torch burns out. You have ${this.torchesRemaining} remaining.`
       );
     }
   }
