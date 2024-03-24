@@ -12,7 +12,6 @@ const narrator = document.querySelector("#narrator");
 const displayCurrentCard = document.querySelector("#display-current-card");
 // card placements
 const torchTrack = document.querySelector("#torch-track");
-const treasureTrack = document.querySelector("#treasure-track");
 const companionTrack = document.querySelector("#companion-track");
 const handTrack = document.querySelector("#hand-track");
 const corruptionTrack = document.querySelector("#corruption-track");
@@ -31,7 +30,6 @@ class Run {
     this.torches = [];
     this.companions = [];
     this.hand = [];
-    this.treasure = [];
     this.discards = [];
     this.score = 0;
     this.torchesRemaining = 4;
@@ -326,13 +324,6 @@ class Run {
       `You overcome the ${this.active.encounter.type} and collect any items and treasure.`
     );
 
-    // label all cards with worth as treasure
-    this.active.stack.cards.forEach((card) => {
-      if (card.worth != 0) {
-        card.type = "treasure";
-      }
-    });
-
     // if all cards are collectable, make the least valuable treasure card non-collectable
     if (!this.active.stack.cards.find((card) => card.collectable == false)) {
       this.active.stack.cards.sort((a, b) => a.worth - b.worth);
@@ -348,14 +339,6 @@ class Run {
         this.active.stack.cards.forEach((card) => {
           if (card.collectable) {
             switch (card.type) {
-              case "treasure":
-                this.placeCard(
-                  card,
-                  this.treasure,
-                  treasureTrack,
-                  this.active.stack.cards
-                );
-                break;
               case "companion":
                 this.placeCard(
                   card,
@@ -367,6 +350,7 @@ class Run {
                 break;
               case "blessing":
               case "item":
+              case "treasure":
                 this.placeCard(
                   card,
                   this.hand,
@@ -412,9 +396,13 @@ class Run {
     btnRetreat.setAttribute("hidden", true);
     btnStart.removeAttribute("hidden");
     let gemCount = 0;
-    this.treasure.forEach((card) => {
+    this.hand.forEach((card) => {
       this.score += card.worth;
-      if (64 < card.id < 68) {
+      if (
+        card.name == "The Star" ||
+        card.name == "The Moon" ||
+        card.name == "The Sun"
+      ) {
         gemCount++;
       }
     });
@@ -437,7 +425,6 @@ class Run {
   }
 
   // TODO: items & blessings
-  // TODO: when returning an item/blessing to its stack, make it not collectable
 
   makeUsable(card) {
     // replace the card with a clone to remove all existing event listeners
@@ -490,7 +477,7 @@ class Run {
     if (this.active.encounter.exists == false) {
       return;
     }
-    const treasure = this.treasure.find((obj) => obj.id == card.id);
+    const treasure = this.hand.find((obj) => obj.id == card.id);
     if (this.active.encounter.type != "monster") {
       alert("This card cannot be used!");
     } else if (treasure.worth < this.active.encounter.rating) {
@@ -498,12 +485,11 @@ class Run {
         `The monster won't be distracted by a treasure worth less than ${this.active.encounter.rating}`
       );
     } else {
-      this.treasure.filter((card) => card.id != treasure.id);
       this.placeCard(
         treasure,
         this.active.stack.cards,
         this.active.stack.elem,
-        this.treasure
+        this.hand
       );
       treasure.collectable = false;
       this.loseEncounter(
@@ -534,14 +520,16 @@ class Run {
   }
 
   takeDamage(damage) {
-    // TODO: when you take damage, injure the newest companion
     let absorbDamage = false;
-    if (this.hand.find((card) => card.id == 8)) {
+    if (this.hand.some((card) => card.name == "Knight of Cups")) {
       absorbDamage = confirm("Use the Knight of Cups?");
     }
     if (absorbDamage) {
-      let knightOfCups = this.hand.find((card) => card.id == 8);
+      let knightOfCups = this.hand.find(
+        (card) => card.name == "Knight of Cups"
+      );
       updateMessage("You dodge out of the way, taking no damage.");
+      knightOfCups.collectable = false;
       this.placeCard(
         knightOfCups,
         this.active.stack.cards,
@@ -600,19 +588,26 @@ class Run {
 
   burnTorch() {
     this.torchesRemaining--;
+    /// if this is the last torch
     if (this.torchesRemaining == 0) {
-      const fool = this.hand.find((card) => card.id == 48);
-      if (fool) {
+      // check if there is a fool in hand and if so
+      const fool = this.hand.find((card) => card.name == "The Fool");
+      if (fool != undefined) {
         updateMessage("You use your torch of light!");
         this.torchesRemaining++;
-        this.deck.cardsInDeck.unshift(this.active.card);
+        const torch = this.torches.pop();
+        this.deck.cardsInDeck.unshift(torch);
+        fool.collectable = false;
         this.placeCard(
           fool,
           this.active.stack.cards,
           this.active.stack.elem,
           this.hand
         );
-        this.active.card.elem.remove();
+        // remove all elements that match the torch id - necessary because the element is between the torchTrack and the current stack
+        document
+          .querySelectorAll(`[data-id="${torch.id}"]`)
+          ?.forEach((element) => element.remove());
       } else {
         this.loseRun(
           "Your last torch goes out. You are lost in the darkness of the dungeon.",
@@ -708,6 +703,7 @@ btnRetreat.addEventListener("click", () => {
 btnTestMode.addEventListener("click", () => {
   console.log("Entering Test Mode");
   run.deck.enterTestMode();
+  run.hp = 50;
   console.log(run.deck.cardsInDeck);
 });
 
@@ -721,9 +717,6 @@ setInterval(() => {
 }, 10000);
 
 setInterval(() => {
-  run.treasure.forEach((card) => {
-    run.makeUsable(card);
-  });
   run.hand.forEach((card) => {
     run.makeUsable(card);
   });
