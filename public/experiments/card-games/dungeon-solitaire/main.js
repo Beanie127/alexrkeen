@@ -105,7 +105,7 @@ class Run {
     this.sortCard();
   }
 
-  placeCard(card, targetArray, targetElement, sourceArray) {
+  placeCard(card, targetArray, targetElement, sourceArray = false) {
     // if the card's already on the table, 'pick it up' i.e. remove from the previous stack/array
     const oldCopy = document.querySelector(`[data-id="${card.id}"]`);
     if (oldCopy != undefined) {
@@ -113,9 +113,8 @@ class Run {
       oldCopy.classList.add("fade-out");
     }
     if (sourceArray) {
-      sourceArray.filter((x) => {
-        x != card;
-      });
+      const index = sourceArray.indexOf(card);
+      sourceArray.splice(index, 1);
     }
     // put it in the target stack/array
     targetElement.innerHTML += `<div class="card fade-in" data-id="${card.id}">${card.name}</div> `;
@@ -728,6 +727,6 @@ setInterval(() => {
   run.hand.forEach((card) => {
     run.makeUsable(card);
   });
-}, 5000);
+}, 10000);
 
 //////////// END OF FILE ////////////
