@@ -268,6 +268,7 @@ class DungeonDeck extends Deck {
         case 14:
         case 20:
           card.type = "item";
+          card.worth = 6;
           card.collectable = true;
           break;
         case 1:
