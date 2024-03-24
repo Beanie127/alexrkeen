@@ -203,6 +203,57 @@ class DungeonDeck extends Deck {
   constructor() {
     super();
 
+    // add the major arcana
+    parametersDungeon.majors.forEach((major) => {
+      let rank = parametersDungeon.majors.indexOf(major);
+      const card = new Card(rank, "Major Arcana", major);
+      switch (card.rank) {
+        case 0:
+        case 11:
+        case 14:
+        case 20:
+          card.type = "item";
+          card.worth = 6;
+          card.collectable = true;
+          break;
+        case 1:
+          card.type = "companion";
+          card.collectable = true;
+          break;
+        case 2:
+        case 3:
+        case 4:
+        case 5:
+        case 6:
+        case 7:
+        case 8:
+        case 9:
+        case 10:
+          card.encounter.type = "maze";
+          card.type = "action";
+          break;
+        case 12:
+        case 21:
+          card.type = "blessing";
+          card.collectable = true;
+          break;
+        case 13:
+        case 15:
+          card.type = "corruption";
+          break;
+        case 16:
+          card.type = "event";
+          break;
+        case 17:
+        case 18:
+        case 19:
+          card.type = "treasure";
+          card.worth = 20;
+          card.collectable = true;
+      }
+      this.add(card);
+    });
+
     // add Aces, Pages, Knights, Queens, Kings
     parametersDungeon.suits.forEach((suit) => {
       parametersDungeon.basicCards.forEach((rank) => {
@@ -258,56 +309,6 @@ class DungeonDeck extends Deck {
       });
     });
 
-    // add the major arcana
-    parametersDungeon.majors.forEach((major) => {
-      let rank = parametersDungeon.majors.indexOf(major);
-      const card = new Card(rank, "Major Arcana", major);
-      switch (card.rank) {
-        case 0:
-        case 11:
-        case 14:
-        case 20:
-          card.type = "item";
-          card.worth = 6;
-          card.collectable = true;
-          break;
-        case 1:
-          card.type = "companion";
-          card.collectable = true;
-          break;
-        case 2:
-        case 3:
-        case 4:
-        case 5:
-        case 6:
-        case 7:
-        case 8:
-        case 9:
-        case 10:
-          card.encounter.type = "maze";
-          card.type = "action";
-          break;
-        case 12:
-        case 21:
-          card.type = "blessing";
-          card.collectable = true;
-          break;
-        case 13:
-        case 15:
-          card.type = "corruption";
-          break;
-        case 16:
-          card.type = "event";
-          break;
-        case 17:
-        case 18:
-        case 19:
-          card.type = "treasure";
-          card.worth = 20;
-          card.collectable = true;
-      }
-      this.add(card);
-    });
     // give each card a unique id
     this.cardsInDeck.forEach((card) => {
       card.id = this.cardsInDeck.indexOf(card) + 1;
@@ -318,8 +319,12 @@ class DungeonDeck extends Deck {
   enterTestMode() {
     this.cardsInDeck = this.cardsInDeck.filter(
       (card) =>
-        card.encounter.type == "trap" || card.encounter.type == "monster"
+        card.type == "torch" ||
+        card.encounter.type == "monster" ||
+        card.name == "The Fool" ||
+        card.type == "favour"
     );
+    // this.cardsInDeck.sort((a, b) => a.id - b.id);
   }
 }
 
