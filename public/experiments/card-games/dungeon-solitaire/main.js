@@ -42,10 +42,19 @@ class Run {
       encounter: {
         exists: false,
         failedMaze: false,
+        isInverted: false,
         type: "",
         suit: "",
         rating: 0,
       },
+    };
+    this.encounterDefaults = {
+      exists: false,
+      failedMaze: false,
+      isInverted: false,
+      type: "",
+      suit: "",
+      rating: 0,
     };
     this.deck = new DungeonDeck();
   }
@@ -105,7 +114,7 @@ class Run {
 
   placeCard(card, targetArray, targetElement, sourceArray = false) {
     // if the card's already on the table, 'pick it up' i.e. remove from the previous stack/array
-    const oldCopy = document.querySelector(`[data-id="${card.id}"]`);
+    const oldCopy = cardByID(card);
     if (oldCopy != undefined) {
       oldCopy.style.pointerEvents = "none";
       oldCopy.classList.add("fade-out");
@@ -130,31 +139,9 @@ class Run {
     // then wait 600 ms before doing anything with it
     setTimeout(() => {
       switch (cardToSort.type) {
-        case "torch":
-          this.placeCard(cardToSort, this.torches, torchTrack);
-          this.burnTorch();
-          break;
-        case "corruption":
-          this.placeCard(cardToSort, this.corruption, corruptionTrack);
-          this.gainCorruption();
-          break;
-        case "event":
-          switch (cardToSort.name) {
-            case "The Tower":
-              this.shiftingTerrain();
-              break;
-          }
-          break;
-        case "skill":
-          updateMessage(
-            `You find ${cardToSort.name} and add it to your hand. Use it wisely.`
-          );
-          this.placeCard(
-            cardToSort,
-            this.hand,
-            handTrack,
-            this.active.stack.cards
-          );
+        case "scroll":
+        case "potion":
+          // leave these where they are
           break;
         case "action":
           if (this.active.encounter.exists == false) {
@@ -175,6 +162,33 @@ class Run {
             }
           }
           break;
+        case "torch":
+          this.placeCard(cardToSort, this.torches, torchTrack);
+          this.burnTorch();
+          break;
+        case "corruption":
+          this.placeCard(cardToSort, this.corruption, corruptionTrack);
+          this.gainCorruption();
+          break;
+        case "event":
+          switch (cardToSort.name) {
+            case "The Tower":
+              this.shiftingTerrain();
+              break;
+          }
+          break;
+        case "skill":
+        case "blessing":
+          updateMessage(
+            `You find ${cardToSort.name} and add it to your hand. Use it wisely.`
+          );
+          this.placeCard(
+            cardToSort,
+            this.hand,
+            handTrack,
+            this.active.stack.cards
+          );
+          break;
       }
     }, 600);
   }
@@ -185,11 +199,7 @@ class Run {
     this.turnCount++;
     // reset this.active
     this.active.stack.cards = [];
-    this.active.encounter.exists = false;
-    this.active.encounter.failedMaze = false;
-    this.active.encounter.type = "";
-    this.active.encounter.suit = "";
-    this.active.encounter.rating = 0;
+    this.active.encounter = this.encounterDefaults;
     // set the active stack based on direction and current depth
     if (this.retreating == true) {
       this.active.stack.elem = document.querySelector(
@@ -213,14 +223,18 @@ class Run {
     if (
       this.companions.some((companion) => companion.name === "The Magician")
     ) {
-      this.active.encounter.rating--;
+      this.active.encounter.isinverted
+        ? this.active.encounter.rating++
+        : this.active.encounter.rating--;
       console.log(`Encounter rating reduced by The Magician`);
     }
     if (
       this.active.encounter.type == "monster" &&
       this.companions.some((companion) => companion.name === "Page of Swords")
     ) {
-      this.active.encounter.rating--;
+      this.active.encounter.isinverted
+        ? this.active.encounter.rating++
+        : this.active.encounter.rating--;
       console.log(`Encounter rating reduced by the Page of Swords`);
     }
     if (
@@ -229,14 +243,18 @@ class Run {
         (companion) => companion.name === "Page of Pentacles"
       )
     ) {
-      this.active.encounter.rating--;
+      this.active.encounter.isinverted
+        ? this.active.encounter.rating++
+        : this.active.encounter.rating--;
       console.log(`Encounter rating reduced by the Page of Pentacles`);
     }
     if (
       this.active.encounter.type == "door" &&
       this.companions.some((companion) => companion.name === "Page of Wands")
     ) {
-      this.active.encounter.rating--;
+      this.active.encounter.isinverted
+        ? this.active.encounter.rating++
+        : this.active.encounter.rating--;
       console.log(`Encounter rating reduced by the Page of Wands`);
     }
     if (this.active.encounter.rating == 0) {
@@ -256,14 +274,22 @@ class Run {
     updateMessage(`You are confronted by a ${this.active.encounter.type}.`);
     // adjust the active encounter rating depending on what companions you have
     this.checkParty();
-    if (this.active.stack.cards.some((card) => card.type == "favour")) {
+    if (
+      this.active.stack.cards.some(
+        (card) => card.type == "favour" || card.name == "The World"
+      )
+    ) {
       this.winEncounter();
     }
   }
 
   continueEncounter() {
     // if the current card meets or beats the encounter rating, you win
-    if (this.active.card.rank >= this.active.encounter.rating) {
+    if (
+      this.active.card.rank >= this.active.encounter.rating ||
+      (this.active.encounter.isInverted &&
+        this.active.card.rank <= this.active.encounter.rating)
+    ) {
       if (this.active.encounter.failedMaze == true) {
         this.loseEncounter(
           "You escape the maze, leaving behind all gains you saw along the way."
@@ -335,29 +361,24 @@ class Run {
     setTimeout(() => {
       // only take cards if player didn't fail in the maze
       if (this.active.encounter.failedMaze == false) {
-        // run through cards in active stack...
+        // send companions to companion track and all other collectable cards to the hand
         this.active.stack.cards.forEach((card) => {
           if (card.collectable) {
-            switch (card.type) {
-              case "companion":
-                this.placeCard(
-                  card,
-                  this.companions,
-                  companionTrack,
-                  this.active.stack.cards
-                );
-                updateMessage(`${card.name} joins your party.`);
-                break;
-              case "blessing":
-              case "item":
-              case "treasure":
-                this.placeCard(
-                  card,
-                  this.hand,
-                  handTrack,
-                  this.active.stack.cards
-                );
-                break;
+            if (card.type == "companion") {
+              this.placeCard(
+                card,
+                this.companions,
+                companionTrack,
+                this.active.stack.cards
+              );
+              updateMessage(`${card.name} joins your party.`);
+            } else {
+              this.placeCard(
+                card,
+                this.hand,
+                handTrack,
+                this.active.stack.cards
+              );
             }
           }
         });
@@ -428,7 +449,7 @@ class Run {
 
   makeUsable(card) {
     // replace the card with a clone to remove all existing event listeners
-    const target = document.querySelector(`[data-id="${card.id}"]`);
+    const target = cardByID(card);
     const clone = target.cloneNode(true);
     target.replaceWith(clone);
     switch (card.type) {
@@ -445,8 +466,14 @@ class Run {
         });
         break;
       case "blessing":
+        clone.addEventListener("click", () => {
+          this.useBlessing(card);
+        });
         break;
-      case "item":
+      case "potion":
+        clone.addEventListener("click", () => {
+          this.drinkPotion(card);
+        });
         break;
     }
   }
@@ -470,7 +497,112 @@ class Run {
     }
   }
 
-  useItem(card) {}
+  useBlessing(card) {
+    if (this.corruption.length > 0) {
+      updateMessage("You feel a taint on your soul washing away...");
+      const corruption = this.corruption.pop();
+      this.deck.cardsInDeck.unshift(corruption);
+      cardByID(corruption).classList.add("fade-out");
+      setTimeout(() => {
+        cardByID(corruption).remove();
+      }, 1300);
+    }
+    switch (card.name) {
+      case "The Hanged Man":
+        this.active.encounter.isInverted = true;
+        updateMessage(
+          "The Blessing of the Murdered God turns your perspective upside down."
+        );
+        break;
+      case "The World":
+        if (this.active.encounter.exists) {
+          if (this.active.encounter.failedMaze == true) {
+            this.loseEncounter(
+              "You escape the maze, leaving behind all gains you saw along the way."
+            );
+          } else {
+            this.winEncounter();
+          }
+        }
+        break;
+    }
+    card.collectable = false;
+    this.placeCard(
+      card,
+      this.active.stack.cards,
+      this.active.stack.elem,
+      this.treasure
+    );
+  }
+
+  drinkPotion(card) {
+    switch (card.name) {
+      case "Justice":
+        if (
+          this.active.encounter.type == "monster" ||
+          this.active.encounter.type == "door"
+        ) {
+          updateMessage(
+            "The Potion of Giant Strength bolsters you against the current obstacle."
+          );
+          this.active.encounter.isinverted
+            ? this.active.encounter.rating++
+            : this.active.encounter.rating--;
+        } else {
+          error(
+            "The Potion of Giant Strength can only be used in encounters against monsters and doors."
+          );
+        }
+        break;
+      case "Temperance":
+        if (
+          this.companions.some((companion) => companion.injured) &&
+          window.confirm("Do you want to restore an injured companion?")
+        ) {
+          const companion = this.companions.find(
+            (companion) => companion.injured
+          );
+          companion.injured = false;
+          cardByID(companion).classList.remove("injured-companion");
+          updateMessage(`The ${companion.name} is restored to full health.`);
+        } else {
+          this.hp = 10;
+          hpDisplay.textContent += "10 of Cups";
+          updateMessage("You are restored to full health.");
+        }
+        break;
+      case "Judgement":
+        updateMessage("The Potion of Prescience lets you see what lies ahead.");
+        const nextThreeCards = [];
+        for (let i = 0; i < 3; i++) {
+          nextThreeCards.unshift(this.deck.draw());
+        }
+        updateMessage(
+          `Ahead of you lie ${nextThreeCards[0]}, ${nextThreeCards[1]} and ${nextThreeCards[2]}.`
+        );
+        nextThreeCards.forEach((futureCard) => {
+          if (
+            window.confirm(
+              `Click 'OK' to play ${futureCard}, or 'Cancel' to send it to the bottom of the deck.`
+            )
+          ) {
+            showCard(futureCard);
+            this.active.card = futureCard;
+            this.sortCard();
+          } else {
+            this.deck.cardsInDeck.unshift(futureCard);
+          }
+        });
+        break;
+    }
+    card.collectable = false;
+    this.placeCard(
+      card,
+      this.active.stack.cards,
+      this.active.stack.elem,
+      this.treasure
+    );
+  }
 
   dropTreasure(card) {
     console.log(`dropTreasure triggered on ${card.name}`);
@@ -580,10 +712,7 @@ class Run {
       );
     }
     victim.injured = true;
-    const id = victim.id;
-    document
-      .querySelector(`[data-id="${id}"`)
-      .classList.add("injured-companion");
+    cardByID(victim).classList.add("injured-companion");
   }
 
   burnTorch() {
@@ -605,9 +734,7 @@ class Run {
           this.hand
         );
         // remove all elements that match the torch id - necessary because the element is between the torchTrack and the current stack
-        document
-          .querySelectorAll(`[data-id="${torch.id}"]`)
-          ?.forEach((element) => element.remove());
+        cardsByID(torch)?.forEach((element) => element.remove());
       } else {
         this.loseRun(
           "Your last torch goes out. You are lost in the darkness of the dungeon.",
@@ -640,7 +767,7 @@ class Run {
       const victim = this.companions.pop();
       this.discards.push(victim);
       updateMessage(`The ${victim.name} is killed in the turmoil.`);
-      document.querySelector(`[data-id="${victim.id}"]`).remove();
+      cardByID(victim).remove();
     }
   }
 }
@@ -656,8 +783,15 @@ function showCard(card) {
   }, 1201);
 }
 
-let messages = [];
+function cardByID(card) {
+  return document.querySelector(`[data-id="${card.id}"]`);
+}
 
+function cardsByID(card) {
+  return document.querySelectorAll(`[data-id="${card.id}"]`);
+}
+
+let messages = [];
 function updateMessage(newMessage, fresh = false) {
   setTimeout(() => {
     if (fresh) {
@@ -714,9 +848,6 @@ console.log(run);
 
 setInterval(() => {
   console.log(run);
-}, 10000);
-
-setInterval(() => {
   run.hand.forEach((card) => {
     run.makeUsable(card);
   });
