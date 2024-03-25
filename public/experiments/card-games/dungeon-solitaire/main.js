@@ -111,17 +111,20 @@ class Run {
       oldCopy.style.pointerEvents = "none";
       oldCopy.classList.add("fade-out");
     }
+    // if a source array is specified, remove it from the source array
     if (sourceArray) {
       const index = sourceArray.indexOf(card);
       sourceArray.splice(index, 1);
     }
-    // put it in the target stack/array
-    targetElement.innerHTML += `<div class="card fade-in" data-id="${card.id}">${card.name}</div> `;
-    setTimeout(() => {
-      oldCopy?.remove();
-      document.querySelector(".fade-in")?.classList.remove("fade-in");
-    }, 1200);
+    // put it in the target array
     targetArray.push(card);
+    // put it in the target stack
+    targetElement.innerHTML += `<div class="card fade-in" data-id="${card.id}">${card.name}</div> `;
+    // remove the animations & the old copy
+    setTimeout(() => {
+      if (oldCopy != undefined) oldCopy.remove();
+      document.querySelector(".fade-in")?.classList.remove("fade-in");
+    }, 1400);
   }
 
   sortCard() {
@@ -289,9 +292,7 @@ class Run {
         this.active.card.rank <= this.active.encounter.rating)
     ) {
       if (this.active.encounter.failedMaze == true) {
-        this.loseEncounter(
-          "You escape the maze, leaving behind all gains you saw along the way."
-        );
+        this.loseEncounter("You stumble upon the exit.");
       } else {
         this.winEncounter();
       }
@@ -307,7 +308,7 @@ class Run {
           this.takeDamage(shortfall);
           setTimeout(() => {
             if (!this.islost) {
-              this.loseEncounter("You retreat, abandoning all gains.");
+              this.loseEncounter("You retreat, abandoning the prize.");
             }
           }, 650);
           break;
@@ -332,9 +333,7 @@ class Run {
             case "maze":
             case "door":
               this.discard(1);
-              updateMessage(
-                "You lose your way and waste an hour getting back on track."
-              );
+              updateMessage("You waste an hour retracing your steps.");
               break;
           }
       }
@@ -345,8 +344,13 @@ class Run {
   winEncounter() {
     this.active.encounter.exists = false;
     btnDraw.setAttribute("hidden", true);
+    this.active.stack.cards.forEach((card) => {
+      if ((card.type == "action") & (card.suit == "Pentacles")) {
+        card.type = "treasure";
+      }
+    });
     updateMessage(
-      `You overcome the ${this.active.encounter.type} and collect any items and treasure.`
+      `You overcome the ${this.active.encounter.type} and collect the spoils.`
     );
     let collectables = this.active.stack.cards.filter(
       (card) => card.collectable
@@ -354,6 +358,7 @@ class Run {
     let uncollectables = this.active.stack.cards.filter(
       (card) => card.collectable == false
     );
+    let newCollectables = [];
     console.log("Collectables:");
     console.log(collectables);
     console.log("Uncollectables:");
@@ -363,13 +368,17 @@ class Run {
     console.log("Treasures in order:");
     console.log(treasures);
     // check if there are any cards which aren't treasure
-    // it's all fine
     if (uncollectables.length == 0) {
       let remainder = treasures.shift();
       console.log(`Keeping ${remainder.name}`);
+      newCollectables = collectables.filter((card) => card.id != remainder.id);
+    } else {
+      newCollectables = collectables;
     }
+    console.log("New Collectables:");
+    console.log(newCollectables);
     setTimeout(() => {
-      collectables.forEach((card) => {
+      newCollectables.forEach((card) => {
         if (card.type == "companion") {
           this.placeCard(
             card,
@@ -381,9 +390,6 @@ class Run {
         } else {
           this.placeCard(card, this.hand, handTrack, this.active.stack.cards);
         }
-      });
-      treasures.forEach((card) => {
-        this.placeCard(card, this.hand, handTrack, this.active.stack.cards);
       });
     }, 2000);
     // make buttons work again
@@ -579,13 +585,13 @@ class Run {
         updateMessage(
           `Ahead of you lie ${nextThreeCards[0].name}, ${nextThreeCards[1].name} and ${nextThreeCards[2].name}.`
         );
-        for (let i = 1; i < 4; i++) {
-          const timeout = i * 1400;
+        for (let i = 0; i < 3; i++) {
+          const timeout = (i + 1) * 1400;
           setTimeout(() => {
             const futureCard = nextThreeCards[i];
             if (
               window.confirm(
-                `Click 'OK' to play ${futureCard}, or 'Cancel' to send it to the bottom of the deck.`
+                `Click 'OK' to play ${futureCard.name}, or 'Cancel' to send it to the bottom of the deck.`
               )
             ) {
               showCard(futureCard);
