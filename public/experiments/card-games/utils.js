@@ -8,7 +8,7 @@ function getRandomFromArray(array) {
 
 function renderCard(card) {
   return `
-  <div class="card" data-id="${card.id}">${card.name}</div> `;
+  <div class="card fade-in" data-id="${card.id}"><img src="./images/${card.filename}.jpeg" title="${card.name}" alt="${card.name}"></img></div>`;
 }
 
 function shuffle(array) {

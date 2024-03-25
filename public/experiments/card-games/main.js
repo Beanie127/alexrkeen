@@ -7,7 +7,7 @@ const cardTray = document.querySelector("#card-tray");
 const displayCurrentCard = document.querySelector("#display-current-card");
 
 function showCurrentCard() {
-  displayCurrentCard.textContent = deck.currentCard.name;
+  displayCurrentCard.innerHTML = `<img src="./images/${deck.currentCard.filename}.jpeg" title="${deck.currentCard.name}" alt="${deck.currentCard.name}"></img>`;
   displayCurrentCard.classList.add("show-card");
   setTimeout(() => {
     displayCurrentCard.classList.remove("show-card");
@@ -17,6 +17,7 @@ function showCurrentCard() {
 // Draw the Tarot features
 
 const deck = new TarotDeck();
+deck.shuffleDeck();
 
 btnDraw.addEventListener("click", () => {
   btnDraw.setAttribute("disabled", true);

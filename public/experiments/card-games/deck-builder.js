@@ -15,6 +15,7 @@ class Card {
     this.id = 0;
     this.encounter = {};
     this.collectable = false;
+    this.filename = "";
   }
 }
 
@@ -171,24 +172,38 @@ class TarotDeck extends Deck {
       const card = new Card(rank, "Major Arcana", major);
       card.suit = "Major Arcana";
       card.value = card.rank;
+      card.filename = `m${rank}`;
       this.add(card);
     });
     parametersTarot.suits.forEach((suit) => {
       parametersTarot.ranks.forEach((rank) => {
         const card = new Card(rank, suit);
-        if (rank == "Ace") {
-          card.type = "Ace";
-        } else if (
-          rank == "Page" ||
-          rank == "Knight" ||
-          rank == "Queen" ||
-          rank == "King"
-        ) {
-          card.type = "Court";
-        } else {
-          card.type = "Number";
-        }
         card.value = 1 + parametersTarot.ranks.indexOf(rank);
+        switch (rank) {
+          case "Ace":
+            card.type = "Ace";
+            card.filename = `${suit[0].toLowerCase()}a`;
+            break;
+          case "Page":
+            card.filename = `${suit[0].toLowerCase()}p`;
+            card.type = "Court";
+            break;
+          case "Knight":
+            card.filename = `${suit[0].toLowerCase()}n`;
+            card.type = "Court";
+            break;
+          case "Queen":
+            card.filename = `${suit[0].toLowerCase()}q`;
+            card.type = "Court";
+            break;
+          case "King":
+            card.filename = `${suit[0].toLowerCase()}k`;
+            card.type = "Court";
+            break;
+          default:
+            card.type = "Number";
+            card.filename = `${suit[0].toLowerCase()}${card.value}`;
+        }
         this.add(card);
       });
     });
@@ -203,10 +218,12 @@ class DungeonDeck extends Deck {
   constructor() {
     super();
 
+    this.cups = [];
     // add the major arcana
     parametersDungeon.majors.forEach((major) => {
       let rank = parametersDungeon.majors.indexOf(major);
       const card = new Card(rank, "Major Arcana", major);
+      card.filename = `m${rank}`;
       switch (card.rank) {
         case 0:
           card.type = "scroll";
@@ -269,25 +286,31 @@ class DungeonDeck extends Deck {
     parametersDungeon.suits.forEach((suit) => {
       parametersDungeon.basicCards.forEach((rank) => {
         const card = new Card(rank, suit);
+        let suitInitial = suit.charAt(0).toLowerCase();
         switch (card.rank) {
           case "Ace":
             card.type = "torch";
+            card.filename = `${suitInitial}a`;
             break;
           case "Page":
             card.type = "companion";
             card.collectable = true;
+            card.filename = `${suitInitial}p`;
             break;
           case "Knight":
             card.type = "skill";
             card.collectable = false;
+            card.filename = `${suitInitial}n`;
             break;
           case "Queen":
             card.type = "favour";
+            card.filename = `${suitInitial}q`;
             break;
           case "King":
             card.type = "treasure";
             card.worth = 10;
             card.collectable = true;
+            card.filename = `${suitInitial}k`;
             break;
         }
         this.add(card);
@@ -296,12 +319,15 @@ class DungeonDeck extends Deck {
 
     // add all the action cards (except mazes)
     parametersDungeon.suits.forEach((suit) => {
-      // ignore cups
-      if (suit == "Cups") {
-        return;
-      }
+      const suitInitial = suit.charAt(0).toLowerCase();
       parametersDungeon.actionRanks.forEach((rank) => {
         const card = new Card(rank, suit);
+        card.filename = `${suitInitial}${rank}`;
+        if (suit == "Cups") {
+          card.type = "health";
+          this.cups.push(card);
+          return;
+        }
         card.type = "action";
         switch (suit) {
           case "Swords":
@@ -330,10 +356,9 @@ class DungeonDeck extends Deck {
   enterTestMode() {
     this.cardsInDeck = this.cardsInDeck.filter(
       (card) =>
-        card.type == "torch" ||
-        card.encounter.type == "monster" ||
-        card.name == "The Fool" ||
-        card.type == "favour"
+        card.name == "Judgement" ||
+        card.encounter.type == "trap" ||
+        card.rank == "King"
     );
     // this.cardsInDeck.sort((a, b) => a.id - b.id);
   }

@@ -54,7 +54,7 @@ class Run {
   // dungeon navigation
 
   startRun() {
-    hpDisplay.textContent = "10 of Cups";
+    hpDisplay.innerHTML = `<img src="../images/c10.jpeg" title="10 of Cups" alt="10 of Cups"></img>`;
     const leftOverCards = document.querySelectorAll(".card");
     leftOverCards.forEach((element) => {
       if (element.id == "hp" || element.id == "display-current-card") {
@@ -119,12 +119,12 @@ class Run {
     // put it in the target array
     targetArray.push(card);
     // put it in the target stack
-    targetElement.innerHTML += `<div class="card fade-in" data-id="${card.id}">${card.name}</div> `;
+    targetElement.innerHTML += `<div class="card fade-in" data-id="${card.id}"><img src="../images/${card.filename}.jpeg" title="${card.name}" alt="${card.name}"></img></div>`;
     // remove the animations & the old copy
     setTimeout(() => {
       if (oldCopy != undefined) oldCopy.remove();
       document.querySelector(".fade-in")?.classList.remove("fade-in");
-    }, 1400);
+    }, 1200);
   }
 
   sortCard() {
@@ -158,11 +158,21 @@ class Run {
           }
           break;
         case "torch":
-          this.placeCard(cardToSort, this.torches, torchTrack);
+          this.placeCard(
+            cardToSort,
+            this.torches,
+            torchTrack,
+            this.active.stack.cards
+          );
           this.burnTorch();
           break;
         case "corruption":
-          this.placeCard(cardToSort, this.corruption, corruptionTrack);
+          this.placeCard(
+            cardToSort,
+            this.corruption,
+            corruptionTrack,
+            this.active.stack.cards
+          );
           this.gainCorruption();
           break;
         case "event":
@@ -185,7 +195,7 @@ class Run {
           );
           break;
       }
-    }, 600);
+    }, 650);
   }
 
   // encounter processing
@@ -340,7 +350,6 @@ class Run {
     }
   }
 
-  //TODO: fix working out what cards to collect
   winEncounter() {
     this.active.encounter.exists = false;
     btnDraw.setAttribute("hidden", true);
@@ -440,7 +449,7 @@ class Run {
   }
 
   loseRun(message, cause) {
-    this.isLost == true;
+    this.isLost = true;
     updateMessage(
       `${message} GAME OVER. For your records: X ${cause}/${this.turnCount}`,
       true
@@ -557,6 +566,7 @@ class Run {
           alert(
             "The Potion of Giant Strength can only be used in encounters against monsters and doors."
           );
+          return;
         }
         break;
       case "Temperance":
@@ -572,31 +582,34 @@ class Run {
           updateMessage(`The ${companion.name} is restored to full health.`);
         } else {
           this.hp = 10;
-          hpDisplay.textContent += "10 of Cups";
+          hpDisplay.innerHTML = `
+              <img
+                src="../images/c10.jpeg"
+                title="10 of Cups"
+                alt="10 of Cups"></img>
+          `;
           updateMessage("You are restored to full health.");
         }
         break;
       case "Judgement":
-        updateMessage("The Potion of Prescience lets you see what lies ahead.");
-        const nextThreeCards = [];
-        for (let i = 0; i < 3; i++) {
-          nextThreeCards.unshift(this.deck.draw());
-        }
         updateMessage(
-          `Ahead of you lie ${nextThreeCards[0].name}, ${nextThreeCards[1].name} and ${nextThreeCards[2].name}.`
+          `The Potion of Prescience lets you see what lies ahead: ${
+            this.deck.cardsInDeck.at(-1).name
+          }, ${this.deck.cardsInDeck.at(-2).name} and ${
+            this.deck.cardsInDeck.at(-3).name
+          }.`
         );
         for (let i = 0; i < 3; i++) {
-          const timeout = (i + 1) * 1400;
+          const timeout = (i + 1) * 3000;
           setTimeout(() => {
-            const futureCard = nextThreeCards[i];
             if (
               window.confirm(
-                `Click 'OK' to play ${futureCard.name}, or 'Cancel' to send it to the bottom of the deck.`
+                `Click 'OK' to play ${
+                  this.deck.cardsInDeck.at(-1).name
+                }, or 'Cancel' to send it to the bottom of the deck.`
               )
             ) {
-              showCard(futureCard);
-              this.active.card = futureCard;
-              this.sortCard();
+              this.drawCard();
             } else {
               this.deck.cardsInDeck.unshift(futureCard);
             }
@@ -699,7 +712,8 @@ class Run {
           this.active.encounter.type
         );
       } else {
-        hpDisplay.textContent = `${this.hp} of Cups`;
+        const hpCard = this.deck.cups.find((card) => card.rank == this.hp);
+        hpDisplay.innerHTML = `<img src="../images/${hpCard.filename}.jpeg" title="${hpCard.name}" alt="${hpCard.name}"></img>`;
         updateMessage(
           `You lose ${damage} HP as the ${this.active.encounter.type} injures you.`
         );
@@ -720,7 +734,9 @@ class Run {
         this.active.stack.elem,
         this.companions
       );
+      return;
     }
+    updateMessage(`${victim.name} is injured while protecting you.`);
     victim.injured = true;
     cardByID(victim).classList.add("injured-companion");
   }
@@ -786,7 +802,7 @@ class Run {
 
 function showCard(card) {
   console.log(`Showing ${card.name}`);
-  displayCurrentCard.textContent = card.name;
+  displayCurrentCard.innerHTML = `<img src="../images/${card.filename}.jpeg" title="${card.name}" alt="${card.name}"></img>`;
   displayCurrentCard.classList.add("show-card");
   setTimeout(() => {
     displayCurrentCard.classList.remove("show-card");
@@ -847,7 +863,7 @@ btnRetreat.addEventListener("click", () => {
 btnTestMode.addEventListener("click", () => {
   console.log("Entering Test Mode");
   run.deck.enterTestMode();
-  run.hp = 50;
+  run.hp = 12;
   console.log(run.deck.cardsInDeck);
 });
 

@@ -40,15 +40,21 @@ section {
 .card {
   inline-size: 10ch;
   flex-shrink: 0;
-  aspect-ratio: 9 / 14;
+  aspect-ratio: 3 / 5;
   font-size: clamp(0.7rem, 0.65rem + 1dvi, 1rem);
   border: 5px solid black;
   border-radius: calc(7in / 64);
   background: hsl(40 40% 80%);
   color: black;
-  padding: 0.5ch;
   display: grid;
+  overflow: hidden;
   text-align: center;
+}
+
+.card img {
+  max-inline-size: 100%;
+  max-block-size: 100%;
+  margin: 1px;
 }
 
 #card-tray {
