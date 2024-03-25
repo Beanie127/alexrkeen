@@ -48,14 +48,6 @@ class Run {
         rating: 0,
       },
     };
-    this.encounterDefaults = {
-      exists: false,
-      failedMaze: false,
-      isInverted: false,
-      type: "",
-      suit: "",
-      rating: 0,
-    };
     this.deck = new DungeonDeck();
   }
 
@@ -199,7 +191,13 @@ class Run {
     this.turnCount++;
     // reset this.active
     this.active.stack.cards = [];
-    this.active.encounter = this.encounterDefaults;
+    this.active.encounter.exists = false;
+    this.active.encounter.failedMaze = false;
+    this.active.encounter.isInverted = false;
+    this.active.encounter.type = "";
+    this.active.encounter.suit = "";
+    this.active.encounter.rating = 0;
+    console.log(this.active.encounter);
     // set the active stack based on direction and current depth
     if (this.retreating == true) {
       this.active.stack.elem = document.querySelector(
@@ -343,54 +341,56 @@ class Run {
     }
   }
 
+  //TODO: fix working out what cards to collect
   winEncounter() {
     this.active.encounter.exists = false;
     btnDraw.setAttribute("hidden", true);
     updateMessage(
       `You overcome the ${this.active.encounter.type} and collect any items and treasure.`
     );
-
-    // if all cards are collectable, make the least valuable treasure card non-collectable
-    if (!this.active.stack.cards.find((card) => card.collectable == false)) {
-      this.active.stack.cards.sort((a, b) => a.worth - b.worth);
-      const remainder = this.active.stack.cards.find((card) => card.worth > 0);
-      remainder.collectable = false;
+    let collectables = this.active.stack.cards.filter(
+      (card) => card.collectable
+    );
+    let uncollectables = this.active.stack.cards.filter(
+      (card) => card.collectable == false
+    );
+    console.log("Collectables:");
+    console.log(collectables);
+    console.log("Uncollectables:");
+    console.log(uncollectables);
+    let treasures = collectables.filter((card) => card.suit == "Pentacles");
+    treasures.sort((a, b) => a.worth - b.worth);
+    console.log("Treasures in order:");
+    console.log(treasures);
+    // check if there are any cards which aren't treasure
+    // it's all fine
+    if (uncollectables.length == 0) {
+      let remainder = treasures.shift();
+      console.log(`Keeping ${remainder.name}`);
     }
-
-    // delay so everything doesn't pop out of the stack immediately and you can see what's happening
     setTimeout(() => {
-      // only take cards if player didn't fail in the maze
-      if (this.active.encounter.failedMaze == false) {
-        // send companions to companion track and all other collectable cards to the hand
-        this.active.stack.cards.forEach((card) => {
-          if (card.collectable) {
-            if (card.type == "companion") {
-              this.placeCard(
-                card,
-                this.companions,
-                companionTrack,
-                this.active.stack.cards
-              );
-              updateMessage(`${card.name} joins your party.`);
-            } else {
-              this.placeCard(
-                card,
-                this.hand,
-                handTrack,
-                this.active.stack.cards
-              );
-            }
-          }
-        });
-      }
-
-      // reset maze
-      this.active.encounter.failedMaze = false;
-      if (this.retreating == false) {
-        btnAdvance.removeAttribute("hidden");
-      }
-      btnRetreat.removeAttribute("hidden");
+      collectables.forEach((card) => {
+        if (card.type == "companion") {
+          this.placeCard(
+            card,
+            this.companions,
+            companionTrack,
+            this.active.stack.cards
+          );
+          updateMessage(`${card.name} joins your party.`);
+        } else {
+          this.placeCard(card, this.hand, handTrack, this.active.stack.cards);
+        }
+      });
+      treasures.forEach((card) => {
+        this.placeCard(card, this.hand, handTrack, this.active.stack.cards);
+      });
     }, 2000);
+    // make buttons work again
+    if (this.retreating == false) {
+      btnAdvance.removeAttribute("hidden");
+    }
+    btnRetreat.removeAttribute("hidden");
   }
 
   loseEncounter(cause) {
@@ -444,8 +444,6 @@ class Run {
     btnDraw.setAttribute("hidden", true);
     btnStart.removeAttribute("hidden");
   }
-
-  // TODO: items & blessings
 
   makeUsable(card) {
     // replace the card with a clone to remove all existing event listeners
@@ -527,6 +525,7 @@ class Run {
         break;
     }
     card.collectable = false;
+    cardByID(card.id)?.remove();
     this.placeCard(
       card,
       this.active.stack.cards,
@@ -549,7 +548,7 @@ class Run {
             ? this.active.encounter.rating++
             : this.active.encounter.rating--;
         } else {
-          error(
+          alert(
             "The Potion of Giant Strength can only be used in encounters against monsters and doors."
           );
         }
@@ -578,24 +577,29 @@ class Run {
           nextThreeCards.unshift(this.deck.draw());
         }
         updateMessage(
-          `Ahead of you lie ${nextThreeCards[0]}, ${nextThreeCards[1]} and ${nextThreeCards[2]}.`
+          `Ahead of you lie ${nextThreeCards[0].name}, ${nextThreeCards[1].name} and ${nextThreeCards[2].name}.`
         );
-        nextThreeCards.forEach((futureCard) => {
-          if (
-            window.confirm(
-              `Click 'OK' to play ${futureCard}, or 'Cancel' to send it to the bottom of the deck.`
-            )
-          ) {
-            showCard(futureCard);
-            this.active.card = futureCard;
-            this.sortCard();
-          } else {
-            this.deck.cardsInDeck.unshift(futureCard);
-          }
-        });
+        for (let i = 1; i < 4; i++) {
+          const timeout = i * 1400;
+          setTimeout(() => {
+            const futureCard = nextThreeCards[i];
+            if (
+              window.confirm(
+                `Click 'OK' to play ${futureCard}, or 'Cancel' to send it to the bottom of the deck.`
+              )
+            ) {
+              showCard(futureCard);
+              this.active.card = futureCard;
+              this.sortCard();
+            } else {
+              this.deck.cardsInDeck.unshift(futureCard);
+            }
+          }, timeout);
+        }
         break;
     }
     card.collectable = false;
+    cardByID(card.id)?.remove();
     this.placeCard(
       card,
       this.active.stack.cards,

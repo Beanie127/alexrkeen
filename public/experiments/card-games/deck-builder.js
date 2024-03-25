@@ -210,18 +210,9 @@ class DungeonDeck extends Deck {
       switch (card.rank) {
         case 0:
           card.type = "scroll";
-          card.worth = 6;
-          card.collectable = true;
-        case 11:
-        case 14:
-        case 20:
-          card.type = "potion";
-          card.worth = 6;
-          card.collectable = true;
           break;
         case 1:
           card.type = "companion";
-          card.collectable = true;
           break;
         case 2:
         case 3:
@@ -235,10 +226,14 @@ class DungeonDeck extends Deck {
           card.encounter.type = "maze";
           card.type = "action";
           break;
+        case 11:
+        case 14:
+        case 20:
+          card.type = "potion";
+          break;
         case 12:
         case 21:
           card.type = "blessing";
-          card.collectable = true;
           break;
         case 13:
         case 15:
@@ -251,8 +246,21 @@ class DungeonDeck extends Deck {
         case 18:
         case 19:
           card.type = "treasure";
+      }
+      switch (card.type) {
+        case "scroll":
+        case "blessing":
+        case "potion":
+          card.worth = 6;
+          card.collectable = true;
+          break;
+        case "treasure":
           card.worth = 20;
           card.collectable = true;
+          break;
+        case "companion":
+          card.collectable = true;
+          break;
       }
       this.add(card);
     });
