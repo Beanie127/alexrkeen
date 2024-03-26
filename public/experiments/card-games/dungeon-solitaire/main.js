@@ -22,10 +22,11 @@ const hpDisplay = document.querySelector("#hp");
 class Run {
   constructor() {
     this.isLost = false;
+    this.retreating = false;
+    this.foresights = 0;
     this.hp = 10;
     this.turnCount = 0;
     this.depth = 0;
-    this.retreating = false;
     this.corruption = [];
     this.torches = [];
     this.companions = [];
@@ -99,6 +100,19 @@ class Run {
     setTimeout(() => {
       btnDraw.removeAttribute("disabled");
     }, 2000);
+    if (this.foresights > 0) {
+      if (
+        window.confirm(
+          `Send ${this.deck.cardsInDeck.at(-1).name} to the bottom of the deck?`
+        ) == true
+      ) {
+        const toBottom = this.deck.cardsInDeck.pop();
+        this.deck.cardsInDeck.unshift(toBottom);
+        this.foresights--;
+        return;
+      }
+    }
+    if (this.foresights < 0) this.foresights--;
     this.active.card = this.deck.draw();
     showCard(this.active.card);
     this.sortCard();
@@ -497,7 +511,7 @@ class Run {
       return;
     }
     if (this.active.encounter.suit == card.suit) {
-      card.this.placeCard(
+      this.placeCard(
         skill,
         this.active.stack.cards,
         this.active.stack.elem,
@@ -599,32 +613,16 @@ class Run {
             this.deck.cardsInDeck.at(-3).name
           }.`
         );
-        for (let i = 0; i < 3; i++) {
-          const timeout = (i + 1) * 3000;
-          setTimeout(() => {
-            if (
-              window.confirm(
-                `Click 'OK' to play ${
-                  this.deck.cardsInDeck.at(-1).name
-                }, or 'Cancel' to send it to the bottom of the deck.`
-              )
-            ) {
-              this.drawCard();
-            } else {
-              this.deck.cardsInDeck.unshift(futureCard);
-            }
-          }, timeout);
-        }
-        break;
+        this.foresights = 3;
+        card.collectable = false;
+        cardByID(card.id)?.remove();
+        this.placeCard(
+          card,
+          this.active.stack.cards,
+          this.active.stack.elem,
+          this.treasure
+        );
     }
-    card.collectable = false;
-    cardByID(card.id)?.remove();
-    this.placeCard(
-      card,
-      this.active.stack.cards,
-      this.active.stack.elem,
-      this.treasure
-    );
   }
 
   dropTreasure(card) {
