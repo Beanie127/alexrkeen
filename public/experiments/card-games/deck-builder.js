@@ -357,7 +357,8 @@ class DungeonDeck extends Deck {
     this.cardsInDeck = this.cardsInDeck.filter(
       (card) =>
         card.name == "Judgement" ||
-        card.encounter.type == "trap" ||
+        card.encounter.type == "monster" ||
+        card.rank == "Queen" ||
         card.rank == "King"
     );
     // this.cardsInDeck.sort((a, b) => a.id - b.id);

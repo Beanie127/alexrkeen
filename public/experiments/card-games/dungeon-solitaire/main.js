@@ -101,18 +101,17 @@ class Run {
       btnDraw.removeAttribute("disabled");
     }, 2000);
     if (this.foresights > 0) {
-      if (
-        window.confirm(
-          `Send ${this.deck.cardsInDeck.at(-1).name} to the bottom of the deck?`
-        ) == true
-      ) {
+      let sendToBottom = window.confirm(
+        `Send ${this.deck.cardsInDeck.at(-1).name} to the bottom of the deck?`
+      );
+      if (sendToBottom == true) {
         const toBottom = this.deck.cardsInDeck.pop();
         this.deck.cardsInDeck.unshift(toBottom);
         this.foresights--;
         return;
       }
     }
-    if (this.foresights < 0) this.foresights--;
+    if (this.foresights > 0) this.foresights--;
     this.active.card = this.deck.draw();
     showCard(this.active.card);
     this.sortCard();
@@ -871,10 +870,12 @@ let run = new Run();
 console.log(run);
 
 setInterval(() => {
-  console.log(run);
+  // horrible hack to make sure cards that go into the hand are usable
   run.hand.forEach((card) => {
     run.makeUsable(card);
   });
+  // log run for debugging
+  console.log(run);
 }, 10000);
 
 //////////// END OF FILE ////////////
