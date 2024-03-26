@@ -10,6 +10,7 @@ const btnTestMode = document.querySelector("#btn-test");
 // notifications
 const narrator = document.querySelector("#narrator");
 const displayCurrentCard = document.querySelector("#display-current-card");
+const cardsRemaining = document.querySelector("#cards-remaining");
 // card placements
 const torchTrack = document.querySelector("#torch-track");
 const companionTrack = document.querySelector("#companion-track");
@@ -115,6 +116,7 @@ class Run {
     this.active.card = this.deck.draw();
     showCard(this.active.card);
     this.sortCard();
+    cardsRemaining.textContent = this.deck.cardsInDeck.length;
   }
 
   placeCard(card, targetArray, targetElement, sourceArray = false) {
@@ -197,9 +199,7 @@ class Run {
           break;
         case "skill":
         case "blessing":
-          updateMessage(
-            `You find ${cardToSort.name} and add it to your hand. Use it wisely.`
-          );
+          updateMessage(`You find ${cardToSort.name} and add it to your hand.`);
           this.placeCard(
             cardToSort,
             this.hand,
@@ -235,9 +235,9 @@ class Run {
       );
     }
     if (this.depth == 1) {
-      updateMessage(`You are ${this.depth} room deep into the dungeon.`, true);
+      updateMessage(`You are ${this.depth} room deep.`, true);
     } else {
-      updateMessage(`You are ${this.depth} rooms deep into the dungeon.`, true);
+      updateMessage(`You are ${this.depth} rooms deep.`, true);
     }
     this.drawCard();
   }
@@ -295,7 +295,7 @@ class Run {
     this.active.encounter.type = this.active.card.encounter.type;
     this.active.encounter.rating = this.active.card.rank;
     this.active.encounter.suit = this.active.card.suit;
-    updateMessage(`You are confronted by a ${this.active.encounter.type}.`);
+    updateMessage(`You encounter a ${this.active.encounter.type}.`);
     // adjust the active encounter rating depending on what companions you have
     this.checkParty();
     if (
@@ -330,7 +330,7 @@ class Run {
         case "trap":
           this.takeDamage(shortfall);
           setTimeout(() => {
-            if (!this.islost) {
+            if (this.islost == false) {
               this.loseEncounter("You retreat, abandoning the prize.");
             }
           }, 650);
@@ -343,7 +343,7 @@ class Run {
           break;
         case "maze":
           if (this.active.encounter.failedMaze == false) {
-            updateMessage("You lose yourself in the maze.");
+            updateMessage("You lose your way.");
             this.active.encounter.failedMaze = true;
             break;
           }
@@ -463,10 +463,7 @@ class Run {
 
   loseRun(message, cause) {
     this.isLost = true;
-    updateMessage(
-      `${message} GAME OVER. For your records: X ${cause}/${this.turnCount}`,
-      true
-    );
+    updateMessage(`${message} GAME OVER. X${cause}/${this.turnCount}`, true);
     btnAdvance.setAttribute("hidden", true);
     btnRetreat.setAttribute("hidden", true);
     btnDraw.setAttribute("hidden", true);
@@ -544,7 +541,7 @@ class Run {
         if (this.active.encounter.exists) {
           if (this.active.encounter.failedMaze == true) {
             this.loseEncounter(
-              "You escape the maze, leaving behind all gains you saw along the way."
+              "At last, you escape the maze, leaving its spoils behind."
             );
           } else {
             this.winEncounter();
@@ -645,7 +642,7 @@ class Run {
       );
       treasure.collectable = false;
       this.loseEncounter(
-        `You drop ${treasure.name} and distract the monster, giving yourself a chance to scurry away.`
+        `You distract the monster with ${treasure.name} and scurry away.`
       );
     }
   }
@@ -783,7 +780,7 @@ class Run {
 
   shiftingTerrain() {
     updateMessage(
-      "A distant rumbling in the darkness builds to a deafening roar as the dungeon restructures itself around you."
+      "The world shakes as the dungeon restructures itself around you."
     );
     this.discards.forEach((discard) => this.deck.cardsInDeck.push(discard));
     if (this.companions.length > 0) {

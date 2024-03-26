@@ -12,6 +12,10 @@
   block-size: max-content;
 }
 
+.card {
+  filter: saturate(75%);
+}
+
 .card:hover {
   z-index: 100;
   background: hsl(0 40% 60%);
@@ -23,15 +27,22 @@ aside {
 
 #button-track {
   min-block-size: 3ch;
+  align-items: center;
 }
 
-#narrator {
-  color: hsl(140 100% 40%);
-  font-family: "Courier New", Courier, monospace;
+#narrator,
+#cards-remaining {
+  color: hsl(50 50% 60%);
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   font-size: 1em;
-  &::before {
-    content: "NARRATOR: ";
-  }
+}
+
+#narrator::before {
+  content: "NARRATOR: ";
+}
+#cards-remaining::before {
+  content: "CARDS REMAINING: ";
 }
 
 .card.flipped {
@@ -58,6 +69,7 @@ aside {
 .injured-companion {
   transform: rotate(90deg);
   transform-origin: center;
+  z-index: 0;
 }
 
 @keyframes fade-in {
