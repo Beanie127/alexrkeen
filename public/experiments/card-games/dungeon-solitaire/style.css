@@ -10,6 +10,21 @@
     grid-template-rows: repeat(12, 1.5em);
     inline-size: 10ch;
     flex-shrink: 0;
+    > :is(
+            :nth-last-child(6),
+            :nth-last-child(7),
+            :nth-last-child(8),
+            :nth-last-child(9),
+            :nth-last-child(10),
+            :nth-last-child(11),
+            :nth-last-child(12),
+            :nth-last-child(13),
+            :nth-last-child(14),
+            :nth-last-child(15),
+
+        ) {
+        grid-area: 1/1;
+    }
 }
 
 .card {

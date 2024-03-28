@@ -97,10 +97,11 @@ class Run {
   // card manipulation
 
   drawCard() {
-    btnDraw.setAttribute("disabled", true);
-    setTimeout(() => {
-      btnDraw.removeAttribute("disabled");
-    }, 2000);
+    run.hand.forEach((card) => {
+      run.makeUsable(card);
+    });
+    this.removeFlashers();
+    lockInputs(2000);
     if (this.foresights > 0) {
       let sendToBottom = window.confirm(
         `Send ${this.deck.cardsInDeck.at(-1).name} to the bottom of the deck?`
@@ -139,7 +140,7 @@ class Run {
     setTimeout(() => {
       if (oldCopy != undefined) oldCopy.remove();
       document.querySelector(".fade-in")?.classList.remove("fade-in");
-    }, 1200);
+    }, 2000);
   }
 
   sortCard() {
@@ -209,6 +210,14 @@ class Run {
           break;
       }
     }, 650);
+  }
+
+  removeFlashers() {
+    const flashers = document.querySelectorAll(".flipped.fade-out");
+    flashers.forEach((flasher) => {
+      flasher.classList.remove("fade-out");
+      flasher.removeEventListener("click", null);
+    });
   }
 
   // encounter processing
@@ -295,7 +304,9 @@ class Run {
     this.active.encounter.type = this.active.card.encounter.type;
     this.active.encounter.rating = this.active.card.rank;
     this.active.encounter.suit = this.active.card.suit;
-    updateMessage(`You encounter a ${this.active.encounter.type}.`);
+    updateMessage(
+      `You encounter a ${this.active.encounter.type} (${this.active.encounter.rating}).`
+    );
     // adjust the active encounter rating depending on what companions you have
     this.checkParty();
     if (
@@ -315,7 +326,9 @@ class Run {
       this.active.card.rank >= this.active.encounter.rating
     ) {
       if (this.active.encounter.failedMaze == true) {
-        this.loseEncounter("You stumble upon the exit.");
+        this.loseEncounter(
+          "At last, you stumble upon the exit, all rewards forgotten."
+        );
       } else {
         this.winEncounter();
       }
@@ -365,10 +378,22 @@ class Run {
 
   winEncounter() {
     this.active.encounter.exists = false;
+    lockInputs(2500);
     btnDraw.setAttribute("hidden", true);
-    updateMessage(
-      `You overcome the ${this.active.encounter.type} and collect the spoils.`
-    );
+    switch (this.active.encounter.type) {
+      case "trap":
+        updateMessage(`You disarm the trap and collect any rewards.`);
+        break;
+      case "monster":
+        updateMessage("You defeat the monster and collect any rewards.");
+        break;
+      case "door":
+        updateMessage("You open the door and collect any rewards.");
+        break;
+      case "maze":
+        updateMessage("You navigate the maze easily and collect any rewards.");
+        break;
+    }
 
     // treasure sorting
     this.active.stack.cards.forEach((card) => {
@@ -416,11 +441,11 @@ class Run {
         }
       });
       // make buttons work again
-      if (this.retreating == false) {
-        btnAdvance.removeAttribute("hidden");
-      }
-      btnRetreat.removeAttribute("hidden");
     }, 2000);
+    if (this.retreating == false) {
+      btnAdvance.removeAttribute("hidden");
+    }
+    btnRetreat.removeAttribute("hidden");
   }
 
   loseEncounter(cause) {
@@ -523,8 +548,9 @@ class Run {
   }
 
   discard(shortfall) {
+    let timeout;
     for (let leftToDiscard = shortfall; leftToDiscard > 0; leftToDiscard--) {
-      const timeout = (shortfall - leftToDiscard + 1) * 1400; // repeat at 1.4s intervals
+      timeout = (shortfall - leftToDiscard + 1) * 1400; // repeat at 1.4s intervals
       console.log(
         `${leftToDiscard} remaining to discard. Setting timeout for card #${leftToDiscard} as ${timeout}`
       );
@@ -540,6 +566,7 @@ class Run {
         cardsRemaining.textContent = this.deck.cardsInDeck.length;
       }, timeout);
     }
+    lockInputs(timeout);
   }
 
   injureCompanion() {
@@ -600,7 +627,7 @@ class Run {
       return;
     }
     updateMessage(
-      `The dungeon is starting to affect you. You feel the swell of corruption in your soul.`
+      `You feel the dungeon's corrupting influence take root in your soul.`
     );
   }
 
@@ -622,6 +649,7 @@ class Run {
   makeUsable(card) {
     // replace the card with a clone to remove all existing event listeners
     const target = cardByID(card);
+
     const clone = target.cloneNode(true);
     target.replaceWith(clone);
     switch (card.type) {
@@ -641,6 +669,7 @@ class Run {
   }
 
   useSkill(card) {
+    lockInputs(2000);
     const skill = this.hand.find((obj) => obj.id == card.id);
     if (!this.active.encounter.exists) {
       return;
@@ -661,8 +690,9 @@ class Run {
   }
 
   useBlessing(card) {
+    lockInputs(2000);
     if (this.corruption.length > 0) {
-      updateMessage("You feel a taint on your soul washing away...");
+      updateMessage("You feel the corruption in your soul washing away...");
       const corruption = this.corruption.pop();
       this.deck.cardsInDeck.unshift(corruption);
       cardByID(corruption).classList.add("fade-out");
@@ -701,6 +731,7 @@ class Run {
   }
 
   drinkPotion(card) {
+    lockInputs(2000);
     switch (card.name) {
       case "Justice":
         if (
@@ -764,6 +795,7 @@ class Run {
   }
 
   dropTreasure(card) {
+    lockInputs(2000);
     console.log(`dropTreasure triggered on ${card.name}`);
     if (this.active.encounter.exists == false) {
       return;
@@ -801,6 +833,17 @@ function showCard(card) {
   setTimeout(() => {
     displayCurrentCard.classList.remove("show-card");
   }, 1201);
+}
+
+function lockInputs(duration) {
+  btnAdvance.setAttribute("disabled", true);
+  btnRetreat.setAttribute("disabled", true);
+  btnDraw.setAttribute("disabled", true);
+  setTimeout(() => {
+    btnAdvance.removeAttribute("disabled");
+    btnRetreat.removeAttribute("disabled");
+    btnDraw.removeAttribute("disabled");
+  }, duration);
 }
 
 function cardByID(card) {
@@ -867,10 +910,6 @@ let run = new Run();
 console.log(run);
 
 setInterval(() => {
-  // horrible hack to make sure cards that go into the hand are usable
-  run.hand.forEach((card) => {
-    run.makeUsable(card);
-  });
   // log run for debugging
   console.log(run);
 }, 10000);
