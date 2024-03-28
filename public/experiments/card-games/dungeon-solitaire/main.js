@@ -310,9 +310,9 @@ class Run {
   continueEncounter() {
     // if the current card meets or beats the encounter rating, you win
     if (
-      this.active.card.rank >= this.active.encounter.rating ||
       (this.active.encounter.isInverted &&
-        this.active.card.rank <= this.active.encounter.rating)
+        this.active.card.rank <= this.active.encounter.rating) ||
+      this.active.card.rank >= this.active.encounter.rating
     ) {
       if (this.active.encounter.failedMaze == true) {
         this.loseEncounter("You stumble upon the exit.");
@@ -369,6 +369,8 @@ class Run {
     updateMessage(
       `You overcome the ${this.active.encounter.type} and collect the spoils.`
     );
+
+    // treasure sorting
     this.active.stack.cards.forEach((card) => {
       if (card.type == "action" && card.suit == "Pentacles") {
         card.type = "treasure";
@@ -389,7 +391,6 @@ class Run {
     treasures.sort((a, b) => a.worth - b.worth);
     console.log("Treasures in order:");
     console.log(treasures);
-    // check if there are any cards which aren't treasure
     if (uncollectables.length == 0) {
       let remainder = treasures.shift();
       console.log(`Keeping ${remainder.name}`);
@@ -399,6 +400,7 @@ class Run {
     }
     console.log("New Collectables:");
     console.log(newCollectables);
+    // treasure collecting
     setTimeout(() => {
       newCollectables.forEach((card) => {
         if (card.type == "companion") {
@@ -413,12 +415,12 @@ class Run {
           this.placeCard(card, this.hand, handTrack, this.active.stack.cards);
         }
       });
+      // make buttons work again
+      if (this.retreating == false) {
+        btnAdvance.removeAttribute("hidden");
+      }
+      btnRetreat.removeAttribute("hidden");
     }, 2000);
-    // make buttons work again
-    if (this.retreating == false) {
-      btnAdvance.removeAttribute("hidden");
-    }
-    btnRetreat.removeAttribute("hidden");
   }
 
   loseEncounter(cause) {
