@@ -513,7 +513,7 @@ class Run {
         this.active.stack.elem,
         this.hand
       );
-      cardByID(card.id).removeEventListener("click");
+      cardByID(card).removeEventListener("click");
       card.collectable = false;
       this.winEncounter();
     } else {
@@ -551,14 +551,14 @@ class Run {
         break;
     }
     card.collectable = false;
-    cardByID(card.id)?.remove();
+    cardByID(card)?.remove();
     this.placeCard(
       card,
       this.active.stack.cards,
       this.active.stack.elem,
       this.hand
     );
-    cardByID(card.id).removeEventListener("click");
+    cardByID(card).removeEventListener("click");
   }
 
   drinkPotion(card) {
@@ -614,14 +614,14 @@ class Run {
         this.foresights = 3;
         card.collectable = false;
     }
-    cardByID(card.id)?.remove();
+    cardByID(card)?.remove();
     this.placeCard(
       card,
       this.active.stack.cards,
       this.active.stack.elem,
       this.hand
     );
-    cardByID(card.id).removeEventListener("click");
+    cardByID(card).removeEventListener("click");
   }
 
   dropTreasure(card) {
@@ -637,14 +637,14 @@ class Run {
         `The monster won't be distracted by a treasure worth less than ${this.active.encounter.rating}`
       );
     } else {
-      cardByID(card.id)?.remove();
+      cardByID(card)?.remove();
       this.placeCard(
         treasure,
         this.active.stack.cards,
         this.active.stack.elem,
         this.hand
       );
-      cardByID(treasure.id).removeEventListener("click");
+      cardByID(treasure).removeEventListener("click");
       treasure.collectable = false;
       this.loseEncounter(
         `You distract the monster with ${treasure.name} and scurry away.`
