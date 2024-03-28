@@ -330,7 +330,7 @@ class Run {
         case "trap":
           this.takeDamage(shortfall);
           setTimeout(() => {
-            if (this.islost == false) {
+            if (this.isLost == false) {
               this.loseEncounter("You retreat, abandoning the prize.");
             }
           }, 650);
