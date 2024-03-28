@@ -513,6 +513,7 @@ class Run {
         this.active.stack.elem,
         this.hand
       );
+      cardByID(card.id).removeEventListener("click");
       card.collectable = false;
       this.winEncounter();
     } else {
