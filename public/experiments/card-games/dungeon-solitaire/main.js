@@ -557,6 +557,7 @@ class Run {
       this.active.stack.elem,
       this.treasure
     );
+    cardByID(card.id).removeEventListener("click");
   }
 
   drinkPotion(card) {
@@ -611,14 +612,15 @@ class Run {
         );
         this.foresights = 3;
         card.collectable = false;
-        cardByID(card.id)?.remove();
-        this.placeCard(
-          card,
-          this.active.stack.cards,
-          this.active.stack.elem,
-          this.treasure
-        );
     }
+    cardByID(card.id)?.remove();
+    this.placeCard(
+      card,
+      this.active.stack.cards,
+      this.active.stack.elem,
+      this.treasure
+    );
+    cardByID(card.id).removeEventListener("click");
   }
 
   dropTreasure(card) {
@@ -640,6 +642,7 @@ class Run {
         this.active.stack.elem,
         this.hand
       );
+      cardByID(treasure.id).removeEventListener("click");
       treasure.collectable = false;
       this.loseEncounter(
         `You distract the monster with ${treasure.name} and scurry away.`
