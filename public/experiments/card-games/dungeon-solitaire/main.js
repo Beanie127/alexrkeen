@@ -127,7 +127,7 @@ class Run {
       oldCopy.classList.add("fade-out");
     }
     // if a source array is specified, remove it from the source array
-    if (sourceArray) {
+    if (sourceArray == true) {
       const index = sourceArray.indexOf(card);
       sourceArray.splice(index, 1);
     }
@@ -366,16 +366,16 @@ class Run {
   winEncounter() {
     this.active.encounter.exists = false;
     btnDraw.setAttribute("hidden", true);
-    this.active.stack.cards.forEach((card) => {
-      if ((card.type == "action") & (card.suit == "Pentacles")) {
-        card.type = "treasure";
-      }
-    });
     updateMessage(
       `You overcome the ${this.active.encounter.type} and collect the spoils.`
     );
+    this.active.stack.cards.forEach((card) => {
+      if (card.type == "action" && card.suit == "Pentacles") {
+        card.type = "treasure";
+      }
+    });
     let collectables = this.active.stack.cards.filter(
-      (card) => card.collectable
+      (card) => card.collectable == true
     );
     let uncollectables = this.active.stack.cards.filter(
       (card) => card.collectable == false
@@ -470,208 +470,7 @@ class Run {
     btnStart.removeAttribute("hidden");
   }
 
-  makeUsable(card) {
-    // replace the card with a clone to remove all existing event listeners
-    const target = cardByID(card);
-    const clone = target.cloneNode(true);
-    target.replaceWith(clone);
-    switch (card.type) {
-      case "treasure":
-        clone.addEventListener("click", () => {
-          console.log(this);
-          this.dropTreasure(card);
-        });
-        break;
-      case "skill":
-        clone.addEventListener("click", () => {
-          console.log(this);
-          this.useSkill(card);
-        });
-        break;
-      case "blessing":
-        clone.addEventListener("click", () => {
-          this.useBlessing(card);
-        });
-        break;
-      case "potion":
-        clone.addEventListener("click", () => {
-          this.drinkPotion(card);
-        });
-        break;
-    }
-  }
-
-  useSkill(card) {
-    const skill = this.hand.find((obj) => obj.id == card.id);
-    if (!this.active.encounter.exists) {
-      return;
-    }
-    if (this.active.encounter.suit == card.suit) {
-      this.placeCard(
-        skill,
-        this.active.stack.cards,
-        this.active.stack.elem,
-        this.hand
-      );
-      cardByID(card).removeEventListener("click");
-      card.collectable = false;
-      this.winEncounter();
-    } else {
-      alert("This skill isn't suitable!");
-    }
-  }
-
-  useBlessing(card) {
-    if (this.corruption.length > 0) {
-      updateMessage("You feel a taint on your soul washing away...");
-      const corruption = this.corruption.pop();
-      this.deck.cardsInDeck.unshift(corruption);
-      cardByID(corruption).classList.add("fade-out");
-      setTimeout(() => {
-        cardByID(corruption).remove();
-      }, 1300);
-    }
-    switch (card.name) {
-      case "The Hanged Man":
-        this.active.encounter.isInverted = true;
-        updateMessage(
-          "The Blessing of the Murdered God turns your perspective upside down."
-        );
-        break;
-      case "The World":
-        if (this.active.encounter.exists) {
-          if (this.active.encounter.failedMaze == true) {
-            this.loseEncounter(
-              "At last, you escape the maze, leaving its spoils behind."
-            );
-          } else {
-            this.winEncounter();
-          }
-        }
-        break;
-    }
-    card.collectable = false;
-    cardByID(card)?.remove();
-    this.placeCard(
-      card,
-      this.active.stack.cards,
-      this.active.stack.elem,
-      this.hand
-    );
-    cardByID(card).removeEventListener("click");
-  }
-
-  drinkPotion(card) {
-    switch (card.name) {
-      case "Justice":
-        if (
-          this.active.encounter.type == "monster" ||
-          this.active.encounter.type == "door"
-        ) {
-          updateMessage(
-            "The Potion of Giant Strength bolsters you against the current obstacle."
-          );
-          this.active.encounter.isinverted
-            ? this.active.encounter.rating++
-            : this.active.encounter.rating--;
-        } else {
-          alert(
-            "The Potion of Giant Strength can only be used in encounters against monsters and doors."
-          );
-          return;
-        }
-        break;
-      case "Temperance":
-        if (
-          this.companions.some((companion) => companion.injured) &&
-          window.confirm("Do you want to restore an injured companion?")
-        ) {
-          const companion = this.companions.find(
-            (companion) => companion.injured
-          );
-          companion.injured = false;
-          cardByID(companion).classList.remove("injured-companion");
-          updateMessage(`The ${companion.name} is restored to full health.`);
-        } else {
-          this.hp = 10;
-          hpDisplay.innerHTML = `
-              <img
-                src="../images/c10.jpeg"
-                title="10 of Cups"
-                alt="10 of Cups"></img>
-          `;
-          updateMessage("You are restored to full health.");
-        }
-        break;
-      case "Judgement":
-        updateMessage(
-          `The Potion of Prescience lets you see what lies ahead: ${
-            this.deck.cardsInDeck.at(-1).name
-          }, ${this.deck.cardsInDeck.at(-2).name} and ${
-            this.deck.cardsInDeck.at(-3).name
-          }.`
-        );
-        this.foresights = 3;
-        card.collectable = false;
-    }
-    cardByID(card)?.remove();
-    this.placeCard(
-      card,
-      this.active.stack.cards,
-      this.active.stack.elem,
-      this.hand
-    );
-    cardByID(card).removeEventListener("click");
-  }
-
-  dropTreasure(card) {
-    console.log(`dropTreasure triggered on ${card.name}`);
-    if (this.active.encounter.exists == false) {
-      return;
-    }
-    const treasure = this.hand.find((obj) => obj.id == card.id);
-    if (this.active.encounter.type != "monster") {
-      alert("This card cannot be used!");
-    } else if (treasure.worth < this.active.encounter.rating) {
-      alert(
-        `The monster won't be distracted by a treasure worth less than ${this.active.encounter.rating}`
-      );
-    } else {
-      cardByID(card)?.remove();
-      this.placeCard(
-        treasure,
-        this.active.stack.cards,
-        this.active.stack.elem,
-        this.hand
-      );
-      cardByID(treasure).removeEventListener("click");
-      treasure.collectable = false;
-      this.loseEncounter(
-        `You distract the monster with ${treasure.name} and scurry away.`
-      );
-    }
-  }
-
-  // Card consequences
-
-  discard(shortfall) {
-    for (let leftToDiscard = shortfall; leftToDiscard > 0; leftToDiscard--) {
-      const timeout = (shortfall - leftToDiscard + 1) * 1400; // repeat at 1.4s intervals
-      console.log(
-        `${leftToDiscard} remaining to discard. Setting timeout for card #${leftToDiscard} as ${timeout}`
-      );
-      setTimeout(() => {
-        const discard = this.deck.draw();
-        showCard(discard);
-        if (discard.type == "torch") {
-          this.placeCard(discard, this.torches, torchTrack);
-          this.burnTorch(discard);
-        } else {
-          this.discards.push(discard);
-        }
-      }, timeout);
-    }
-  }
+  // Event consequences
 
   takeDamage(damage) {
     let absorbDamage = false;
@@ -719,6 +518,26 @@ class Run {
         this.injureCompanion();
       }
     }, 600);
+  }
+
+  discard(shortfall) {
+    for (let leftToDiscard = shortfall; leftToDiscard > 0; leftToDiscard--) {
+      const timeout = (shortfall - leftToDiscard + 1) * 1400; // repeat at 1.4s intervals
+      console.log(
+        `${leftToDiscard} remaining to discard. Setting timeout for card #${leftToDiscard} as ${timeout}`
+      );
+      setTimeout(() => {
+        const discard = this.deck.draw();
+        showCard(discard);
+        if (discard.type == "torch") {
+          this.placeCard(discard, this.torches, torchTrack);
+          this.burnTorch(discard);
+        } else {
+          this.discards.push(discard);
+        }
+        cardsRemaining.textContent = this.deck.cardsInDeck.length;
+      }, timeout);
+    }
   }
 
   injureCompanion() {
@@ -793,6 +612,180 @@ class Run {
       this.discards.push(victim);
       updateMessage(`The ${victim.name} is killed in the turmoil.`);
       cardByID(victim).remove();
+    }
+  }
+
+  // usable card functions
+
+  makeUsable(card) {
+    // replace the card with a clone to remove all existing event listeners
+    const target = cardByID(card);
+    const clone = target.cloneNode(true);
+    target.replaceWith(clone);
+    switch (card.type) {
+      case "treasure":
+        clone.addEventListener("click", () => this.dropTreasure(card));
+        break;
+      case "skill":
+        clone.addEventListener("click", () => this.useSkill(card));
+        break;
+      case "blessing":
+        clone.addEventListener("click", () => this.useBlessing(card));
+        break;
+      case "potion":
+        clone.addEventListener("click", () => this.drinkPotion(card));
+        break;
+    }
+  }
+
+  useSkill(card) {
+    const skill = this.hand.find((obj) => obj.id == card.id);
+    if (!this.active.encounter.exists) {
+      return;
+    }
+    if (this.active.encounter.suit == card.suit) {
+      this.placeCard(
+        skill,
+        this.active.stack.cards,
+        this.active.stack.elem,
+        this.hand
+      );
+      cardByID(card).removeEventListener("click", null);
+      card.collectable = false;
+      this.winEncounter();
+    } else {
+      alert("This skill isn't suitable!");
+    }
+  }
+
+  useBlessing(card) {
+    if (this.corruption.length > 0) {
+      updateMessage("You feel a taint on your soul washing away...");
+      const corruption = this.corruption.pop();
+      this.deck.cardsInDeck.unshift(corruption);
+      cardByID(corruption).classList.add("fade-out");
+      setTimeout(() => {
+        cardByID(corruption).remove();
+      }, 1300);
+    }
+    switch (card.name) {
+      case "The Hanged Man":
+        this.active.encounter.isInverted = true;
+        updateMessage(
+          "The Blessing of the Murdered God turns your perspective upside down."
+        );
+        break;
+      case "The World":
+        if (this.active.encounter.exists) {
+          if (this.active.encounter.failedMaze == true) {
+            this.loseEncounter(
+              "At last, you escape the maze, leaving its spoils behind."
+            );
+          } else {
+            this.winEncounter();
+          }
+        }
+        break;
+    }
+    card.collectable = false;
+    cardByID(card)?.remove();
+    this.placeCard(
+      card,
+      this.active.stack.cards,
+      this.active.stack.elem,
+      this.hand
+    );
+    cardByID(card).removeEventListener("click", null);
+  }
+
+  drinkPotion(card) {
+    switch (card.name) {
+      case "Justice":
+        if (
+          this.active.encounter.type == "monster" ||
+          this.active.encounter.type == "door"
+        ) {
+          updateMessage(
+            "The Potion of Giant Strength bolsters you against the current obstacle."
+          );
+          this.active.encounter.isInverted
+            ? this.active.encounter.rating++
+            : this.active.encounter.rating--;
+        } else {
+          alert(
+            "The Potion of Giant Strength can only be used in encounters against monsters and doors."
+          );
+          return;
+        }
+        break;
+      case "Temperance":
+        if (
+          this.companions.some((companion) => companion.injured) &&
+          window.confirm("Do you want to restore an injured companion?")
+        ) {
+          const companion = this.companions.find(
+            (companion) => companion.injured
+          );
+          companion.injured = false;
+          cardByID(companion).classList.remove("injured-companion");
+          updateMessage(`The ${companion.name} is restored to full health.`);
+        } else {
+          this.hp = 10;
+          hpDisplay.innerHTML = `
+              <img
+                src="../images/c10.jpeg"
+                title="10 of Cups"
+                alt="10 of Cups"></img>
+          `;
+          updateMessage("You are restored to full health.");
+        }
+        break;
+      case "Judgement":
+        updateMessage(
+          `The Potion of Prescience lets you see what lies ahead: ${
+            this.deck.cardsInDeck.at(-1).name
+          }, ${this.deck.cardsInDeck.at(-2).name} and ${
+            this.deck.cardsInDeck.at(-3).name
+          }.`
+        );
+        this.foresights = 3;
+        card.collectable = false;
+    }
+    cardByID(card)?.remove();
+    this.placeCard(
+      card,
+      this.active.stack.cards,
+      this.active.stack.elem,
+      this.hand
+    );
+    cardByID(card).removeEventListener("click", null);
+  }
+
+  dropTreasure(card) {
+    console.log(`dropTreasure triggered on ${card.name}`);
+    if (this.active.encounter.exists == false) {
+      return;
+    }
+    const treasure = this.hand.find((obj) => obj.id == card.id);
+    if (this.active.encounter.type != "monster") {
+      alert("This card cannot be used!");
+    } else if (treasure.worth < this.active.encounter.rating) {
+      alert(
+        `The monster won't be distracted by a treasure worth less than ${this.active.encounter.rating}`
+      );
+    } else {
+      cardByID(card)?.remove();
+      this.placeCard(
+        treasure,
+        this.active.stack.cards,
+        this.active.stack.elem,
+        this.hand
+      );
+      cardByID(treasure).removeEventListener("click", null);
+      treasure.collectable = false;
+      this.loseEncounter(
+        `You distract the monster with ${treasure.name} and scurry away.`
+      );
     }
   }
 }
