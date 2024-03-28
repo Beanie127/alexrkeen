@@ -120,27 +120,35 @@ class Run {
     cardsRemaining.textContent = this.deck.cardsInDeck.length;
   }
 
-  placeCard(card, targetArray, targetElement, sourceArray = false) {
-    // if the card's already on the table, 'pick it up' i.e. remove from the previous stack/array
+  placeCard(card, targetArray, targetStack, sourceArray) {
+    // STEP ONE: if the card's already on the table, 'pick it up' i.e. remove from the previous stack/array
     const oldCopy = cardByID(card);
     if (oldCopy != undefined) {
+      console.log("Deleting element:");
+      console.log(oldCopy);
       oldCopy.style.pointerEvents = "none";
       oldCopy.classList.add("fade-out");
+      setTimeout(() => {
+        oldCopy.remove();
+      }, 1200);
     }
-    // if a source array is specified, remove it from the source array
-    if (sourceArray == true) {
+    // STEP TWO: if a source array is specified, remove it from the source array
+    if (sourceArray) {
+      console.log(`Removing card from ${sourceArray}`);
       const index = sourceArray.indexOf(card);
       sourceArray.splice(index, 1);
     }
-    // put it in the target array
+    // STEP THREE: put it in the target array
     targetArray.push(card);
-    // put it in the target stack
-    targetElement.innerHTML += `<div class="card fade-in" data-id="${card.id}"><img src="../images/${card.filename}.jpeg" title="${card.name}" alt="${card.name}"></img></div>`;
-    // remove the animations & the old copy
+
+    // STEP FOUR: put it in the target stack
+    targetStack.innerHTML += `<div class="card fade-in" data-id="${card.id}"><img src="../images/${card.filename}.jpeg" title="${card.name}" alt="${card.name}"></img></div>`;
+
+    // STEP FIVE: remove the fade-in effect from the new card
     setTimeout(() => {
-      if (oldCopy != undefined) oldCopy.remove();
-      document.querySelector(".fade-in")?.classList.remove("fade-in");
-    }, 2000);
+      const newCopy = cardByID(card);
+      newCopy.classList.remove("fade-in");
+    }, 1200);
   }
 
   sortCard() {
@@ -209,7 +217,7 @@ class Run {
           );
           break;
       }
-    }, 650);
+    }, 1200);
   }
 
   removeFlashers() {
