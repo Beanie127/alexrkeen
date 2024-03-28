@@ -556,7 +556,7 @@ class Run {
       card,
       this.active.stack.cards,
       this.active.stack.elem,
-      this.treasure
+      this.hand
     );
     cardByID(card.id).removeEventListener("click");
   }
@@ -619,7 +619,7 @@ class Run {
       card,
       this.active.stack.cards,
       this.active.stack.elem,
-      this.treasure
+      this.hand
     );
     cardByID(card.id).removeEventListener("click");
   }
@@ -637,6 +637,7 @@ class Run {
         `The monster won't be distracted by a treasure worth less than ${this.active.encounter.rating}`
       );
     } else {
+      cardByID(card.id)?.remove();
       this.placeCard(
         treasure,
         this.active.stack.cards,
