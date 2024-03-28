@@ -1,7 +1,8 @@
 .stack-horizontal {
+  --stack-size: 6;
   display: grid;
-  min-inline-size: 10ch;
-  grid-template-columns: repeat(10, 1.5em);
+  min-inline-size: min-content;
+  grid-template-columns: repeat(var(--stack-size, 6), 2em);
 }
 
 .stack-vertical {
