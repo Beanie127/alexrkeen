@@ -34,7 +34,7 @@ section {
   display: flex;
   max-inline-size: calc(100% - 2ch);
   margin-block: 1rem;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
 .card {

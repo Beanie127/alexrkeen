@@ -1,16 +1,14 @@
 .stack-horizontal {
   --stack-size: 6;
   display: grid;
-  min-inline-size: min-content;
   grid-template-columns: repeat(var(--stack-size, 6), 2em);
 }
 
 .stack-vertical {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: repeat(10, 1.5em);
+  grid-template-rows: repeat(12, 1.5em);
   inline-size: 10ch;
-  block-size: max-content;
 }
 
 .card {
