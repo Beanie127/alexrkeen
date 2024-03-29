@@ -56,7 +56,7 @@ class Run {
   // dungeon navigation
 
   startRun() {
-    hpDisplay.innerHTML = `<img src="../images/c10.jpg" title="10 of Cups" alt="10 of Cups"></img>`;
+    hpDisplay.innerHTML = `<img src="../images/c10.jpg" title="10 of Cups" alt="10 of Cups"/>`;
     const leftOverCards = document.querySelectorAll(".card");
     leftOverCards.forEach((element) => {
       if (element.id == "hp" || element.id == "display-current-card") {
@@ -142,7 +142,7 @@ class Run {
     targetArray.push(card);
 
     // STEP FOUR: put it in the target stack
-    targetStack.innerHTML += `<div class="card fade-in" data-id="${card.id}"><img src="../images/${card.filename}.jpg" title="${card.name}" alt="${card.name}"></img></div>`;
+    targetStack.innerHTML += `<div class="card fade-in" data-id="${card.id}"><img src="../images/${card.filename}.jpg" title="${card.name}" alt="${card.name}"/></div>`;
 
     // STEP FIVE: remove the fade-in effect from the new card
     setTimeout(() => {
@@ -546,7 +546,7 @@ class Run {
         );
       } else {
         const hpCard = this.deck.cups.find((card) => card.rank == this.hp);
-        hpDisplay.innerHTML = `<img src="../images/${hpCard.filename}.jpg" title="${hpCard.name}" alt="${hpCard.name}"></img>`;
+        hpDisplay.innerHTML = `<img src="../images/${hpCard.filename}.jpg" title="${hpCard.name}" alt="${hpCard.name}"/>`;
         updateMessage(
           `You lose ${damage} HP as the ${this.active.encounter.type} injures you.`
         );
@@ -776,7 +776,7 @@ class Run {
               <img
                 src="../images/c10.jpg"
                 title="10 of Cups"
-                alt="10 of Cups"></img>
+                alt="10 of Cups"/>
           `;
           updateMessage("You are restored to full health.");
         }
@@ -836,7 +836,7 @@ class Run {
 
 function showCard(card) {
   console.log(`Showing ${card.name}`);
-  displayCurrentCard.innerHTML = `<img src="../images/${card.filename}.jpg" title="${card.name}" alt="${card.name}"></img>`;
+  displayCurrentCard.innerHTML = `<img src="../images/${card.filename}.jpg" title="${card.name}" alt="${card.name}"/>`;
   displayCurrentCard.classList.add("show-card");
   setTimeout(() => {
     displayCurrentCard.classList.remove("show-card");

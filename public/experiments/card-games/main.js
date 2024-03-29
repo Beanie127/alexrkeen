@@ -7,7 +7,7 @@ const cardTray = document.querySelector("#card-tray");
 const displayCurrentCard = document.querySelector("#display-current-card");
 
 function showCurrentCard() {
-  displayCurrentCard.innerHTML = `<img src="./images/${deck.currentCard.filename}.jpg" title="${deck.currentCard.name}" alt="${deck.currentCard.name}"></img>`;
+  displayCurrentCard.innerHTML = `<img src="./images/${deck.currentCard.filename}.jpg" title="${deck.currentCard.name}" alt="${deck.currentCard.name}"/>`;
   displayCurrentCard.classList.add("show-card");
   setTimeout(() => {
     displayCurrentCard.classList.remove("show-card");
