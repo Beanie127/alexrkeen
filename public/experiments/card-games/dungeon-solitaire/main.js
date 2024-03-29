@@ -223,6 +223,7 @@ class Run {
   removeFlashers() {
     const flashers = document.querySelectorAll(".flipped.fade-out");
     flashers.forEach((flasher) => {
+      console.log(`Found Flasher: ${flasher.dataset.id}. Fixing...`);
       flasher.classList.remove("fade-out");
       flasher.removeEventListener("click", null);
     });
