@@ -1,9 +1,18 @@
-import { getRandomFromArray, shuffle } from "./utils.js";
+import { shuffle } from "./utils.js";
 
 class Card {
   constructor(rank, suit, name) {
     if (suit == "Major Arcana") {
       this.name = name;
+    } else if (
+      rank == "Ace" ||
+      rank == "Page" ||
+      rank == "Jack" ||
+      rank == "Knight" ||
+      rank == "Queen" ||
+      rank == "King"
+    ) {
+      this.name = `The ${rank} of ${suit}`;
     } else {
       this.name = `${rank} of ${suit}`;
     }
@@ -17,6 +26,24 @@ class Card {
     this.collectable = false;
     this.filename = "";
   }
+
+  createCardElem = () => {
+    const element = document.createElement("div");
+    element.classList.add("card");
+    element.classList.add("fade-in");
+    element.dataset.id = this.id;
+    const img = this.createCardImg();
+    element.appendChild(img);
+    return element;
+  };
+
+  createCardImg = () => {
+    const image = document.createElement("img");
+    image.setAttribute("src", `../images/${this.filename}.jpg`);
+    image.setAttribute("title", this.name);
+    image.setAttribute("alt", this.name);
+    return image;
+  };
 }
 
 const parametersFiftyTwo = {
