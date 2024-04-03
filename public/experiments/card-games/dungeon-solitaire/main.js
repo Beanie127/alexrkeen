@@ -56,7 +56,7 @@ class Run {
   // dungeon navigation
 
   startRun() {
-    hpDisplay.innerHTML = `<img src="../images/c10.jpg" title="10 of Cups" alt="10 of Cups"/>`;
+    hpDisplay.appendChild(run.deck.cups.at(-1).createCardImg());
     const leftOverCards = document.querySelectorAll(".card");
     leftOverCards.forEach((element) => {
       if (element.id == "hp" || element.id == "display-current-card") {
@@ -124,17 +124,17 @@ class Run {
     // STEP ONE: if the card's already on the table, 'pick it up' i.e. remove from the previous stack/array
     const oldCopy = cardByID(card);
     if (oldCopy != undefined) {
-      console.log("Deleting element:");
-      console.log(oldCopy);
+      console.log(`Removing ${card.name} from the table`);
       oldCopy.style.pointerEvents = "none";
       oldCopy.classList.add("fade-out");
       setTimeout(() => {
         oldCopy.remove();
       }, 1200);
+    } else {
+      console.log(`${card.name} is not on the table, right?`);
     }
     // STEP TWO: if a source array is specified, remove it from the source array
     if (sourceArray) {
-      console.log(`Removing card from ${sourceArray}`);
       const index = sourceArray.indexOf(card);
       sourceArray.splice(index, 1);
     }
@@ -142,7 +142,7 @@ class Run {
     targetArray.push(card);
 
     // STEP FOUR: put it in the target stack
-    targetStack.innerHTML += `<div class="card fade-in" data-id="${card.id}"><img src="../images/${card.filename}.jpg" title="${card.name}" alt="${card.name}"/></div>`;
+    targetStack.appendChild(card.createCardElem());
 
     // STEP FIVE: remove the fade-in effect from the new card
     setTimeout(() => {
@@ -837,7 +837,8 @@ class Run {
 
 function showCard(card) {
   console.log(`Showing ${card.name}`);
-  displayCurrentCard.innerHTML = `<img src="../images/${card.filename}.jpg" title="${card.name}" alt="${card.name}"/>`;
+  displayCurrentCard.innerHTML = "";
+  displayCurrentCard.appendChild(card.createCardImg());
   displayCurrentCard.classList.add("show-card");
   setTimeout(() => {
     displayCurrentCard.classList.remove("show-card");
@@ -865,12 +866,12 @@ function cardsByID(card) {
 
 let messages = [];
 function updateMessage(newMessage, fresh = false) {
+  console.log(newMessage);
   setTimeout(() => {
     if (fresh) {
       messages = [];
     }
     messages.push(newMessage);
-    console.log(messages);
     if (messages.length > 4) {
       messages.shift();
     }
