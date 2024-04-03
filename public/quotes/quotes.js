@@ -42,6 +42,10 @@ window.addEventListener("load", () => {
 
 const quoteData = [
   {
+    author: "Neil Gaiman",
+    text: "I can write down a few words and make people thousands of miles away, whom I have never met and will never meet, laugh tears of joy and cry tears of true sorrow for people who do not exist and have never existed and never will exist. If that isn't actual literal magic I don't know what is. ",
+  },
+  {
     author: "Richard N. Bolles",
     text: 'One of the saddest pieces of advice in the world is "Oh come now — be realistic." The best parts of this world were not fashioned by those who were "realistic."',
   },
