@@ -2,80 +2,90 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width initial-scale=1" />
-	<link rel="stylesheet" href="./style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <link rel="stylesheet" href="./style.css" />
 
-	<title>Alex Keen</title>
+    <title>Alex Keen</title>
 </head>
 
 <body>
-	<h1 id="alex-keen">Alex Keen</h1>
-	<main>
-		<figure id="profile-container">
-			<img id="profile" src="./images/profile.jpg" title="I'm Alex. I tell stories."
-				alt="Alex Keen leaning against a brick wall." />
-			<figcaption><em>I’m Alex. I tell stories.</em></figcaption>
-		</figure>
-		<p>Hi, I'm Alex.</p>
-		<p>
-			I'm a writer, strategist, graphic designer and front-end web developer.
-		</p>
-		<p>
-			During working hours, you can find me at
-			<a href="https://www.sentintospace.com" target="_blank" rel="noopener noreferrer">Sent Into Space</a>, where I
-			manage
-			communications, marketing and brand strategy, and assist with sales, product development, operations and change
-			management.
-		</p>
-		<p>When out of office, I write <a href="./writing/">essays and nonfiction</a>, create award-winning <a
-				href="./improv/">improv
-				shows</a> and design <a href="./games/">tabletop roleplaying games</a>.
-		</p>
-		<p>
-			I live in Sheffield, England with my husband and no pets or children, thank you.
-		</p>
-		<p>
-			I don&apos;t like social media. If you want to talk, email alexrkeen at gmx dot com.
-		</p>
-		<br />
-		<p><em>© Alex Keen 2021&ndash;<span id="current-date"></span></em></p>
-	</main>
-	</div>
-	<div id="load-content">
-		<span class="load-span" style="animation-delay: 500ms;">A</span><span class="load-span"
-			style="animation-delay: 620ms;">L</span><span class="load-span" style="animation-delay: 740ms;">E</span><span
-			class="load-span" style="animation-delay: 860ms;">X</span><span class="load-span"
-			style="animation-delay: 980ms;">&nbsp;</span><span class="load-span"
-			style="animation-delay: 1100ms;">K</span><span class="load-span" style="animation-delay: 1220ms;">E</span><span
-			class="load-span" style="animation-delay: 1340ms;">E</span><span class="load-span"
-			style="animation-delay: 1460ms;">N</span><span class="load-span" style="animation-delay: 1580ms;">.</span>
-	</div>
-	<footer>
-		<nav>
-			<ul>
-				<li class="current-page"><a href="/">Home</a></li>
-				<li><a href="./improv/">Improv</a></li>
-				<li><a href="./games/">Games</a></li>
-				<li><a href="./writing/">Writing</a></li>
-				<li><a href="./links/">Links</a></li>
-			</ul>
-		</nav>
-	</footer>
-	<script type="module" src="./scripts/date.js">
-	</script>
-	<script>
-		let animationShown = sessionStorage.getItem("animationShown")
-		if (animationShown == "true") {
-			console.log("Load animation has been shown this session. Hiding #load-content")
-			document.querySelector("#load-content").style.display = "none";
-		} else {
-			setTimeout(() => {
-				console.log("Load amination shown. Hiding #load-content")
-				sessionStorage.setItem("animationShown", "true")
-			}, "2000")
-		}
-	</script>
+    <h1 id="alex-keen">Alex Keen</h1>
+    <main>
+        <figure id="profile-container">
+            <img id="profile" src="./images/profile.jpg" title="I'm Alex. I tell stories."
+                alt="Alex Keen leaning against a brick wall." />
+            <figcaption><em>I’m Alex. I tell stories.</em></figcaption>
+        </figure>
+        <p>Hi, I'm Alex.</p>
+        <p>
+            I'm a writer, strategist, graphic designer and front-end web developer.
+        </p>
+        <p>
+            During working hours, you can find me at
+            <a href="https://www.sentintospace.com" target="_blank" rel="noopener noreferrer">Sent Into Space</a>, where
+            I
+            manage
+            communications, marketing and brand strategy, and assist with sales, product development, operations and
+            change
+            management.
+        </p>
+        <p>When out of office, I write <a href="./writing/">essays and nonfiction</a>, create award-winning <a
+                href="./improv/">improv
+                shows</a> and design <a href="./games/">tabletop roleplaying games</a>.
+        </p>
+        <p>
+            I live in Sheffield, England with my husband and no pets or children, thank you.
+        </p>
+        <p>
+            I don&apos;t like social media. If you want to talk, email <a href="mailto:alexrkeen(delete this)@gmx.com"
+                id="email">alexrkeen<span style="display:none">(delete this)</span>@gmx.com</a>.
+        </p>
+        <br />
+        <p><em>© Alex Keen 2021&ndash;<span id="current-date">2024</span></em></p>
+    </main>
+    </div>
+    <div id="load-content">
+        <span class="load-span" style="animation-delay: 500ms;">A</span><span class="load-span"
+            style="animation-delay: 620ms;">L</span><span class="load-span"
+            style="animation-delay: 740ms;">E</span><span class="load-span"
+            style="animation-delay: 860ms;">X</span><span class="load-span"
+            style="animation-delay: 980ms;">&nbsp;</span><span class="load-span"
+            style="animation-delay: 1100ms;">K</span><span class="load-span"
+            style="animation-delay: 1220ms;">E</span><span class="load-span"
+            style="animation-delay: 1340ms;">E</span><span class="load-span"
+            style="animation-delay: 1460ms;">N</span><span class="load-span" style="animation-delay: 1580ms;">.</span>
+    </div>
+    <footer>
+        <nav>
+            <ul>
+                <li class="current-page"><a href="/">Home</a></li>
+                <li><a href="./improv/">Improv</a></li>
+                <li><a href="./games/">Games</a></li>
+                <li><a href="./writing/">Writing</a></li>
+                <li><a href="./links/">Links</a></li>
+            </ul>
+        </nav>
+    </footer>
+    <script type="module" src="./scripts/date.js">
+    </script>
+    <script>
+        let animationShown = sessionStorage.getItem("animationShown")
+        if (animationShown == "true") {
+            console.log("Load animation has been shown this session. Hiding #load-content")
+            document.querySelector("#load-content").style.display = "none";
+        } else {
+            setTimeout(() => {
+                console.log("Load amination shown. Hiding #load-content")
+                sessionStorage.setItem("animationShown", "true")
+            }, "2000")
+        }
+        window.addEventListener("load", () => {
+            const mailto = document.querySelector('#email')
+            console.log(mailto)
+            mailto.href = `mailto:${mailto.innerText}`
+        })
+    </script>
 </body>
 
 </html>
