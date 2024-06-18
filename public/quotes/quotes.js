@@ -42,6 +42,10 @@ window.addEventListener("load", () => {
 
 const quoteData = [
   {
+    author: "Plutarch",
+    text: "Education is not the filling of a pail, but the lighting of a fire.",
+  },
+  {
     author: "Neil Gaiman",
     text: "I can write down a few words and make people thousands of miles away, whom I have never met and will never meet, laugh tears of joy and cry tears of true sorrow for people who do not exist and have never existed and never will exist. If that isn't actual literal magic I don't know what is. ",
   },
