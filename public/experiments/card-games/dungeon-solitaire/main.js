@@ -125,10 +125,12 @@ class Run {
     // STEP ONE: if the card's already on the table, 'pick it up' i.e. remove from the previous stack/array
     card.removeElem();
     // STEP TWO: if a source array is specified, remove it from the source array
-    if (sourceArray) {
-      // const index = sourceArray.indexOf(card);
-      // sourceArray.splice(index, 1);
-      sourceArray = sourceArray.filter((_card) => _card != card);
+    if (sourceArray !== undefined) {
+      const index = sourceArray.indexOf(card);
+      sourceArray.splice(index, 1);
+      console.log(
+        `Removed ${card.name} from source array, which now looks like this:`
+      );
       console.log(sourceArray);
     }
     // STEP THREE: put it in the target array
@@ -204,7 +206,7 @@ class Run {
           );
           break;
       }
-    }, 1200);
+    }, 1201);
   }
 
   removeFlashers() {
