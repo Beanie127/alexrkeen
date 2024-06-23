@@ -41,13 +41,12 @@ class Card {
     return element;
   };
 
-  getElem = () => {
-    return document.querySelector(`[data-id="${this.id}"]`);
-  };
-
   createImg = () => {
     const image = document.createElement("img");
-    image.setAttribute("src", `../images/${this.filename}.jpg`);
+    image.setAttribute(
+      "src",
+      `/experiments/card-games/images/${this.filename}.jpg`
+    );
     image.setAttribute("title", this.name);
     image.setAttribute("alt", this.name);
     return image;
@@ -55,13 +54,15 @@ class Card {
 
   placeElem = (target) => {
     const card = this.createElem();
+    card.classList.add("fade-in");
     target.appendChild(card);
-    setTimeout(() => {
-      card.classList.add("fade-in");
-    }, 1);
     setTimeout(() => {
       card.classList.remove("fade-in");
     }, 1200);
+  };
+
+  getElem = () => {
+    return document.querySelector(`[data-id="${this.id}"]`);
   };
 
   removeElem = () => {
