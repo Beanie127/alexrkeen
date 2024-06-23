@@ -412,20 +412,19 @@ class Run {
       (card) => card.collectable == false
     );
     let newCollectables = [];
-    console.log("Collectables:");
-    console.log(this.listCards(collectables));
-    console.log("Uncollectables:");
-    console.log(this.listCards(uncollectables));
-    let treasures = collectables.filter((card) => card.suit == "Pentacles");
-    treasures.sort((a, b) => a.worth - b.worth);
-    console.log("Treasures in order:");
-    console.log(this.listCards(treasures));
+    console.log(`Collectables: ${this.listCards(collectables)}`);
+    console.log(`Uncollectables: ${this.listCards(uncollectables)}`);
     if (uncollectables.length == 0) {
+      console.log(
+        "There's nothing uncollectable! We'll have to abandon a piece of treasure instead."
+      );
+      let treasures = collectables.filter((card) => card.suit == "Pentacles");
+      treasures.sort((a, b) => a.worth - b.worth);
+      console.log(`Treasures in order of worth: ${this.listCards(treasures)}`);
       let remainder = treasures.shift();
       console.log(`Keeping ${remainder.name}`);
       newCollectables = collectables.filter((card) => card.id != remainder.id);
-      console.log("New Collectables:");
-      console.log(this.listCards(newCollectables));
+      console.log(`New Collectables: ${this.listCards(newCollectables)}`);
     } else {
       newCollectables = collectables;
     }
