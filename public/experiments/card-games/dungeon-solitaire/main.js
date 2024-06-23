@@ -211,7 +211,8 @@ class Run {
 
   listCards(pileOfCards) {
     let contents = "";
-    pileOfCards.forEach((card) => (contents += `${card.name} `));
+    pileOfCards.forEach((card) => (contents += `${card.name}, `));
+    return contents;
   }
 
   removeFlashers() {
@@ -423,11 +424,11 @@ class Run {
       let remainder = treasures.shift();
       console.log(`Keeping ${remainder.name}`);
       newCollectables = collectables.filter((card) => card.id != remainder.id);
+      console.log("New Collectables:");
+      console.log(this.listCards(newCollectables));
     } else {
       newCollectables = collectables;
     }
-    console.log("New Collectables:");
-    console.log(this.listCards(newCollectables));
     // treasure collecting
     setTimeout(() => {
       newCollectables.forEach((card) => {
