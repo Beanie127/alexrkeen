@@ -129,9 +129,10 @@ class Run {
       const index = sourceArray.indexOf(card);
       sourceArray.splice(index, 1);
       console.log(
-        `Removed ${card.name} from source array, which now looks like this:`
+        `Removed ${card.name} from source array, leaving ${this.listCards(
+          sourceArray
+        )}`
       );
-      console.log(this.listCards(sourceArray));
     }
     // STEP THREE: put it in the target array
     targetArray.push(card);
@@ -218,7 +219,7 @@ class Run {
   removeFlashers() {
     const flashers = document.querySelectorAll(".flipped.fade-out");
     flashers.forEach((flasher) => {
-      console.log(`Found Flasher: ${flasher.dataset.id}. Fixing...`);
+      console.log(`Found Flasher: ${flasher.dataset.name}. Fixing...`);
       flasher.classList.remove("fade-out");
       flasher.removeEventListener("click", null);
     });
@@ -551,9 +552,9 @@ class Run {
   }
 
   discard(shortfall) {
-    let timeout;
+    lockInputs(shortfall * 1400);
     for (let leftToDiscard = shortfall; leftToDiscard > 0; leftToDiscard--) {
-      timeout = (shortfall - leftToDiscard + 1) * 1400; // repeat at 1.4s intervals
+      const timeout = (shortfall - leftToDiscard + 1) * 1400; // repeat at 1.4s intervals
       console.log(
         `${leftToDiscard} remaining to discard. Setting timeout for card #${leftToDiscard} as ${timeout}`
       );
@@ -569,7 +570,6 @@ class Run {
         cardsRemaining.textContent = this.deck.cardsInDeck.length;
       }, timeout);
     }
-    lockInputs(timeout);
   }
 
   injureCompanion() {
@@ -830,7 +830,7 @@ class Run {
 // local functions
 
 function showCard(card) {
-  console.log(`Showing ${card.name}`);
+  console.log(`Card drawn: ${card.name}`);
   displayCurrentCard.innerHTML = "";
   displayCurrentCard.appendChild(card.createImg());
   displayCurrentCard.classList.add("show-card");
@@ -904,7 +904,7 @@ btnTestMode.addEventListener("click", () => {
   console.log("Entering Test Mode");
   run.deck.enterTestMode();
   run.hp = 12;
-  console.log(run.deck.cardsInDeck);
+  console.log(`Deck now contains ${run.listCards(run.deck.cardsInDeck)}`);
 });
 
 // initialise
