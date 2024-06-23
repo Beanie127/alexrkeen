@@ -23,7 +23,7 @@ const hpDisplay = document.querySelector("#hp");
 class Run {
   constructor() {
     this.isLost = false;
-    this.retreating = false;
+    this.isReatreating = false;
     this.foresights = 0;
     this.hp = 10;
     this.turnCount = 0;
@@ -56,7 +56,8 @@ class Run {
   // dungeon navigation
 
   startRun() {
-    hpDisplay.appendChild(run.deck.cups.at(-1).createCardImg());
+    this.deck.shuffle();
+    hpDisplay.appendChild(this.deck.cups.at(-1).createImg());
     const leftOverCards = document.querySelectorAll(".card");
     leftOverCards.forEach((element) => {
       if (element.id == "hp" || element.id == "display-current-card") {
@@ -64,7 +65,7 @@ class Run {
       }
       element.remove();
     });
-    run.advance();
+    this.advance();
   }
 
   advance() {
@@ -77,12 +78,12 @@ class Run {
 
   retreat() {
     this.flipStack();
-    if (this.retreating == false) {
+    if (this.isReatreating == false) {
       updateMessage(
         "Daring to go no further, you turn around and begin to seek the exit."
       );
     }
-    this.retreating = true;
+    this.isReatreating = true;
     this.depth--;
     btnAdvance.setAttribute("hidden", true);
     btnRetreat.setAttribute("hidden", true);
@@ -97,8 +98,8 @@ class Run {
   // card manipulation
 
   drawCard() {
-    run.hand.forEach((card) => {
-      run.makeUsable(card);
+    this.hand.forEach((card) => {
+      this.makeUsable(card);
     });
     this.removeFlashers();
     lockInputs(2000);
@@ -122,33 +123,19 @@ class Run {
 
   placeCard(card, targetArray, targetStack, sourceArray) {
     // STEP ONE: if the card's already on the table, 'pick it up' i.e. remove from the previous stack/array
-    const oldCopy = cardByID(card);
-    if (oldCopy != undefined) {
-      console.log(`Removing ${card.name} from the table`);
-      oldCopy.style.pointerEvents = "none";
-      oldCopy.classList.add("fade-out");
-      setTimeout(() => {
-        oldCopy.remove();
-      }, 1200);
-    } else {
-      console.log(`${card.name} is not on the table, right?`);
-    }
+    card.removeElem();
     // STEP TWO: if a source array is specified, remove it from the source array
     if (sourceArray) {
-      const index = sourceArray.indexOf(card);
-      sourceArray.splice(index, 1);
+      // const index = sourceArray.indexOf(card);
+      // sourceArray.splice(index, 1);
+      sourceArray = sourceArray.filter((_card) => _card != card);
+      console.log(sourceArray);
     }
     // STEP THREE: put it in the target array
     targetArray.push(card);
 
     // STEP FOUR: put it in the target stack
-    targetStack.appendChild(card.createCardElem());
-
-    // STEP FIVE: remove the fade-in effect from the new card
-    setTimeout(() => {
-      const newCopy = cardByID(card);
-      newCopy.classList.remove("fade-in");
-    }, 1200);
+    card.placeElem(targetStack);
   }
 
   sortCard() {
@@ -243,7 +230,7 @@ class Run {
     this.active.encounter.rating = 0;
     console.log(this.active.encounter);
     // set the active stack based on direction and current depth
-    if (this.retreating == true) {
+    if (this.isReatreating == true) {
       this.active.stack.elem = document.querySelector(
         `#delve-retreat [data-depth="${this.depth}"]`
       );
@@ -451,7 +438,7 @@ class Run {
       });
       // make buttons work again
     }, 2000);
-    if (this.retreating == false) {
+    if (this.isReatreating == false) {
       btnAdvance.removeAttribute("hidden");
     }
     btnRetreat.removeAttribute("hidden");
@@ -460,7 +447,7 @@ class Run {
   loseEncounter(cause) {
     updateMessage(cause);
     btnDraw.setAttribute("hidden", true);
-    if (this.retreating == false) {
+    if (this.isReatreating == false) {
       btnAdvance.removeAttribute("hidden");
     }
     btnRetreat.removeAttribute("hidden");
@@ -838,7 +825,7 @@ class Run {
 function showCard(card) {
   console.log(`Showing ${card.name}`);
   displayCurrentCard.innerHTML = "";
-  displayCurrentCard.appendChild(card.createCardImg());
+  displayCurrentCard.appendChild(card.createImg());
   displayCurrentCard.classList.add("show-card");
   setTimeout(() => {
     displayCurrentCard.classList.remove("show-card");
@@ -886,7 +873,6 @@ function updateMessage(newMessage, fresh = false) {
 
 btnStart.addEventListener("click", () => {
   run = new Run();
-  shuffle(run.deck.cardsInDeck);
   console.log(run.deck);
   run.startRun();
   btnDraw.removeAttribute("hidden");

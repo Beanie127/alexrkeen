@@ -23,12 +23,9 @@ btnDraw.addEventListener("click", () => {
   btnDraw.setAttribute("disabled", true);
   deck.currentCard = deck.draw();
   showCurrentCard();
-  cardTray.innerHTML += renderCard(deck.currentCard);
-  document
-    .querySelector(`[data-id="${deck.currentCard.id}"`)
-    .classList.add("fade-in");
+  deck.currentCard.placeElem(cardTray);
   setTimeout(() => {
-    document.querySelector(".fade-in").classList.remove("fade-in");
+    deck.currentCard.getElem()?.classList.remove("fade-in");
   }, 1400);
   setTimeout(() => {
     btnDraw.removeAttribute("disabled");

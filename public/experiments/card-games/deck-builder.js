@@ -27,22 +27,58 @@ class Card {
     this.filename = "";
   }
 
-  createCardElem = () => {
+  createElem = () => {
     const element = document.createElement("div");
     element.classList.add("card");
-    element.classList.add("fade-in");
     element.dataset.id = this.id;
-    const img = this.createCardImg();
+    element.dataset.name = this.name;
+    element.dataset.suit = this.suit;
+    element.dataset.rank = this.rank;
+    element.dataset.worth = this.worth;
+    element.dataset.collectable = this.collectable;
+    const img = this.createImg();
     element.appendChild(img);
     return element;
   };
 
-  createCardImg = () => {
+  getElem = () => {
+    return document.querySelector(`[data-id="${this.id}"]`);
+  };
+
+  createImg = () => {
     const image = document.createElement("img");
     image.setAttribute("src", `../images/${this.filename}.jpg`);
     image.setAttribute("title", this.name);
     image.setAttribute("alt", this.name);
     return image;
+  };
+
+  placeElem = (target) => {
+    const card = this.createElem();
+    target.appendChild(card);
+    setTimeout(() => {
+      card.classList.add("fade-in");
+    }, 1);
+    setTimeout(() => {
+      card.classList.remove("fade-in");
+    }, 1200);
+  };
+
+  removeElem = () => {
+    const element = this.getElem();
+    if (!element) {
+      return;
+    }
+    element.style.pointerEvents = "none";
+    element.classList.add("fade-out");
+    setTimeout(() => {
+      element.remove();
+    }, 1200);
+  };
+
+  moveElem = (target) => {
+    this.removeElem();
+    this.placeElem(target);
   };
 }
 
@@ -150,8 +186,14 @@ class Deck {
     this.cardsInDeck.push(card);
   }
 
-  shuffleDeck() {
-    shuffle(this.cardsInDeck);
+  shuffle() {
+    for (let i = this.cardsInDeck.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      [this.cardsInDeck[i], this.cardsInDeck[j]] = [
+        this.cardsInDeck[j],
+        this.cardsInDeck[i],
+      ];
+    }
   }
 
   draw() {
@@ -159,7 +201,8 @@ class Deck {
       alert("You've run out of cards!");
       return;
     }
-    return this.cardsInDeck.pop();
+    this.currentCard = this.cardsInDeck.pop();
+    return this.currentCard;
   }
 
   reset() {
@@ -383,10 +426,9 @@ class DungeonDeck extends Deck {
   enterTestMode() {
     this.cardsInDeck = this.cardsInDeck.filter(
       (card) =>
-        card.name == "Judgement" ||
-        card.encounter.type == "monster" ||
-        card.rank == "Queen" ||
-        card.rank == "King"
+        card.name == "The Fool" ||
+        card.rank == "Ace" ||
+        card.name == "10 of Wands"
     );
     // this.cardsInDeck.sort((a, b) => a.id - b.id);
   }
