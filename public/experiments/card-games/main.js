@@ -17,16 +17,13 @@ function showCurrentCard() {
 // Draw the Tarot features
 
 const deck = new TarotDeck();
-deck.shuffleDeck();
+deck.shuffle();
 
 btnDraw.addEventListener("click", () => {
   btnDraw.setAttribute("disabled", true);
   deck.currentCard = deck.draw();
   showCurrentCard();
   deck.currentCard.placeElem(cardTray);
-  setTimeout(() => {
-    deck.currentCard.getElem()?.classList.remove("fade-in");
-  }, 1400);
   setTimeout(() => {
     btnDraw.removeAttribute("disabled");
   }, 1401);
