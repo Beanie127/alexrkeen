@@ -131,7 +131,7 @@ class Run {
       console.log(
         `Removed ${card.name} from source array, which now looks like this:`
       );
-      console.log(sourceArray);
+      console.log(this.listCards(sourceArray));
     }
     // STEP THREE: put it in the target array
     targetArray.push(card);
@@ -209,6 +209,11 @@ class Run {
     }, 1201);
   }
 
+  listCards(pileOfCards) {
+    let contents = "";
+    pileOfCards.forEach((card) => (contents += `${card.name} `));
+  }
+
   removeFlashers() {
     const flashers = document.querySelectorAll(".flipped.fade-out");
     flashers.forEach((flasher) => {
@@ -254,7 +259,7 @@ class Run {
     if (
       this.companions.some((companion) => companion.name === "The Magician")
     ) {
-      this.active.encounter.isinverted
+      this.active.encounter.isInverted
         ? this.active.encounter.rating++
         : this.active.encounter.rating--;
       console.log(`Encounter rating reduced by The Magician`);
@@ -263,7 +268,7 @@ class Run {
       this.active.encounter.type == "monster" &&
       this.companions.some((companion) => companion.name === "Page of Swords")
     ) {
-      this.active.encounter.isinverted
+      this.active.encounter.isInverted
         ? this.active.encounter.rating++
         : this.active.encounter.rating--;
       console.log(`Encounter rating reduced by the Page of Swords`);
@@ -274,7 +279,7 @@ class Run {
         (companion) => companion.name === "Page of Pentacles"
       )
     ) {
-      this.active.encounter.isinverted
+      this.active.encounter.isInverted
         ? this.active.encounter.rating++
         : this.active.encounter.rating--;
       console.log(`Encounter rating reduced by the Page of Pentacles`);
@@ -283,7 +288,7 @@ class Run {
       this.active.encounter.type == "door" &&
       this.companions.some((companion) => companion.name === "Page of Wands")
     ) {
-      this.active.encounter.isinverted
+      this.active.encounter.isInverted
         ? this.active.encounter.rating++
         : this.active.encounter.rating--;
       console.log(`Encounter rating reduced by the Page of Wands`);
@@ -407,13 +412,13 @@ class Run {
     );
     let newCollectables = [];
     console.log("Collectables:");
-    console.log(collectables);
+    console.log(this.listCards(collectables));
     console.log("Uncollectables:");
-    console.log(uncollectables);
+    console.log(this.listCards(uncollectables));
     let treasures = collectables.filter((card) => card.suit == "Pentacles");
     treasures.sort((a, b) => a.worth - b.worth);
     console.log("Treasures in order:");
-    console.log(treasures);
+    console.log(this.listCards(treasures));
     if (uncollectables.length == 0) {
       let remainder = treasures.shift();
       console.log(`Keeping ${remainder.name}`);
@@ -422,7 +427,7 @@ class Run {
       newCollectables = collectables;
     }
     console.log("New Collectables:");
-    console.log(newCollectables);
+    console.log(this.listCards(newCollectables));
     // treasure collecting
     setTimeout(() => {
       newCollectables.forEach((card) => {
