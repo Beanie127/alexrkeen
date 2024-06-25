@@ -122,9 +122,7 @@ class Run {
   }
 
   placeCard(card, targetArray, targetStack, sourceArray) {
-    // STEP ONE: if the card's already on the table, 'pick it up' i.e. remove from the previous stack/array
-    card.removeElem();
-    // STEP TWO: if a source array is specified, remove it from the source array
+    // STEP ONE: if a source array is specified, remove it from the source array
     if (sourceArray !== undefined) {
       const index = sourceArray.indexOf(card);
       sourceArray.splice(index, 1);
@@ -134,11 +132,10 @@ class Run {
         )}`
       );
     }
-    // STEP THREE: put it in the target array
+    // STEP TWO: put it in the target array
     targetArray.push(card);
-
-    // STEP FOUR: put it in the target stack
-    card.placeElem(targetStack);
+    // STEP THREE: move the element
+    card.moveElem(targetStack);
   }
 
   sortCard() {

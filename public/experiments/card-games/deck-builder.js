@@ -54,11 +54,15 @@ class Card {
 
   placeElem = (target) => {
     const card = this.createElem();
-    card.classList.add("fade-in");
+    // card.classList.add("fade-in");
     target.appendChild(card);
-    setTimeout(() => {
-      card.classList.remove("fade-in");
-    }, 1200);
+    card.animate([{ opacity: 0 }, { opacity: 1 }], {
+      duration: 600,
+      iterations: 1,
+    });
+    // setTimeout(() => {
+    //   card.classList.remove("fade-in");
+    // }, 1200);
   };
 
   getElem = () => {
@@ -71,15 +75,21 @@ class Card {
       return;
     }
     element.style.pointerEvents = "none";
-    element.classList.add("fade-out");
-    setTimeout(() => {
-      element.remove();
-    }, 1200);
+    // element.classList.add("fade-out");
+    // setTimeout(() => {
+    //   element.remove();
+    // }, 1200);
+    element.animate([{ opacity: 1 }, { opacity: 0 }], {
+      duration: 600,
+      iterations: 1,
+    }).onfinish = () => element.remove();
   };
 
   moveElem = (target) => {
     this.removeElem();
-    this.placeElem(target);
+    setTimeout(() => {
+      this.placeElem(target);
+    }, 500);
   };
 }
 
