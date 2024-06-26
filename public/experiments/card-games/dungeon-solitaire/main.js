@@ -126,11 +126,15 @@ class Run {
     if (sourceArray !== undefined) {
       const index = sourceArray.indexOf(card);
       sourceArray.splice(index, 1);
-      console.log(
-        `Removed ${card.name} from source array, leaving ${this.listCards(
-          sourceArray
-        )}`
-      );
+      sourceArray.length > 0
+        ? console.log(
+            `Removed ${card.name} from source array, leaving ${this.listCards(
+              sourceArray
+            )}`
+          )
+        : console.log(
+            `Removed ${card.name} from source array. No more cards remaining.`
+          );
     }
     // STEP TWO: put it in the target array
     targetArray.push(card);
