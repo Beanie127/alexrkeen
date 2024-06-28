@@ -71,8 +71,12 @@ class Card {
       return;
     }
     element.style.pointerEvents = "none";
+    let margin;
+    element.parentElement.firstChild === element
+      ? (margin = "-2ch")
+      : (margin = "-20ch");
     element.animate(
-      [{ opacity: 1 }, { opacity: 0, marginBlockStart: "-20ch" }],
+      [{ opacity: 1 }, { opacity: 0, marginBlockStart: margin }],
       {
         duration: 600,
         iterations: 1,

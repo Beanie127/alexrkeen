@@ -1,7 +1,4 @@
 .stack-horizontal {
-    /* --stack-size: 6;
-    display: grid;
-    grid-template-columns: repeat(var(--stack-size, 6), 2em); */
     display: flex;
     & .card + .card {
         margin-inline-start: calc(-10ch);
@@ -9,17 +6,17 @@
 }
 
 .stack-vertical {
-    /* display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(12, 1.5em); */
     inline-size: 12ch;
-    flex-shrink: 0;
     display: flex;
+    flex-shrink: 0;
     flex-direction: column;
     & .card + .card {
-        margin-block-start: calc(3ch - 12ch * 5 / 3);
         margin-block-start: -17ch;
     }
+}
+
+:where(.stack-vertical, .stack-horizontal) .card:hover {
+    z-index: 10;
 }
 
 .card {
@@ -28,7 +25,6 @@
 }
 
 .card:hover {
-    z-index: 100;
     background: hsl(0 40% 60%);
     filter: saturate(100%);
 }
@@ -70,6 +66,7 @@
 
 aside {
     float: right;
+    z-index: 10;
     padding: 1em;
     margin-inline-start: 1em;
     border: thin solid hsl(0 40% 60% / 0.4);
@@ -135,10 +132,8 @@ aside {
 }
 
 .injured-companion {
-    transform: rotate(90deg);
+    transform: rotate(180deg) translateY(-1ch);
     transition: 500ms;
-    transform-origin: center;
-    z-index: 0;
 }
 
 @keyframes fade-in {

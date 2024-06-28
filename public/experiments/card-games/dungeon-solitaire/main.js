@@ -205,9 +205,7 @@ class Run {
             handTrack,
             this.active.stack.cards
           );
-          setTimeout(() => {
-            this.makeUsable(cardToSort);
-          }, 1201);
+          this.makeUsable(cardToSort);
           break;
       }
     }, 1201);
@@ -449,9 +447,7 @@ class Run {
           updateMessage(`${card.name} joins your party.`);
         } else {
           this.placeCard(card, this.hand, handTrack, this.active.stack.cards);
-          setTimeout(() => {
-            this.makeUsable(card);
-          }, 1201);
+          this.makeUsable(card);
         }
       });
     }, 2000);
@@ -514,23 +510,22 @@ class Run {
   // Event consequences
 
   takeDamage(damage) {
-    let absorbDamage = false;
-    if (this.hand.some((card) => card.name == "Knight of Cups")) {
-      absorbDamage = confirm("Use the Knight of Cups?");
-    }
-    if (absorbDamage) {
-      let knightOfCups = this.hand.find(
-        (card) => card.name == "Knight of Cups"
-      );
-      updateMessage("You dodge out of the way, taking no damage.");
-      knightOfCups.collectable = false;
-      this.placeCard(
-        knightOfCups,
-        this.active.stack.cards,
-        this.active.stack.elem,
-        this.hand
-      );
-      return;
+    let knightOfCups = this.hand.find((card) => card.name == "Knight of Cups");
+    if (knightOfCups !== undefined) {
+      let absorbDamage = confirm("Use the Knight of Cups?");
+      if (absorbDamage) {
+        updateMessage("You dodge out of the way, taking no damage.");
+        this.placeCard(
+          knightOfCups,
+          this.active.stack.cards,
+          this.active.stack.elem,
+          this.hand
+        );
+        setTimeout(() => {
+          knightOfCups.collectable = false;
+        }, 1201);
+        return;
+      }
     }
     if (
       this.companions.some((companion) => companion.name === "Page of Cups")
@@ -663,23 +658,25 @@ class Run {
   makeUsable(card) {
     // replace the card with a clone to remove all existing event listeners
     console.log(`Making ${card.name} usable...`);
-    const target = cardByID(card);
-    const clone = target.cloneNode(true);
-    target.replaceWith(clone);
-    switch (card.type) {
-      case "treasure":
-        clone.addEventListener("click", () => this.dropTreasure(card));
-        break;
-      case "skill":
-        clone.addEventListener("click", () => this.useSkill(card));
-        break;
-      case "blessing":
-        clone.addEventListener("click", () => this.useBlessing(card));
-        break;
-      case "potion":
-        clone.addEventListener("click", () => this.drinkPotion(card));
-        break;
-    }
+    setTimeout(() => {
+      const target = cardByID(card);
+      const clone = target.cloneNode(true);
+      target.replaceWith(clone);
+      switch (card.type) {
+        case "treasure":
+          clone.addEventListener("click", () => this.dropTreasure(card));
+          break;
+        case "skill":
+          clone.addEventListener("click", () => this.useSkill(card));
+          break;
+        case "blessing":
+          clone.addEventListener("click", () => this.useBlessing(card));
+          break;
+        case "potion":
+          clone.addEventListener("click", () => this.drinkPotion(card));
+          break;
+      }
+    }, 1201);
   }
 
   useSkill(card) {
@@ -695,7 +692,6 @@ class Run {
         this.active.stack.elem,
         this.hand
       );
-      cardByID(card).removeEventListener("click", null);
       card.collectable = false;
       this.winEncounter();
     } else {
@@ -741,7 +737,6 @@ class Run {
       this.active.stack.elem,
       this.hand
     );
-    cardByID(card).removeEventListener("click", null);
   }
 
   drinkPotion(card) {
@@ -798,14 +793,12 @@ class Run {
         this.foresights = 3;
         card.collectable = false;
     }
-    cardByID(card)?.remove();
     this.placeCard(
       card,
       this.active.stack.cards,
       this.active.stack.elem,
       this.hand
     );
-    cardByID(card).removeEventListener("click", null);
   }
 
   dropTreasure(card) {
@@ -814,7 +807,7 @@ class Run {
     if (this.active.encounter.exists == false) {
       return;
     }
-    if (this.active.encounter.type != "monster") {
+    if (this.active.encounter.type !== "monster") {
       alert("This card cannot be used!");
       return;
     }
@@ -831,10 +824,6 @@ class Run {
       this.active.stack.elem,
       this.hand
     );
-    setTimeout(() => {
-      cardByID(card).removeEventListener("click", null);
-    }, 1400);
-    treasure.collectable = false;
     this.loseEncounter(
       `You distract the monster with ${card.name} and scurry away.`
     );
