@@ -814,27 +814,30 @@ class Run {
     if (this.active.encounter.exists == false) {
       return;
     }
-    const treasure = this.hand.find((obj) => obj.id == card.id);
     if (this.active.encounter.type != "monster") {
       alert("This card cannot be used!");
-    } else if (treasure.worth < this.active.encounter.rating) {
+      return;
+    }
+    if (treasure.worth < this.active.encounter.rating) {
       alert(
         `The monster won't be distracted by a treasure worth less than ${this.active.encounter.rating}`
       );
-    } else {
-      cardByID(card)?.remove();
-      this.placeCard(
-        treasure,
-        this.active.stack.cards,
-        this.active.stack.elem,
-        this.hand
-      );
-      cardByID(treasure).removeEventListener("click", null);
-      treasure.collectable = false;
-      this.loseEncounter(
-        `You distract the monster with ${card.name} and scurry away.`
-      );
+      return;
     }
+    const treasure = this.hand.find((obj) => obj.id == card.id);
+    this.placeCard(
+      treasure,
+      this.active.stack.cards,
+      this.active.stack.elem,
+      this.hand
+    );
+    setTimeout(() => {
+      cardByID(card).removeEventListener("click", null);
+    }, 1400);
+    treasure.collectable = false;
+    this.loseEncounter(
+      `You distract the monster with ${card.name} and scurry away.`
+    );
   }
 }
 
