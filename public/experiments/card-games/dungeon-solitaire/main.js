@@ -206,7 +206,7 @@ class Run {
             this.active.stack.cards
           );
           setTimeout(() => {
-            this.makeUsable(card);
+            this.makeUsable(cardToSort);
           }, 1201);
           break;
       }
