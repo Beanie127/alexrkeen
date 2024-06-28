@@ -140,6 +140,8 @@ class Run {
     targetArray.push(card);
     // STEP THREE: move the element
     card.moveElem(targetStack);
+    //STEP FOUR: splay cards in hand
+    splayHand();
   }
 
   sortCard() {
@@ -829,6 +831,24 @@ class Run {
 }
 
 // local functions
+
+function splayHand() {
+  const cardsInHand = handTrack.querySelectorAll(".card");
+  if (cardsInHand.length == 0) {
+    return;
+  }
+  let centerIndex = (cardsInHand.length - 1) / 2;
+  cardsInHand.forEach((card) => {
+    let cards = Array.from(cardsInHand);
+    let angle = (cards.indexOf(card) - centerIndex) * 2;
+    let translateY = angle;
+    if (translateY < 0) {
+      translateY = translateY * -1;
+    }
+    card.style.setProperty("--rotate", `${angle}deg`);
+    card.style.setProperty("--translateY", `${translateY}px`);
+  });
+}
 
 function showCard(card) {
   console.log(`Card drawn: ${card.name}`);

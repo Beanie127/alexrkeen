@@ -21,6 +21,40 @@
     background: hsl(0 40% 60%);
 }
 
+#hand-track {
+    position: fixed;
+    inset-block-end: 0;
+    inset-inline: 0;
+    display: flex;
+    justify-content: center;
+    transform: translateY(20%);
+    transition: 200ms ease-in;
+    &:has(.playing-card:hover) {
+        transform: translateY(10px);
+    }
+    & .card {
+        --rotate: 0;
+        --translateY: 0;
+        --translateX: 0;
+        transition: 200ms ease-out;
+        transform: translateX(var(--translateX, 0))
+            translateY(var(--translateY, 0)) rotate(var(--rotate, 0));
+    }
+    & .card + .card {
+        margin-inline-start: -6ch;
+    }
+    & .card:hover {
+        transform: translateY(-20%);
+    }
+
+    & .card:has(~ .card:hover) {
+        transform: translateX(-50%);
+    }
+    & .card:hover ~ .card {
+        transform: translateX(50%);
+    }
+}
+
 aside {
     float: right;
     padding-inline-start: 1em;
