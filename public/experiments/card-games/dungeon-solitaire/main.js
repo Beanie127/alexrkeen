@@ -98,9 +98,6 @@ class Run {
   // card manipulation
 
   drawCard() {
-    this.hand.forEach((card) => {
-      this.makeUsable(card);
-    });
     this.removeFlashers();
     lockInputs(2000);
     if (this.foresights > 0) {
@@ -141,7 +138,7 @@ class Run {
     // STEP THREE: move the element
     card.moveElem(targetStack);
     //STEP FOUR: splay cards in hand
-    splayHand();
+    setTimeout(splayHand, 1200);
   }
 
   sortCard() {
@@ -208,6 +205,9 @@ class Run {
             handTrack,
             this.active.stack.cards
           );
+          setTimeout(() => {
+            this.makeUsable(card);
+          }, 1201);
           break;
       }
     }, 1201);
@@ -445,10 +445,13 @@ class Run {
           updateMessage(`${card.name} joins your party.`);
         } else {
           this.placeCard(card, this.hand, handTrack, this.active.stack.cards);
+          setTimeout(() => {
+            this.makeUsable(card);
+          }, 1201);
         }
       });
-      // make buttons work again
     }, 2000);
+    // make buttons work again
     if (this.isReatreating == false) {
       btnAdvance.removeAttribute("hidden");
     }
@@ -654,8 +657,8 @@ class Run {
 
   makeUsable(card) {
     // replace the card with a clone to remove all existing event listeners
+    console.log(`Making ${card.name} usable...`);
     const target = cardByID(card);
-
     const clone = target.cloneNode(true);
     target.replaceWith(clone);
     switch (card.type) {
@@ -834,12 +837,9 @@ class Run {
 
 function splayHand() {
   const cardsInHand = handTrack.querySelectorAll(".card");
-  if (cardsInHand.length == 0) {
-    return;
-  }
   let centerIndex = (cardsInHand.length - 1) / 2;
-  cardsInHand.forEach((card) => {
-    let cards = Array.from(cardsInHand);
+  let cards = Array.from(cardsInHand);
+  cards.forEach((card) => {
     let angle = (cards.indexOf(card) - centerIndex) * 2;
     let translateY = angle;
     if (translateY < 0) {

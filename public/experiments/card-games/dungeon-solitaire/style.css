@@ -1,24 +1,35 @@
 .stack-horizontal {
-    --stack-size: 6;
+    /* --stack-size: 6;
     display: grid;
-    grid-template-columns: repeat(var(--stack-size, 6), 2em);
+    grid-template-columns: repeat(var(--stack-size, 6), 2em); */
+    display: flex;
+    & .card + .card {
+        margin-inline-start: calc(-10ch);
+    }
 }
 
 .stack-vertical {
-    display: grid;
+    /* display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(12, 1.5em);
-    inline-size: 10ch;
+    grid-template-rows: repeat(12, 1.5em); */
+    /* inline-size: 10ch; */
     flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    & .card + .card {
+        margin-block-start: calc(3ch - 12ch * 5 / 3);
+    }
 }
 
 .card {
     filter: saturate(75%);
+    inline-size: 12ch;
 }
 
 .card:hover {
     z-index: 100;
     background: hsl(0 40% 60%);
+    filter: saturate(100%);
 }
 
 #hand-track {
@@ -29,19 +40,20 @@
     justify-content: center;
     transform: translateY(20%);
     transition: 200ms ease-in;
-    &:has(.playing-card:hover) {
+    &:has(.card:hover) {
         transform: translateY(10px);
     }
     & .card {
         --rotate: 0;
         --translateY: 0;
         --translateX: 0;
+        z-index: unset;
         transition: 200ms ease-out;
         transform: translateX(var(--translateX, 0))
             translateY(var(--translateY, 0)) rotate(var(--rotate, 0));
     }
     & .card + .card {
-        margin-inline-start: -6ch;
+        margin-inline-start: calc(3ch - 12ch);
     }
     & .card:hover {
         transform: translateY(-20%);
@@ -57,11 +69,12 @@
 
 aside {
     float: right;
-    padding-inline-start: 1em;
+    padding: 1em;
     margin-inline-start: 1em;
-    border-inline-start: thin solid hsl(0 40% 60% / 0.4);
-    & .flex-row,
-    & h3 {
+    border: thin solid hsl(0 40% 60% / 0.4);
+    border-inline-end: 0;
+    border-radius: 1ch 0 0 1ch;
+    * {
         margin-block-start: 0;
     }
 }
