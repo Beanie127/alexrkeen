@@ -30,6 +30,7 @@
 }
 
 #hand-track {
+    z-index: 10;
     position: fixed;
     inset-block-end: 0;
     inset-inline: 0;
@@ -67,6 +68,7 @@
 aside {
     float: right;
     z-index: 10;
+    overflow: hidden;
     padding: 1em;
     margin-inline-start: 1em;
     border: thin solid hsl(0 40% 60% / 0.4);
@@ -84,11 +86,6 @@ aside {
 #button-track {
     min-block-size: 3ch;
     align-items: center;
-}
-
-#delve,
-#delve-retreat {
-    block-size: 40ch;
 }
 
 #narrator,
@@ -132,7 +129,7 @@ aside {
 }
 
 .injured-companion {
-    transform: rotate(180deg) translateY(-1ch);
+    transform: translateY(2ch) rotate(2deg);
     transition: 500ms;
 }
 
@@ -144,3 +141,7 @@ aside {
         opacity: 1;
     }
 }
+
+/* * {
+    outline: thin solid red;
+} */

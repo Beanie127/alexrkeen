@@ -7,6 +7,7 @@ const btnDraw = document.querySelector("#btn-draw");
 const btnAdvance = document.querySelector("#btn-advance");
 const btnRetreat = document.querySelector("#btn-retreat");
 const btnTestMode = document.querySelector("#btn-test");
+const buttons = [btnStart, btnDraw, btnAdvance, btnRetreat, btnTestMode];
 // notifications
 const narrator = document.querySelector("#narrator");
 const displayCurrentCard = document.querySelector("#display-current-card");
@@ -56,6 +57,7 @@ class Run {
   // dungeon navigation
 
   startRun() {
+    this.deck = new DungeonDeck();
     this.deck.shuffle();
     hpDisplay.appendChild(this.deck.cups.at(-1).createImg());
     const leftOverCards = document.querySelectorAll(".card");
@@ -138,7 +140,7 @@ class Run {
     // STEP THREE: move the element
     card.moveElem(targetStack);
     //STEP FOUR: splay cards in hand
-    setTimeout(splayHand, 1200);
+    setTimeout(splayHand, 600);
   }
 
   sortCard() {
@@ -510,7 +512,9 @@ class Run {
   // Event consequences
 
   takeDamage(damage) {
-    let knightOfCups = this.hand.find((card) => card.name == "Knight of Cups");
+    let knightOfCups = this.hand.find(
+      (card) => card.name == "The Knight of Cups"
+    );
     if (knightOfCups !== undefined) {
       let absorbDamage = confirm("Use the Knight of Cups?");
       if (absorbDamage) {
@@ -539,28 +543,37 @@ class Run {
     }
     this.hp -= damage;
     console.log(`Current HP = ${this.hp}`);
-    setTimeout(() => {
-      if (this.hp <= 1) {
-        this.loseRun(
-          `The ${this.active.encounter.type} deals you a mortal injury. You perish in the dungeon.`,
-          this.active.encounter.type
-        );
-      } else {
-        const hpCard = this.deck.cups.find((card) => card.rank == this.hp);
+    if (this.hp <= 1) {
+      this.loseRun(
+        `The ${this.active.encounter.type} deals you a mortal injury. You perish in the dungeon.`,
+        this.active.encounter.type
+      );
+    } else {
+      const hpCard = this.deck.cups.find((card) => card.rank == this.hp);
+      hpDisplay.animate(
+        [
+          { transform: "translateY(-2ch)", opacity: 0, offset: 0.49 },
+          { opacity: 0, offset: 0.5 },
+          { transform: "translateY(2ch)", opacity: 0, offset: 0.51 },
+          { opacity: 1 },
+        ],
+        { duration: 1200 }
+      );
+      setTimeout(() => {
         hpDisplay.innerHTML = `<img src="../images/${hpCard.filename}.jpg" title="${hpCard.name}" alt="${hpCard.name}"/>`;
-        updateMessage(
-          `You lose ${damage} HP as the ${this.active.encounter.type} injures you.`
-        );
-        this.injureCompanion();
-      }
-    }, 600);
+      }, 600);
+      updateMessage(
+        `You lose ${damage} HP as the ${this.active.encounter.type} injures you.`
+      );
+      this.injureCompanion();
+    }
   }
 
   discard(shortfall) {
-    let delay = shortfall * 1400;
-    lockInputs(delay);
+    let lockout = shortfall * 1400;
+    lockInputs(lockout);
     for (let leftToDiscard = shortfall; leftToDiscard > 0; leftToDiscard--) {
-      const timeout = (shortfall - leftToDiscard + 1) * 1400; // repeat at 1.4s intervals
+      const delay = (shortfall - leftToDiscard + 1) * 1400; // repeat at 1.4s intervals
       console.log(
         `${leftToDiscard} remaining to discard. Setting timeout for card #${leftToDiscard} as ${timeout}`
       );
@@ -574,7 +587,7 @@ class Run {
           this.discards.push(discard);
         }
         cardsRemaining.textContent = this.deck.cardsInDeck.length;
-      }, timeout);
+      }, delay);
     }
   }
 
@@ -858,13 +871,13 @@ function showCard(card) {
 }
 
 function lockInputs(duration) {
-  btnAdvance.setAttribute("disabled", true);
-  btnRetreat.setAttribute("disabled", true);
-  btnDraw.setAttribute("disabled", true);
+  buttons.forEach((button) => {
+    button.setAttribute("disabled", "true");
+  });
   setTimeout(() => {
-    btnAdvance.removeAttribute("disabled");
-    btnRetreat.removeAttribute("disabled");
-    btnDraw.removeAttribute("disabled");
+    buttons.forEach((button) => {
+      button.removeAttribute("disabled");
+    });
   }, duration);
 }
 
