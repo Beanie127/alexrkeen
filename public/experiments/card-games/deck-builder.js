@@ -71,10 +71,13 @@ class Card {
       return;
     }
     element.style.pointerEvents = "none";
-    element.animate([{ opacity: 1 }, { opacity: 0 }], {
-      duration: 600,
-      iterations: 1,
-    }).onfinish = () => element.remove();
+    element.animate(
+      [{ opacity: 1 }, { opacity: 0, marginBlockStart: "-20ch" }],
+      {
+        duration: 600,
+        iterations: 1,
+      }
+    ).onfinish = () => element.remove();
   };
 
   moveElem = (target) => {
