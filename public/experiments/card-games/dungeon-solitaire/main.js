@@ -405,7 +405,11 @@ class Run {
 
     // treasure sorting
     this.active.stack.cards.forEach((card) => {
-      if (card.type == "action" && card.suit == "Pentacles") {
+      if (
+        card.type == "action" &&
+        card.suit == "Pentacles" &&
+        card.name !== "The Page of Pentacles"
+      ) {
         card.type = "treasure";
       }
     });
@@ -558,7 +562,8 @@ class Run {
   }
 
   discard(shortfall) {
-    lockInputs(shortfall * 1400);
+    let delay = shortfall * 1400;
+    lockInputs(delay);
     for (let leftToDiscard = shortfall; leftToDiscard > 0; leftToDiscard--) {
       const timeout = (shortfall - leftToDiscard + 1) * 1400; // repeat at 1.4s intervals
       console.log(
@@ -827,7 +832,7 @@ class Run {
       cardByID(treasure).removeEventListener("click", null);
       treasure.collectable = false;
       this.loseEncounter(
-        `You distract the monster with ${treasure.name} and scurry away.`
+        `You distract the monster with ${card.name} and scurry away.`
       );
     }
   }
