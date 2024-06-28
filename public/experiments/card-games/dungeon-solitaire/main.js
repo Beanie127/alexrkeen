@@ -574,9 +574,6 @@ class Run {
     lockInputs(lockout);
     for (let leftToDiscard = shortfall; leftToDiscard > 0; leftToDiscard--) {
       const delay = (shortfall - leftToDiscard + 1) * 1400; // repeat at 1.4s intervals
-      console.log(
-        `${leftToDiscard} remaining to discard. Setting timeout for card #${leftToDiscard} as ${timeout}`
-      );
       setTimeout(() => {
         const discard = this.deck.draw();
         showCard(discard);
