@@ -59,7 +59,8 @@ class Run {
   startRun() {
     this.deck = new DungeonDeck();
     this.deck.shuffle();
-    hpDisplay.appendChild(this.deck.cups.at(-1).createImg());
+    this.hp = 10;
+    this.updateHp();
     const leftOverCards = document.querySelectorAll(".card");
     leftOverCards.forEach((element) => {
       if (element.id == "hp" || element.id == "display-current-card") {
@@ -226,6 +227,22 @@ class Run {
       flasher.classList.remove("fade-out");
       flasher.removeEventListener("click", null);
     });
+  }
+
+  updateHp() {
+    const hpCard = this.deck.cups.find((card) => card.rank == this.hp);
+    hpDisplay.animate(
+      [
+        { transform: "translateY(-2ch)", opacity: 0, offset: 0.49 },
+        { opacity: 0, offset: 0.5 },
+        { transform: "translateY(2ch)", opacity: 0, offset: 0.51 },
+        { opacity: 1 },
+      ],
+      { duration: 1200 }
+    );
+    setTimeout(() => {
+      hpDisplay.innerHTML = `<img src="../images/${hpCard.filename}.jpg" title="${hpCard.name}" alt="${hpCard.name}"/>`;
+    }, 600);
   }
 
   // encounter processing
@@ -549,16 +566,7 @@ class Run {
         this.active.encounter.type
       );
     } else {
-      const hpCard = this.deck.cups.find((card) => card.rank == this.hp);
-      hpDisplay.animate(
-        [
-          { transform: "translateY(-2ch)", opacity: 0, offset: 0.49 },
-          { opacity: 0, offset: 0.5 },
-          { transform: "translateY(2ch)", opacity: 0, offset: 0.51 },
-          { opacity: 1 },
-        ],
-        { duration: 1200 }
-      );
+      this.updateHp();
       setTimeout(() => {
         hpDisplay.innerHTML = `<img src="../images/${hpCard.filename}.jpg" title="${hpCard.name}" alt="${hpCard.name}"/>`;
       }, 600);
