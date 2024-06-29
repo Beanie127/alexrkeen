@@ -42,6 +42,14 @@ window.addEventListener("load", () => {
 
 const quoteData = [
   {
+    author: "Jorje Luis Borges",
+    text: "What I'm really concerned about is reaching one person. And that person may be myself for all I know.",
+  },
+  {
+    author: "Rich Burlew",
+    text: "Intentions matter only in the absence of results. And then, only for the blaming.",
+  },
+  {
     author: "Plutarch",
     text: "Education is not the filling of a pail, but the lighting of a fire.",
   },
