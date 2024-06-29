@@ -814,6 +814,7 @@ class Run {
   dropTreasure(card) {
     lockInputs(2000);
     console.log(`dropTreasure triggered on ${card.name}`);
+    const treasure = this.hand.find((obj) => obj.id == card.id);
     if (this.active.encounter.exists == false) {
       return;
     }
@@ -827,7 +828,6 @@ class Run {
       );
       return;
     }
-    const treasure = this.hand.find((obj) => obj.id == card.id);
     this.placeCard(
       treasure,
       this.active.stack.cards,
