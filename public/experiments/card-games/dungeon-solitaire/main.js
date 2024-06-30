@@ -567,9 +567,6 @@ class Run {
       );
     } else {
       this.updateHp();
-      setTimeout(() => {
-        hpDisplay.innerHTML = `<img src="../images/${hpCard.filename}.jpg" title="${hpCard.name}" alt="${hpCard.name}"/>`;
-      }, 600);
       updateMessage(
         `You lose ${damage} HP as the ${this.active.encounter.type} injures you.`
       );
@@ -588,6 +585,9 @@ class Run {
         if (discard.type == "torch") {
           this.placeCard(discard, this.torches, torchTrack);
           this.burnTorch(discard);
+        } else if (discard.type == "corruption") {
+          this.placeCard(discard, this.corruption, corruptionTrack);
+          this.gainCorruption(discard);
         } else {
           this.discards.push(discard);
         }
