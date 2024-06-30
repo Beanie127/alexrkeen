@@ -7,7 +7,7 @@ const btnDraw = document.querySelector("#btn-draw");
 const btnAdvance = document.querySelector("#btn-advance");
 const btnRetreat = document.querySelector("#btn-retreat");
 const btnTestMode = document.querySelector("#btn-test");
-const buttons = [btnStart, btnDraw, btnAdvance, btnRetreat, btnTestMode];
+const buttons = document.querySelectorAll("button");
 // notifications
 const narrator = document.querySelector("#narrator");
 const displayCurrentCard = document.querySelector("#display-current-card");
@@ -201,7 +201,7 @@ class Run {
           break;
         case "skill":
         case "blessing":
-          updateMessage(`You find ${cardToSort.name} and add it to your hand.`);
+          updateMessage(`You add ${cardToSort.name} to your hand.`);
           this.placeCard(
             cardToSort,
             this.hand,
@@ -231,6 +231,7 @@ class Run {
 
   updateHp() {
     const hpCard = this.deck.cups.find((card) => card.rank == this.hp);
+    hpDisplay.classList.remove("flipped");
     hpDisplay.animate(
       [
         { transform: "translateY(-2ch)", opacity: 0, offset: 0.49 },
@@ -575,7 +576,7 @@ class Run {
   }
 
   discard(shortfall) {
-    let lockout = shortfall * 1400;
+    let lockout = shortfall * 1600;
     lockInputs(lockout);
     for (let leftToDiscard = shortfall; leftToDiscard > 0; leftToDiscard--) {
       const delay = (shortfall - leftToDiscard + 1) * 1400; // repeat at 1.4s intervals
