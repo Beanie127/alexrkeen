@@ -42,6 +42,10 @@ window.addEventListener("load", () => {
 
 const quoteData = [
   {
+    author: "Clive James",
+    text: "All I can do is turn a phrase until it catches the light.",
+  },
+  {
     author: "Jorje Luis Borges",
     text: "What I'm really concerned about is reaching one person. And that person may be myself for all I know.",
   },
