@@ -1,5 +1,37 @@
 import { shuffle } from "./utils.js";
 
+customElements.define(
+  "playing-card",
+  class extends HTMLElement {
+    constructor(rank, suit, name) {
+      super();
+      if (suit == "Major Arcana") {
+        this.name = name;
+      } else if (
+        rank == "Ace" ||
+        rank == "Page" ||
+        rank == "Jack" ||
+        rank == "Knight" ||
+        rank == "Queen" ||
+        rank == "King"
+      ) {
+        this.name = `The ${rank} of ${suit}`;
+      } else {
+        this.name = `${rank} of ${suit}`;
+      }
+      this.type = false;
+      this.suit = suit;
+      this.rank = rank;
+      this.value = false;
+      this.worth = 0;
+      this.id = 0;
+      this.encounterType = false;
+      this.isCollectable = false;
+      this.filename = "";
+    }
+  }
+);
+
 class Card {
   constructor(rank, suit, name) {
     if (suit == "Major Arcana") {
@@ -47,7 +79,7 @@ class Card {
     const image = document.createElement("img");
     image.setAttribute(
       "src",
-      `/experiments/card-games/images/${this.filename}.jpg`
+      `https://alexrkeen.com/experiments/card-games/images/${this.filename}.jpg`
     );
     image.setAttribute("title", this.name);
     image.setAttribute("alt", this.name);
