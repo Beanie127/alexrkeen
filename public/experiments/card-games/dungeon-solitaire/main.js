@@ -698,9 +698,8 @@ class Run {
     }, 1201);
   }
 
-  useSkill(card) {
+  useSkill(skill) {
     lockInputs(2000);
-    const skill = this.hand.find((obj) => obj.id == card.id);
     if (!this.active.encounter.exists) {
       return;
     }
@@ -718,7 +717,7 @@ class Run {
     }
   }
 
-  useBlessing(card) {
+  useBlessing(blessing) {
     lockInputs(2000);
     if (this.corruption.length > 0) {
       updateMessage("You feel the corruption in your soul washing away...");
@@ -729,7 +728,7 @@ class Run {
         cardByID(corruption).remove();
       }, 1300);
     }
-    switch (card.name) {
+    switch (blessing.name) {
       case "The Hanged Man":
         this.active.encounter.isInverted = true;
         updateMessage(
@@ -748,19 +747,19 @@ class Run {
         }
         break;
     }
-    card.isCollectable = false;
-    cardByID(card)?.remove();
+    blessing.isCollectable = false;
+    // cardByID(blessing)?.remove();
     this.placeCard(
-      card,
+      blessing,
       this.active.stack.cards,
       this.active.stack.elem,
       this.hand
     );
   }
 
-  drinkPotion(card) {
+  drinkPotion(potion) {
     lockInputs(2000);
-    switch (card.name) {
+    switch (potion.name) {
       case "Justice":
         if (
           this.active.encounter.type == "monster" ||
@@ -810,20 +809,19 @@ class Run {
           }.`
         );
         this.foresights = 3;
-        card.isCollectable = false;
+        potion.isCollectable = false;
     }
     this.placeCard(
-      card,
+      potion,
       this.active.stack.cards,
       this.active.stack.elem,
       this.hand
     );
   }
 
-  dropTreasure(card) {
+  dropTreasure(treasure) {
     lockInputs(2000);
     console.log(`dropTreasure triggered on ${card.name}`);
-    const treasure = this.hand.find((obj) => obj.id == card.id);
     if (this.active.encounter.exists == false) {
       return;
     }
@@ -950,8 +948,9 @@ btnTestMode.addEventListener("click", () => {
 });
 
 handTrack.addEventListener("click", (event) => {
-  const card = event.target.closest(".card");
-  switch (card.dataset.type) {
+  if (event.target == handTrack) return;
+  const card = this.hand.find((obj) => obj.id == event.target.closest(".card"));
+  switch (card.type) {
     case "treasure":
       run.dropTreasure(card);
       break;
