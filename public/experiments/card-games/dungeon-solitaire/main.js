@@ -208,7 +208,7 @@ class Run {
             handTrack,
             this.active.stack.cards
           );
-          this.makeUsable(cardToSort);
+          // this.makeUsable(cardToSort);
           break;
       }
     }, 1201);
@@ -327,7 +327,7 @@ class Run {
   startEncounter() {
     this.active.encounter.exists = true; // we're in an encounter
     btnRetreat.setAttribute("hidden", true); // no going back now
-    this.active.encounter.type = this.active.card.encounter.type;
+    this.active.encounter.type = this.active.card.encounterType;
     this.active.encounter.rating = this.active.card.rank;
     this.active.encounter.suit = this.active.card.suit;
     updateMessage(
@@ -387,7 +387,7 @@ class Run {
             break;
           }
           this.active.encounter.failedMaze = true;
-          switch (this.active.card.encounter.type) {
+          switch (this.active.card.encounterType) {
             case "monster":
             case "trap":
               this.takeDamage(1);
@@ -432,10 +432,10 @@ class Run {
       }
     });
     let collectables = this.active.stack.cards.filter(
-      (card) => card.collectable == true
+      (card) => card.isCollectable == true
     );
     let uncollectables = this.active.stack.cards.filter(
-      (card) => card.collectable == false
+      (card) => card.isCollectable == false
     );
     let newCollectables = [];
     console.log(`Collectables: ${this.listCards(collectables)}`);
@@ -711,7 +711,7 @@ class Run {
         this.active.stack.elem,
         this.hand
       );
-      card.collectable = false;
+      card.isCollectable = false;
       this.winEncounter();
     } else {
       alert("This skill isn't suitable!");
@@ -748,7 +748,7 @@ class Run {
         }
         break;
     }
-    card.collectable = false;
+    card.isCollectable = false;
     cardByID(card)?.remove();
     this.placeCard(
       card,
@@ -810,7 +810,7 @@ class Run {
           }.`
         );
         this.foresights = 3;
-        card.collectable = false;
+        card.isCollectable = false;
     }
     this.placeCard(
       card,
@@ -913,6 +913,11 @@ function updateMessage(newMessage, fresh = false) {
   }, 200);
 }
 
+// initialise
+
+let run = new Run();
+console.log(run);
+
 // UI buttons
 
 btnStart.addEventListener("click", () => {
@@ -944,13 +949,27 @@ btnTestMode.addEventListener("click", () => {
   console.log(`Deck now contains ${run.listCards(run.deck.cardsInDeck)}`);
 });
 
-// initialise
+handTrack.addEventListener("click", (event) => {
+  const card = event.target.closest(".card");
+  switch (card.dataset.type) {
+    case "treasure":
+      run.dropTreasure(card);
+      break;
+    case "skill":
+      run.useSkill(card);
+      break;
+    case "blessing":
+      run.useBlessing(card);
+      break;
+    case "potion":
+      run.drinkPotion(card);
+      break;
+  }
+});
 
-let run = new Run();
-console.log(run);
+// log run for debugging
 
 setInterval(() => {
-  // log run for debugging
   console.log(run);
 }, 10000);
 
