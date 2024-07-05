@@ -22,8 +22,8 @@ class Card {
     this.value = false;
     this.worth = 0;
     this.id = 0;
-    this.encounter = {};
-    this.collectable = false;
+    this.encounterType = false;
+    this.isCollectable = false;
     this.filename = "";
   }
 
@@ -32,10 +32,12 @@ class Card {
     element.classList.add("card");
     element.dataset.id = this.id;
     element.dataset.name = this.name;
+    element.dataset.type = this.type;
+    if (this.encounterType !== false) element.dataset.encounterType = this.type;
     element.dataset.suit = this.suit;
     element.dataset.rank = this.rank;
     element.dataset.worth = this.worth;
-    element.dataset.collectable = this.collectable;
+    element.dataset.isCollectable = this.isCollectable;
     const img = this.createImg();
     element.appendChild(img);
     return element;
@@ -320,7 +322,7 @@ class DungeonDeck extends Deck {
         case 8:
         case 9:
         case 10:
-          card.encounter.type = "maze";
+          card.encounterType = "maze";
           card.type = "action";
           break;
         case 11:
@@ -349,14 +351,14 @@ class DungeonDeck extends Deck {
         case "blessing":
         case "potion":
           card.worth = 6;
-          card.collectable = true;
+          card.isCollectable = true;
           break;
         case "treasure":
           card.worth = 20;
-          card.collectable = true;
+          card.isCollectable = true;
           break;
         case "companion":
-          card.collectable = true;
+          card.isCollectable = true;
           break;
       }
       this.add(card);
@@ -374,12 +376,12 @@ class DungeonDeck extends Deck {
             break;
           case "Page":
             card.type = "companion";
-            card.collectable = true;
+            card.isCollectable = true;
             card.filename = `${suitInitial}p`;
             break;
           case "Knight":
             card.type = "skill";
-            card.collectable = false;
+            card.isCollectable = false;
             card.filename = `${suitInitial}n`;
             break;
           case "Queen":
@@ -389,7 +391,7 @@ class DungeonDeck extends Deck {
           case "King":
             card.type = "treasure";
             card.worth = 10;
-            card.collectable = true;
+            card.isCollectable = true;
             card.filename = `${suitInitial}k`;
             break;
         }
@@ -411,15 +413,15 @@ class DungeonDeck extends Deck {
         card.type = "action";
         switch (suit) {
           case "Swords":
-            card.encounter.type = "monster";
+            card.encounterType = "monster";
             break;
           case "Pentacles":
-            card.encounter.type = "trap";
+            card.encounterType = "trap";
             card.worth = card.rank;
-            card.collectable = true;
+            card.isCollectable = true;
             break;
           case "Wands":
-            card.encounter.type = "door";
+            card.encounterType = "door";
             break;
         }
         this.add(card);
