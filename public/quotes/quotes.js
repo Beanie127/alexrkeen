@@ -42,6 +42,18 @@ window.addEventListener("load", () => {
 
 const quoteData = [
   {
+    author: "Denis Diderot",
+    text: "Beware of the man who talks about putting things in order! Putting things in order always means getting other people under your control.",
+  },
+  {
+    author: "Denis Diderot",
+    text: "Pithy sentences are like sharp nails which force truth upon our memory.",
+  },
+  {
+    author: "Denis Diderot",
+    text: "Men will never be free until the last king is strangled with the entrails of the last priest.",
+  },
+  {
     author: "Clive James",
     text: "All I can do is turn a phrase until it catches the light.",
   },
