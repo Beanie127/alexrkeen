@@ -821,7 +821,7 @@ class Run {
 
   dropTreasure(treasure) {
     lockInputs(2000);
-    console.log(`dropTreasure triggered on ${card.name}`);
+    console.log(`dropTreasure triggered on ${treasure.name}`);
     if (this.active.encounter.exists == false) {
       return;
     }
