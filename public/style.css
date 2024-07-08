@@ -41,7 +41,7 @@ article {
     -webkit-margin-after: 6rem;
     margin-block-end: 6rem;
     margin-inline: auto;
-    max-inline-size: 80ch;
+    max-inline-size: 100ch;
     padding: 0rem 1rem;
     font-weight: 400;
     grid-column: 2 / 3;
@@ -444,7 +444,7 @@ body::-webkit-scrollbar-thumb {
 } */
 
 /* responsive design */
-@media (min-width: 67em) {
+@media (min-width: 800px) {
     /* body {
     margin-block-start: 2rem;
     display: grid;
