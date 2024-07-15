@@ -175,23 +175,18 @@ figure {
     position: absolute;
     border-radius: 10px 10px 0 0;
     overflow: hidden;
-    top: 0;
-    right: 0;
-    inline-size: 25em;
-    max-inline-size: 100%;
-    aspect-ratio: 1;
-    background-image: url(./images/profile-toon.png);
-    background-size: contain;
+    inset: 0;
+    inset-block-end: 3ch;
+    background-image: url(./images/profile_toon_2x3.png);
+    background-size: cover;
     background-repeat: no-repeat;
     opacity: 0;
-    transition: opacity 200ms ease-out;
-    z-index: 4;
+    transition: 300ms ease-in-out;
+    z-index: 6;
 }
 
 #profile-container:hover::after {
     opacity: 1;
-    z-index: 6;
-    transition: opacity 200ms ease-out;
 }
 
 figcaption {
