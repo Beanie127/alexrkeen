@@ -177,7 +177,7 @@ figure {
     overflow: hidden;
     inset: 0;
     inset-block-end: 3ch;
-    background-image: url(./images/profile_toon_2x3.png);
+    background-image: url(./images/profile_toon_2x3.webp);
     background-size: cover;
     background-repeat: no-repeat;
     opacity: 0;
