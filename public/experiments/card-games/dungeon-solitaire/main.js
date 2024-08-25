@@ -949,7 +949,7 @@ btnTestMode.addEventListener("click", () => {
 
 handTrack.addEventListener("click", (event) => {
   if (event.target == handTrack) return;
-  const card = this.hand.find((obj) => obj.id == event.target.closest(".card"));
+  const card = run.hand.find((obj) => obj.id == event.target.closest(".card"));
   switch (card.type) {
     case "treasure":
       run.dropTreasure(card);
