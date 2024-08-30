@@ -41,7 +41,18 @@ window.addEventListener("load", () => {
 });
 
 const quoteData = [
-{author: "Sugar (Cheryl Strayed)", text: "I’ll never know and neither will you of the life you don’t choose. We’ll only know that whatever that sister life was, it was important and beautiful and not ours. It was the ghost ship that didn’t carry us. There’s nothing to do but salute it from the shore."},
+  {
+    author: "Eckhart Tolle",
+    text: "Acceptance of the unacceptable is the greatest source of grace in this world",
+  },
+  {
+    author: "Michael Singer",
+    text: "If you want to know why you do something, stop doing it and see what happens.",
+  },
+  {
+    author: "Sugar (Cheryl Strayed)",
+    text: "I’ll never know and neither will you of the life you don’t choose. We’ll only know that whatever that sister life was, it was important and beautiful and not ours. It was the ghost ship that didn’t carry us. There’s nothing to do but salute it from the shore.",
+  },
   {
     author: "Cyril Connolly",
     text: "Better to write for yourself and have no public, than to write for the public and have no self.",
