@@ -41,6 +41,10 @@ window.addEventListener("load", () => {
 });
 
 const quoteData = [
+  {
+    text: "Never attribute to malice or stupidity that which can be explained by moderately rational individuals following incentives in a complex system.",
+    author: "Douglas W. Hubbard",
+  },
   { text: "It never gets easier, you just go faster.", author: "Greg LeMond" },
   {
     text: "But there are no labor shortcuts for caring, in and of itself, no stretching a little bit of intentionality to provide focused attention across some ever increasing population. Care doesn’t scale; cruelty does. You can’t automate your way around the infinite obligation to the other.",
