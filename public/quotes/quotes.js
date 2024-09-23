@@ -41,7 +41,15 @@ window.addEventListener("load", () => {
 });
 
 const quoteData = [
-{text:"The needs, tastes, aspirations and interests of mankind are neither similar nor naturally harmonious; often they are diametrically opposed and antagonistic. On the other hand, the life of each individual is so conditioned by the life of others that it would be impossible, even assuming it were convenient to do so, to isolate oneself and live one’s own life. Social solidarity is a fact from which no one can escape.", author: "Errico Malatesta"},
+  { text: "It never gets easier, you just go faster.", author: "Greg LeMond" },
+  {
+    text: "But there are no labor shortcuts for caring, in and of itself, no stretching a little bit of intentionality to provide focused attention across some ever increasing population. Care doesn’t scale; cruelty does. You can’t automate your way around the infinite obligation to the other.",
+    author: "Rob Horning",
+  },
+  {
+    text: "The needs, tastes, aspirations and interests of mankind are neither similar nor naturally harmonious; often they are diametrically opposed and antagonistic. On the other hand, the life of each individual is so conditioned by the life of others that it would be impossible, even assuming it were convenient to do so, to isolate oneself and live one’s own life. Social solidarity is a fact from which no one can escape.",
+    author: "Errico Malatesta",
+  },
   {
     author: "Eckhart Tolle",
     text: "Acceptance of the unacceptable is the greatest source of grace in this world",
