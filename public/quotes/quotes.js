@@ -279,7 +279,7 @@ const quoteData = [
   },
   {
     author: "Stephen Spielberg",
-    text: "All good ideas start out as bad ones, that&apos;s why it takes so long",
+    text: "All good ideas start out as bad ones, that&apos;s why it takes so long.",
   },
   {
     author: "Allen Ginsberg",
@@ -347,7 +347,7 @@ const quoteData = [
   },
   {
     author: "Oliver Wendell Holmes",
-    text: "Alas for those that never sing but die with all their music in them",
+    text: "Alas for those that never sing but die with all their music in them.",
   },
   {
     author: "Friedrich Nietzsche",
