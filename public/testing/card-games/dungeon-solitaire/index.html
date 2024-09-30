@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex R. Keen | Card Games</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <h1>Dungeon Solitaire</h1>
+    <aside>
+        <div class="flex-row">
+            <div>
+                <h3>HP</h3>
+                <div class="card flipped" id="hp">
+                </div>
+            </div>
+            <div>
+                <h3>Companions</h3>
+                <div class="stack-horizontal" id="companion-track"></div>
+            </div>
+        </div>
+        <div class="flex-row">
+            <div>
+                <h3>Torches</h3>
+                <div class="stack-horizontal" id="torch-track"></div>
+            </div>
+            <div>
+                <h3>Corruption</h3>
+                <div class="stack-horizontal" id="corruption-track"></div>
+            </div>
+        </div>
+    </aside>
+    <div class="flex-row" id="button-track">
+        <span id="cards-remaining">69 </span>
+        <button type="button" id="btn-start">Start</button>
+        <button type="button" id="btn-draw" hidden>Draw</button>
+        <button type="button" id="btn-advance" hidden>Advance</button>
+        <button type="button" id="btn-retreat" hidden>Retreat</button>
+        <button type="button" id="btn-test" hidden>Enter Test Mode</button>
+    </div>
+    <p id="narrator">You are standing outside a dungeon.</p>
+    <div id="hand-track"></div>
+    <main>
+        <div class="flex-row" id="delve">
+            <div class="stack-vertical" data-depth="1"></div>
+            <div class="stack-vertical" data-depth="2"></div>
+            <div class="stack-vertical" data-depth="3"></div>
+            <div class="stack-vertical" data-depth="4"></div>
+            <div class="stack-vertical" data-depth="5"></div>
+            <div class="stack-vertical" data-depth="6"></div>
+            <div class="stack-vertical" data-depth="7"></div>
+            <div class="stack-vertical" data-depth="8"></div>
+            <div class="stack-vertical" data-depth="9"></div>
+            <div class="stack-vertical" data-depth="10"></div>
+            <div class="stack-vertical" data-depth="11"></div>
+            <div class="stack-vertical" data-depth="12"></div>
+        </div>
+        <div class="flex-row" id="delve-retreat">
+            <div class="stack-vertical" data-depth="1"></div>
+            <div class="stack-vertical" data-depth="2"></div>
+            <div class="stack-vertical" data-depth="3"></div>
+            <div class="stack-vertical" data-depth="4"></div>
+            <div class="stack-vertical" data-depth="5"></div>
+            <div class="stack-vertical" data-depth="6"></div>
+            <div class="stack-vertical" data-depth="7"></div>
+            <div class="stack-vertical" data-depth="8"></div>
+            <div class="stack-vertical" data-depth="9"></div>
+            <div class="stack-vertical" data-depth="10"></div>
+            <div class="stack-vertical" data-depth="11"></div>
+            <div class="stack-vertical" data-depth="12"></div>
+        </div>
+    </main>
+    <div id="display-current-card" class="card"></div>
+    <script type="module" src="./main.js"></script>
+</body>
+
+</html>
