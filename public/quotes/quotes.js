@@ -3,44 +3,55 @@ const displayQuote = document.querySelector("#display-quote");
 const quoteFilter = document.querySelector("#quote-filter");
 const quoteFilterResults = document.querySelector("#quote-filter-results");
 
-function newQuote() {
-  console.log("generating new quote");
-  const randomNumber = Math.floor(Math.random() * quoteData.length);
-  const quote = quoteData[randomNumber];
-  const output = `<blockquote>${quote.text}<cite>${quote.author}</cite></blockquote>`;
-  displayQuote.innerHTML = output;
+function renderQuote(quote, target) {
+  const blockquote = document.createElement("blockquote");
+  blockquote.innerHTML = quote.text;
+  const cite = document.createElement("cite");
+  cite.innerHTML = quote.author;
+  blockquote.appendChild(cite);
+  target.appendChild(blockquote);
 }
 
-function filter(searchTerm) {
-  return quoteData.filter(
+// return a random quote
+function randomQuote() {
+  const randomNumber = Math.floor(Math.random() * allQuotes.length);
+  return allQuotes[randomNumber];
+}
+
+// return a filtered list of quotes which match the search term
+function filterQuotes(searchTerm) {
+  return allQuotes.filter(
     (quote) =>
       quote.text.toLowerCase().includes(searchTerm.toLowerCase()) ||
       quote.author.toLowerCase().includes(searchTerm.toLowerCase())
   );
 }
 
-function render(input) {
-  let output = "";
-  input.forEach(
-    (quote) =>
-      (output += `<blockquote>${quote.text}<cite>${quote.author}</cite></blockquote>`)
-  );
-  quoteFilterResults.innerHTML = output;
-}
-
-quoteFilter.addEventListener("keyup", (e) => {
-  render(filter(quoteFilter.value));
-});
-
-refreshQuote.addEventListener("click", newQuote);
-
+// on load, clear filter results, then render all quotes, and render a random quote
 window.addEventListener("load", () => {
-  newQuote();
-  quoteData.sort(() => Math.random() - 0.5);
-  render(filter(""));
+  quoteFilterResults.innerHTML = "";
+  allQuotes.forEach((quote) => renderQuote(quote, quoteFilterResults));
+  renderQuote(randomQuote(), displayQuote);
 });
 
-const quoteData = [
+// on click, clear displayQuote and render a new random quote
+refreshQuote.addEventListener("click", () => {
+  displayQuote.innerHTML = "";
+  renderQuote(randomQuote(), displayQuote);
+});
+
+// on keyup, clear filter results and render all quotes matching search term
+quoteFilter.addEventListener("keyup", (e) => {
+  quoteFilterResults.innerHTML = "";
+  const filteredList = filterQuotes(e.target.value);
+  filteredList.forEach((quote) => renderQuote(quote, quoteFilterResults));
+});
+
+const allQuotes = [
+  {
+    text: "There is nothing wrong with spending a night in jail if it means getting the shot you need. Send out all your dogs and one might return with pray... Carry bolt cutters everywhere. Thwart institutional cowardice.",
+    author: "Werner Herzog",
+  },
   {
     text: "Never attribute to malice or stupidity that which can be explained by moderately rational individuals following incentives in a complex system.",
     author: "Douglas W. Hubbard",
