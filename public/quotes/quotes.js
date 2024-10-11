@@ -49,6 +49,10 @@ quoteFilter.addEventListener("keyup", (e) => {
 
 const allQuotes = [
   {
+    text: "‘Blessed be all metrical rules that forbid automatic responses, / <br/> force us to have second thoughts, free from the fetters of Self",
+    author: "W.H. Auden",
+  },
+  {
     text: "There is nothing wrong with spending a night in jail if it means getting the shot you need. Send out all your dogs and one might return with pray... Carry bolt cutters everywhere. Thwart institutional cowardice.",
     author: "Werner Herzog",
   },
