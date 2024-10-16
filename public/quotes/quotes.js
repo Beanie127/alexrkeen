@@ -49,6 +49,10 @@ quoteFilter.addEventListener("keyup", (e) => {
 
 const allQuotes = [
   {
+    text: "Human nature is not a machine to be built after a model, and set to do exactly the work prescribed for it, but a tree, which requires to grow and develop itself on all sides, according to the tendency of the inward forces which make it a living thing.",
+    author: "John Stuart Mill",
+  },
+  {
     text: "‘Blessed be all metrical rules that forbid automatic responses, / <br/> force us to have second thoughts, free from the fetters of Self",
     author: "W.H. Auden",
   },
