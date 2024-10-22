@@ -19,25 +19,7 @@
             margin-block: 0;
         }
 
-        .wrapper {
-            display: grid;
-            grid-template-rows: min-content 1fr min-content;
-            block-size: 100svb;
-            place-items: center;
-            margin-block: 0;
-        }
-
-        #controls {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: center;
-            gap: 1ch 1ch;
-            padding-block: 2em;
-        }
-
         button {
-            margin: unset;
             border: thin solid currentColor;
             border-radius: 5px;
             padding: 0.5ch 1ch;
@@ -46,62 +28,59 @@
             color: inherit;
         }
 
-        #output {
+        .flex {
+            display: flex;
+            flex-wrap: wrap;
+            inline-size: calc(100% - 4rem);
+            margin-inline: auto;
+            gap: 1ch;
+            justify-content: space-around;
+        }
+
+        .flex.btn-flex {
+            flex-basis: 100%;
+        }
+
+        #suggestion-output {
             margin-block: 1rem;
             text-align: center;
             font-size: 2em;
             font-weight: 250;
             line-height: 1;
         }
-
-        .prompt-category {
-            font-size: 0.5em;
-            opacity: 0.5;
-            text-transform: uppercase;
-        }
     </style>
 </head>
 
 <body>
     <main>
-        <div class="wrapper">
-            <h1>Random Improv Prompt Generator</h1>
-            <div id="output">
-            </div>
-            <div id="controls">
-                <button type="button" id="any">
-                    Any
-                </button>
-                <button type="button" id="job">
-                    Profession
-                </button>
-                <button type="button" id="activity">
-                    Activity
-                </button>
-                <button type="button" id="event">
-                    Event
-                </button>
-                <button type="button" id="object">
-                    Object
-                </button>
-                <button type="button" id="relationship">
-                    Relationship
-                </button>
-                <button type="button" id="locale">
-                    Location
-                </button>
-                <button type="button" id="emotion">
-                    Emotion
-                </button>
-                <button type="button" id="story">
-                    Story
-                </button>
-                <button type="button" id="undo">
-                    Undo
-                </button>
-            </div>
+        <!-- <div class="wrapper"> -->
+        <h1>Improv Tools</h1>
+        <form id="prompt-generator">
+            <fieldset class="flex">
+                <legend>Get a suggestion</legend>
+                <label for="any"><input type="radio" id="any" name="suggestion-type" value="any" checked>any</label>
+                <label for="job"><input type="radio" id="job" name="suggestion-type" value="job">job</label>
+                <label for="activity"><input type="radio" id="activity" name="suggestion-type"
+                        value="activity">activity</label>
+                <label for="event"><input type="radio" id="event" name="suggestion-type" value="event">event</label>
+                <label for="object"><input type="radio" id="object" name="suggestion-type" value="object">object</label>
+                <label for="emotion"><input type="radio" id="emotion" name="suggestion-type"
+                        value="emotion">emotion</label>
+                <label for="relationship"><input type="radio" id="relationship" name="suggestion-type"
+                        value="relationship">relationship</label>
+                <label for="location"><input type="radio" id="location" name="suggestion-type"
+                        value="location">location</label>
+                <label for="story"><input type="radio" id="story" name="suggestion-type" value="story">story</label>
+                <div class="flex btn-flex">
+                    <button type="submit">New suggestion</button>
+                    <button type="button" id="btn-undo">Undo</button>
+                </div>
+                <div id="suggestion-output">
+                </div>
+            </fieldset>
+        </form>
     </main>
-    <script type="module" src="./main.js"></script>
+    <script type="module" src="./suggestions.js"></script>
 </body>
 
 </html>
