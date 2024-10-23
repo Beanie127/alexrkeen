@@ -49,6 +49,10 @@ quoteFilter.addEventListener("keyup", (e) => {
 
 const allQuotes = [
   {
+    text: "It takes 20 years to build a reputation and five minutes to ruin it.",
+    author: "Warren Buffett",
+  },
+  {
     text: "Human nature is not a machine to be built after a model, and set to do exactly the work prescribed for it, but a tree, which requires to grow and develop itself on all sides, according to the tendency of the inward forces which make it a living thing.",
     author: "John Stuart Mill",
   },
@@ -75,7 +79,7 @@ const allQuotes = [
   },
   {
     author: "Eckhart Tolle",
-    text: "Acceptance of the unacceptable is the greatest source of grace in this world",
+    text: "Acceptance of the unacceptable is the greatest source of grace in this world.",
   },
   {
     author: "Michael Singer",
