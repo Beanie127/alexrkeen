@@ -28,9 +28,19 @@ function filterGames(tags, difficulty) {
 function renderGame(game) {
   gameGenerator.querySelector("#game-name").textContent = game.name;
   gameGenerator.querySelector("#game-player-count").textContent = game.players;
-  gameGenerator.querySelector("#game-difficulty").textContent = game.difficulty;
+
+  let difficulty = "Easy";
+  if (game.difficulty == 2) {
+    difficulty = "Medium";
+  }
+  if (game.difficulty == 3) {
+    difficulty = "Hard";
+  }
+  gameGenerator.querySelector("#game-difficulty").textContent = difficulty;
   gameGenerator.querySelector("#game-tags").textContent = game.tags;
+
   const description = gameGenerator.querySelector("#game-description");
+
   if (game.description) {
     description.removeAttribute("hidden");
     description.innerHTML = game.description;
