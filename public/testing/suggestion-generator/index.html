@@ -4,83 +4,83 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../../style.css">
+    <!-- <link rel="stylesheet" href="../../style.css"> -->
+    <link rel="stylesheet" href="style.css">
     <link rel="manifest" href="./manifest.webmanifest">
     <title>Alex Keen's Improv Prompt Generator</title>
     <script>
         navigator.serviceWorker.register("./serviceworker.js")
     </script>
-    <style>
-        html {
-            line-height: 1.1 !important;
-        }
-
-        body {
-            margin-block: 0;
-        }
-
-        button {
-            border: thin solid currentColor;
-            border-radius: 5px;
-            padding: 0.5ch 1ch;
-            background: oklch(6% 0.01 1);
-            font-size: 1em;
-            color: inherit;
-        }
-
-        .flex {
-            display: flex;
-            flex-wrap: wrap;
-            inline-size: calc(100% - 4rem);
-            margin-inline: auto;
-            gap: 1ch;
-            justify-content: space-around;
-        }
-
-        .flex.btn-flex {
-            flex-basis: 100%;
-        }
-
-        #suggestion-output {
-            margin-block: 1rem;
-            text-align: center;
-            font-size: 2em;
-            font-weight: 250;
-            line-height: 1;
-        }
-    </style>
 </head>
 
 <body>
     <main>
         <!-- <div class="wrapper"> -->
         <h1>Improv Tools</h1>
-        <form id="prompt-generator">
-            <fieldset class="flex">
-                <legend>Get a suggestion</legend>
-                <label for="any"><input type="radio" id="any" name="suggestion-type" value="any" checked>any</label>
-                <label for="job"><input type="radio" id="job" name="suggestion-type" value="job">job</label>
-                <label for="activity"><input type="radio" id="activity" name="suggestion-type"
-                        value="activity">activity</label>
-                <label for="event"><input type="radio" id="event" name="suggestion-type" value="event">event</label>
-                <label for="object"><input type="radio" id="object" name="suggestion-type" value="object">object</label>
-                <label for="emotion"><input type="radio" id="emotion" name="suggestion-type"
-                        value="emotion">emotion</label>
-                <label for="relationship"><input type="radio" id="relationship" name="suggestion-type"
-                        value="relationship">relationship</label>
-                <label for="location"><input type="radio" id="location" name="suggestion-type"
-                        value="location">location</label>
-                <label for="story"><input type="radio" id="story" name="suggestion-type" value="story">story</label>
+        <details name="tools">
+            <summary>
+                Suggestions
+            </summary>
+            <form id="prompt-generator">
                 <div class="flex btn-flex">
-                    <button type="submit">New suggestion</button>
+                    <button type="submit">Get a suggestion</button>
                     <button type="button" id="btn-undo">Undo</button>
                 </div>
+                <fieldset class="flex">
+                    <label for="any"><input type="radio" id="any" name="type" value="any" checked>any</label>
+                    <label for="job"><input type="radio" id="job" name="type" value="job">job</label>
+                    <label for="activity"><input type="radio" id="activity" name="type"
+                            value="activity">activity</label>
+                    <label for="event"><input type="radio" id="event" name="type" value="event">event</label>
+                    <label for="object"><input type="radio" id="object" name="type" value="object">object</label>
+                    <label for="emotion"><input type="radio" id="emotion" name="type" value="emotion">emotion</label>
+                    <label for="relationship"><input type="radio" id="relationship" name="type"
+                            value="relationship">relationship</label>
+                    <label for="location"><input type="radio" id="location" name="type"
+                            value="location">location</label>
+                    <label for="story"><input type="radio" id="story" name="type" value="story">story</label>
+                </fieldset>
                 <div id="suggestion-output">
                 </div>
-            </fieldset>
-        </form>
+            </form>
+        </details>
+        <hr>
+        <details name="tools">
+            <summary>Games</summary>
+            <form id="game-generator">
+                <div class="flex btn-flex">
+                    <button type="submit">Get a game</button>
+                </div>
+                <fieldset class="flex">
+                    <legend>Limit difficulty?</legend>
+                    <label><input type="radio" name="difficulty" value=1 checked>Easy only</label>
+                    <label><input type="radio" name="difficulty" value=2 checked>Easy or medium</label>
+                    <label><input type="radio" name="difficulty" value=3 checked>Anything</label>
+                </fieldset>
+                <fieldset class="flex">
+                    <legend>Exclude game types?</legend>
+                    <label><input type="checkbox" name="exclusion" value="guessing">Guessing Game</label>
+                    <label><input type="checkbox" name="exclusion" value="physical">Physical</label>
+                    <label><input type="checkbox" name="exclusion" value="mime">Mime</label>
+                    <label><input type="checkbox" name="exclusion" value="scene">Scene</label>
+                    <label><input type="checkbox" name="exclusion" value="talking heads">Talking Heads</label>
+                </fieldset>
+                <ul>
+                    <li><strong>Name:</strong> <span id="game-name"></span></li>
+                    <li><strong>Players:</strong> <span id="game-player-count"></span></li>
+                    <li><strong>Difficulty:</strong> <span id="game-difficulty"></span></li>
+                    <li><strong>Tags:</strong> <span id="game-tags"></span></li>
+                    <li id="game-description"></li>
+                </ul>
+            </form>
+        </details>
+        <hr>
+        <details name="tools">
+            <summary>Players</summary>
+        </details>
     </main>
-    <script type="module" src="./suggestions.js"></script>
+    <script type="module" src="suggestions.js"></script>
+    <script type="module" src="games.js"></script>
 </body>
 
 </html>
