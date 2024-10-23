@@ -49,6 +49,18 @@ quoteFilter.addEventListener("keyup", (e) => {
 
 const allQuotes = [
   {
+    text: "We are punished by our sins, not for them.",
+    author: "Elbert Hubbard",
+  },
+  {
+    text: "Don't take life too seriously. You will never get out of it alive.",
+    author: "Elbert Hubbard",
+  },
+  {
+    text: "In order to have friends, you must first be one.",
+    author: "Elbert Hubbard",
+  },
+  {
     text: "It takes 20 years to build a reputation and five minutes to ruin it.",
     author: "Warren Buffett",
   },
