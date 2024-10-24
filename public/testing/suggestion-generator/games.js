@@ -1,9 +1,5 @@
-import randomNumber from "./utilities.js";
+import randFromArray from "./utilities.js";
 const gameGenerator = document.querySelector("#game-generator");
-
-function randomGame(list) {
-  return list[randomNumber(list.length)];
-}
 
 function filterGames(tags, difficulty) {
   // create an array of invalid games
@@ -51,15 +47,17 @@ function renderGame(game) {
 
 gameGenerator.addEventListener("submit", (e) => {
   e.preventDefault();
-  const maxDifficulty = gameGenerator.difficulty.value;
+  // get filtered tags
   const excludedTags = [];
   const checkboxes = gameGenerator.querySelectorAll('[type="checkbox"]');
   checkboxes.forEach((checkbox) => {
     if (checkbox.checked) excludedTags.push(checkbox.value);
   });
-
+  // get max difficulty
+  const maxDifficulty = gameGenerator.difficulty.value;
+  // get valid games list and pick and render a valid game
   const validGames = filterGames(excludedTags, maxDifficulty);
-  const currentGame = randomGame(validGames);
+  const currentGame = randFromArray(validGames);
   renderGame(currentGame);
 });
 
@@ -290,7 +288,7 @@ const games = [
 ];
 
 function load() {
-  const currentGame = randomGame(games);
+  const currentGame = randFromArray(games);
   renderGame(currentGame);
 }
 

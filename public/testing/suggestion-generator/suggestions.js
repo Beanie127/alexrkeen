@@ -1,3 +1,4 @@
+import randFromArray from "./utilities.js";
 const history = [];
 
 const undo = document.querySelector("#btn-undo");
@@ -42,13 +43,11 @@ function randomList() {
     relationships,
     stories,
   ];
-  const num = Math.floor(Math.random() * promptTypes.length);
-  return promptTypes[num];
+  randFromArray(promptTypes);
 }
 
 function randomPrompt(list) {
-  const num = Math.floor(Math.random() * list.length);
-  return list[num];
+  return randFromArray(list);
 }
 
 function saveCurrentPrompt(prompt) {
