@@ -52,9 +52,17 @@
 
                 <fieldset class="flex">
                     <legend>Limit difficulty?</legend>
-                    <label><input type="radio" name="difficulty" value=1 checked>Easy only</label>
-                    <label><input type="radio" name="difficulty" value=2 checked>Easy or medium</label>
+                    <label><input type="radio" name="difficulty" value=1>Easy only</label>
+                    <label><input type="radio" name="difficulty" value=2>Easy or medium</label>
                     <label><input type="radio" name="difficulty" value=3 checked>Anything</label>
+                </fieldset>
+                <fieldset class="flex">
+                    <legend>Limit max player count?</legend>
+                    <label><input type="radio" name="playerCount" value=2>2</label>
+                    <label><input type="radio" name="playerCount" value=3>3</label>
+                    <label><input type="radio" name="playerCount" value=4>4</label>
+                    <label><input type="radio" name="playerCount" value=5 checked>5</label>
+                    <label><input type="radio" name="playerCount" value=6>6</label>
                 </fieldset>
                 <fieldset class="flex">
                     <legend>Exclude game types?</legend>
@@ -64,6 +72,7 @@
                     <label><input type="checkbox" name="exclusion" value="scene">Scene</label>
                     <label><input type="checkbox" name="exclusion" value="talking heads">Talking Heads</label>
                 </fieldset>
+
                 <div class="flex">
                     <button type="submit">Get a game</button>
                 </div>

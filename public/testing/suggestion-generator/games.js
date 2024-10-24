@@ -1,12 +1,12 @@
 import randFromArray from "./utilities.js";
 const gameGenerator = document.querySelector("#game-generator");
 
-function filterGames(tags, difficulty) {
+function filterGames(tags, playerCount, difficulty) {
   // create an array of invalid games
   const invalidGames = [];
-  // add any games which exceed preferred difficulty
+  // add any games which exceed preferred difficulty or max player count
   games.forEach((game) => {
-    if (game.difficulty > difficulty) {
+    if (game.difficulty > difficulty || game.playerCount > playerCount) {
       invalidGames.push(game);
     }
     // check if game has any tags which match excluded tags
@@ -23,7 +23,8 @@ function filterGames(tags, difficulty) {
 
 function renderGame(game) {
   gameGenerator.querySelector("#game-name").textContent = game.name;
-  gameGenerator.querySelector("#game-player-count").textContent = game.players;
+  gameGenerator.querySelector("#game-player-count").textContent =
+    game.playerCount;
 
   let difficulty = "Easy";
   if (game.difficulty == 2) {
@@ -55,215 +56,216 @@ gameGenerator.addEventListener("submit", (e) => {
   });
   // get max difficulty
   const maxDifficulty = gameGenerator.difficulty.value;
+  const maxPlayerCount = gameGenerator.playerCount.value;
   // get valid games list and pick and render a valid game
-  const validGames = filterGames(excludedTags, maxDifficulty);
+  const validGames = filterGames(excludedTags, maxPlayerCount, maxDifficulty);
   const currentGame = randFromArray(validGames);
   renderGame(currentGame);
 });
 
 const games = [
-  { name: "Number of Words", players: 3, difficulty: 1, tags: ["scene"] },
-  { name: "Superheroes", players: 4, difficulty: 2, tags: ["scene"] },
+  { name: "Number of Words", playerCount: 3, difficulty: 1, tags: ["scene"] },
+  { name: "Superheroes", playerCount: 4, difficulty: 2, tags: ["scene"] },
   {
     name: "Film Dub",
-    players: 4,
+    playerCount: 4,
     difficulty: 2,
     tags: ["scene", "gibberish"],
   },
   {
     name: "Good/Bad/Weird Advice",
-    players: 3,
+    playerCount: 3,
     difficulty: 1,
     tags: ["talking heads"],
   },
   {
     name: "High Status/Low Status",
-    players: 2,
+    playerCount: 2,
     difficulty: 1,
     tags: ["scene", "talking heads"],
   },
-  { name: "Hesistation", players: 2, difficulty: 1, tags: ["scene"] },
+  { name: "Hesistation", playerCount: 2, difficulty: 1, tags: ["scene"] },
   {
     name: "Questions",
-    players: 6,
+    playerCount: 6,
     difficulty: 2,
     tags: ["physical", "talking heads"],
   },
   {
     name: "Three Headed Interview",
-    players: 3,
+    playerCount: 3,
     difficulty: 1,
     tags: ["talking heads"],
   },
   {
     name: "Two Headed Letter",
-    players: 4,
+    playerCount: 4,
     difficulty: 1,
     tags: ["talking heads"],
   },
   {
     name: "Sit/Stand/Lean",
-    players: 3,
+    playerCount: 3,
     difficulty: 2,
     tags: ["scene", "physical"],
   },
   {
     name: "Entrances & Exits",
-    players: 3,
+    playerCount: 3,
     difficulty: 2,
     tags: ["scene", "physical"],
   },
   {
     name: "Hollywood Director",
-    players: 4,
+    playerCount: 4,
     difficulty: 2,
     tags: ["scene"],
   },
-  { name: "Diamond", players: 4, difficulty: 1, tags: ["scene"] },
-  { name: "Character Swap", players: 2, difficulty: 1, tags: ["scene"] },
-  { name: "Alphabet", players: 2, difficulty: 2, tags: ["scene"] },
-  { name: "Half Life", players: 2, difficulty: 2, tags: ["scene"] },
+  { name: "Diamond", playerCount: 4, difficulty: 1, tags: ["scene"] },
+  { name: "Character Swap", playerCount: 2, difficulty: 1, tags: ["scene"] },
+  { name: "Alphabet", playerCount: 2, difficulty: 2, tags: ["scene"] },
+  { name: "Half Life", playerCount: 2, difficulty: 2, tags: ["scene"] },
   {
     name: "First Line/Last Line",
-    players: 2,
+    playerCount: 2,
     difficulty: 2,
     tags: ["scene"],
   },
   {
     name: "Backwards Interview",
-    players: 2,
+    playerCount: 2,
     difficulty: 3,
     tags: ["scene"],
   },
-  { name: "Forward/Reverse", players: 2, difficulty: 3, tags: ["scene"] },
+  { name: "Forward/Reverse", playerCount: 2, difficulty: 3, tags: ["scene"] },
   {
     name: "Angel/Devil",
-    players: 4,
+    playerCount: 4,
     difficulty: 2,
     tags: ["guessing", "scene"],
   },
   {
     name: "Boring/Interesting",
-    players: 4,
+    playerCount: 4,
     difficulty: 1,
     tags: ["scene", "mime"],
   },
-  { name: "New Choice", players: 2, difficulty: 1, tags: ["scene"] },
-  { name: "Character Swap", players: 2, difficulty: 1, tags: ["scene"] },
-  { name: "Emo Switch", players: 2, difficulty: 1, tags: ["scene"] },
-  { name: "Genre Switch", players: 2, difficulty: 1, tags: ["scene"] },
-  { name: "Scene God", players: 3, difficulty: 1, tags: ["scene"] },
+  { name: "New Choice", playerCount: 2, difficulty: 1, tags: ["scene"] },
+  { name: "Character Swap", playerCount: 2, difficulty: 1, tags: ["scene"] },
+  { name: "Emo Switch", playerCount: 2, difficulty: 1, tags: ["scene"] },
+  { name: "Genre Switch", playerCount: 2, difficulty: 1, tags: ["scene"] },
+  { name: "Scene God", playerCount: 3, difficulty: 1, tags: ["scene"] },
   {
     name: "Seed Word",
-    players: 4,
+    playerCount: 4,
     difficulty: 1,
     tags: ["scene", "guessing"],
   },
   {
     name: "Celebrity Interview",
-    players: 2,
+    playerCount: 2,
     difficulty: 2,
     tags: ["talking heads", "guessing"],
   },
   {
     name: "Big Night Out",
-    players: 3,
+    playerCount: 3,
     difficulty: 2,
     tags: ["guessing", "scene"],
   },
   {
     name: "Blind Date",
-    players: 4,
+    playerCount: 4,
     difficulty: 2,
     tags: ["guessing", "talking heads"],
   },
   {
     name: "QVC",
-    players: 4,
+    playerCount: 4,
     difficulty: 2,
     tags: ["guessing", "mime", "talking heads"],
   },
   {
     name: "Late Again",
-    players: 4,
+    playerCount: 4,
     difficulty: 3,
     tags: ["guessing", "mime"],
   },
   {
     name: "Expert Translator",
-    players: 2,
+    playerCount: 2,
     difficulty: 2,
     tags: ["mime", "scene"],
   },
   {
     name: "Household Olympics",
-    players: 4,
+    playerCount: 4,
     difficulty: 2,
     tags: ["mime", "physical", "talking heads"],
   },
   {
     name: "Sound Effects (2 player)",
-    players: 2,
+    playerCount: 2,
     difficulty: 2,
     tags: ["mime"],
   },
   {
     name: "Sound Effects (4 player)",
-    players: 4,
+    playerCount: 4,
     difficulty: 1,
     tags: ["scene"],
   },
   {
     name: "Chain Murder",
-    players: 4,
+    playerCount: 4,
     difficulty: 2,
     tags: ["mime", "physical", "guessing"],
   },
   {
     name: "Sign Language Interpreter",
-    players: 2,
+    playerCount: 2,
     difficulty: 2,
     tags: ["mime", "talking heads"],
   },
   {
     name: "Weekend at Bernies",
-    players: 4,
+    playerCount: 4,
     difficulty: "intermediate",
     tags: ["physical", "scene"],
   },
   {
     name: "The Clap",
-    players: 6,
+    playerCount: 6,
     difficulty: "intermediate",
     tags: ["scene"],
   },
   {
     name: "Story Die",
-    players: 6,
+    playerCount: 6,
     difficulty: 3,
     tags: ["talking heads"],
   },
   {
     name: "Story Genre",
-    players: 6,
+    playerCount: 6,
     difficulty: "intermediate",
     tags: ["talking heads"],
   },
   {
     name: "Emo Symphony",
-    players: 6,
+    playerCount: 6,
     difficulty: 1,
     tags: ["talking heads"],
   },
   {
     name: "Freeze Tag",
-    players: 6,
+    playerCount: 6,
     difficulty: 1,
     tags: ["scene", "physical"],
   },
   {
     name: "185",
-    players: 6,
+    playerCount: 6,
     difficulty: 3,
     tags: ["talking heads"],
   },
@@ -281,7 +283,7 @@ const games = [
       <li>Pranks PROFESSION play on each other</li>
       <li>Unlikely taglines for PRODUCT/BRAND</li>
       </ul></p>`,
-    players: 6,
+    playerCount: 6,
     difficulty: 3,
     tags: ["talking heads"],
   },
