@@ -1,9 +1,31 @@
 import randFromArray from "./utilities.js";
 const gameGenerator = document.querySelector("#game-generator");
+const gameReset = document.querySelector("#game-reset");
+const gameOutput = document.querySelector("#current-game");
+const pastGamesList = document.querySelector("#past-games");
+const pastGames = [];
+
+function reset() {
+  pastGames.length = 0;
+  pastGamesList.innerHTML = "";
+  gameOutput.setAttribute("hidden", "hidden");
+}
+
+gameReset.addEventListener("click", (e) => {
+  e.preventDefault();
+  if (confirm("Reset the game list?")) reset();
+});
+
+function updatePastGames(name) {
+  if (name == "") return;
+  const li = document.createElement("li");
+  li.textContent = name;
+  pastGamesList.appendChild(li);
+}
 
 function filterGames(tags, playerCount, difficulty) {
   // create an array of invalid games
-  const invalidGames = [];
+  const invalidGames = [...pastGames];
   // add any games which exceed preferred difficulty or max player count
   games.forEach((game) => {
     if (game.difficulty > difficulty || game.playerCount > playerCount) {
@@ -22,20 +44,12 @@ function filterGames(tags, playerCount, difficulty) {
 }
 
 function renderGame(game) {
+  gameOutput.removeAttribute("hidden");
+  updatePastGames(gameGenerator.querySelector("#game-name").textContent);
+
   gameGenerator.querySelector("#game-name").textContent = game.name;
   gameGenerator.querySelector("#game-player-count").textContent =
     game.playerCount;
-
-  let difficulty = "Easy";
-  if (game.difficulty == 2) {
-    difficulty = "Medium";
-  }
-  if (game.difficulty == 3) {
-    difficulty = "Hard";
-  }
-  gameGenerator.querySelector("#game-difficulty").textContent = difficulty;
-  gameGenerator.querySelector("#game-tags").textContent = game.tags;
-
   const description = gameGenerator.querySelector("#game-description");
 
   if (game.description) {
@@ -44,6 +58,8 @@ function renderGame(game) {
   } else {
     description.setAttribute("hidden", "hidden");
   }
+
+  pastGames.push(game);
 }
 
 gameGenerator.addEventListener("submit", (e) => {
@@ -59,6 +75,7 @@ gameGenerator.addEventListener("submit", (e) => {
   const maxPlayerCount = gameGenerator.playerCount.value;
   // get valid games list and pick and render a valid game
   const validGames = filterGames(excludedTags, maxPlayerCount, maxDifficulty);
+  if (validGames.length == 0) return;
   const currentGame = randFromArray(validGames);
   renderGame(currentGame);
 });
@@ -288,10 +305,3 @@ const games = [
     tags: ["talking heads"],
   },
 ];
-
-function load() {
-  const currentGame = randFromArray(games);
-  renderGame(currentGame);
-}
-
-load();

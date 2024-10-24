@@ -41,7 +41,7 @@
                     <button type="submit">Get a suggestion</button>
                     <button type="button" id="btn-undo">Undo</button>
                 </div>
-                <div id="suggestion-output">
+                <div id="suggestion-output" class="output">
                 </div>
             </form>
         </details>
@@ -75,20 +75,20 @@
 
                 <div class="flex">
                     <button type="submit">Get a game</button>
+                    <button id="game-reset">Reset</button>
                 </div>
-                <ul>
-                    <li><strong>Name:</strong> <span id="game-name"></span></li>
-                    <li><strong>Players:</strong> <span id="game-player-count"></span></li>
-                    <li><strong>Difficulty:</strong> <span id="game-difficulty"></span></li>
-                    <li><strong>Tags:</strong> <span id="game-tags"></span></li>
+                <ul id="current-game" class="listless output" hidden>
+                    <li><strong>Name: </strong><span id="game-name"></span></li>
+                    <li><strong>Players: </strong><span id="game-player-count"></span></li>
                     <li id="game-description"></li>
                 </ul>
+                <ul id="past-games"></ul>
             </form>
         </details>
         <hr>
         <details name="tools">
             <summary>Players</summary>
-            <ul id="player-list">
+            <ul id="player-list" class="listless">
             </ul>
             <form id="add-player">
                 <div class="flex">
@@ -102,7 +102,7 @@
                 <button id="reset-checkboxes">Clear checkboxes</button>
                 <button id="remove-all-players">Remove all players</button>
             </div>
-            <div id="player-output"></div>
+            <div id="player-output" class="output"></div>
         </details>
     </main>
     <script type="module" src="suggestions.js"></script>
