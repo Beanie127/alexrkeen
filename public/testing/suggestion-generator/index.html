@@ -22,11 +22,8 @@
                 Suggestions
             </summary>
             <form id="prompt-generator">
-                <div class="flex btn-flex">
-                    <button type="submit">Get a suggestion</button>
-                    <button type="button" id="btn-undo">Undo</button>
-                </div>
                 <fieldset class="flex">
+                    <legend>Suggestion type</legend>
                     <label for="any"><input type="radio" id="any" name="type" value="any" checked>any</label>
                     <label for="job"><input type="radio" id="job" name="type" value="job">job</label>
                     <label for="activity"><input type="radio" id="activity" name="type"
@@ -40,6 +37,10 @@
                             value="location">location</label>
                     <label for="story"><input type="radio" id="story" name="type" value="story">story</label>
                 </fieldset>
+                <div class="flex ">
+                    <button type="submit">Get a suggestion</button>
+                    <button type="button" id="btn-undo">Undo</button>
+                </div>
                 <div id="suggestion-output">
                 </div>
             </form>
@@ -48,9 +49,7 @@
         <details name="tools">
             <summary>Games</summary>
             <form id="game-generator">
-                <div class="flex btn-flex">
-                    <button type="submit">Get a game</button>
-                </div>
+
                 <fieldset class="flex">
                     <legend>Limit difficulty?</legend>
                     <label><input type="radio" name="difficulty" value=1 checked>Easy only</label>
@@ -65,6 +64,9 @@
                     <label><input type="checkbox" name="exclusion" value="scene">Scene</label>
                     <label><input type="checkbox" name="exclusion" value="talking heads">Talking Heads</label>
                 </fieldset>
+                <div class="flex">
+                    <button type="submit">Get a game</button>
+                </div>
                 <ul>
                     <li><strong>Name:</strong> <span id="game-name"></span></li>
                     <li><strong>Players:</strong> <span id="game-player-count"></span></li>
@@ -77,10 +79,26 @@
         <hr>
         <details name="tools">
             <summary>Players</summary>
+            <ul id="player-list">
+            </ul>
+            <form id="add-player">
+                <div class="flex">
+                    <label for="player-name">New player name: </label>
+                    <input type="text" name="player-name" id="player-name">
+                    <button type="submit">Add a player</button>
+                </div>
+            </form>
+            <div class="flex" id="controls">
+                <button id="remove-all-players">Remove all players</button>
+                <button id="pick-player">Pick a player</button>
+                <button id="reset-checkboxes">Clear checkboxes</button>
+            </div>
+            <div id="player-output"></div>
         </details>
     </main>
     <script type="module" src="suggestions.js"></script>
     <script type="module" src="games.js"></script>
+    <script type="module" src="players.js"></script>
 </body>
 
 </html>
