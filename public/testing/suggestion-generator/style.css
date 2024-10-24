@@ -85,3 +85,44 @@ button {
     list-style-type: none;
     padding-inline-start: 0;
 }
+
+#player-list {
+    list-style-type: none;
+    /* float: left; */
+    padding-inline-start: 0;
+
+    & li {
+        display: flex;
+        gap: 1ch;
+        justify-content: space-between;
+        align-items: center;
+        border-block-end: thin dashed pink;
+        /* outline: thin dotted pink; */
+    }
+
+    & input:checked + label {
+        text-decoration: line-through;
+    }
+
+    & li button {
+        border: 0;
+        background: 0;
+        color: red;
+    }
+}
+
+#player-card {
+    position: relative;
+    padding-inline-end: 3rem;
+    & #close-btn {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 1ch;
+    }
+}
+
+#player-output {
+    font-size: 1.5rem;
+    margin-block: 1rem;
+}
