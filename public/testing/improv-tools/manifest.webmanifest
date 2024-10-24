@@ -1,7 +1,7 @@
 {
-    "short_name": "Imprompts",
-    "name": "Imprompts — prompt generator",
-    "id": "imprompts",
+    "short_name": "Impromptu",
+    "name": "Impromptu — Tools for improvisers",
+    "id": "impromptu",
     "icons": [
         {
             "src": "./images/icon-192.png",
@@ -14,9 +14,9 @@
             "sizes": "512x512"
         }
     ],
-    "start_url": "https://alexrkeen.com/testing/suggestion-generator/",
+    "start_url": "https://alexrkeen.com/testing/improv-tools/",
     "background_color": "#0E0A0F",
     "display": "standalone",
     "theme_color": "#D3A95F",
-    "description": "A prompt generator for inspiring improv scenes, with categories including professions, locations, emotions, relationships and stories."
+    "description": "A set of tools for improvisers, including a prompt generator with a range of categories, a shortform game picker with filters, and a random player picker."
 }

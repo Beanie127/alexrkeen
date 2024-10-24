@@ -8,7 +8,9 @@ self.addEventListener("install", (event) => {
         "./",
         "./suggestions.js",
         "./prompts.js",
-        "../../style.css",
+        "./games.js",
+        "./utilities.js",
+        "./style.css",
       ]);
     })
     .catch((error) => {
