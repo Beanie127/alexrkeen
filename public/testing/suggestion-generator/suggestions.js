@@ -1,15 +1,11 @@
-import randFromArray from "./utilities.js";
+import randFromArray, { capitalise } from "./utilities.js";
 const history = [];
 
 const undo = document.querySelector("#btn-undo");
 const promptGenerator = document.querySelector("#prompt-generator");
 const suggestionOutput = document.querySelector("#suggestion-output");
 
-function capitalise(word) {
-  return word.charAt(0).toUpperCase() + word.slice(1);
-}
-
-function promptList(prompt) {
+function getPromptList(prompt) {
   switch (prompt) {
     case "event":
       return events;
@@ -28,26 +24,17 @@ function promptList(prompt) {
     case "story":
       return stories;
     case "any":
-      return randomList();
+      return randFromArray([
+        events,
+        activities,
+        objects,
+        jobs,
+        locales,
+        emotions,
+        relationships,
+        stories,
+      ]);
   }
-}
-
-function randomList() {
-  const promptTypes = [
-    events,
-    activities,
-    objects,
-    jobs,
-    locales,
-    emotions,
-    relationships,
-    stories,
-  ];
-  randFromArray(promptTypes);
-}
-
-function randomPrompt(list) {
-  return randFromArray(list);
 }
 
 function saveCurrentPrompt(prompt) {
@@ -64,8 +51,8 @@ promptGenerator.addEventListener("submit", (e) => {
 
   saveCurrentPrompt(suggestionOutput.textContent);
 
-  const list = promptList(promptGenerator.type.value);
-  const prompt = randomPrompt(list);
+  const promptList = getPromptList(promptGenerator.type.value);
+  const prompt = randFromArray(promptList);
   suggestionOutput.textContent = capitalise(prompt);
 });
 
