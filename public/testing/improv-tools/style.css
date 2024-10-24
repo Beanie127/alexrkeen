@@ -65,6 +65,11 @@ fieldset {
     border: thin dashed var(--h-color);
 }
 
+hr {
+    border: none;
+    border-block-end: thick solid var(--h-color);
+    margin-block: 1rem;
+}
 h1 {
     text-align: center;
 }
