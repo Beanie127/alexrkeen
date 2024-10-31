@@ -49,6 +49,18 @@ quoteFilter.addEventListener("keyup", (e) => {
 
 const allQuotes = [
   {
+    text: "In the midst of winter, I found there was, within me, an invincible summer.",
+    author: "Albert Camus",
+  },
+  {
+    text: "An invasion of armies can be resisted, but not an idea whose time has come.",
+    author: "Victor Hugo",
+  },
+  {
+    text: "Talent hits a target no one else can hit. Genius hits a target no one else can see.",
+    author: "Arthur Schopenhauer",
+  },
+  {
     text: "To laugh often and much; to win the respect of intelligent people and the affection of children; to earn the appreciation of honest critics and endure the betrayal of false friends; to appreciate beauty; to find the best in others; to leave the world a bit better, whether by a healthy child, a garden patch or a redeemed social condition; to know even one life has breathed easier because you have lived. This is to have succeeded.",
     author: "Bessie A. Stanley",
   },
