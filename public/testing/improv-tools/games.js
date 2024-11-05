@@ -24,7 +24,7 @@ function updatePastGames(name) {
 }
 
 function filterGames(tags, playerCount, difficulty) {
-  // create an array of invalid games
+  // create an array of invalid games, starting with games that have already gone
   const invalidGames = [...pastGames];
   // add any games which exceed preferred difficulty or max player count
   games.forEach((game) => {
@@ -101,7 +101,7 @@ const games = [
     difficulty: 1,
     tags: ["scene", "talking heads"],
   },
-  { name: "Hesistation", playerCount: 2, difficulty: 1, tags: ["scene"] },
+  { name: "Hesitation", playerCount: 2, difficulty: 1, tags: ["scene"] },
   {
     name: "Questions",
     playerCount: 6,
