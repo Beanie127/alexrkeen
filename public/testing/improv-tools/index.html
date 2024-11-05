@@ -51,13 +51,13 @@
             <form id="game-generator">
 
                 <fieldset class="flex">
-                    <legend>Limit difficulty?</legend>
+                    <legend>Max difficulty</legend>
                     <label><input type="radio" name="difficulty" value=1>Easy only</label>
                     <label><input type="radio" name="difficulty" value=2>Easy or medium</label>
                     <label><input type="radio" name="difficulty" value=3 checked>Anything</label>
                 </fieldset>
                 <fieldset class="flex">
-                    <legend>Limit max player count?</legend>
+                    <legend>Max players</legend>
                     <label><input type="radio" name="playerCount" value=2>2</label>
                     <label><input type="radio" name="playerCount" value=3>3</label>
                     <label><input type="radio" name="playerCount" value=4>4</label>
@@ -65,7 +65,7 @@
                     <label><input type="radio" name="playerCount" value=6>6</label>
                 </fieldset>
                 <fieldset class="flex">
-                    <legend>Exclude game types?</legend>
+                    <legend>Excluded game types</legend>
                     <label><input type="checkbox" name="exclusion" value="guessing">Guessing Game</label>
                     <label><input type="checkbox" name="exclusion" value="physical">Physical</label>
                     <label><input type="checkbox" name="exclusion" value="mime">Mime</label>
@@ -91,11 +91,13 @@
             <ul id="player-list" class="listless">
             </ul>
             <form id="add-player">
-                <div class="flex">
-                    <label for="player-name">New player name: </label>
-                    <input type="text" name="player-name" id="player-name">
-                    <button type="submit">Add a player</button>
-                </div>
+                <fieldset class="flex">
+                    <legend>Add a new player</legend>
+                    <label for="player-name">Name:
+                        <input type="text" name="player-name" id="player-name">
+                    </label>
+                    <button type="submit">Add player</button>
+                </fieldset>
             </form>
             <div class="flex" id="controls">
                 <button id="pick-player">Pick a player</button>

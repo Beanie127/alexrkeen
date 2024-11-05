@@ -52,6 +52,7 @@ article {
     flex-wrap: wrap;
     gap: 1ch;
     justify-content: space-around;
+    align-items: center;
 }
 
 .flex.btn-flex {
@@ -63,6 +64,12 @@ article {
 fieldset {
     background: var(--mg-color);
     border: thin dashed var(--h-color);
+    border-radius: 8px;
+}
+
+fieldset legend {
+    font-weight: bold;
+    padding-inline: 1ch;
 }
 
 hr {
