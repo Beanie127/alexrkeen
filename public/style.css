@@ -235,6 +235,21 @@ h6 {
     color: var(--h-color);
 }
 
+/* details + summary */
+
+summary h2 {
+    display: inline;
+    border-block-end: none;
+}
+
+summary:has(h2) {
+    border-block-end: 1px solid var(--accent-color);
+    padding: 0.2rem;
+    &::marker {
+        color: var(--accent-color);
+    }
+}
+
 /* hyperlinks */
 a {
     position: relative;
