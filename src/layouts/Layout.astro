@@ -14,11 +14,13 @@ const { title, description } = Astro.props;
 <!doctype html>
 <html lang="en">
     <head>
-        <title>Alex Keen | {title}</title>
+        <title>
+            {title == "Alex Keen" ? "Alex Keen | Home" : `Alex Keen | ${title}`}
+        </title>
         <meta charset="UTF-8" />
         <meta name="description" content={description} />
         <meta name="viewport" content="width=device-width," />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" href="/images/favicon.svg" type="image/svg+xml" />
         <meta name="generator" content={Astro.generator} />
         <ViewTransitions />
     </head>
@@ -31,17 +33,24 @@ const { title, description } = Astro.props;
 <style is:global>
     @font-face {
         font-family: "Albert Sans";
-        src: url("../../public/fonts/AlbertSans.ttf");
+        src: url("/fonts/AlbertSans.ttf");
+        font-style: normal;
         font-weight: 100 900;
     }
 
+    @font-face {
+        font-family: "Albert Sans";
+        src: url("/fonts/AlbertSans-Italic.ttf");
+        font-style: italic;
+        font-weight: 100 900;
+    }
     /* GLOBAL VARIABLES */
 
     :root {
-        --bg-color: hsl(286 21% 5%);
-        --mg-color: hsl(286 21% 12%);
-        --text-color: hsl(38 24% 78%);
-        --h-color: hsl(38 57% 60%);
+        --bg-color: hsl(320 12% 5%);
+        --mg-color: hsl(320 24% 10%);
+        --text-color: hsl(35 24% 78%);
+        --h-color: hsl(30 80% 70%);
         --accent-color: hsl(349 52% 64%);
     }
 
@@ -122,6 +131,7 @@ const { title, description } = Astro.props;
             sans-serif;
         background-color: var(--bg-color);
         color: var(--text-color);
+        font-feature-settings: "ss01", "ss02", "ss04";
     }
 
     h1,
@@ -284,24 +294,6 @@ const { title, description } = Astro.props;
 
     /* blockquotes */
 
-    #display-quote {
-        background-color: var(--mg-color);
-        text-align: center;
-        margin: 0;
-        margin-block: 2rem;
-        border-style: solid;
-        border-color: var(--h-color);
-        border-width: 0px 5px;
-        view-transition-name: quote;
-        & blockquote {
-            padding-block-start: 1rem;
-        }
-    }
-
-    #quote-filter-results {
-        margin-block: 2rem;
-    }
-
     blockquote {
         padding: 1rem;
         -webkit-border-start: thin solid var(--accent-color);
@@ -318,15 +310,11 @@ const { title, description } = Astro.props;
         color: var(--h-color);
         font-size: 1.2em;
         margin: 0;
+        text-wrap: balance;
     }
 
     cite::before {
         content: "— ";
-    }
-
-    #display-quote,
-    cite {
-        text-wrap: balance;
     }
 
     /* button */
@@ -357,28 +345,6 @@ const { title, description } = Astro.props;
             inset 0px 6px 10px 0px hsla(0, 0%, 0%, 0.28),
             inset 0px 1px 18px 0px hsla(0, 0%, 0%, 0.24);
     }
-
-    button.filter,
-    .filter-list button {
-        all: unset;
-        cursor: pointer;
-        align-self: flex-start;
-        color: var(--accent-color);
-    }
-
-    .is-active {
-        color: var(--h-color) !important;
-    }
-
-    .filter-list {
-        -webkit-margin-after: 1rem;
-        margin-block-end: 1rem;
-        display: inline-flex;
-        flex-wrap: wrap;
-        max-inline-size: 100%;
-        gap: 0 0.5rem;
-    }
-
     /* details + summary */
 
     summary h2,
