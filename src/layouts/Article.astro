@@ -1,0 +1,35 @@
+---
+import Layout from "./Layout.astro";
+const { frontmatter } = Astro.props;
+---
+
+<Layout title={frontmatter.title} description={frontmatter.description}>
+    <article class="col-center"><slot /></article>
+    <div class="col-center">
+        <a href="/writing">See more of my writing!</a>
+    </div>
+</Layout>
+<style is:inline>
+    article {
+        margin-block-start: 2rem;
+    }
+    article p {
+        line-height: 2rem;
+    }
+
+    .footnotes {
+        font-size: 0.8em;
+    }
+
+    .footnotes ol {
+        margin-block: 0;
+    }
+
+    .footnotes p {
+        line-height: 1.2em;
+    }
+
+    .footnotes ol li::marker {
+        color: var(--accent-color);
+    }
+</style>

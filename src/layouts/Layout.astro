@@ -1,0 +1,403 @@
+---
+import Footer from "./Footer.astro";
+
+import { ViewTransitions } from "astro:transitions";
+
+interface Props {
+    title: string;
+    description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Alex Keen | {title}</title>
+        <meta charset="UTF-8" />
+        <meta name="description" content={description} />
+        <meta name="viewport" content="width=device-width," />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="generator" content={Astro.generator} />
+        <ViewTransitions />
+    </head>
+    <body>
+        <h1>{title}</h1>
+        <slot />
+        <Footer />
+    </body>
+</html>
+<style is:global>
+    @font-face {
+        font-family: "Albert Sans";
+        src: url("../../public/fonts/AlbertSans.ttf");
+        font-weight: 100 900;
+    }
+
+    /* GLOBAL VARIABLES */
+
+    :root {
+        --bg-color: hsl(286 21% 5%);
+        --mg-color: hsl(286 21% 12%);
+        --text-color: hsl(38 24% 78%);
+        --h-color: hsl(38 57% 60%);
+        --accent-color: hsl(349 52% 64%);
+    }
+
+    /* RESET */
+
+    html {
+        box-sizing: border-box;
+        transition-behavior: allow-discrete;
+        interpolate-size: allow-keywords;
+    }
+
+    *:not(img),
+    *:before,
+    *:after {
+        box-sizing: inherit;
+    }
+
+    input,
+    button,
+    textarea,
+    select {
+        font: inherit;
+    }
+
+    img,
+    picture,
+    video,
+    canvas,
+    svg {
+        display: block;
+        max-inline-size: 100%;
+        margin-inline: auto;
+    }
+
+    p,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    img {
+        margin-block-start: 1em;
+        scroll-margin-block-start: 5rem;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    ul,
+    ol,
+    li,
+    blockquote,
+    table {
+        line-height: calc(1em + 0.6rem);
+        text-wrap: pretty;
+    }
+
+    /* TYPOGRAPHY */
+
+    html {
+        font-size: clamp(1rem, 0.8rem + 1vi, 1.3rem);
+        font-family:
+            "Albert Sans",
+            system-ui,
+            -apple-system,
+            BlinkMacSystemFont,
+            "Segoe UI",
+            Roboto,
+            Oxygen,
+            Ubuntu,
+            Cantarell,
+            "Open Sans",
+            "Helvetica Neue",
+            sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        color: var(--h-color);
+    }
+
+    h1 {
+        font-weight: 900;
+        font-size: 2.5em;
+        text-transform: uppercase;
+        grid-column: full-bleed;
+        background: var(--accent-color);
+        color: var(--bg-color);
+        text-shadow: -2px 0px 0px var(--h-color);
+        transform: skewY(-2deg);
+    }
+
+    h1,
+/* h3, */
+.sidebar h2 {
+        font-weight: 900;
+        text-align: center;
+    }
+
+    /* LAYOUT */
+
+    body {
+        display: grid;
+        grid-template-columns:
+            [full-bleed-start] 0.5rem
+            [wide-start] 1fr
+            [breakout-start] 1fr
+            [center-start] min(calc(100% - 1rem), 70ch) [center-end]
+            1fr [breakout-end]
+            1fr [wide-end]
+            0.5rem [full-bleed-end];
+        margin: 0;
+        margin-block-end: 4rem;
+        scrollbar-gutter: stable both-edges;
+    }
+
+    body:where(> *) {
+        grid-column: center;
+    }
+
+    .col-center {
+        grid-column: center;
+    }
+
+    .col-breakout {
+        grid-column: breakout;
+    }
+
+    .col-wide {
+        grid-column: wide;
+    }
+
+    header,
+    footer,
+    #hero-section,
+    .full-bleed {
+        grid-column: full-bleed;
+    }
+
+    main,
+    section {
+        margin-block: 1rem;
+        clear: both;
+        display: grid;
+        grid-template-columns: subgrid;
+    }
+
+    /* CARDS */
+
+    ul.card-container {
+        display: flex;
+        inline-size: 100%;
+        gap: 1ch;
+        flex-wrap: wrap;
+        justify-content: center;
+        grid-column: wide;
+        padding-inline-start: 0;
+    }
+
+    .card-container > li {
+        flex: 1 1 35ch;
+        max-inline-size: 45ch;
+        background: var(--mg-color);
+        padding: 1rem;
+        border-radius: 1ch;
+        list-style-type: none;
+    }
+
+    .card-container > li > *:first-child {
+        margin-block-start: 0;
+    }
+    .card-container > li > *:last-child {
+        margin-block-end: 0;
+    }
+    /* internal/external link styles */
+    a {
+        color: var(--accent-color);
+        text-decoration: underline solid var(--accent-color) 1px;
+    }
+
+    a[href^="."]::before,
+    a[href^="/"]::before {
+        content: "/";
+    }
+
+    a[href^="http"]::after {
+        content: "\00A0\2197";
+    }
+
+    a[href^="mailto"]::after {
+        content: "\00A0\2709";
+    }
+
+    a::before,
+    a::after {
+        color: var(--h-color);
+        font-weight: bold;
+    }
+
+    /* IMAGES & FIGURES */
+
+    img {
+        display: block;
+        margin: auto;
+        inline-size: 100%;
+        max-inline-size: 25rem;
+        border-radius: 10px;
+    }
+
+    #profile {
+        border-radius: 10px 10px 0 0;
+    }
+
+    figure {
+        inline-size: clamp(8rem, 25%, 15rem);
+        float: right;
+        margin: 0;
+        margin-inline-start: 1em;
+        border-radius: 10px;
+        background: var(--mg-color);
+    }
+
+    figcaption {
+        text-align: center;
+        color: var(--h-color);
+        padding: 0.5ch;
+        line-height: 120%;
+        text-wrap: balance;
+    }
+
+    /* blockquotes */
+
+    #display-quote {
+        background-color: var(--mg-color);
+        text-align: center;
+        margin: 0;
+        margin-block: 2rem;
+        border-style: solid;
+        border-color: var(--h-color);
+        border-width: 0px 5px;
+        view-transition-name: quote;
+        & blockquote {
+            padding-block-start: 1rem;
+        }
+    }
+
+    #quote-filter-results {
+        margin-block: 2rem;
+    }
+
+    blockquote {
+        padding: 1rem;
+        -webkit-border-start: thin solid var(--accent-color);
+        border-inline-start: thin solid var(--accent-color);
+        font-weight: 300;
+        margin-inline: 0;
+        margin-block: 1rem;
+    }
+
+    cite {
+        display: block;
+        text-align: right;
+        padding-inline: 2rem;
+        color: var(--h-color);
+        font-size: 1.2em;
+        margin: 0;
+    }
+
+    cite::before {
+        content: "— ";
+    }
+
+    #display-quote,
+    cite {
+        text-wrap: balance;
+    }
+
+    /* button */
+
+    button {
+        margin: 0.5em auto;
+        padding: 0.5em 1em;
+        background-color: var(--mg-color);
+        border: 1px solid var(--accent-color);
+        border-radius: 10px;
+        color: var(--accent-color);
+        font-family: inherit;
+        font-size: 1.2em;
+        text-align: center;
+        text-decoration: none;
+        display: block;
+        transition: 0.2s;
+    }
+
+    button:hover {
+        border: 1px solid var(--h-color);
+        color: var(--h-color);
+    }
+
+    button:active {
+        box-shadow:
+            inset 0px 3px 5px -1px hsla(0, 0%, 0%, 0.4),
+            inset 0px 6px 10px 0px hsla(0, 0%, 0%, 0.28),
+            inset 0px 1px 18px 0px hsla(0, 0%, 0%, 0.24);
+    }
+
+    button.filter,
+    .filter-list button {
+        all: unset;
+        cursor: pointer;
+        align-self: flex-start;
+        color: var(--accent-color);
+    }
+
+    .is-active {
+        color: var(--h-color) !important;
+    }
+
+    .filter-list {
+        -webkit-margin-after: 1rem;
+        margin-block-end: 1rem;
+        display: inline-flex;
+        flex-wrap: wrap;
+        max-inline-size: 100%;
+        gap: 0 0.5rem;
+    }
+
+    /* details + summary */
+
+    summary h2,
+    summary h3 {
+        display: inline;
+        border-block-end: none;
+    }
+
+    summary:has(h2) {
+        position: sticky;
+        border-block-end: 3px solid var(--accent-color);
+        inset-block-start: 0;
+        margin-block-end: 1ch;
+        background: var(--bg-color);
+        padding: 0.2rem;
+        z-index: 1;
+    }
+
+    summary::marker {
+        color: var(--accent-color);
+    }
+</style>

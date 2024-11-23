@@ -1,0 +1,33 @@
+---
+interface Props {
+    url: string;
+}
+
+const { url } = Astro.props;
+---
+
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="refresh" content=`0; url=${url}` />
+        <title>Page Redirection</title>
+        <link href="/style.css" rel="stylesheet" type="text/css" media="all" />
+        <style>
+            html {
+                background: #111;
+                color: white;
+            }
+        </style>
+    </head>
+    <body data-url={url}>
+        <script>
+            window.location.href = document.querySelector("body").dataset.url;
+        </script>
+        <p>
+            This URL is no longer in use. If you are not redirected
+            automatically, follow the <a href={url}>link to the new page.</a>
+        </p>
+    </body>
+</html>

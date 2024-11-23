@@ -1,0 +1,68 @@
+---
+import Layout from "../layouts/Layout.astro";
+const articles = Object.values(
+    await import.meta.glob("../writing/*.md", {
+        eager: true,
+    })
+);
+console.log("Hello");
+---
+
+<Layout title="Writing" description="">
+    <section id="essays" class="col-center">
+        <h2>Articles on this site</h2>
+        <ul class="unmarked-list">
+            <li>
+                <span class="date">2023-08-08</span>
+                <a href="/writing/flyering-edinburgh"
+                    >How to flyer at the Edinburgh Fringe
+                </a>
+            </li>
+            <li>
+                <span class="date">2023-07-28</span>
+                <a href="/writing/below-the-algorithm">
+                    Living Below the Algorithm</a
+                >
+            </li>
+        </ul>
+    </section>
+    <section style="view-transition-name: other;" class="col-wide">
+        <h2 class="col-center">External publications</h2>
+        <ul class="card-container">
+            <li>
+                <h3>Alphabet of Hope</h3>
+                <p>
+                    An anthology of stories written for a teen audience by
+                    members of the LGBTQ+ community from around the world. I
+                    contributed my coming out story.
+                </p>
+                <a
+                    href="https://www.amazon.co.uk/Alphabet-Hope-Mr-Trevor-Ritchie/dp/1777568803/"
+                    ><em>Alphabet of Hope</em> on Amazon</a
+                >
+            </li>
+            <li>
+                <h3>Steel City Improv</h3>
+                <p>
+                    A blog about improv written by Sheffield improvisers. I’m
+                    the founder, lead editor and occasional contributor.
+                </p>
+                <a href="https://medium.com/steel-city-improv"
+                    ><em>Steel City Improv</em> on Medium.com</a
+                >
+            </li>
+        </ul>
+    </section>
+</Layout>
+<style>
+    .date {
+        font-style: italic;
+        font-size: 0.8em;
+        opacity: 0.75;
+        padding-inline-end: 1rem;
+    }
+    .unmarked-list {
+        list-style-type: none;
+        padding-inline-start: 0;
+    }
+</style>

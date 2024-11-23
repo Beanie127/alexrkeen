@@ -1,0 +1,60 @@
+<nav class="col-wide">
+    <details>
+        <summary>
+            <h2>Site Navigation</h2>
+        </summary>
+        <ul id="link-list">
+            <li>
+                <strong><a href="/">homepage</a></strong>
+            </li>
+            <li>
+                <strong>Creations</strong>
+                <ul>
+                    <li><a href="/improv">improv</a></li>
+                    <li><a href="/writing">writing</a></li>
+                    <li><a href="/games">games</a></li>
+                </ul>
+            </li>
+            <li>
+                <strong>Recommendations</strong>
+                <ul>
+                    <li><a href="/blogroll">blogroll</a></li>
+                    <li><a href="/uses">uses</a></li>
+                </ul>
+            </li>
+            <li>
+                <strong>Misc.</strong>
+                <ul>
+                    <li><a href="/changelog">changelog</a></li>
+                    <li><a href="/colophon">colophon</a></li>
+                    <li><a href="https://shoebox.alexrkeen.com">shoebox</a></li>
+                </ul>
+            </li>
+        </ul>
+    </details>
+</nav>
+<style>
+    nav {
+        position: fixed;
+        inset-block-end: 0;
+        inset-inline: 0;
+        background: var(--bg-color);
+        border-block: 3px solid var(--accent-color);
+        padding-inline: 1ch;
+    }
+
+    summary {
+        border-block-end: none;
+        margin: 0;
+        text-align: center;
+    }
+
+    details[open] summary {
+        border-block-end: 1px solid hsl(from var(--accent-color) h s l / 0.2);
+    }
+    details > ul {
+        list-style-type: none;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(20ch, 1fr));
+    }
+</style>
