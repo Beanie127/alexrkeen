@@ -39,7 +39,7 @@
         inset-block-end: 0;
         inset-inline: 0;
         background: var(--bg-color);
-        border-block: 3px solid var(--accent-color);
+        border-block: 1px solid var(--accent-color);
         padding-inline: 1ch;
         z-index: 999;
     }
@@ -48,10 +48,22 @@
         border-block-end: none;
         margin: 0;
         text-align: center;
+        list-style: none;
+    }
+    h2::before {
+        content: "+ ";
+        color: hsl(from var(--accent-color) h s l / 0.5);
+    }
+
+    details[open] {
+        min-block-size: 50svh;
     }
 
     details[open] summary {
-        border-block-end: 1px solid hsl(from var(--accent-color) h s l / 0.2);
+        /* border-block-end: 1px solid hsl(from var(--accent-color) h s l / 0.2); */
+        h2::before {
+            content: "× ";
+        }
     }
     details > ul {
         list-style-type: none;
