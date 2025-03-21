@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml xmlns:frss="https://freshrss.org/opml" version="2.0">
+  <head>
+    <title>FreshRSS</title>
+    <dateCreated>Sun, 15 Dec 2024 23:25:02 +0000</dateCreated>
+  </head>
+  <body>
+    <outline text="Comics">
+      <outline text="Cat and Girl" type="rss" xmlUrl="https://catandgirl.com/feed/" htmlUrl="https://catandgirl.com/"/>
+      <outline text="Existential Comics" type="rss" xmlUrl="https://existentialcomics.com/rss.xml" htmlUrl="https://existentialcomics.com/" description="Existential Comics: A comic about the inevitable anguish of living a brief life in an absurd world. Also jokes."/>
+      <outline text="EXTRA FABULOUS COMICS" type="rss" xmlUrl="https://extrafabulouscomics.tumblr.com/rss" htmlUrl="https://extrafabulouscomics.tumblr.com/" description="my new Kickstarter is live! weee https://www.kickstarter.com/projects/extrafabulous/the-book-of-shame-an-extra-fabulous-experience?ref=2wwxsh"/>
+      <outline text="Giant in the playground" type="rss" xmlUrl="https://www.giantitp.com/comics/oots.rss" htmlUrl="https://www.giantitp.com/Comics.html" description="Order of the Stick"/>
+      <outline text="HEARTSTOPPER" type="rss" xmlUrl="https://heartstoppercomic.tumblr.com/rss" htmlUrl="https://heartstoppercomic.tumblr.com/" description="HEARTSTOPPER is a webcomic by Alice Oseman. Updates on the 1st, 11th, and 21st of each month at 11am UK time. Also available to read on Tapas and Webtoon."/>
+      <outline text="I'm Fine I'm Fine Just Understand" type="rss" xmlUrl="https://www.imfineimfine.com/feed" htmlUrl="https://www.imfineimfine.com/" description="Quiet comics about gender, mental health, and getting older."/>
+      <outline text="Last Place Comics" type="rss" xmlUrl="https://feeds.feedburner.com/lastplacecomics/Feed" htmlUrl="https://lastplacecomics.com/"/>
+      <outline text="Oglaf!" type="rss" xmlUrl="https://www.oglaf.com/feeds/rss/" htmlUrl="https://oglaf.com/latest/" description="Comics. Often dirty. Updates Sundays."/>
+      <outline text="Poorly Drawn Lines" type="rss" xmlUrl="https://feeds.feedburner.com/PoorlyDrawnLines" htmlUrl="https://poorlydrawnlines.com/" description="Comics by Reza Farazmand"/>
+      <outline text="Sam And Fuzzy" type="rss" xmlUrl="https://www.samandfuzzy.com/feed" htmlUrl="http://www.samandfuzzy.com/feed/" description="Sam And Fuzzy: New comics Monday, Wednesday, and Friday."/>
+      <outline text="Saturday Morning Breakfast Cereal" type="rss" xmlUrl="https://www.smbc-comics.com/comic/rss" htmlUrl="https://www.smbc-comics.com/" description="Latest Saturday Morning Breakfast Cereal comics and news"/>
+      <outline text="The Secret Knots" type="rss" xmlUrl="https://thesecretknots.com/feed/" htmlUrl="https://thesecretknots.com/" description="Comics by Juan Santapau"/>
+      <outline text="webcomic name" type="rss" xmlUrl="https://webcomicname.com/rss" htmlUrl="https://webcomicname.tumblr.com/" description="the same joke every time by alex norris"/>
+      <outline text="xkcd" type="rss" xmlUrl="https://xkcd.com/rss.xml" htmlUrl="https://xkcd.com/" description="xkcd.com: A webcomic of romance and math humor."/>
+    </outline>
+    <outline text="Educational">
+      <outline text="1000-Word Philosophy: An Introductory Anthology" type="rss" xmlUrl="https://1000wordphilosophy.com/feed/" htmlUrl="https://1000wordphilosophy.com/" description="Philosophy, One Thousand Words at a Time"/>
+      <outline text="A Collection of Unmitigated Pedantry" type="rss" xmlUrl="https://acoup.blog/feed/" htmlUrl="https://acoup.blog/" description="A look at history and popular culture"/>
+      <outline text="escape the algorithm" type="rss" xmlUrl="https://escapethealgorithm.substack.com/feed" htmlUrl="https://escapethealgorithm.substack.com/" description="A newsletter about taking control of our attention and finding a more human side of the internet. Featured in Wired and Rolling Stone."/>
+      <outline text="Escaping Flatland" type="rss" xmlUrl="https://www.henrikkarlsson.xyz/feed" htmlUrl="https://www.henrikkarlsson.xyz/" description="When my daughters aren’t hiding my notebooks, I write essays about relationships, writing, and being agentic and grounded"/>
+      <outline text="Integration By Parts" type="rss" xmlUrl="https://integrationbyparts.substack.com/feed" htmlUrl="https://integrationbyparts.substack.com/" description="Making sense of people"/>
+      <outline text="Learn How To Learn" type="rss" xmlUrl="https://learnhowtolearn.org/feed/" htmlUrl="https://learnhowtolearn.org/"/>
+      <outline text="Mr. and Mrs. Psmith’s Bookshelf" type="rss" xmlUrl="https://www.thepsmiths.com/feed" htmlUrl="https://www.thepsmiths.com/" description="The P is silent, as in pshrimp or pseudonym."/>
+      <outline text="Obsidian Iceberg" type="rss" xmlUrl="https://www.eleanorkonik.com/feed?ref=eleanorkonik.com" htmlUrl="https://eleanorkonik.substack.com/" description="Insightful lessons from history, science, &amp; real life... aimed at autodidacts, productivity nerds, efficient thinkers &amp; tech junkies."/>
+      <outline text="Scope of Work" type="rss" xmlUrl="https://www.scopeofwork.net/rss/" htmlUrl="https://www.scopeofwork.net/" description="Excellent writing about the physical world."/>
+      <outline text="Stat Significant" type="rss" xmlUrl="https://www.statsignificant.com/feed" htmlUrl="https://www.statsignificant.com/" description="Data-centric essays about movies, music, TV, and more."/>
+      <outline text="Stay Grounded" type="rss" xmlUrl="https://www.staygrounded.online/feed" htmlUrl="https://www.staygrounded.online/" description="Stay Grounded is a newsletter about establishing healthy boundaries with the internet without becoming a weird isolated Luddite."/>
+      <outline text="The Story Letter" type="rss" xmlUrl="https://thestoryletter.substack.com/feed" htmlUrl="https://thestoryletter.substack.com/" description="I tell stories &amp; I'll help you tell yours."/>
+      <outline text="University of Winds" type="rss" xmlUrl="https://www.uofwinds.com/rss/" htmlUrl="https://www.uofwinds.com/" description="Three links to wonderful and thought-provoking things every other Saturday morning from Mita Williams."/>
+    </outline>
+    <outline text="Entertainment">
+      <outline text="Heart Wired" type="rss" xmlUrl="https://heartwired.substack.com/feed" htmlUrl="https://heartwired.substack.com/" description="Weekly Attempts at Contemplation and Comedy"/>
+      <outline text="Naive Weekly" type="rss" xmlUrl="https://www.naiveweekly.com/feed" htmlUrl="https://www.naiveweekly.com/" description="A Sunday email with links to the quiet, odd and poetic web."/>
+      <outline text="Orbis Tertius" type="rss" xmlUrl="https://orbistertius.substack.com/feed" htmlUrl="https://orbistertius.substack.com/" description="Eclectic esoterica, etcetera."/>
+      <outline text="Shoddy Goods, from meh.com, by Jason Toon" type="rss" xmlUrl="https://shoddygoods.meh.com/feed" htmlUrl="https://shoddygoods.meh.com/" description="A newsletter from meh.com, by Jason Toon, about the stories behind the stuff people make, buy, and sell"/>
+      <outline text="The Lucyverse" type="rss" xmlUrl="https://lucysweet.substack.com/feed" htmlUrl="https://lucysweet.substack.com/" description="Random and sweary reviews of (pretty much) everything" frss:filtersActionRead="intitle:FRIDAY"/>
+      <outline text="The Public Domain Review" type="rss" xmlUrl="https://publicdomainreview.org/rss.xml" htmlUrl="https://publicdomainreview.org/" description="The Public Domain Review"/>
+      <outline text="The Pudding" type="rss" xmlUrl="https://pudding.cool/rss.xml" htmlUrl="https://pudding.cool/" description="The Pudding is an editorial publication that explains ideas debated in culture with visual essays."/>
+    </outline>
+    <outline text="Fiction">
+      <outline text="Boy Bands &amp; Dragons [Party-focused Isekai]" type="rss" xmlUrl="https://www.royalroad.com/fiction/syndication/91582" htmlUrl="https://www.royalroad.com/fiction/syndication/91582" description="Latest updates of (Boy Bands &amp; Dragons [Book One Stubbed])"/>
+      <outline text="Super Supportive" type="rss" xmlUrl="https://www.royalroad.com/fiction/syndication/63759" htmlUrl="https://www.royalroad.com/fiction/syndication/63759" description="Latest updates of (Super Supportive)"/>
+    </outline>
+    <outline text="Improv">
+      <outline text="Improv Chronicle Newsletter" type="rss" xmlUrl="https://improvchronicle.substack.com/feed" htmlUrl="https://improvchronicle.substack.com/" description="The world of improv in your inbox"/>
+      <outline text="Improv Fables" type="rss" xmlUrl="https://buttondown.email/mrchrismead/rss" htmlUrl="https://buttondown.email/mrchrismead" description="The newsletter of Chris Mead. Improviser, writer and dog-owner. &#10;&#10;Subscribe to get the following in your inbox every Wednesday. &#10;&#10;* THREE recommendations of things I've enjoyed this week &#10;&#10;* ONE new class or show I'm offering &#10;&#10;* ONE new essay about improv &#10;&#10;* ONE picture of my dog, Radio (by far our most popular feature)"/>
+    </outline>
+    <outline text="Links &amp; Recs">
+      <outline text="10+1 Things" type="rss" xmlUrl="https://newsletter.rishikeshs.com/feed" htmlUrl="https://rishikesh.substack.com/" description="11 interesting stories handpicked by a curious human's algorithm."/>
+      <outline text="Five Trivia in a Minute" type="rss" xmlUrl="https://fivetrivia.substack.com/feed" htmlUrl="https://fivetrivia.substack.com/" description="A short collection of five trivia items on a random topic, that can be read in less than a minute."/>
+      <outline text="Links I Would Gchat You If We Were Friends" type="rss" xmlUrl="https://linksiwouldgchatyou.substack.com/feed" htmlUrl="https://linksiwouldgchatyou.substack.com/" description="A newsletter for curious, thoughtful readers who miss the “old” internet."/>
+    </outline>
+    <outline text="Living Good">
+      <outline text="Colin Wright's Newsletter" type="rss" xmlUrl="https://colin.substack.com/feed" htmlUrl="https://colin.substack.com/" description="Essays, thoughts, and updates from author and curious person, Colin Wright."/>
+      <outline text="Now What?" type="rss" xmlUrl="https://rossblankenship.substack.com/feed" htmlUrl="https://rossblankenship.substack.com/" description="A newsletter on navigating complex decisions in work, leadership, life, and career."/>
+      <outline text="Ralph Ammer" type="rss" xmlUrl="https://ralphammer.com/feed/" htmlUrl="https://ralphammer.com/"/>
+      <outline text="Unmentionables" type="rss" xmlUrl="https://unmentionables.substack.com/feed" htmlUrl="https://unmentionables.substack.com/" description="Airing dirty laundry in public.&#10;I write about things that scare the shit out of me, imaginary friends, stuff I've done that makes me want to crawl in a hole, unexpectedly beautiful interactions, and inappropriately funny things."/>
+      <outline text="Wait But Why" type="rss" xmlUrl="https://waitbutwhy.com/feed" htmlUrl="https://waitbutwhy.com/"/>
+    </outline>
+    <outline text="Marketing">
+      <outline text="Brand Anatomy" type="rss" xmlUrl="https://brandanatomy101.substack.com/feed" htmlUrl="https://brandanatomy101.substack.com/" description="A Marketing Doctor's (MD) do's and don'ts of brand strategy."/>
+      <outline text="Tone Knob" type="rss" xmlUrl="https://toneofvoice.substack.com/feed" htmlUrl="https://toneofvoice.substack.com/" description="Taking a nerd's-eye view of brands doing interesting things with their language and tone of voice. Monthly. Written by Nick Parker. www.nickparker.co.uk"/>
+    </outline>
+    <outline text="News &amp; Culture">
+      <outline text="all the heterosexual nonsense" type="rss" xmlUrl="https://heterosexualnonsense.substack.com/feed" htmlUrl="https://heterosexualnonsense.substack.com/" description="A culture, news and comdy newsletter, with a focus on queer culture, news and issues from Rebecca Shaw and Patrick Lenton."/>
+      <outline text="Candy for Breakfast" type="rss" xmlUrl="https://www.candyforbreakfast.email/feed" htmlUrl="https://www.candyforbreakfast.email/" description="Funny feelings, weird careers, making art, American history, and how to be alive."/>
+      <outline text="Garbage Day" type="rss" xmlUrl="https://rss.beehiiv.com/feeds/owMwaGYU36.xml" htmlUrl="https://www.garbageday.email/" description="A newsletter about having fun online"/>
+      <outline text="HeydonWorks" type="rss" xmlUrl="https://heydonworks.com/feed.xml" htmlUrl="https://heydonworks.com/" description="Writing and creative coding from Heydon Pickering"/>
+      <outline text="Internal exile" type="rss" xmlUrl="https://robhorning.substack.com/feed" htmlUrl="https://robhorning.substack.com/" description="about technology, art, philosophy"/>
+      <outline text="Jason Pargin's Newsletter" type="rss" xmlUrl="https://jasonpargin.substack.com/feed" htmlUrl="https://jasonpargin.substack.com/" description="Something seems off about the world, I'm trying to get to the bottom of it"/>
+      <outline text="Number One With A Bullard" type="rss" xmlUrl="https://gabebullard.substack.com/feed" htmlUrl="https://gabebullard.substack.com/" description="Notes on our nostalgic era. Pop culture anxieties. Pieces of history. Occasional jokes."/>
+      <outline text="Our World in Data" type="rss" xmlUrl="https://ourworldindata.org/atom.xml" htmlUrl="https://ourworldindata.org/" description="Research and data to make progress against the world’s largest problems"/>
+      <outline text="Pluralistic: Daily links from Cory Doctorow" type="rss" xmlUrl="https://pluralistic.net/feed/" htmlUrl="https://pluralistic.net/" description="No trackers, no ads. Black type, white background. Privacy policy: we don't collect or retain any data at all ever period."/>
+      <outline text="Read Max" type="rss" xmlUrl="https://maxread.substack.com/feed" htmlUrl="https://maxread.substack.com/" description="Explaining the weird new future, one newsletter at a time. Subscribe for a twice weekly delivery of internet culture, mega-platform grotesquerie, crypto conspiracies, deep forum lore, fringe politics, and other artifacts of what's to come."/>
+      <outline text="Sheffield Tribune" type="rss" xmlUrl="https://www.sheffieldtribune.co.uk/rss/" htmlUrl="https://www.sheffieldtribune.co.uk/" description="Sheffield's quality newspaper, delivered via email."/>
+      <outline text="the collected ahp" type="rss" xmlUrl="https://annehelen.substack.com/feed" htmlUrl="https://annehelen.substack.com/" description="Think more about the culture that surrounds you"/>
+      <outline text="The Culture Shock" type="rss" xmlUrl="https://thecharrette.substack.com/feed" htmlUrl="https://thecharrette.substack.com" description="Obsessively interested in everything."/>
+      <outline text="The Post Credits Scene" type="rss" xmlUrl="https://thepostcredits.substack.com/feed" htmlUrl="https://thepostcredits.substack.com/" description="Reckoning with the transformation of film, television, and fandom."/>
+      <outline text="The Quantum Cat" type="rss" xmlUrl="https://www.thequantumcat.space/feed" htmlUrl="https://www.thequantumcat.space/" description="Musings on space, science and the future of humanity"/>
+    </outline>
+    <outline text="Science &amp; Rationality">
+      <outline text="Astral Codex Ten" type="rss" xmlUrl="https://www.astralcodexten.com/feed" htmlUrl="https://astralcodexten.substack.com/" description="P(A|B) = [P(A)*P(B|A)]/P(B), all the rest is commentary."/>
+      <outline text="Atoms vs Bits" type="rss" xmlUrl="https://www.atvbt.com/rss/" htmlUrl="https://www.atvbt.com/" description="Atoms vs Bits"/>
+      <outline text="DYNOMIGHT INTERNET NEWSLETTER" type="rss" xmlUrl="https://dynomight.substack.com/feed" htmlUrl="https://dynomight.substack.com/" description="science and existential angst"/>
+      <outline text="Experimental History" type="rss" xmlUrl="https://www.experimental-history.com/feed" htmlUrl="https://www.experimental-history.com/" description="1) Find what's true and make it useful. 2) Publish every other Tuesday. 3) Photo cred: my dad."/>
+      <outline text="Fortress of Doors" type="rss" xmlUrl="https://www.fortressofdoors.com/rss/" htmlUrl="https://www.fortressofdoors.com/" description="Lars Doucet's personal blog -- Game design and stuff."/>
+      <outline text="Ian’s Newsletter" type="rss" xmlUrl="https://ianconcannon.substack.com/feed" htmlUrl="https://ianconcannon.substack.com/" description="Refractions on STS, Emptiness, Systems Thinking, Design"/>
+      <outline text="Knowingless" type="rss" xmlUrl="https://aella.substack.com/feed" htmlUrl="https://aella.substack.com/" description="sex, psychedelics, and social analysis"/>
+      <outline text="Orbital Stories" type="rss" xmlUrl="https://orbitalstories.substack.com/feed" htmlUrl="https://orbitalstories.substack.com/" description="Cool stories about human spaceflight that make you wanna go to space. 🚀"/>
+      <outline text="Play Makes Us Human" type="rss" xmlUrl="https://petergray.substack.com/feed" htmlUrl="https://petergray.substack.com/" description="Letters about the roles of play in human evolution, child development, culture, and daily living"/>
+      <outline text="SLIME MOLD TIME MOLD" type="rss" xmlUrl="https://slimemoldtimemold.com/feed/" htmlUrl="https://slimemoldtimemold.com/" description="Mad Science Blogging"/>
+      <outline text="The Egg And The Rock" type="rss" xmlUrl="https://theeggandtherock.com/feed" htmlUrl="https://theeggandtherock.substack.com/" description="Novelist Julian Gough (author of Minecraft's End Poem) redescribes the universe."/>
+      <outline text="The Intrinsic Perspective" type="rss" xmlUrl="https://www.theintrinsicperspective.com/feed" htmlUrl="https://www.theintrinsicperspective.com/" description="Bridging the two cultures of science and the humanities"/>
+      <outline text="The Splintered Mind" type="rss" xmlUrl="https://www.blogger.com/feeds/26951738/posts/default?redirect=false" htmlUrl="http://schwitzsplinters.blogspot.com/" description="reflections in philosophy of psychology, broadly construed"/>
+      <outline text="Thing of Things" type="rss" xmlUrl="https://thingofthings.substack.com/feed" htmlUrl="https://thingofthings.substack.com/" description="The nicest herrenmoralist"/>
+    </outline>
+    <outline text="TTRPGs">
+      <outline text="Indie RPG Newsletter" type="rss" xmlUrl="https://ttrpg.in/feed/" htmlUrl="https://ttrpg.in/" description="a curated weekly list of fun articles, podcasts, and new indie tabletop games"/>
+      <outline text="Murmurs from the Cloven Pine" type="rss" xmlUrl="https://clovenpine.substack.com/feed" htmlUrl="https://clovenpine.substack.com/" description="Reflections on RPG design and practice from Alexi of Cloven Pine Games"/>
+      <outline text="Mythoi" type="rss" xmlUrl="https://mythoi.substack.com/feed" htmlUrl="https://mythoi.substack.com/" description="Myth and Folklore in Tabletop RPGs"/>
+      <outline text="O'Connel Games Newsletter" type="rss" xmlUrl="https://oconnelgames.substack.com/feed" htmlUrl="https://oconnelgames.substack.com/" description="infrequent updates about my projects"/>
+      <outline text="RPG Design Theories" type="rss" xmlUrl="https://montecook.substack.com/feed" htmlUrl="https://montecook.substack.com/" description="Thoughts behind tabletop roleplaying games and why we love them."/>
+      <outline text="Run a Game" type="rss" xmlUrl="https://www.blogger.com/feeds/6737331211018613722/posts/default" htmlUrl="http://runagame.blogspot.com/" description="A blog for practical advice, turn-key resources, tips, and examples of how to run a roleplaying game."/>
+      <outline text="Skeleton Code Machine" type="rss" xmlUrl="https://www.skeletoncodemachine.com/feed" htmlUrl="https://www.skeletoncodemachine.com/" description="Spark your creativity as a tabletop game designer or enthusiast, and think differently about how games work. ENNIE-nominated!"/>
+      <outline text="Snow's Devlog" type="rss" xmlUrl="https://batts.substack.com/feed" htmlUrl="https://batts.substack.com/" description="Welcome to my mailing list! I'm a trans/autistic weirdo who can't stop thinking about game design and writing, so that's what you'll find here!"/>
+      <outline text="Stout Stoat News" type="rss" xmlUrl="https://stoutstoat.substack.com/feed" htmlUrl="https://stoutstoat.substack.com/" description="Updates and new releases from Stout Stoat Press!"/>
+      <outline text="The Alexandrian" type="rss" xmlUrl="https://thealexandrian.net/feed" htmlUrl="https://thealexandrian.net/" description="Roleplaying games, reviews, politics, creations, and philosophy." frss:filtersActionRead="intitle: &quot;Ptolus&quot;&#10;intitle: &quot;In the Shadow of the Spire&quot;"/>
+      <outline text="The Glatisant: A Questing Beast Newsletter" type="rss" xmlUrl="https://questingbeast.substack.com/feed" htmlUrl="https://questingbeast.substack.com/" description="The best of the tabletop gaming internet, all in once place."/>
+      <outline text="The Indie Game Reading Club" type="rss" xmlUrl="https://www.indiegamereadingclub.com/feed/" htmlUrl="https://www.indiegamereadingclub.com/" description="Deep reads, analysis, and talk about small press roleplaying"/>
+      <outline text="The Indie RPG Newsletter" type="rss" xmlUrl="https://ttrpg.substack.com/feed" htmlUrl="https://ttrpg.substack.com/" description="a curated weekly list of fun articles, podcasts, and new indie tabletop games"/>
+      <outline text="The Only Edition" type="rss" xmlUrl="https://the-only-edition.com/feed/" htmlUrl="https://the-only-edition.com/" description="The Only Tabletop News Site"/>
+    </outline>
+    <outline text="Webdev">
+      <outline text="A List Apart: The Full Feed" type="rss" xmlUrl="https://alistapart.com/main/feed/" htmlUrl="https://alistapart.com/" description="Articles for people who make web sites."/>
+      <outline text="CSS Tip: Learn CSS the easy way" type="rss" xmlUrl="https://css-tip.com/feed/feed.xml" htmlUrl="https://css-tip.com/" description="The best place to keep up to date with the new CSS features. Daily CSS tips and tricks to become a better web developer."/>
+      <outline text="Go Make Things" type="rss" xmlUrl="https://gomakethings.com/feed/index.xml" htmlUrl="https://gomakethings.com/articles" description="A simpler, more resilient way to make things for the web."/>
+      <outline text="Harry Cresswell Links" type="rss" xmlUrl="https://harrycresswell.com/links/feed.xml" htmlUrl="https://harrycresswell.com/links/" description="Recent content in Links on Harry Cresswell"/>
+      <outline text="Harry Cresswell Newsletter" type="rss" xmlUrl="https://harrycresswell.com/newsletter/feed.xml" htmlUrl="https://harrycresswell.com/newsletter/" description="Recent content in Newsletter on Harry Cresswell"/>
+      <outline text="Ludicity" type="rss" xmlUrl="https://ludic.mataroa.blog/rss/" htmlUrl="https://ludic.mataroa.blog/" description="&lt;blockquote&gt;&#10;&#10;&quot;This person sounds like an energy vampire. I don't disagree with some of the points, but the way they're conveyed and the writing style make it hard to empathize with them.&quot;&#10;&lt;/blockquote&gt;&#10;&#10;I read all mail without exception, and love getting it, but can no longer reply to everything. You can reach me at: ludicity.hackernews@gmail.com.&#10;&#10;I will prioritize responding, in order, if:&#10;&lt;ol&gt;&#10;&lt;li&gt;You live in Melbourne and want coffee. I have accepted 100% of these requests so far.&lt;/li&gt;&#10;&lt;li&gt;You want to invite me onto a podcast or something because the flames of my ego are a roaring inferno that needs constant feeding, to the dismay of all those around me.&lt;/li&gt;&#10;&lt;li&gt;You want to be connected to another reader in your local area.&lt;/li&gt;&#10;&lt;li&gt;You're an engineer that shares my values that needs some help, particularly students and members of marginalized communities.&lt;/li&gt;&#10;&lt;/ol&gt;&#10;&#10;My podcast, &quot;Does A Frog Have Scorpion Nature&quot; which is just me chatting with readers and friends. Available on all major platforms.&#10;&#10;Mastodon because it's so much nicer than Twitter.&#10;&#10;Liberapay | Patreon to support me writing taking time off to write amidst the difficulty of launching a business."/>
+    </outline>
+  </body>
+</opml>

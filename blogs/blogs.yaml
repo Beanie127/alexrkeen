@@ -1,0 +1,667 @@
+opml:
+    head:
+        title: FreshRSS
+        dateCreated: "Mon, 20 Jan 2025 21:50:35 +0000"
+    body:
+        outline:
+            - outline:
+                  - _text: Cat and Girl
+                    _type: rss
+                    _xmlUrl: "https://catandgirl.com/feed/"
+                    _htmlUrl: "https://catandgirl.com/"
+                  - _text: Existential Comics
+                    _type: rss
+                    _xmlUrl: "https://existentialcomics.com/rss.xml"
+                    _htmlUrl: "https://existentialcomics.com/"
+                    _description: >-
+                        Existential Comics: A comic about the inevitable anguish of living
+                        a brief life in an absurd world. Also jokes.
+                  - _text: EXTRA FABULOUS COMICS
+                    _type: rss
+                    _xmlUrl: "https://extrafabulouscomics.tumblr.com/rss"
+                    _htmlUrl: "https://extrafabulouscomics.tumblr.com/"
+                    _description: >-
+                        my new Kickstarter is live! weee
+                        https://www.kickstarter.com/projects/extrafabulous/the-book-of-shame-an-extra-fabulous-experience?ref=2wwxsh
+                  - _text: Giant in the playground
+                    _type: rss
+                    _xmlUrl: "https://www.giantitp.com/comics/oots.rss"
+                    _htmlUrl: "https://www.giantitp.com/Comics.html"
+                    _description: Order of the Stick
+                  - _text: HEARTSTOPPER
+                    _type: rss
+                    _xmlUrl: "https://heartstoppercomic.tumblr.com/rss"
+                    _htmlUrl: "https://heartstoppercomic.tumblr.com/"
+                    _description: >-
+                        HEARTSTOPPER is a webcomic by Alice Oseman. Updates on the 1st,
+                        11th, and 21st of each month at 11am UK time. Also available to
+                        read on Tapas and Webtoon.
+                  - _text: I'm Fine I'm Fine Just Understand
+                    _type: rss
+                    _xmlUrl: "https://www.imfineimfine.com/feed"
+                    _htmlUrl: "https://www.imfineimfine.com/"
+                    _description: "Quiet comics about gender, mental health, and getting older."
+                  - _text: Last Place Comics
+                    _type: rss
+                    _xmlUrl: "https://feeds.feedburner.com/lastplacecomics/Feed"
+                    _htmlUrl: "https://lastplacecomics.com/"
+                  - _text: Oglaf!
+                    _type: rss
+                    _xmlUrl: "https://www.oglaf.com/feeds/rss/"
+                    _htmlUrl: "https://oglaf.com/latest/"
+                    _description: Comics. Often dirty. Updates Sundays.
+                  - _text: Poorly Drawn Lines
+                    _type: rss
+                    _xmlUrl: "https://feeds.feedburner.com/PoorlyDrawnLines"
+                    _htmlUrl: "https://poorlydrawnlines.com/"
+                    _description: Comics by Reza Farazmand
+                  - _text: Sam And Fuzzy
+                    _type: rss
+                    _xmlUrl: "https://www.samandfuzzy.com/feed"
+                    _htmlUrl: "http://www.samandfuzzy.com/feed/"
+                    _description: "Sam And Fuzzy: New comics Monday, Wednesday, and Friday."
+                  - _text: Saturday Morning Breakfast Cereal
+                    _type: rss
+                    _xmlUrl: "https://www.smbc-comics.com/comic/rss"
+                    _htmlUrl: "https://www.smbc-comics.com/"
+                    _description: Latest Saturday Morning Breakfast Cereal comics and news
+                  - _text: The Secret Knots
+                    _type: rss
+                    _xmlUrl: "https://thesecretknots.com/feed/"
+                    _htmlUrl: "https://thesecretknots.com/"
+                    _description: Comics by Juan Santapau
+                  - _text: webcomic name
+                    _type: rss
+                    _xmlUrl: "https://webcomicname.com/rss"
+                    _htmlUrl: "https://webcomicname.tumblr.com/"
+                    _description: the same joke every time by alex norris
+                  - _text: xkcd
+                    _type: rss
+                    _xmlUrl: "https://xkcd.com/rss.xml"
+                    _htmlUrl: "https://xkcd.com/"
+                    _description: "xkcd.com: A webcomic of romance and math humor."
+              _text: Comics
+            - outline:
+                  - _text: "1000-Word Philosophy: An Introductory Anthology"
+                    _type: rss
+                    _xmlUrl: "https://1000wordphilosophy.com/feed/"
+                    _htmlUrl: "https://1000wordphilosophy.com/"
+                    _description: "Philosophy, One Thousand Words at a Time"
+                  - _text: A Collection of Unmitigated Pedantry
+                    _type: rss
+                    _xmlUrl: "https://acoup.blog/feed/"
+                    _htmlUrl: "https://acoup.blog/"
+                    _description: A look at history and popular culture
+                  - _text: Donkeyspace
+                    _type: rss
+                    _xmlUrl: "https://franklantz.substack.com/feed"
+                    _htmlUrl: "https://franklantz.substack.com/"
+                    _description: "Games, philosophy, and art in the age of AI"
+                  - _text: escape the algorithm
+                    _type: rss
+                    _xmlUrl: "https://escapethealgorithm.substack.com/feed"
+                    _htmlUrl: "https://escapethealgorithm.substack.com/"
+                    _description: >-
+                        A newsletter about taking control of our attention and finding a
+                        more human side of the internet. Featured in Wired and Rolling
+                        Stone.
+                  - _text: Escaping Flatland
+                    _type: rss
+                    _xmlUrl: "https://www.henrikkarlsson.xyz/feed"
+                    _htmlUrl: "https://www.henrikkarlsson.xyz/"
+                    _description: >-
+                        When my daughters aren’t hiding my notebooks, I write essays about
+                        relationships, writing, and being agentic and grounded
+                  - _text: Integration By Parts
+                    _type: rss
+                    _xmlUrl: "https://integrationbyparts.substack.com/feed"
+                    _htmlUrl: "https://integrationbyparts.substack.com/"
+                    _description: Making sense of people
+                  - _text: Mr. and Mrs. Psmith’s Bookshelf
+                    _type: rss
+                    _xmlUrl: "https://www.thepsmiths.com/feed"
+                    _htmlUrl: "https://www.thepsmiths.com/"
+                    _description: "The P is silent, as in pshrimp or pseudonym."
+                  - _text: Obsidian Iceberg
+                    _type: rss
+                    _xmlUrl: "https://www.eleanorkonik.com/feed?ref=eleanorkonik.com"
+                    _htmlUrl: "https://eleanorkonik.substack.com/"
+                    _description: >-
+                        Insightful lessons from history, science, & real life... aimed at
+                        autodidacts, productivity nerds, efficient thinkers & tech
+                        junkies.
+                  - _text: Scope of Work
+                    _type: rss
+                    _xmlUrl: "https://www.scopeofwork.net/rss/"
+                    _htmlUrl: "https://www.scopeofwork.net/"
+                    _description: Excellent writing about the physical world.
+                  - _text: Stat Significant
+                    _type: rss
+                    _xmlUrl: "https://www.statsignificant.com/feed"
+                    _htmlUrl: "https://www.statsignificant.com/"
+                    _description: "Data-centric essays about movies, music, TV, and more."
+                  - _text: Stay Grounded
+                    _type: rss
+                    _xmlUrl: "https://www.staygrounded.online/feed"
+                    _htmlUrl: "https://www.staygrounded.online/"
+                    _description: >-
+                        Stay Grounded is a newsletter about establishing healthy
+                        boundaries with the internet without becoming a weird isolated
+                        Luddite.
+                  - _text: The Story Letter
+                    _type: rss
+                    _xmlUrl: "https://thestoryletter.substack.com/feed"
+                    _htmlUrl: "https://thestoryletter.substack.com/"
+                    _description: I tell stories & I'll help you tell yours.
+                  - _text: University of Winds
+                    _type: rss
+                    _xmlUrl: "https://www.uofwinds.com/rss/"
+                    _htmlUrl: "https://www.uofwinds.com/"
+                    _description: >-
+                        Three links to wonderful and thought-provoking things every other
+                        Saturday morning from Mita Williams.
+              _text: Educational
+            - outline:
+                  - _text: Heart Wired
+                    _type: rss
+                    _xmlUrl: "https://heartwired.substack.com/feed"
+                    _htmlUrl: "https://heartwired.substack.com/"
+                    _description: Weekly Attempts at Contemplation and Comedy
+                  - _text: keen about travelling
+                    _type: rss
+                    _xmlUrl: "https://georgiakeen.substack.com/feed"
+                    _htmlUrl: "https://georgiakeen.substack.com/"
+                    _description: >-
+                        A 24 year old’s travels, escaping the corporate ladder (a break
+                        taken after a long three year career) and fundamentally a digital
+                        diary, enjoy x
+                  - _text: Naive Weekly
+                    _type: rss
+                    _xmlUrl: "https://www.naiveweekly.com/feed"
+                    _htmlUrl: "https://www.naiveweekly.com/"
+                    _description: "A Sunday email with links to the quiet, odd and poetic web."
+                  - _text: Orbis Tertius
+                    _type: rss
+                    _xmlUrl: "https://orbistertius.substack.com/feed"
+                    _htmlUrl: "https://orbistertius.substack.com/"
+                    _description: "Eclectic esoterica, etcetera."
+                  - _text: "Shoddy Goods, from meh.com, by Jason Toon"
+                    _type: rss
+                    _xmlUrl: "https://shoddygoods.meh.com/feed"
+                    _htmlUrl: "https://shoddygoods.meh.com/"
+                    _description: >-
+                        A newsletter from meh.com, by Jason Toon, about the stories behind
+                        the stuff people make, buy, and sell
+                  - _text: The Lucyverse
+                    _type: rss
+                    _xmlUrl: "https://lucysweet.substack.com/feed"
+                    _htmlUrl: "https://lucysweet.substack.com/"
+                    _description: Random and sweary reviews of (pretty much) everything
+                    "_frss:filtersActionRead": "intitle:FRIDAY"
+                  - _text: The Pudding
+                    _type: rss
+                    _xmlUrl: "https://pudding.cool/rss.xml"
+                    _htmlUrl: "https://pudding.cool/"
+                    _description: >-
+                        The Pudding is an editorial publication that explains ideas
+                        debated in culture with visual essays.
+              _text: Entertainment
+            - outline:
+                  - _text: "Boy Bands & Dragons [Party-focused Isekai]"
+                    _type: rss
+                    _xmlUrl: "https://www.royalroad.com/fiction/syndication/91582"
+                    _htmlUrl: "https://www.royalroad.com/fiction/syndication/91582"
+                    _description: "Latest updates of (Boy Bands & Dragons [Book One Stubbed])"
+                  - _text: Super Supportive
+                    _type: rss
+                    _xmlUrl: "https://www.royalroad.com/fiction/syndication/63759"
+                    _htmlUrl: "https://www.royalroad.com/fiction/syndication/63759"
+                    _description: Latest updates of (Super Supportive)
+              _text: Fiction
+            - outline:
+                  - _text: Improv Chronicle Newsletter
+                    _type: rss
+                    _xmlUrl: "https://improvchronicle.substack.com/feed"
+                    _htmlUrl: "https://improvchronicle.substack.com/"
+                    _description: The world of improv in your inbox
+                  - _text: Improv Fables
+                    _type: rss
+                    _xmlUrl: "https://buttondown.email/mrchrismead/rss"
+                    _htmlUrl: "https://buttondown.email/mrchrismead"
+                    _description: |-
+                        The newsletter of Chris Mead. Improviser, writer and dog-owner. 
+
+                        Subscribe to get the following in your inbox every Wednesday. 
+
+                        * THREE recommendations of things I've enjoyed this week 
+
+                        * ONE new class or show I'm offering 
+
+                        * ONE new essay about improv 
+
+                        * ONE picture of my dog, Radio (by far our most popular feature)
+              _text: Improv
+            - outline:
+                  - _text: 10+1 Things
+                    _type: rss
+                    _xmlUrl: "https://newsletter.rishikeshs.com/feed"
+                    _htmlUrl: "https://rishikesh.substack.com/"
+                    _description: 11 interesting stories handpicked by a curious human's algorithm.
+                  - _text: Five Trivia in a Minute
+                    _type: rss
+                    _xmlUrl: "https://fivetrivia.substack.com/feed"
+                    _htmlUrl: "https://fivetrivia.substack.com/"
+                    _description: >-
+                        A short collection of five trivia items on a random topic, that
+                        can be read in less than a minute.
+                  - _text: Links I Would Gchat You If We Were Friends
+                    _type: rss
+                    _xmlUrl: "https://linksiwouldgchatyou.substack.com/feed"
+                    _htmlUrl: "https://linksiwouldgchatyou.substack.com/"
+                    _description: >-
+                        A newsletter for curious, thoughtful readers who miss the “old”
+                        internet.
+              _text: Links & Recs
+            - outline:
+                  - _text: Colin Wright's Newsletter
+                    _type: rss
+                    _xmlUrl: "https://colin.substack.com/feed"
+                    _htmlUrl: "https://colin.substack.com/"
+                    _description: >-
+                        Essays, thoughts, and updates from author and curious person,
+                        Colin Wright.
+                  - _text: Now What?
+                    _type: rss
+                    _xmlUrl: "https://rossblankenship.substack.com/feed"
+                    _htmlUrl: "https://rossblankenship.substack.com/"
+                    _description: "A newsletter exploring work's ultimate question: Now what?"
+                  - _text: Ralph Ammer
+                    _type: rss
+                    _xmlUrl: "https://ralphammer.com/feed/"
+                    _htmlUrl: "https://ralphammer.com/"
+                  - _text: The Convivial Society
+                    _type: rss
+                    _xmlUrl: "https://theconvivialsociety.substack.com/feed"
+                    _htmlUrl: "https://theconvivialsociety.substack.com/"
+                    _description: "Thinking about technology, society, and the good life."
+                  - _text: Unmentionables
+                    _type: rss
+                    _xmlUrl: "https://unmentionables.substack.com/feed"
+                    _htmlUrl: "https://unmentionables.substack.com/"
+                    _description: >-
+                        Airing dirty laundry in public.
+
+                        I write about things that scare the shit out of me, imaginary
+                        friends, stuff I've done that makes me want to crawl in a hole,
+                        unexpectedly beautiful interactions, and inappropriately funny
+                        things.
+                  - _text: Wait But Why
+                    _type: rss
+                    _xmlUrl: "https://waitbutwhy.com/feed"
+                    _htmlUrl: "https://waitbutwhy.com/"
+              _text: Living Good
+            - outline:
+                  - _text: Brand Anatomy
+                    _type: rss
+                    _xmlUrl: "https://brandanatomy101.substack.com/feed"
+                    _htmlUrl: "https://brandanatomy101.substack.com/"
+                    _description: A Marketing Doctor's (MD) do's and don'ts of brand strategy.
+                  - _text: Tone Knob
+                    _type: rss
+                    _xmlUrl: "https://toneofvoice.substack.com/feed"
+                    _htmlUrl: "https://toneofvoice.substack.com/"
+                    _description: >-
+                        Taking a nerd's-eye view of brands doing interesting things with
+                        their language and tone of voice. Monthly. Written by Nick Parker.
+                        www.nickparker.co.uk
+              _text: Marketing
+            - outline:
+                  - _text: all the heterosexual nonsense
+                    _type: rss
+                    _xmlUrl: "https://heterosexualnonsense.substack.com/feed"
+                    _htmlUrl: "https://heterosexualnonsense.substack.com/"
+                    _description: >-
+                        A culture, news and comedy newsletter, with a focus on queer
+                        culture, news and issues from Rebecca Shaw and Patrick Lenton.
+                  - _text: Candy for Breakfast
+                    _type: rss
+                    _xmlUrl: "https://www.candyforbreakfast.email/feed"
+                    _htmlUrl: "https://www.candyforbreakfast.email/"
+                    _description: >-
+                        Funny feelings, weird careers, making art, American history, and
+                        how to be alive.
+                  - _text: Garbage Day
+                    _type: rss
+                    _xmlUrl: "https://rss.beehiiv.com/feeds/owMwaGYU36.xml"
+                    _htmlUrl: "https://www.garbageday.email/"
+                    _description: A newsletter about having fun online
+                  - _text: HeydonWorks
+                    _type: rss
+                    _xmlUrl: "https://heydonworks.com/feed.xml"
+                    _htmlUrl: "https://heydonworks.com/"
+                    _description: Writing and creative coding from Heydon Pickering
+                  - _text: Internal exile
+                    _type: rss
+                    _xmlUrl: "https://robhorning.substack.com/feed"
+                    _htmlUrl: "https://robhorning.substack.com/"
+                    _description: "about technology, art, philosophy"
+                  - _text: Jason Pargin's Newsletter
+                    _type: rss
+                    _xmlUrl: "https://jasonpargin.substack.com/feed"
+                    _htmlUrl: "https://jasonpargin.substack.com/"
+                    _description: >-
+                        Something seems off about the world, I'm trying to get to the
+                        bottom of it
+                  - _text: Number One With A Bullard
+                    _type: rss
+                    _xmlUrl: "https://gabebullard.substack.com/feed"
+                    _htmlUrl: "https://gabebullard.substack.com/"
+                    _description: >-
+                        Notes on our nostalgic era. Pop culture anxieties. Pieces of
+                        history. Occasional jokes.
+                  - _text: Our World in Data
+                    _type: rss
+                    _xmlUrl: "https://ourworldindata.org/atom.xml"
+                    _htmlUrl: "https://ourworldindata.org/"
+                    _description: >-
+                        Research and data to make progress against the world’s largest
+                        problems
+                  - _text: "Pluralistic: Daily links from Cory Doctorow"
+                    _type: rss
+                    _xmlUrl: "https://pluralistic.net/feed/"
+                    _htmlUrl: "https://pluralistic.net/"
+                    _description: >-
+                        No trackers, no ads. Black type, white background. Privacy policy:
+                        we don't collect or retain any data at all ever period.
+                  - _text: Read Max
+                    _type: rss
+                    _xmlUrl: "https://maxread.substack.com/feed"
+                    _htmlUrl: "https://maxread.substack.com/"
+                    _description: >-
+                        Explaining the weird new future, one newsletter at a time.
+                        Subscribe for a twice weekly delivery of internet culture,
+                        mega-platform grotesquerie, crypto conspiracies, deep forum lore,
+                        fringe politics, and other artifacts of what's to come.
+                  - _text: Sheffield Tribune
+                    _type: rss
+                    _xmlUrl: "https://www.sheffieldtribune.co.uk/rss/"
+                    _htmlUrl: "https://www.sheffieldtribune.co.uk/"
+                    _description: "Sheffield's quality newspaper, delivered via email."
+                  - _text: the collected ahp
+                    _type: rss
+                    _xmlUrl: "https://annehelen.substack.com/feed"
+                    _htmlUrl: "https://annehelen.substack.com/"
+                    _description: Think more about the culture that surrounds you
+                  - _text: The Culture Shock
+                    _type: rss
+                    _xmlUrl: "https://thecharrette.substack.com/feed"
+                    _htmlUrl: "https://thecharrette.substack.com"
+                    _description: Obsessively interested in everything.
+                  - _text: The Post Credits Scene
+                    _type: rss
+                    _xmlUrl: "https://thepostcredits.substack.com/feed"
+                    _htmlUrl: "https://thepostcredits.substack.com/"
+                    _description: "Reckoning with the transformation of film, television, and fandom."
+                  - _text: The Quantum Cat
+                    _type: rss
+                    _xmlUrl: "https://www.thequantumcat.space/feed"
+                    _htmlUrl: "https://www.thequantumcat.space/"
+                    _description: "Musings on space, science and the future of humanity"
+              _text: News & Culture
+            - outline:
+                  - _text: Astral Codex Ten
+                    _type: rss
+                    _xmlUrl: "https://www.astralcodexten.com/feed"
+                    _htmlUrl: "https://astralcodexten.substack.com/"
+                    _description: "P(A|B) = [P(A)*P(B|A)]/P(B), all the rest is commentary."
+                  - _text: Atoms vs Bits
+                    _type: rss
+                    _xmlUrl: "https://www.atvbt.com/rss/"
+                    _htmlUrl: "https://www.atvbt.com/"
+                    _description: Atoms vs Bits
+                  - _text: DYNOMIGHT INTERNET NEWSLETTER
+                    _type: rss
+                    _xmlUrl: "https://dynomight.substack.com/feed"
+                    _htmlUrl: "https://dynomight.substack.com/"
+                    _description: science and existential angst
+                  - _text: Experimental History
+                    _type: rss
+                    _xmlUrl: "https://www.experimental-history.com/feed"
+                    _htmlUrl: "https://www.experimental-history.com/"
+                    _description: >-
+                        1) Find what's true and make it useful. 2) Publish every other
+                        Tuesday. 3) Photo cred: my dad.
+                  - _text: Fortress of Doors
+                    _type: rss
+                    _xmlUrl: "https://www.fortressofdoors.com/rss/"
+                    _htmlUrl: "https://www.fortressofdoors.com/"
+                    _description: Lars Doucet's personal blog -- Game design and stuff.
+                  - _text: Ian’s Newsletter
+                    _type: rss
+                    _xmlUrl: "https://ianconcannon.substack.com/feed"
+                    _htmlUrl: "https://ianconcannon.substack.com/"
+                    _description: "Refractions on STS, Emptiness, Systems Thinking, Design"
+                  - _text: Knowingless
+                    _type: rss
+                    _xmlUrl: "https://aella.substack.com/feed"
+                    _htmlUrl: "https://aella.substack.com/"
+                    _description: "sex, psychedelics, and social analysis"
+                  - _text: Orbital Stories
+                    _type: rss
+                    _xmlUrl: "https://orbitalstories.substack.com/feed"
+                    _htmlUrl: "https://orbitalstories.substack.com/"
+                    _description: "Cool stories about human spaceflight that make you wanna go to space. \U0001F680"
+                  - _text: Play Makes Us Human
+                    _type: rss
+                    _xmlUrl: "https://petergray.substack.com/feed"
+                    _htmlUrl: "https://petergray.substack.com/"
+                    _description: >-
+                        Letters about the roles of play in human evolution, child
+                        development, culture, and daily living
+                  - _text: SLIME MOLD TIME MOLD
+                    _type: rss
+                    _xmlUrl: "https://slimemoldtimemold.com/feed/"
+                    _htmlUrl: "https://slimemoldtimemold.com/"
+                    _description: Mad Science Blogging
+                  - _text: The Egg And The Rock
+                    _type: rss
+                    _xmlUrl: "https://theeggandtherock.com/feed"
+                    _htmlUrl: "https://theeggandtherock.substack.com/"
+                    _description: >-
+                        Novelist Julian Gough (author of Minecraft's End Poem) redescribes
+                        the universe.
+                  - _text: The Intrinsic Perspective
+                    _type: rss
+                    _xmlUrl: "https://www.theintrinsicperspective.com/feed"
+                    _htmlUrl: "https://www.theintrinsicperspective.com/"
+                    _description: Bridging the two cultures of science and the humanities
+                  - _text: The Splintered Mind
+                    _type: rss
+                    _xmlUrl: >-
+                        https://www.blogger.com/feeds/26951738/posts/default?redirect=false
+                    _htmlUrl: "http://schwitzsplinters.blogspot.com/"
+                    _description: "reflections in philosophy of psychology, broadly construed"
+                  - _text: Thing of Things
+                    _type: rss
+                    _xmlUrl: "https://thingofthings.substack.com/feed"
+                    _htmlUrl: "https://thingofthings.substack.com/"
+                    _description: The nicest herrenmoralist
+              _text: Science & Rationality
+            - outline:
+                  - _text: Indie RPG Newsletter
+                    _type: rss
+                    _xmlUrl: "https://ttrpg.in/feed/"
+                    _htmlUrl: "https://ttrpg.in/"
+                    _description: >-
+                        a curated weekly list of fun articles, podcasts, and new indie
+                        tabletop games
+                  - _text: Murmurs from the Cloven Pine
+                    _type: rss
+                    _xmlUrl: "https://clovenpine.substack.com/feed"
+                    _htmlUrl: "https://clovenpine.substack.com/"
+                    _description: >-
+                        Reflections on RPG design and practice from Alexi of Cloven Pine
+                        Games
+                  - _text: Mythoi
+                    _type: rss
+                    _xmlUrl: "https://mythoi.substack.com/feed"
+                    _htmlUrl: "https://mythoi.substack.com/"
+                    _description: Myth and Folklore in Tabletop RPGs
+                  - _text: O'Connel Games Newsletter
+                    _type: rss
+                    _xmlUrl: "https://oconnelgames.substack.com/feed"
+                    _htmlUrl: "https://oconnelgames.substack.com/"
+                    _description: infrequent updates about my projects
+                  - _text: RPG Design Theories
+                    _type: rss
+                    _xmlUrl: "https://montecook.substack.com/feed"
+                    _htmlUrl: "https://montecook.substack.com/"
+                    _description: Thoughts behind tabletop roleplaying games and why we love them.
+                  - _text: Run a Game
+                    _type: rss
+                    _xmlUrl: "https://www.blogger.com/feeds/6737331211018613722/posts/default"
+                    _htmlUrl: "http://runagame.blogspot.com/"
+                    _description: >-
+                        A blog for practical advice, turn-key resources, tips, and
+                        examples of how to run a roleplaying game.
+                  - _text: Skeleton Code Machine
+                    _type: rss
+                    _xmlUrl: "https://www.skeletoncodemachine.com/feed"
+                    _htmlUrl: "https://www.skeletoncodemachine.com/"
+                    _description: >-
+                        Spark your creativity as a tabletop game designer or enthusiast,
+                        and think differently about how games work. ENNIE-nominated!
+                  - _text: Snow's Devlog
+                    _type: rss
+                    _xmlUrl: "https://batts.substack.com/feed"
+                    _htmlUrl: "https://batts.substack.com/"
+                    _description: >-
+                        Welcome to my mailing list! I'm a trans/autistic weirdo who can't
+                        stop thinking about game design and writing, so that's what you'll
+                        find here!
+                  - _text: Stout Stoat News
+                    _type: rss
+                    _xmlUrl: "https://stoutstoat.substack.com/feed"
+                    _htmlUrl: "https://stoutstoat.substack.com/"
+                    _description: Updates and new releases from Stout Stoat Press!
+                  - _text: The Alexandrian
+                    _type: rss
+                    _xmlUrl: "https://thealexandrian.net/feed"
+                    _htmlUrl: "https://thealexandrian.net/"
+                    _description: "Roleplaying games, reviews, politics, creations, and philosophy."
+                    "_frss:filtersActionRead": |-
+                        intitle: "Ptolus"
+                        intitle: "In the Shadow of the Spire"
+                  - _text: "The Glatisant: A Questing Beast Newsletter"
+                    _type: rss
+                    _xmlUrl: "https://questingbeast.substack.com/feed"
+                    _htmlUrl: "https://questingbeast.substack.com/"
+                    _description: "The best of the tabletop gaming internet, all in once place."
+                  - _text: The Indie Game Reading Club
+                    _type: rss
+                    _xmlUrl: "https://www.indiegamereadingclub.com/feed/"
+                    _htmlUrl: "https://www.indiegamereadingclub.com/"
+                    _description: "Deep reads, analysis, and talk about small press roleplaying"
+                  - _text: The Indie RPG Newsletter
+                    _type: rss
+                    _xmlUrl: "https://ttrpg.substack.com/feed"
+                    _htmlUrl: "https://ttrpg.substack.com/"
+                    _description: >-
+                        a curated weekly list of fun articles, podcasts, and new indie
+                        tabletop games
+                  - _text: The Only Edition
+                    _type: rss
+                    _xmlUrl: "https://the-only-edition.com/feed/"
+                    _htmlUrl: "https://the-only-edition.com/"
+                    _description: The Only Tabletop News Site
+              _text: TTRPGs
+            - outline:
+                  - _text: "A List Apart: The Full Feed"
+                    _type: rss
+                    _xmlUrl: "https://alistapart.com/main/feed/"
+                    _htmlUrl: "https://alistapart.com/"
+                    _description: Articles for people who make web sites.
+                  - _text: "CSS Tip: Learn CSS the easy way"
+                    _type: rss
+                    _xmlUrl: "https://css-tip.com/feed/feed.xml"
+                    _htmlUrl: "https://css-tip.com/"
+                    _description: >-
+                        The best place to keep up to date with the new CSS features. Daily
+                        CSS tips and tricks to become a better web developer.
+                  - _text: Go Make Things
+                    _type: rss
+                    _xmlUrl: "https://gomakethings.com/feed/index.xml"
+                    _htmlUrl: "https://gomakethings.com/articles"
+                    _description: "A simpler, more resilient way to make things for the web."
+                  - _text: Harry Cresswell Links
+                    _type: rss
+                    _xmlUrl: "https://harrycresswell.com/links/feed.xml"
+                    _htmlUrl: "https://harrycresswell.com/links/"
+                    _description: Recent content in Links on Harry Cresswell
+                  - _text: Harry Cresswell Newsletter
+                    _type: rss
+                    _xmlUrl: "https://harrycresswell.com/newsletter/feed.xml"
+                    _htmlUrl: "https://harrycresswell.com/newsletter/"
+                    _description: Recent content in Newsletter on Harry Cresswell
+                  - _text: Ludicity
+                    _type: rss
+                    _xmlUrl: "https://ludic.mataroa.blog/rss/"
+                    _htmlUrl: "https://ludic.mataroa.blog/"
+                    _description: >-
+                        <blockquote>
+
+
+                        "This person sounds like an energy vampire. I don't disagree with
+                        some of the points, but the way they're conveyed and the writing
+                        style make it hard to empathize with them."
+
+                        </blockquote>
+
+
+                        I read all mail without exception, and love getting it, but can no
+                        longer reply to everything. You can reach me at:
+                        ludicity.hackernews@gmail.com.
+
+
+                        I will prioritize responding, in order, if:
+
+                        <ol>
+
+                        <li>You live in Melbourne and want coffee. I have accepted 100% of
+                        these requests so far.</li>
+
+                        <li>You want to invite me onto a podcast or something because the
+                        flames of my ego are a roaring inferno that needs constant
+                        feeding, to the dismay of all those around me.</li>
+
+                        <li>You want to be connected to another reader in your local
+                        area.</li>
+
+                        <li>You're an engineer that shares my values that needs some help,
+                        particularly students and members of marginalized
+                        communities.</li>
+
+                        </ol>
+
+
+                        My podcast, "Does A Frog Have Scorpion Nature" which is just me
+                        chatting with readers and friends. Available on all major
+                        platforms.
+
+
+                        Mastodon because it's so much nicer than Twitter.
+
+
+                        Liberapay | Patreon to support me writing taking time off to write
+                        amidst the difficulty of launching a business.
+
+
+                        If you're working at a startup that is needs to conform to the
+                        analytics requirements of an enterprise sale, you can hire me and
+                        my team at Hermit Tech. We'll give you good advice, never lie,
+                        write quality code, and refuse to use the phrase "AI" on pain of
+                        me being personally branded a hypocrite-incompetent on the
+                        internet forever.
+              _text: Webdev
+    "_xmlns:frss": "https://freshrss.org/opml"
+    _version: "2.0"
