@@ -1,0 +1,39 @@
+---
+const url = Astro.url;
+const splits = [...url.toString().split('/').splice(3)];
+const slugs = [];
+for (let i = 0; i < splits.length; i++) {
+	let slug = Array.from(splits);
+	slug.length = i + 1;
+	slugs.push(slug.join('/'));
+}
+---
+
+<nav class="col-wide">
+	<ul>
+		<li><a href="/">Home</a></li>{
+			splits.map((split) => (
+				<li>
+					<a href={`/${slugs[splits.indexOf(split)]}`}>{split}</a>
+				</li>
+			))
+		}
+	</ul>
+</nav>
+<style>
+	nav {
+		/* transform: skewY(-2deg); */
+	}
+	ul {
+		display: flex;
+		list-style-type: none;
+		gap: 0.5rem;
+		padding-inline-start: 0;
+	}
+	li::before {
+		content: '/';
+		padding-inline-end: 0.5rem;
+		color: var(--h-color);
+		font-weight: bold;
+	}
+</style>
