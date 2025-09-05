@@ -1,0 +1,223 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+	title="Graphic Design Exercise"
+	description="Test your graphic design skills with a randomised challenge">
+	<style>
+		#color-display {
+			block-size: 10rem;
+		}
+		button {
+			font-size: 1.1rem;
+			font-family: inherit;
+			display: block;
+			justify-self: center;
+			padding-inline: 1ch;
+		}
+
+		table {
+			inline-size: 100%;
+			table-layout: fixed;
+		}
+
+		th,
+		td {
+			padding-inline: 1ch;
+		}
+
+		td {
+			display: inline-block;
+			text-align: center;
+			min-inline-size: 10ch;
+		}
+
+		#countdown-timer {
+			font-size: 10vw;
+			justify-self: center;
+		}
+	</style>
+	<section class="col-center">
+		<p>Click the button to get a random graphic design challenge!</p>
+		<button id="btn-generate-challenge">Generate challenge</button>
+		<div id="results">
+			<h2>Your Challenge</h2>
+			<table id="instructions">
+				<tr>
+					<th>Time</th>
+					<td id="duration"></td>
+				</tr>
+				<tr>
+					<th>Format</th>
+					<td id="dimensions"></td>
+				</tr>
+				<tr>
+					<th>Aesthetic</th>
+					<td id="aesthetic"></td>
+				</tr>
+				<tr>
+					<th>Prompts</th>
+					<td id="prompts"></td>
+				</tr>
+				<tr>
+					<th>Primary colour</th>
+					<td id="color"></td>
+				</tr>
+			</table>
+		</div>
+		<div id="color-display"></div>
+		<div id="countdown-timer">00:00</div>
+		<button id="btn-start-timer">Start the clock!</button>
+	</section>
+	<script type="module" is:inline>
+		const btnGenerateChallenge = document.querySelector(
+			'#btn-generate-challenge'
+		);
+		const btnStartTimer = document.querySelector('#btn-start-timer');
+		const colorDisplay = document.querySelector('#color-display');
+		const countdownTimer = document.querySelector('#countdown-timer');
+
+		import { layouts, aesthetics, prompts } from '/js/data-lists.js';
+
+		class Challenge {
+			constructor() {
+				this.duration;
+				this.dimensions;
+				this.aesthetic;
+				this.prompts;
+				this.color;
+				this.isActive = false;
+			}
+		}
+		let challenge = {};
+
+		// Generating the challenge
+		function generateChallenge() {
+			if (challenge.isActive) {
+				const cancel = confirm(
+					'You have an active challenge! Are you sure you want to cancel?'
+				);
+				if (!cancel) {
+					return;
+				}
+				challenge.duration = 0;
+				clearInterval(window.timerInterval);
+			}
+
+			btnStartTimer.textContent = 'Start the clock!';
+
+			challenge = new Challenge();
+
+			challenge.duration = randomIntTween(1, 20);
+
+			challenge.dimensions = pickFrom(layouts);
+			if (challenge.dimensions == 'other') {
+				const x = bellCurveTween(10, 100);
+				const y = bellCurveTween(10, 100);
+				challenge.dimensions = `${x}cm &times; ${y}cm`;
+			}
+
+			challenge.aesthetic = pickFrom(aesthetics);
+
+			challenge.prompts = `"${pickFrom(prompts)}", "${pickFrom(
+				prompts
+			)}" or "${pickFrom(prompts)}"`;
+
+			challenge.color = `hsl(${randomIntTween(0, 360)} ${randomIntTween(
+				0,
+				100
+			)}% ${randomIntTween(0, 100)}%)`;
+
+			updateField('#duration', `${challenge.duration} minutes`);
+			updateField('#dimensions', challenge.dimensions);
+			updateField('#aesthetic', challenge.aesthetic);
+			updateField('#prompts', challenge.prompts);
+			updateField('#color', challenge.color);
+			colorDisplay.style = `background: ${challenge.color}`;
+			updateField(
+				'#countdown-timer',
+				`${
+					challenge.duration < 10 ?
+						'0' + challenge.duration
+					:	challenge.duration
+				}:00`
+			);
+			challenge.duration = challenge.duration * 60;
+		}
+
+		// timer stuff
+		function startTimer() {
+			challenge.isActive = true;
+			btnStartTimer.textContent = 'Stop the clock!';
+			window.timerInterval = setInterval(iterateTimer, 1000);
+		}
+
+		function iterateTimer() {
+			if (challenge.isActive == false) {
+				console.log('challenge has been stopped or ended');
+				clearInterval(window.timerInterval);
+			}
+			let minutes, seconds;
+			minutes = parseInt(challenge.duration / 60, 10);
+			seconds = parseInt(challenge.duration % 60, 10);
+
+			minutes = minutes < 10 ? '0' + minutes : minutes;
+			seconds = seconds < 10 ? '0' + seconds : seconds;
+
+			countdownTimer.textContent = minutes + ':' + seconds;
+			challenge.duration--;
+			if (challenge.duration < 0) {
+				expireTimer();
+			}
+		}
+
+		function expireTimer() {
+			console.log('ExpireTimer triggered');
+			challenge.duration = 0;
+			countdownTimer.textContent = "Time's up!";
+			challenge.isActive = false;
+		}
+
+		// Random generation stuff
+		function randomIntTween(min, max) {
+			const range = max - min;
+			const result = min + Math.floor(Math.random() * range);
+			return result;
+		}
+
+		function bellCurveTween(min, max) {
+			return Math.floor(
+				(randomIntTween(min, max) + randomIntTween(min, max)) / 2
+			);
+		}
+
+		function pickFrom(array, bellCurve = false) {
+			let index;
+			if (bellCurve) {
+				index = bellCurveTween(0, array.length);
+			} else {
+				index = randomIntTween(0, array.length);
+			}
+			return array[index];
+		}
+
+		// DOM manipulation
+		function updateField(target, innerHTML) {
+			document.querySelector(target).innerHTML = innerHTML;
+		}
+
+		// adding event listeners
+		btnGenerateChallenge.addEventListener('click', generateChallenge);
+
+		btnStartTimer.addEventListener('click', () => {
+			// if it's clicked while a timer is in play, check if they want to cancel?
+			if (challenge.isActive == true) {
+				if (confirm('Do you want to cancel the challenge?'))
+					expireTimer();
+				return;
+			}
+			startTimer(challenge.duration * 60);
+		});
+	</script>
+</Layout>

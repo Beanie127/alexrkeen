@@ -1,0 +1,38 @@
+---
+interface Props {
+	id: string;
+	author: string;
+	url?: string;
+	source?: string;
+	category?: string;
+}
+const { id, author, url, source, category } = Astro.props;
+---
+
+<figure class="quote">
+	<blockquote class={category}>
+		{id}
+	</blockquote>
+	<figcaption>
+		<cite>
+			<span class="author">{author}</span>
+			<div class="source">
+				<a href={url}>
+					{source}
+				</a>
+			</div>
+		</cite>
+	</figcaption>
+</figure>
+<style>
+	a[href=''],
+	a:not([href]) {
+		text-decoration: none;
+	}
+	.source {
+		margin-inline-start: 1ch;
+		font-style: normal;
+		text-transform: uppercase;
+		font-size: 0.8rem;
+	}
+</style>

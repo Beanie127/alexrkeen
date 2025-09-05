@@ -6,10 +6,12 @@ import Layout from '../layouts/Layout.astro';
 	title="Colophon"
 	description="How the sausage is made.">
 	<div class="col-center">
-		<p>This site is hand-coded in HTML, CSS and JS.</p>
+		<p>This site is hand-coded in HTML, CSS and a smidge of JS.</p>
 		<p>
 			It's built using a static site generator called <a
-				href="https://astro.build">
+				href="https://astro.build"
+				rel="noopener noreferrer"
+				target="_blank">
 				Astro
 			</a>. Astro exports raw HTML and CSS with data-attributes for
 			styling, which makes for a clean and fast site without loading any
@@ -17,10 +19,23 @@ import Layout from '../layouts/Layout.astro';
 			consistent across pages.
 		</p>
 		<p>
-			It's typeset in <a href="https://github.com/Fonthausen/CrimsonPro">
+			It's typeset in <a
+				href="https://github.com/Fonthausen/CrimsonPro"
+				rel="noopener noreferrer"
+				target="_blank">
 				Crimson Pro
 			</a>.
 		</p>
-		<p>The whole site is &copy; Alex R. Keen 2021&ndash;2024</p>
-	</div></Layout
->
+		<p>
+			The whole site is &copy; Alex R. Keen 2021&ndash;<span
+				id="current-year">
+				2022
+			</span>
+		</p>
+	</div>
+</Layout>
+<script>
+	const year = document.querySelector('#current-year') as HTMLSpanElement;
+	const currentYear = new Date().getFullYear().toString();
+	year.textContent = currentYear;
+</script>

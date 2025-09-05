@@ -1,28 +1,5 @@
 {
   "extends": [
     "development"
-  ],
-  "hints": {
-    "axe/text-alternatives": [
-      "default",
-      {
-        "image-alt": "off"
-      }
-    ],
-    "no-inline-styles": "off",
-    "apple-touch-icons": "off",
-    "compat-api/css": [
-      "default",
-      {
-        "ignore": [
-          "scrollbar-gutter"
-        ]
-      }
-    ]
-  },
-  "browserslist": [
-    "defaults",
-    "not ie 11",
-    "not and_ff <= 115"
   ]
 }

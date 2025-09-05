@@ -1,0 +1,126 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+const quotes: Array<quote> = await getCollection('quotes');
+interface quote {
+	id: string;
+	data: { author: string; url?: string; source?: string; category?: string };
+}
+import Quote from '../../components/Quote.astro';
+---
+
+<Layout
+	title="Quotes"
+	description="A selection of inspirational quotes">
+	<main class="col-center">
+		<h2>Random quote</h2>
+		<div id="primary-quote-display"></div>
+		<div
+			class="flex-container"
+			style="view-transition-name: refresh-quote;">
+			<button
+				type="button"
+				id="refresh-quote">
+				New random quote
+			</button>
+		</div>
+		<section style="view-transition-name: section;">
+			<h2>All quotes</h2>
+			<label for="quote-search">Filter quotes</label>
+			<input
+				type="text"
+				name="quote-search"
+				id="quote-search"
+			/> Count: <span id="quote-count"></span>
+			<div id="quotes-list-display">
+				{
+					quotes.map((quote) => (
+						<Quote
+							id={quote.id}
+							source={quote.data.source}
+							url={quote.data.url}
+							category={quote.data.category}
+							author={quote.data.author}
+						/>
+					))
+				}
+			</div>
+		</section>
+	</main>
+</Layout>
+<script is:inline>
+	const quotesListDisplay = document.querySelector('#quotes-list-display');
+	const primaryQuoteDisplay = document.querySelector(
+		'#primary-quote-display'
+	);
+	const refreshQuote = document.querySelector('#refresh-quote');
+	const quoteSearch = document.querySelector('#quote-search');
+	const quoteCount = document.querySelector('#quote-count');
+	const quoteData = [];
+
+	// randomise the order of an array
+	function shuffle(array) {
+		for (let i = array.length - 1; i > 0; i--) {
+			let j = Math.floor(Math.random() * (i + 1));
+			[array[i], array[j]] = [array[j], array[i]];
+		}
+	}
+
+	// render a list of quotes and update the quote count
+	function renderList(array) {
+		console.log(primaryQuoteDisplay.textContent);
+		for (const el of array) {
+			quotesListDisplay.appendChild(el);
+			console.log(el, primaryQuoteDisplay.textContent);
+		}
+		console.log(primaryQuoteDisplay.textContent);
+
+		quoteCount.textContent = quotesListDisplay.childElementCount;
+	}
+
+	// return a filtered list of quotes which match the search term
+	function filterQuotes(searchTerm) {
+		const lowerCaseSearch = searchTerm.toLowerCase();
+		let matches = [];
+		quoteData.forEach((quote) => {
+			const squashed = quote.textContent.toLowerCase();
+			if (squashed.includes(lowerCaseSearch)) {
+				matches.push(quote);
+			}
+		});
+		return matches;
+	}
+
+	// pick a random quote from all quotes
+	function randomQuote() {
+		const randomNumber = Math.floor(Math.random() * quoteData.length);
+		const randomQuote = quoteData[randomNumber].cloneNode(true);
+		return randomQuote;
+	}
+
+	// on page load:
+	// - back up quote list
+	// - show quote list in random order
+	// - display a random quote
+	document.addEventListener('DOMContentLoaded', () => {
+		const reshuffle = Array.from(quotesListDisplay.children);
+		shuffle(reshuffle);
+		quoteData.push(...reshuffle);
+		quotesListDisplay.innerHTML = '';
+		primaryQuoteDisplay.innerHTML = '';
+		renderList(reshuffle);
+		primaryQuoteDisplay.appendChild(randomQuote());
+	});
+
+	// show a filtered list when someone types a search term
+	quoteSearch.addEventListener('keyup', (e) => {
+		quotesListDisplay.innerHTML = '';
+		const filteredList = filterQuotes(e.target.value);
+		renderList(filteredList);
+	});
+
+	refreshQuote.addEventListener('click', () => {
+		primaryQuoteDisplay.innerHTML = '';
+		primaryQuoteDisplay.appendChild(randomQuote());
+	});
+</script>

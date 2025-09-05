@@ -1,0 +1,72 @@
+---
+let url = Astro.url.pathname;
+type Crumb = {
+	url: string;
+	label: string;
+};
+// split url into individual strings
+const split = url.split('/').slice(1);
+
+// take an array, for each element in the array, add /[string] to a new string and return the new string
+// e.g. ["foo", "bar"] should return /foo/bar
+function concat(array: Array<string>) {
+	let str = '';
+	array.forEach((substr) => {
+		if (substr == '') return;
+		str += '/' + substr;
+	});
+	return str;
+}
+
+const links: Array<Crumb> = [];
+// for each string in the split, create a copy of the split that goes that level deep, then concatenate it
+split.forEach((string) => {
+	const index = split.indexOf(string) + 1;
+	const resplit = split.slice(0, index);
+	links.push({ url: concat(resplit), label: string });
+});
+---
+
+<nav class="col-wide">
+	<ul>
+		<li><a href="/">index</a></li>
+		{
+			links.map((link) => (
+				<li>
+					<a href={link.url}>{link.label}</a>
+				</li>
+			))
+		}
+	</ul>
+</nav>
+
+<script>
+	document.addEventListener(
+		'DOMContentLoaded',
+		() => {
+			document.querySelectorAll('a').forEach((a) => {
+				if (a.getAttribute('href') == '') a.remove();
+				if (a.innerHTML == '') a.remove();
+			});
+			document.querySelectorAll('li').forEach((li) => {
+				if (li.textContent == '') li.remove();
+			});
+		},
+		{ once: true }
+	);
+</script>
+
+<style>
+	ul {
+		display: flex;
+		list-style-type: none;
+		gap: 0.5rem;
+		padding-inline-start: 0;
+	}
+	li::before {
+		content: '/';
+		padding-inline-end: 0.5rem;
+		color: var(--h-color);
+		font-weight: bold;
+	}
+</style>
