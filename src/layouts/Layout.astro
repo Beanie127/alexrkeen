@@ -264,11 +264,6 @@ const { title, description } = Astro.props;
 				text-decoration: underline solid var(--accent-color) 1px;
 			}
 
-			/* a[href^='.']::before,
-			a[href^='/']::before {
-				content: '/';
-			} */
-
 			a[href^='http']::after {
 				content: '\00A0\2197';
 			}
@@ -394,6 +389,16 @@ const { title, description } = Astro.props;
 				inline-size: 4rem;
 				float: unset;
 				padding: 0;
+			}
+			@media (prefers-reduced-motion: no-preference) {
+				footer img {
+					animation: bob ease-in-out infinite 3s;
+				}
+				@keyframes bob {
+					50% {
+						transform: translateY(-1em);
+					}
+				}
 			}
 
 			/* utilities */

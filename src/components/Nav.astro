@@ -57,11 +57,19 @@ split.forEach((string) => {
 </script>
 
 <style>
+	nav {
+		/* overflow-x: scroll; */
+	}
 	ul {
 		display: flex;
 		list-style-type: none;
 		gap: 0.5rem;
 		padding-inline-start: 0;
+		overflow-x: scroll;
+	}
+	li {
+		inline-size: max-content;
+		flex-shrink: 0;
 	}
 	li::before {
 		content: '/';
