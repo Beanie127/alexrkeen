@@ -72,7 +72,7 @@ interface quote {
 			${
 				quote.source ?
 					`<div class="source">
-				${quote.url ? `<a href=${url}>` : ''}
+				${quote.url ? `<a href=${quote.url}>` : ''}
 					${quote.source}
 				${quote.url ? '</a>' : ''}`
 				:	''

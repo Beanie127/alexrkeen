@@ -31,30 +31,16 @@ split.forEach((string) => {
 	<ul>
 		<li><a href="/">index</a></li>
 		{
-			links.map((link) => (
-				<li>
-					<a href={link.url}>{link.label}</a>
-				</li>
-			))
+			url != '/' ?
+				links.map((link) => (
+					<li>
+						<a href={link.url}>{link.label}</a>
+					</li>
+				))
+			:	''
 		}
 	</ul>
 </nav>
-
-<script>
-	document.addEventListener(
-		'DOMContentLoaded',
-		() => {
-			document.querySelectorAll('a').forEach((a) => {
-				if (a.getAttribute('href') == '') a.remove();
-				if (a.innerHTML == '') a.remove();
-			});
-			document.querySelectorAll('li').forEach((li) => {
-				if (li.textContent == '') li.remove();
-			});
-		},
-		{ once: true }
-	);
-</script>
 
 <style>
 	nav {

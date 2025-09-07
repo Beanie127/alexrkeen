@@ -282,18 +282,11 @@ const { title, description } = Astro.props;
 
 			img {
 				display: block;
-				/* margin: auto; */
-				inline-size: 100%;
-				max-inline-size: 25rem;
-				border-radius: 10px;
-			}
-			img {
-				inline-size: clamp(8rem, 25%, 15rem);
-				float: left;
 				margin: 0;
-				margin-inline-end: 1em;
 				border-radius: 10px;
-				background: var(--mg-color);
+				float: left;
+				margin-inline-end: 1em;
+				inline-size: clamp(8rem, 25%, 15rem);
 			}
 
 			/* blockquotes */
