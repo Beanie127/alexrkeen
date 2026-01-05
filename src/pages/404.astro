@@ -33,15 +33,18 @@ interface quote {
 			hidden
 			id="quote-store">
 			{
-				quotes.map((quote) => (
-					<Quote
-						id={quote.id}
-						source={quote.data.source}
-						url={quote.data.url}
-						category={quote.data.category}
-						author={quote.data.author}
-					/>
-				))
+				quotes.map((quote) => {
+					const { source, url, category, author } = quote.data;
+					return (
+						<Quote
+							id={quote.id}
+							source={source}
+							url={url}
+							category={category}
+							author={author}
+						/>
+					);
+				})
 			}
 		</div>
 		<style>
