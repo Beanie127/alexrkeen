@@ -12,6 +12,7 @@ import Layout from '../layouts/Layout.astro';
 			</abbr> (Free and Open Source Software) where possible, or software with
 			permissive lifetime licensing.
 		</p>
+		<h2>Desktop software</h2>
 		<ul>
 			<li>
 				<strong>Browser:</strong>
@@ -77,9 +78,10 @@ import Layout from '../layouts/Layout.astro';
 					href="https://affinity.serif.com/en-gb/"
 					target="_blank"
 					rel="noopener noreferrer">
-					Affinity Suite by Serif
-				</a>. It’s a one-time payment for a lifetime license to
-				Publisher, Photo and Illustrator software that rivals Adobe.
+					Affinity Suite v2 by Serif
+				</a>. Unfortunately superceded by a freemium product, Affinity
+				Studio, which is very good, but relies on an internet connection
+				and is prime for enshittification.
 			</li>
 			<li>
 				<strong>Video editing:</strong>
@@ -100,7 +102,7 @@ import Layout from '../layouts/Layout.astro';
 				</a>. FOSS.
 			</li>
 		</ul>
-		<h2>Self Hosted Software</h2>
+		<h2>Self-Hosted Software</h2>
 		<p>
 			I have a little computer in my house (a Raspberry Pi 4), connected
 			to the internet and running an operating system called <a
@@ -152,9 +154,10 @@ import Layout from '../layouts/Layout.astro';
 					rel="noopener noreferrer">
 					Syncthing
 				</a>. Like Dropbox or Google Drive, but without size limits
-				(besides the server storage capacity) and no tracking.
+				(besides the server storage capacity) and no tracking. The home
+				server acts as an always-on hub for all my vital files, which
+				are synced across my desktop, laptop and smartphone.
 			</li>
-			<li><strong>File Sharing:</strong></li>
 			<li>
 				<strong>RSS reader:</strong>
 				<a
@@ -166,6 +169,17 @@ import Layout from '../layouts/Layout.astro';
 				through this. If you’re not familiar with RSS, imagine your
 				podcast feed, but for articles!
 			</li>
+			<li
+				><strong>Read-it-later:</strong>
+				<a href="https://wallabag.org">Wallabag</a>. I use wallabag to
+				capture articles from sources outside my RSS subscriptions, then
+				generate an RSS feed for unread articles, which I'm subscribed
+				to through FreshRSS. Sounds roundabout, but it means I can read
+				everything in one place, I have a more secure way of keeping an
+				article I want to revisit than just leaving a tab open, and I
+				use it as a prompt to subscribe to a feed if I really enjoy the
+				article.
+			</li>
 			<li>
 				<strong>Recipes:</strong>
 				<a
@@ -176,6 +190,42 @@ import Layout from '../layouts/Layout.astro';
 				</a>. Has decent import functionality, so you can skip the
 				SEO-bait essay that precedes the recipe on every blog nowadays.
 			</li>
+			<li
+				><strong>Location Tracker:</strong>
+				<a href="https://github.com/bfabiszewski/ulogger-server"
+					>μlogger</a
+				>. My husband and I use this to record trips we take. It also
+				acts as a way to share our location with one another, without
+				relying on a third party service.</li
+			>
+		</ul>
+		<h2>Mobile Apps</h2>
+		<p
+			>I have a Fairphone Gen 6 running Android 15. I've not completely
+			purged Google from my life, but where possible I rely on open-source
+			apps as an alternative to Google services.</p
+		>
+		<ul
+			><li
+				><strong>RSS reader:</strong>
+				<a href="https://capyreader.com">Capy Reader</a>. Acts as a
+				frontend for my FreshRSS account on my home server, with a nice
+				UI and a good full article downloader.</li
+			>
+			<li
+				><strong>Ebook reader: </strong><a href="https://librera.mobi"
+					>Librera</a
+				>. Superbly flexible ebook reader, because fuck the Kindle app
+				and Amazon's monopoly on ebooks. I manage my library by just
+				dropping files into a folder which is synced to my PC and laptop
+				by Syncthing.</li
+			>
+			<li
+				><strong>File Syncing: </strong><a
+					href="https://github.com/researchxxl/syncthing-android"
+					>Syncthing-Fork for Android</a
+				>. Linked to my home server, dekstop and laptop.</li
+			>
 		</ul>
 	</main>
 </Layout>

@@ -5,6 +5,7 @@ import { rename } from 'node:fs/promises';
 // https://astro.build/config
 
 export default defineConfig({
+	trailingSlash: 'never',
 	integrations: [
 		{
 			name: 'rename-404',
@@ -15,7 +16,7 @@ export default defineConfig({
 
 					await rename(
 						fileURLToPath(notFoundFileURL),
-						fileURLToPath(newNotFoundFileURL)
+						fileURLToPath(newNotFoundFileURL),
 					);
 				},
 			},

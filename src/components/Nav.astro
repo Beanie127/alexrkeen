@@ -21,15 +21,17 @@ function concat(array: Array<string>) {
 const links: Array<Crumb> = [];
 // for each string in the split, create a copy of the split that goes that level deep, then concatenate it
 split.forEach((string) => {
+	if (string == '/') return;
 	const index = split.indexOf(string) + 1;
 	const resplit = split.slice(0, index);
 	links.push({ url: concat(resplit), label: string });
 });
+console.log(links);
 ---
 
 <nav class="col-wide">
 	<ul>
-		<li><a href="/">index</a></li>
+		<li><a href="/">alexrkeen.com</a></li>
 		{
 			url != '/' ?
 				links.map((link) => (
@@ -41,7 +43,13 @@ split.forEach((string) => {
 		}
 	</ul>
 </nav>
-
+<!-- <script>
+	const links: NodeListOf<HTMLAnchorElement> =
+		document.querySelectorAll('nav a');
+	links.forEach((link) => {
+		if (link.textContent == '') link.parentElement?.remove();
+	});
+</script> -->
 <style>
 	nav {
 		/* overflow-x: scroll; */
@@ -57,7 +65,7 @@ split.forEach((string) => {
 		inline-size: max-content;
 		flex-shrink: 0;
 	}
-	li::before {
+	li:has(a)::before {
 		content: '/';
 		padding-inline-end: 0.5rem;
 		color: var(--h-color);
