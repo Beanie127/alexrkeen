@@ -29,7 +29,7 @@ import Layout from '../../layouts/Layout.astro';
 			--minuteDegs: calc(var(--minute, 0) * 6);
 			margin-inline: auto;
 			margin-block: 5rem;
-			block-size: min(15rem, 80vmin);
+			block-size: min(30rem, 90vmin);
 			aspect-ratio: 1;
 			border-radius: 100%;
 			border: thin solid gray;
@@ -69,12 +69,20 @@ import Layout from '../../layouts/Layout.astro';
 			block-size: 100%;
 			background: linear-gradient(
 				to right,
-				transparent calc(50% - 1px),
-				hsl(0 0 0) 0 calc(50% + 1px),
-				transparent calc(50% + 1px)
+				transparent calc(50% - 0.5px),
+				hsl(0 0 0) 0 calc(50% + 0.5px),
+				transparent calc(50% + 0.5px)
 			);
 			mask-image: linear-gradient(black 50%, transparent 50%);
 			transform: rotate(calc(var(--second, 0) * 6deg));
+		}
+
+		#center-spot {
+			block-size: 10%;
+			background-image:
+				url('/images/favicon.svg'),
+				linear-gradient(hsl(0 0 0), hsl(0 0 0));
+			z-index: 10;
 		}
 	</style>
 	<main class="col-center">
@@ -82,6 +90,7 @@ import Layout from '../../layouts/Layout.astro';
 			<div id="minute"></div>
 			<div id="hour"></div>
 			<div id="second"></div>
+			<div id="center-spot"></div>
 		</div>
 	</main>
 	<script is:inline>
