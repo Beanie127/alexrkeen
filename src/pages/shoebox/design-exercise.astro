@@ -72,7 +72,7 @@ import Layout from '../../layouts/Layout.astro';
 	</section>
 	<script type="module" is:inline>
 		const btnGenerateChallenge = document.querySelector(
-			'#btn-generate-challenge'
+			'#btn-generate-challenge',
 		);
 		const btnStartTimer = document.querySelector('#btn-start-timer');
 		const colorDisplay = document.querySelector('#color-display');
@@ -96,7 +96,7 @@ import Layout from '../../layouts/Layout.astro';
 		function generateChallenge() {
 			if (challenge.isActive) {
 				const cancel = confirm(
-					'You have an active challenge! Are you sure you want to cancel?'
+					'You have an active challenge! Are you sure you want to cancel?',
 				);
 				if (!cancel) {
 					return;
@@ -121,12 +121,12 @@ import Layout from '../../layouts/Layout.astro';
 			challenge.aesthetic = pickFrom(aesthetics);
 
 			challenge.prompts = `"${pickFrom(prompts)}", "${pickFrom(
-				prompts
+				prompts,
 			)}" or "${pickFrom(prompts)}"`;
 
 			challenge.color = `hsl(${randomIntTween(0, 360)} ${randomIntTween(
 				0,
-				100
+				100,
 			)}% ${randomIntTween(0, 100)}%)`;
 
 			updateField('#duration', `${challenge.duration} minutes`);
@@ -141,7 +141,7 @@ import Layout from '../../layouts/Layout.astro';
 					challenge.duration < 10 ?
 						'0' + challenge.duration
 					:	challenge.duration
-				}:00`
+				}:00`,
 			);
 			challenge.duration = challenge.duration * 60;
 		}
@@ -188,7 +188,7 @@ import Layout from '../../layouts/Layout.astro';
 
 		function bellCurveTween(min, max) {
 			return Math.floor(
-				(randomIntTween(min, max) + randomIntTween(min, max)) / 2
+				(randomIntTween(min, max) + randomIntTween(min, max)) / 2,
 			);
 		}
 

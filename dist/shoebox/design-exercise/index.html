@@ -4,7 +4,7 @@
 </style>
 <link rel="stylesheet" href="/_astro/below-the-algorithm.BQ82pWLl.css"></head> <body> <h1>Graphic Design Exercise</h1> <nav class="col-wide" data-astro-cid-dmqpwcec> <ul data-astro-cid-dmqpwcec> <li data-astro-cid-dmqpwcec><a href="/" data-astro-cid-dmqpwcec>alexrkeen</a></li> <li data-astro-cid-dmqpwcec> <a href="/shoebox" data-astro-cid-dmqpwcec>shoebox</a> </li><li data-astro-cid-dmqpwcec> <a href="/shoebox/design-exercise" data-astro-cid-dmqpwcec>design-exercise</a> </li> </ul> </nav>    <section class="col-center" data-astro-cid-67fmhq4i> <p data-astro-cid-67fmhq4i>Click the button to get a random graphic design challenge!</p> <button id="btn-generate-challenge" data-astro-cid-67fmhq4i>Generate challenge</button> <div id="results" data-astro-cid-67fmhq4i> <h2 data-astro-cid-67fmhq4i>Your Challenge</h2> <table id="instructions" data-astro-cid-67fmhq4i> <tr data-astro-cid-67fmhq4i> <th data-astro-cid-67fmhq4i>Time</th> <td id="duration" data-astro-cid-67fmhq4i></td> </tr> <tr data-astro-cid-67fmhq4i> <th data-astro-cid-67fmhq4i>Format</th> <td id="dimensions" data-astro-cid-67fmhq4i></td> </tr> <tr data-astro-cid-67fmhq4i> <th data-astro-cid-67fmhq4i>Aesthetic</th> <td id="aesthetic" data-astro-cid-67fmhq4i></td> </tr> <tr data-astro-cid-67fmhq4i> <th data-astro-cid-67fmhq4i>Prompts</th> <td id="prompts" data-astro-cid-67fmhq4i></td> </tr> <tr data-astro-cid-67fmhq4i> <th data-astro-cid-67fmhq4i>Primary colour</th> <td id="color" data-astro-cid-67fmhq4i></td> </tr> </table> </div> <div id="color-display" data-astro-cid-67fmhq4i></div> <div id="countdown-timer" data-astro-cid-67fmhq4i>00:00</div> <button id="btn-start-timer" data-astro-cid-67fmhq4i>Start the clock!</button> </section> <script type="module">
 		const btnGenerateChallenge = document.querySelector(
-			'#btn-generate-challenge'
+			'#btn-generate-challenge',
 		);
 		const btnStartTimer = document.querySelector('#btn-start-timer');
 		const colorDisplay = document.querySelector('#color-display');
@@ -28,7 +28,7 @@
 		function generateChallenge() {
 			if (challenge.isActive) {
 				const cancel = confirm(
-					'You have an active challenge! Are you sure you want to cancel?'
+					'You have an active challenge! Are you sure you want to cancel?',
 				);
 				if (!cancel) {
 					return;
@@ -53,12 +53,12 @@
 			challenge.aesthetic = pickFrom(aesthetics);
 
 			challenge.prompts = `"${pickFrom(prompts)}", "${pickFrom(
-				prompts
+				prompts,
 			)}" or "${pickFrom(prompts)}"`;
 
 			challenge.color = `hsl(${randomIntTween(0, 360)} ${randomIntTween(
 				0,
-				100
+				100,
 			)}% ${randomIntTween(0, 100)}%)`;
 
 			updateField('#duration', `${challenge.duration} minutes`);
@@ -73,7 +73,7 @@
 					challenge.duration < 10 ?
 						'0' + challenge.duration
 					:	challenge.duration
-				}:00`
+				}:00`,
 			);
 			challenge.duration = challenge.duration * 60;
 		}
@@ -120,7 +120,7 @@
 
 		function bellCurveTween(min, max) {
 			return Math.floor(
-				(randomIntTween(min, max) + randomIntTween(min, max)) / 2
+				(randomIntTween(min, max) + randomIntTween(min, max)) / 2,
 			);
 		}
 

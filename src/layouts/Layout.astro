@@ -3,9 +3,10 @@ import Nav from '../components/Nav.astro';
 interface Props {
 	title: string;
 	description: string;
+	noFooter?: boolean;
 }
 
-const { title, description } = Astro.props;
+const { title, description, noFooter = false } = Astro.props;
 ---
 
 <!doctype html>
@@ -37,17 +38,21 @@ const { title, description } = Astro.props;
 		<h1>{title}</h1>
 		<Nav />
 		<slot />
-		<footer>
-			<a
-				href="#"
-				title="top">
-				<span class="visually-hidden">Go to top</span>
-				<img
-					src="/images/favicon.svg"
-					alt="A monogram of the letters A K in a circle"
-				/>
-			</a>
-		</footer>
+		{
+			(
+				<footer>
+					<a
+						href="#"
+						title="top">
+						<span class="visually-hidden">Go to top</span>
+						<img
+							src="/images/favicon.svg"
+							alt="A monogram of the letters A K in a circle"
+						/>
+					</a>
+				</footer>
+			)
+		}
 		<style is:global>
 			@layer reset {
 				/* RESET */
