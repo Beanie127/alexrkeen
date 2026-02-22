@@ -70,11 +70,11 @@ import Layout from '../../layouts/Layout.astro';
 			background: linear-gradient(
 				to right,
 				transparent calc(50% - 1px),
-				hsl(0 0 0) 50%,
+				hsl(0 0 0) 0 calc(50% + 1px),
 				transparent calc(50% + 1px)
 			);
 			mask-image: linear-gradient(black 50%, transparent 50%);
-			transform: translateX(-1px) rotate(calc(var(--second, 0) * 6deg));
+			transform: rotate(calc(var(--second, 0) * 6deg));
 		}
 	</style>
 	<main class="col-center">

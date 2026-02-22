@@ -26,7 +26,6 @@ split.forEach((string) => {
 	const resplit = split.slice(0, index);
 	links.push({ url: concat(resplit), label: string });
 });
-console.log(links);
 ---
 
 <nav class="col-wide">
@@ -43,21 +42,11 @@ console.log(links);
 		}
 	</ul>
 </nav>
-<!-- <script>
-	const links: NodeListOf<HTMLAnchorElement> =
-		document.querySelectorAll('nav a');
-	links.forEach((link) => {
-		if (link.textContent == '') link.parentElement?.remove();
-	});
-</script> -->
+
 <style>
-	nav {
-		/* overflow-x: scroll; */
-	}
 	ul {
 		display: flex;
 		flex-wrap: wrap;
-		/* overflow-x: scroll; */
 		list-style-type: none;
 		gap: 5px;
 		padding-inline-start: 0;
@@ -70,7 +59,6 @@ console.log(links);
 	}
 	li:has(a)::before {
 		content: '/';
-		/* padding-inline-end: 0.2rem; */
 		color: var(--h-color);
 		font-weight: bold;
 	}
