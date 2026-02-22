@@ -1,0 +1,26 @@
+<!DOCTYPE html><html lang="en"> <head><title>
+			Clock | Alex Keen
+		</title><meta charset="UTF-8"><meta name="description" content="A cool clock"><meta name="viewport" content="width=device-width,"><link rel="icon" href="/images/favicon.svg" type="image/svg+xml"><meta name="generator" content="Astro v5.17.3"><style>@property --hour{syntax: "<number>"; initial-value: 0; inherits: true;}@property --minute{syntax: "<number>"; initial-value: 0; inherits: true;}@property --second{syntax: "<number>"; initial-value: 0; inherits: true;}#clock[data-astro-cid-wddtszsn]{--saturation: 75;--lightness: 75;--hourDegs: calc(var(--hour, 0) * 30);--minuteDegs: calc(var(--minute, 0) * 6);margin-inline:auto;margin-block:5rem;block-size:min(15rem,80vmin);aspect-ratio:1;border-radius:100%;border:thin solid gray;background:hsl(0 0 100 / .5);display:grid;place-items:center;grid-template-areas:"main";will-change:contents;*{grid-area:1/1;aspect-ratio:inherit;border-radius:inherit}}#hour[data-astro-cid-wddtszsn]{block-size:50%;background:conic-gradient(from calc(var(--hourDegs) * 1deg),hsl(var(--hourDegs) var(--saturation) var(--lightness) / 0) 50%,hsl(var(--hourDegs) var(--saturation) var(--lightness)))}#minute[data-astro-cid-wddtszsn]{block-size:95%;background:conic-gradient(from calc(var(--minuteDegs) * 1deg),hsl(var(--minuteDegs) var(--saturation) var(--lightness) / 0) 50%,hsl(var(--minuteDegs) var(--saturation) var(--lightness)))}#second[data-astro-cid-wddtszsn]{border-radius:none;block-size:100%;background:linear-gradient(to right,transparent calc(50% - 1px),hsl(0 0 0) 50%,transparent calc(50% + 1px));mask-image:linear-gradient(black 50%,transparent 50%);transform:translate(-1px) rotate(calc(var(--second, 0) * 6deg))}
+</style>
+<link rel="stylesheet" href="/_astro/below-the-algorithm.BQ82pWLl.css"></head> <body> <h1>Clock</h1> <nav class="col-wide" data-astro-cid-dmqpwcec> <ul data-astro-cid-dmqpwcec> <li data-astro-cid-dmqpwcec><a href="/" data-astro-cid-dmqpwcec>alexrkeen</a></li> <li data-astro-cid-dmqpwcec> <a href="/shoebox" data-astro-cid-dmqpwcec>shoebox</a> </li><li data-astro-cid-dmqpwcec> <a href="/shoebox/clock" data-astro-cid-dmqpwcec>clock</a> </li> </ul> </nav> <!-- <script>
+	const links: NodeListOf<HTMLAnchorElement> =
+		document.querySelectorAll('nav a');
+	links.forEach((link) => {
+		if (link.textContent == '') link.parentElement?.remove();
+	});
+</script> -->    <main class="col-center" data-astro-cid-wddtszsn> <div id="clock" data-astro-cid-wddtszsn> <div id="minute" data-astro-cid-wddtszsn></div> <div id="hour" data-astro-cid-wddtszsn></div> <div id="second" data-astro-cid-wddtszsn></div> </div> </main> <script>
+		const clock = document.querySelector('#clock');
+		function updateClock() {
+			const moment = new Date();
+			console.log(moment);
+			const minute = moment.getMinutes();
+			const hour = moment.getHours();
+			const second = moment.getSeconds();
+			clock.style.setProperty('--hour', hour);
+			clock.style.setProperty('--minute', minute);
+			clock.style.setProperty('--second', second);
+		}
+
+		updateClock();
+		setInterval(updateClock, 500);
+	</script>  <footer> <a href="#" title="top"> <span class="visually-hidden">Go to top</span> <img src="/images/favicon.svg" alt="A monogram of the letters A K in a circle"> </a> </footer>  </body> </html>
