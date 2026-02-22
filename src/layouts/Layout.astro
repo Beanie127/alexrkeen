@@ -39,7 +39,7 @@ const { title, description, noFooter = false } = Astro.props;
 		<Nav />
 		<slot />
 		{
-			(
+			noFooter ? '' : (
 				<footer>
 					<a
 						href="#"
