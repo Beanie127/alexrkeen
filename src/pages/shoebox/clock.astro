@@ -1,0 +1,103 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+	title="Clock"
+	description="A cool clock">
+	<style>
+		@property --hour {
+			syntax: '<number>';
+			initial-value: 0;
+			inherits: true;
+		}
+		@property --minute {
+			syntax: '<number>';
+			initial-value: 0;
+			inherits: true;
+		}
+		@property --second {
+			syntax: '<number>';
+			initial-value: 0;
+			inherits: true;
+		}
+
+		#clock {
+			--saturation: 75;
+			--lightness: 75;
+			--hourDegs: calc(var(--hour, 0) * 30);
+			--minuteDegs: calc(var(--minute, 0) * 6);
+			margin-inline: auto;
+			margin-block: 5rem;
+			block-size: min(15rem, 80vmin);
+			aspect-ratio: 1;
+			border-radius: 100%;
+			border: thin solid gray;
+			background: hsl(0 0 100 / 0.5);
+			display: grid;
+			place-items: center;
+			grid-template-areas: 'main';
+			will-change: contents;
+			* {
+				grid-area: 1/1;
+				aspect-ratio: inherit;
+				border-radius: inherit;
+			}
+		}
+
+		#hour {
+			block-size: 50%;
+			background: conic-gradient(
+				from calc(var(--hourDegs) * 1deg),
+				hsl(var(--hourDegs) var(--saturation) var(--lightness) / 0) 50%,
+				hsl(var(--hourDegs) var(--saturation) var(--lightness))
+			);
+		}
+
+		#minute {
+			block-size: 95%;
+			background: conic-gradient(
+				from calc(var(--minuteDegs) * 1deg),
+				hsl(var(--minuteDegs) var(--saturation) var(--lightness) / 0)
+					50%,
+				hsl(var(--minuteDegs) var(--saturation) var(--lightness))
+			);
+		}
+
+		#second {
+			border-radius: none;
+			block-size: 100%;
+			background: linear-gradient(
+				to right,
+				transparent calc(50% - 1px),
+				hsl(0 0 0) 50%,
+				transparent calc(50% + 1px)
+			);
+			mask-image: linear-gradient(black 50%, transparent 50%);
+			transform: translateX(-1px) rotate(calc(var(--second, 0) * 6deg));
+		}
+	</style>
+	<main class="col-center">
+		<div id="clock">
+			<div id="minute"></div>
+			<div id="hour"></div>
+			<div id="second"></div>
+		</div>
+	</main>
+	<script is:inline>
+		const clock = document.querySelector('#clock');
+		function updateClock() {
+			const moment = new Date();
+			console.log(moment);
+			const minute = moment.getMinutes();
+			const hour = moment.getHours();
+			const second = moment.getSeconds();
+			clock.style.setProperty('--hour', hour);
+			clock.style.setProperty('--minute', minute);
+			clock.style.setProperty('--second', second);
+		}
+
+		updateClock();
+		setInterval(updateClock, 500);
+	</script>
+</Layout>

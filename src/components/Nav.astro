@@ -31,7 +31,7 @@ console.log(links);
 
 <nav class="col-wide">
 	<ul>
-		<li><a href="/">alexrkeen.com</a></li>
+		<li><a href="/">alexrkeen</a></li>
 		{
 			url != '/' ?
 				links.map((link) => (
@@ -57,17 +57,20 @@ console.log(links);
 	ul {
 		display: flex;
 		flex-wrap: wrap;
+		/* overflow-x: scroll; */
 		list-style-type: none;
-		gap: 0.5rem;
+		gap: 5px;
 		padding-inline-start: 0;
+		margin-block: 5px;
 	}
 	li {
 		inline-size: max-content;
 		flex-shrink: 0;
+		line-height: 1;
 	}
 	li:has(a)::before {
 		content: '/';
-		padding-inline-end: 0.5rem;
+		/* padding-inline-end: 0.2rem; */
 		color: var(--h-color);
 		font-weight: bold;
 	}

@@ -34,8 +34,8 @@ const { title, description } = Astro.props;
 		/>
 	</head>
 	<body>
-		<Nav />
 		<h1>{title}</h1>
+		<Nav />
 		<slot />
 		<footer>
 			<a
@@ -127,31 +127,21 @@ const { title, description } = Astro.props;
 			/* GLOBAL VARIABLES */
 
 			:root {
-				--bg-color: hsl(63 57 88);
-				--text-color: hsl(8 12 5);
-				--mg-color: hsl(78 51 80);
-				--h-color: hsl(359 57 40);
-				--accent-color: hsl(142 34 31);
+				--bg-color: hsl(357 12 12);
+				--mg-color: hsl(357 48 22);
+				--accent-color: hsl(13 69 59);
+				--text-color: hsl(40 31 70);
+				--h-color: hsl(40 100 69);
+				/* --text-color: hsl(58 57 92); */
+				/* --bg-color: hsl(8 12 15); */
 			}
 
 			/* TYPOGRAPHY */
 
 			html {
-				font-size: clamp(1.25rem, 1.1477rem + 0.4545vw, 1.5rem);
+				font-size: clamp(1.1rem, 0.9rem + 0.45vw, 1.3rem);
 				font-family:
-					'Albert Sans',
-					system-ui,
-					-apple-system,
-					BlinkMacSystemFont,
-					'Segoe UI',
-					Roboto,
-					Oxygen,
-					Ubuntu,
-					Cantarell,
-					'Open Sans',
-					'Helvetica Neue',
-					sans-serif;
-				font-family: 'Crimson Pro', 'Garamond', Georgia, Times,
+					'Crimson Pro', 'Garamond', Georgia, Times,
 					'Times New Roman', serif;
 				background-color: var(--bg-color);
 				color: var(--text-color);
@@ -169,11 +159,10 @@ const { title, description } = Astro.props;
 
 			h1 {
 				font-weight: 900;
-				font-size: 2.5em;
-				text-transform: uppercase;
+				/* text-transform: lowercase; */
+				padding-block: 5px;
 				background: var(--accent-color);
 				color: var(--bg-color);
-				text-shadow: -4px 0px var(--h-color);
 				margin-block: 0;
 				grid-column: full-bleed;
 				text-align: center;
