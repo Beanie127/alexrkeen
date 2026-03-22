@@ -51,7 +51,7 @@ import Quote from '../../components/Quote.astro';
 <script is:inline>
 	const quotesListDisplay = document.querySelector('#quotes-list-display');
 	const primaryQuoteDisplay = document.querySelector(
-		'#primary-quote-display'
+		'#primary-quote-display',
 	);
 	const refreshQuote = document.querySelector('#refresh-quote');
 	const quoteSearch = document.querySelector('#quote-search');
@@ -68,27 +68,17 @@ import Quote from '../../components/Quote.astro';
 
 	// render a list of quotes and update the quote count
 	function renderList(array) {
-		console.log(primaryQuoteDisplay.textContent);
 		for (const el of array) {
 			quotesListDisplay.appendChild(el);
-			console.log(el, primaryQuoteDisplay.textContent);
 		}
-		console.log(primaryQuoteDisplay.textContent);
-
 		quoteCount.textContent = quotesListDisplay.childElementCount;
 	}
 
 	// return a filtered list of quotes which match the search term
 	function filterQuotes(searchTerm) {
-		const lowerCaseSearch = searchTerm.toLowerCase();
-		let matches = [];
-		quoteData.forEach((quote) => {
-			const squashed = quote.textContent.toLowerCase();
-			if (squashed.includes(lowerCaseSearch)) {
-				matches.push(quote);
-			}
-		});
-		return matches;
+		return quoteData.filter((quote) =>
+			quote.textContent.toLowerCase().includes(searchTerm.toLowerCase()),
+		);
 	}
 
 	// pick a random quote from all quotes
@@ -108,7 +98,7 @@ import Quote from '../../components/Quote.astro';
 		quoteData.push(...reshuffle);
 		quotesListDisplay.innerHTML = '';
 		primaryQuoteDisplay.innerHTML = '';
-		renderList(reshuffle);
+		renderList(quoteData);
 		primaryQuoteDisplay.appendChild(randomQuote());
 	});
 

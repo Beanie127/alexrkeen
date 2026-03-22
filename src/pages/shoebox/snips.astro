@@ -1,0 +1,72 @@
+---
+import { Code } from 'astro:components';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+	title="Code Snippets"
+	description="A selection of useful code snippets">
+	<style>
+		.astro-code {
+			max-inline-size: 100%;
+			font-size: 0.75rem;
+			line-height: 1.2;
+			padding: 1rem;
+			border-radius: 0.5rem;
+		}
+	</style>
+	<p class="col-center">A selection of helpful code snippets.</p>
+	<ul class="col-full-bleed card-container">
+		<li>
+			<Code
+				code="// querySelector Alias
+const $ = function (target, origin = document) {
+    return origin.querySelector(target)
+}
+const $$ = function (target, origin = document) {
+    return Array.from(origin.querySelectorAll(target)
+}"
+				lang="js"
+			/>
+		</li>
+		<li
+			><Code
+				code="//randomise the order of an array
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}}"
+				lang="js"
+			/>
+		</li>
+		<li
+			><Code
+				code="// Random pick functions
+function randomIntTween(min, max) {
+    const range = max - min;
+    const result = min + Math.floor(Math.random() * range);
+    return result;
+}
+
+function bellCurveTween(min, max) {
+    return Math.floor(
+        (randomIntTween(min, max) + randomIntTween(min, max)) / 2,
+    );
+}
+
+function pickFrom(array, bellCurve = false) {
+    let index;
+    if (bellCurve) {
+        index = bellCurveTween(0, array.length);
+    } else {
+        index = randomIntTween(0, array.length);
+    }
+    return array[index];
+}"
+				lang="js"
+			/></li
+		>
+	</ul>
+</Layout>
