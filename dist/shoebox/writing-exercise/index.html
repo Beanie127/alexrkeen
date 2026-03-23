@@ -1,236 +1,168 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en"> <head><title>
+			Writing Exercise | Alex Keen
+		</title><meta charset="UTF-8"><meta name="description" content="Practice your writing skills with a random exercise"><meta name="viewport" content="width=device-width,"><link rel="icon" href="/images/favicon.svg" type="image/svg+xml"><meta name="generator" content="Astro v6.0.8"><style>#copy[data-astro-cid-csibvzze]{margin-block:1rem;inline-size:100%;min-block-size:8lh}#countdown-timer[data-astro-cid-csibvzze]{font-size:10vw;justify-self:center}
+</style>
+<link rel="stylesheet" href="/_astro/Layout.Ctq_jRT6.css"></head> <body> <h1>Writing Exercise</h1> <nav class="col-wide" data-astro-cid-dmqpwcec> <ul data-astro-cid-dmqpwcec> <li data-astro-cid-dmqpwcec><a href="/" data-astro-cid-dmqpwcec>alexrkeen</a></li> <li data-astro-cid-dmqpwcec> <a href="/shoebox" data-astro-cid-dmqpwcec>shoebox</a> </li><li data-astro-cid-dmqpwcec> <a href="/shoebox/writing-exercise" data-astro-cid-dmqpwcec>writing-exercise</a> </li> </ul> </nav>  <section class="col-center" data-astro-cid-csibvzze> <p data-astro-cid-csibvzze>Click the button to get a random writing exercise!</p> <button id="generate-exercise" data-astro-cid-csibvzze>Generate Exercise</button> <div id="results" data-astro-cid-csibvzze> <h2 data-astro-cid-csibvzze>Your Challenge</h2> <table id="instructions" data-astro-cid-csibvzze> <thead data-astro-cid-csibvzze> <th id="key" data-astro-cid-csibvzze></th> <th id="value" data-astro-cid-csibvzze></th> </thead> <tbody data-astro-cid-csibvzze> <tr data-astro-cid-csibvzze> <th data-astro-cid-csibvzze>Duration</th> <td id="duration" data-astro-cid-csibvzze></td> </tr> <tr data-astro-cid-csibvzze> <th data-astro-cid-csibvzze>Genre</th> <td id="genre" data-astro-cid-csibvzze></td> </tr> <tr data-astro-cid-csibvzze> <th data-astro-cid-csibvzze>Prompt</th> <td id="prompt" data-astro-cid-csibvzze></td> </tr> </tbody> </table> <br data-astro-cid-csibvzze> <div id="countdown-timer" hidden data-astro-cid-csibvzze>
+00:00
+</div> <button id="timer-btn" hidden style="display:none" data-astro-cid-csibvzze>
+Start the clock!
+</button> </div> <textarea name="copy" id="copy" hidden data-astro-cid-csibvzze>		</textarea> <br data-astro-cid-csibvzze> <span id="word-count" hidden data-astro-cid-csibvzze></span> <button id="save-btn" hidden style="display:none" data-astro-cid-csibvzze>
+Save your work?
+</button> </section>  <script type="module">
+		import * as util from '/js/utilities.js';
+		import {
+			events,
+			objects,
+			jobs,
+			relationships,
+			locales,
+			emotions,
+		} from '/js/data-lists.js';
 
-<head>
-    <title>
-        Writing Exercise | Alex Keen
-    </title>
-    <meta charset="UTF-8">
-    <meta name="description" content="Practice your writing skills with a random exercise">
-    <meta name="viewport" content="width=device-width,">
-    <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
-    <meta name="generator" content="Astro v6.0.8">
-    <style>
-        #copy[data-astro-cid-csibvzze] {
-            margin-block: 1rem;
-            inline-size: 100%;
-            min-block-size: 8lh
-        }
+		const prompts = [
+			...events,
+			...objects,
+			...jobs,
+			...relationships,
+			...locales,
+			...emotions,
+		];
 
-        #countdown-timer[data-astro-cid-csibvzze] {
-            font-size: 10vw;
-            justify-self: center
-        }
-    </style>
-    <link rel="stylesheet" href="/_astro/Layout.D8GAa7eJ.css">
-</head>
+		const genres = ['non-fiction', 'fiction', 'autobiographical'];
 
-<body>
-    <h1>Writing Exercise</h1>
-    <nav class="col-wide" data-astro-cid-dmqpwcec>
-        <ul data-astro-cid-dmqpwcec>
-            <li data-astro-cid-dmqpwcec><a href="/" data-astro-cid-dmqpwcec>alexrkeen</a></li>
-            <li data-astro-cid-dmqpwcec> <a href="/shoebox" data-astro-cid-dmqpwcec>shoebox</a> </li>
-            <li data-astro-cid-dmqpwcec> <a href="/shoebox/writing-exercise"
-                    data-astro-cid-dmqpwcec>writing-exercise</a> </li>
-        </ul>
-    </nav>
-    <section class="col-center" data-astro-cid-csibvzze>
-        <p data-astro-cid-csibvzze>Click the button to get a random writing exercise!</p> <button id="generate-exercise"
-            data-astro-cid-csibvzze>Generate Exercise</button>
-        <div id="results" data-astro-cid-csibvzze>
-            <h2 data-astro-cid-csibvzze>Your Challenge</h2>
-            <table id="instructions" data-astro-cid-csibvzze>
-                <thead data-astro-cid-csibvzze>
-                    <th id="key" data-astro-cid-csibvzze></th>
-                    <th id="value" data-astro-cid-csibvzze></th>
-                </thead>
-                <tbody data-astro-cid-csibvzze>
-                    <tr data-astro-cid-csibvzze>
-                        <th data-astro-cid-csibvzze>Duration</th>
-                        <td id="duration" data-astro-cid-csibvzze></td>
-                    </tr>
-                    <tr data-astro-cid-csibvzze>
-                        <th data-astro-cid-csibvzze>Genre</th>
-                        <td id="genre" data-astro-cid-csibvzze></td>
-                    </tr>
-                    <tr data-astro-cid-csibvzze>
-                        <th data-astro-cid-csibvzze>Prompt</th>
-                        <td id="prompt" data-astro-cid-csibvzze></td>
-                    </tr>
-                </tbody>
-            </table> <br data-astro-cid-csibvzze>
-            <div id="countdown-timer" hidden data-astro-cid-csibvzze>
-                00:00
-            </div> <button id="timer-btn" hidden style="display:none" data-astro-cid-csibvzze>
-                Start the clock!
-            </button>
-        </div> <textarea name="copy" id="copy" hidden data-astro-cid-csibvzze>		</textarea> <br data-astro-cid-csibvzze>
-        <span id="word-count" hidden data-astro-cid-csibvzze></span> <button id="save-btn" hidden style="display:none"
-            data-astro-cid-csibvzze>
-            Save your work?
-        </button>
-    </section>
-    <script type="module">
-        import * as util from '/js/utilities.js';
-        import {
-            events,
-            objects,
-            jobs,
-            relationships,
-            locales,
-            emotions,
-        } from '/js/data-lists.js';
+		const copy = document.querySelector('#copy');
 
-        const prompts = [
-            ...events,
-            ...objects,
-            ...jobs,
-            ...relationships,
-            ...locales,
-            ...emotions,
-        ];
+		class Exercise {
+			constructor() {
+				this.duration;
+				this.genre;
+				this.prompt;
+				this.isActive = false;
+			}
+		}
 
-        const genres = ['non-fiction', 'fiction', 'autobiographical'];
+		let exercise = {};
 
-        const copy = document.querySelector('#copy');
+		function generateExercise() {
+			// generate a new exercise
+			exercise = new Exercise();
+			exercise.duration = util.bellCurveTween(3, 15);
+			exercise.genre = util.pickFrom(genres, true);
+			exercise.prompt = util.pickFrom(prompts);
 
-        class Exercise {
-            constructor() {
-                this.duration;
-                this.genre;
-                this.prompt;
-                this.isActive = false;
-            }
-        }
+			// render the exercise
+			util.updateField('#duration', `${exercise.duration} minutes`);
+			util.updateField('#genre', `${exercise.genre}`);
+			util.updateField('#prompt', `${exercise.prompt}`);
+			util.updateField(
+				'#countdown-timer',
+				`${exercise.duration < 10 ? '0' + exercise.duration : exercise.duration}:00`
+			);
 
-        let exercise = {};
+			// set the timer
+			exercise.duration = exercise.duration * 60;
 
-        function generateExercise() {
-            // generate a new exercise
-            exercise = new Exercise();
-            exercise.duration = util.bellCurveTween(3, 15);
-            exercise.genre = util.pickFrom(genres, true);
-            exercise.prompt = util.pickFrom(prompts);
+			// show controls
+			util.setHidden('#copy', false);
+			util.setHidden('#timer-btn', false);
+			util.setHidden('#countdown-timer', false);
+			util.setHidden('#word-count');
+		}
 
-            // render the exercise
-            util.updateField('#duration', `${exercise.duration} minutes`);
-            util.updateField('#genre', `${exercise.genre}`);
-            util.updateField('#prompt', `${exercise.prompt}`);
-            util.updateField(
-                '#countdown-timer',
-                `${exercise.duration < 10 ? '0' + exercise.duration : exercise.duration}:00`
-            );
+		// start exercise
+		function startExercise() {
+			// check for active exercise and cancel as appropriate
+			if (exercise.isActive) {
+				const cancel = confirm(
+					'You have an active challenge! Are you sure you want to cancel?'
+				);
+				if (!cancel) {
+					return;
+				}
+				exercise.duration = 0;
+				clearInterval(window.timerInterval);
+				expireTimer();
+			}
+			// dom manipulation
+			util.updateField('#timer-btn', 'Stop the timer');
+			util.setHidden('#generate-exercise');
+			//start the timer
+			startTimer();
+		}
 
-            // set the timer
-            exercise.duration = exercise.duration * 60;
+		function downloadResult() {
+			// create a file from the copy
+			const content = copy.value;
+			const blob = new Blob([content], { type: 'plain/text' });
+			const fileUrl = URL.createObjectURL(blob);
 
-            // show controls
-            util.setHidden('#copy', false);
-            util.setHidden('#timer-btn', false);
-            util.setHidden('#countdown-timer', false);
-            util.setHidden('#word-count');
-        }
+			// create download link
+			const dlLink = document.createElement('a');
+			dlLink.setAttribute('href', fileUrl);
+			dlLink.setAttribute(
+				'download',
+				`${util.today()} ${exercise.prompt}.md`
+			);
+			dlLink.style.display = 'none';
+			document.body.appendChild(dlLink);
+			dlLink.click();
+			document.body.removeChild(dlLink);
+		}
 
-        // start exercise
-        function startExercise() {
-            // check for active exercise and cancel as appropriate
-            if (exercise.isActive) {
-                const cancel = confirm(
-                    'You have an active challenge! Are you sure you want to cancel?'
-                );
-                if (!cancel) {
-                    return;
-                }
-                exercise.duration = 0;
-                clearInterval(window.timerInterval);
-                expireTimer();
-            }
-            // dom manipulation
-            util.updateField('#timer-btn', 'Stop the timer');
-            util.setHidden('#generate-exercise');
-            //start the timer
-            startTimer();
-        }
+		function wordCount(str) {
+			return str.split(' ').length;
+		}
 
-        function downloadResult() {
-            // create a file from the copy
-            const content = copy.value;
-            const blob = new Blob([content], { type: 'plain/text' });
-            const fileUrl = URL.createObjectURL(blob);
+		// timers
+		function startTimer() {
+			exercise.isActive = true;
+			window.timerInterval = setInterval(() => {
+				iterateTimer();
+			}, 1000);
+		}
 
-            // create download link
-            const dlLink = document.createElement('a');
-            dlLink.setAttribute('href', fileUrl);
-            dlLink.setAttribute(
-                'download',
-                `${util.today()} ${exercise.prompt}.md`
-            );
-            dlLink.style.display = 'none';
-            document.body.appendChild(dlLink);
-            dlLink.click();
-            document.body.removeChild(dlLink);
-        }
+		function iterateTimer() {
+			if (exercise.isActive == false) {
+				console.log('exercise has been stopped or ended');
+				clearInterval(window.timerInterval);
+			}
+			let minutes, seconds;
+			minutes = parseInt(exercise.duration / 60, 10);
+			seconds = parseInt(exercise.duration % 60, 10);
 
-        function wordCount(str) {
-            return str.split(' ').length;
-        }
+			minutes = minutes < 10 ? '0' + minutes : minutes;
+			seconds = seconds < 10 ? '0' + seconds : seconds;
 
-        // timers
-        function startTimer() {
-            exercise.isActive = true;
-            window.timerInterval = setInterval(() => {
-                iterateTimer();
-            }, 1000);
-        }
+			util.updateField('#countdown-timer', `${minutes}:${seconds}`);
+			exercise.duration--;
+			if (exercise.duration < 0) {
+				expireTimer();
+			}
+		}
 
-        function iterateTimer() {
-            if (exercise.isActive == false) {
-                console.log('exercise has been stopped or ended');
-                clearInterval(window.timerInterval);
-            }
-            let minutes, seconds;
-            minutes = parseInt(exercise.duration / 60, 10);
-            seconds = parseInt(exercise.duration % 60, 10);
+		function expireTimer() {
+			console.log('ExpireTimer triggered');
+			exercise.duration = 0;
+			util.updateField('#countdown-timer', "Time's up!");
+			exercise.isActive = false;
+			util.setHidden('#save-btn', false);
+			util.setHidden('#word-count', false);
+			util.updateField(
+				'#word-count',
+				`Word Count: ${wordCount(copy.value)}`
+			);
+			util.setHidden('#generate-exercise', false);
+		}
+		// Event listeners
 
-            minutes = minutes < 10 ? '0' + minutes : minutes;
-            seconds = seconds < 10 ? '0' + seconds : seconds;
+		document
+			.querySelector('#generate-exercise')
+			.addEventListener('click', generateExercise);
 
-            util.updateField('#countdown-timer', `${minutes}:${seconds}`);
-            exercise.duration--;
-            if (exercise.duration < 0) {
-                expireTimer();
-            }
-        }
-
-        function expireTimer() {
-            console.log('ExpireTimer triggered');
-            exercise.duration = 0;
-            util.updateField('#countdown-timer', "Time's up!");
-            exercise.isActive = false;
-            util.setHidden('#save-btn', false);
-            util.setHidden('#word-count', false);
-            util.updateField(
-                '#word-count',
-                `Word Count: ${wordCount(copy.value)}`
-            );
-            util.setHidden('#generate-exercise', false);
-        }
-        // Event listeners
-
-        document
-            .querySelector('#generate-exercise')
-            .addEventListener('click', generateExercise);
-
-        document
-            .querySelector('#timer-btn')
-            .addEventListener('click', startExercise);
-        document
-            .querySelector('#save-btn')
-            .addEventListener('click', downloadResult);
-    </script>
-    <footer> <a href="#" title="top"> <span class="visually-hidden">Go to top</span> <img src="/images/favicon.svg"
-                alt="A monogram of the letters A K in a circle"> </a> </footer>
-</body>
-
-</html>
+		document
+			.querySelector('#timer-btn')
+			.addEventListener('click', startExercise);
+		document
+			.querySelector('#save-btn')
+			.addEventListener('click', downloadResult);
+	</script>  <footer> <a href="#" title="top"> <span class="visually-hidden">Go to top</span> <img src="/images/favicon.svg" alt="A monogram of the letters A K in a circle"> </a> </footer> </body> </html>
