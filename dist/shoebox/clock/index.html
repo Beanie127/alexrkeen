@@ -1,20 +1,119 @@
-<!DOCTYPE html><html lang="en"> <head><title>
-			Clock | Alex Keen
-		</title><meta charset="UTF-8"><meta name="description" content="A cool clock"><meta name="viewport" content="width=device-width,"><link rel="icon" href="/images/favicon.svg" type="image/svg+xml"><meta name="generator" content="Astro v6.0.8"><style>@property --hour{syntax: "<number>"; initial-value: 0; inherits: true;}@property --minute{syntax: "<number>"; initial-value: 0; inherits: true;}@property --second{syntax: "<number>"; initial-value: 0; inherits: true;}#clock[data-astro-cid-wddtszsn]{--saturation: 75;--lightness: 75;--hourDegs: calc(var(--hour, 0) * 30);--minuteDegs: calc(var(--minute, 0) * 6);margin-inline:auto;margin-block:5rem;block-size:min(30rem,90vmin);aspect-ratio:1;border-radius:100%;border:thin solid gray;background:hsl(0 0 100 / .5);display:grid;place-items:center;grid-template-areas:"main";will-change:contents;overflow:hidden;[data-astro-cid-wddtszsn]{grid-area:1/1;aspect-ratio:inherit;border-radius:inherit}}#hour[data-astro-cid-wddtszsn]{block-size:50%;background:conic-gradient(from calc(var(--hourDegs) * 1deg),hsl(var(--hourDegs) var(--saturation) var(--lightness) / 0) 50%,hsl(var(--hourDegs) var(--saturation) var(--lightness)))}#minute[data-astro-cid-wddtszsn]{block-size:95%;background:conic-gradient(from calc(var(--minuteDegs) * 1deg),hsl(var(--minuteDegs) var(--saturation) var(--lightness) / 0) 50%,hsl(var(--minuteDegs) var(--saturation) var(--lightness)))}#second[data-astro-cid-wddtszsn]{border-radius:none;block-size:100%;background:linear-gradient(to right,transparent calc(50% - .5px),hsl(0 0 0) 0 calc(50% + .5px),transparent calc(50% + .5px));mask-image:linear-gradient(black 50%,transparent 50%);transform:rotate(calc(var(--second, 0) * 6deg))}#center-spot[data-astro-cid-wddtszsn]{block-size:10%;background-image:url(/images/favicon.svg),linear-gradient(hsl(0 0 0),hsl(0 0 0));z-index:10}
-</style>
-<link rel="stylesheet" href="/_astro/Layout.D8GAa7eJ.css"></head> <body> <h1>Clock</h1> <nav class="col-wide" data-astro-cid-dmqpwcec> <ul data-astro-cid-dmqpwcec> <li data-astro-cid-dmqpwcec><a href="/" data-astro-cid-dmqpwcec>alexrkeen</a></li> <li data-astro-cid-dmqpwcec> <a href="/shoebox" data-astro-cid-dmqpwcec>shoebox</a> </li><li data-astro-cid-dmqpwcec> <a href="/shoebox/clock" data-astro-cid-dmqpwcec>clock</a> </li> </ul> </nav>   <main class="col-center" data-astro-cid-wddtszsn> <div id="clock" data-astro-cid-wddtszsn> <div id="minute" data-astro-cid-wddtszsn></div> <div id="hour" data-astro-cid-wddtszsn></div> <div id="second" data-astro-cid-wddtszsn></div> <div id="center-spot" data-astro-cid-wddtszsn></div> </div> </main> <script>
-		const clock = document.querySelector('#clock');
-		function updateClock() {
-			const moment = new Date();
-			console.log(moment);
-			const minute = moment.getMinutes();
-			const hour = moment.getHours();
-			const second = moment.getSeconds();
-			clock.style.setProperty('--hour', hour);
-			clock.style.setProperty('--minute', minute);
-			clock.style.setProperty('--second', second);
-		}
+<!DOCTYPE html>
+<html lang="en">
 
-		updateClock();
-		setInterval(updateClock, 500);
-	</script>   </body> </html>
+<head>
+    <title>
+        Clock | Alex Keen
+    </title>
+    <meta charset="UTF-8">
+    <meta name="description" content="A cool clock">
+    <meta name="viewport" content="width=device-width,">
+    <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
+    <meta name="generator" content="Astro v6.0.8">
+    <style>
+        @property --hour {
+            syntax: "<number>";
+            initial-value: 0;
+            inherits: true;
+        }
+
+        @property --minute {
+            syntax: "<number>";
+            initial-value: 0;
+            inherits: true;
+        }
+
+        @property --second {
+            syntax: "<number>";
+            initial-value: 0;
+            inherits: true;
+        }
+
+        #clock[data-astro-cid-wddtszsn] {
+            --saturation: 75;
+            --lightness: 75;
+            --hourDegs: calc(var(--hour, 0) * 30);
+            --minuteDegs: calc(var(--minute, 0) * 6);
+            margin-inline: auto;
+            margin-block: 5rem;
+            block-size: min(30rem, 90vmin);
+            aspect-ratio: 1;
+            border-radius: 100%;
+            border: thin solid gray;
+            background: hsl(0 0 100 / .5);
+            display: grid;
+            place-items: center;
+            grid-template-areas: "main";
+            will-change: contents;
+            overflow: hidden;
+
+            [data-astro-cid-wddtszsn] {
+                grid-area: 1/1;
+                aspect-ratio: inherit;
+                border-radius: inherit
+            }
+        }
+
+        #hour[data-astro-cid-wddtszsn] {
+            block-size: 50%;
+            background: conic-gradient(from calc(var(--hourDegs) * 1deg), hsl(var(--hourDegs) var(--saturation) var(--lightness) / 0) 50%, hsl(var(--hourDegs) var(--saturation) var(--lightness)))
+        }
+
+        #minute[data-astro-cid-wddtszsn] {
+            block-size: 95%;
+            background: conic-gradient(from calc(var(--minuteDegs) * 1deg), hsl(var(--minuteDegs) var(--saturation) var(--lightness) / 0) 50%, hsl(var(--minuteDegs) var(--saturation) var(--lightness)))
+        }
+
+        #second[data-astro-cid-wddtszsn] {
+            border-radius: none;
+            block-size: 100%;
+            background: linear-gradient(to right, transparent calc(50% - .5px), hsl(0 0 0) 0 calc(50% + .5px), transparent calc(50% + .5px));
+            mask-image: linear-gradient(black 50%, transparent 50%);
+            transform: rotate(calc(var(--second, 0) * 6deg))
+        }
+
+        #center-spot[data-astro-cid-wddtszsn] {
+            block-size: 10%;
+            background-image: url(/images/favicon.svg), linear-gradient(hsl(0 0 0), hsl(0 0 0));
+            z-index: 10
+        }
+    </style>
+    <link rel="stylesheet" href="/_astro/Layout.D8GAa7eJ.css">
+</head>
+
+<body>
+    <h1>Clock</h1>
+    <nav class="col-wide" data-astro-cid-dmqpwcec>
+        <ul data-astro-cid-dmqpwcec>
+            <li data-astro-cid-dmqpwcec><a href="/" data-astro-cid-dmqpwcec>alexrkeen</a></li>
+            <li data-astro-cid-dmqpwcec> <a href="/shoebox" data-astro-cid-dmqpwcec>shoebox</a> </li>
+            <li data-astro-cid-dmqpwcec> <a href="/shoebox/clock" data-astro-cid-dmqpwcec>clock</a> </li>
+        </ul>
+    </nav>
+    <main class="col-center" data-astro-cid-wddtszsn>
+        <div id="clock" data-astro-cid-wddtszsn>
+            <div id="minute" data-astro-cid-wddtszsn></div>
+            <div id="hour" data-astro-cid-wddtszsn></div>
+            <div id="second" data-astro-cid-wddtszsn></div>
+            <div id="center-spot" data-astro-cid-wddtszsn></div>
+        </div>
+    </main>
+    <script>
+        const clock = document.querySelector('#clock');
+        function updateClock() {
+            const moment = new Date();
+            console.log(moment);
+            const minute = moment.getMinutes();
+            const hour = moment.getHours();
+            const second = moment.getSeconds();
+            clock.style.setProperty('--hour', hour);
+            clock.style.setProperty('--minute', minute);
+            clock.style.setProperty('--second', second);
+        }
+
+        updateClock();
+        setInterval(updateClock, 500);
+    </script>
+</body>
+
+</html>
