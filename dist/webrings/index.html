@@ -1,0 +1,77 @@
+<!DOCTYPE html><html lang="en"> <head><title>
+			Webrings | Alex Keen
+		</title><meta charset="UTF-8"><meta name="description" content="Webrings that I'm part of"><meta name="viewport" content="width=device-width,"><link rel="icon" href="/images/favicon.svg" type="image/svg+xml"><meta name="generator" content="Astro v6.0.8"><link rel="stylesheet" href="/_astro/Layout.CSTGk_nE.css"></head> <body> <h1>Webrings</h1> <nav class="col-wide" data-astro-cid-dmqpwcec> <ul data-astro-cid-dmqpwcec> <li data-astro-cid-dmqpwcec><a href="/" data-astro-cid-dmqpwcec>alexrkeen</a></li> <li data-astro-cid-dmqpwcec> <a href="/webrings" data-astro-cid-dmqpwcec>webrings</a> </li> </ul> </nav>  <main class="col-center"> <p>Webrings are collections of sites, organised into a looping list
+			that can be traversed in different directions. Webrings were created
+			before the days of Google, when the only way to find new websites
+			was from links on other websites. Their continued existence is an
+			effort to keep the indie web alive.
+</p> <ul class="card-container"><li><h3> <a class="webring-header" href="https://willdotwhite.github.io/webring/">Will's Webring</a> </h3> <p>A small group of game designers, mostly from the GMTK (Game
+					Makers Toolkit) community. Run by my friend Will.</p> <div id="wills-webring-output" class="webring-output"></div> </li></ul> </main> <style>
+		a.webring-back::before {
+			content: '← ';
+		}
+		a.webring-back::after {
+			content: '';
+		}
+		a.webring-forward::after {
+			content: ' →';
+		}
+		.webring-output {
+			display: flex;
+			justify-content: center;
+			gap: 1ch;
+			flex-wrap: wrap;
+		}
+	</style> <script>
+		/**
+		 * Get the webring neighbours for your URL!
+		 * @credit Sophie<sophies.games>
+		 */
+		async function get_webring_neighbours(my_url) {
+			// Fetch webring json array
+			const request = await fetch(
+				'https://willdotwhite.github.io/webring/data.json',
+			);
+			const webring_array = await request.json();
+
+			// URLs are case-insensitive, so checks should be done with both sides of a comparison lowercased
+			my_url = my_url.toLowerCase();
+
+			// Find the index of your website in the ring
+			const my_index = webring_array.findIndex((obj) =>
+				obj.url.toLowerCase().includes(my_url),
+			);
+			if (my_index === -1) {
+				throw new Error(
+					`Your URL "${my_url}" was not found in the webring.`,
+				);
+			}
+
+			// Your left neighbour is the one before you in the list, hence -1
+			// Your right neighbour is the one after you in the list, hence +1
+			let left_neighbour_index = my_index - 1;
+			let right_neighbour_index = my_index + 1;
+
+			// To make the "ring" part of "webring" work we then wrap around to the start/end if either the left/right indicies go out of bounds
+			if (left_neighbour_index < 0)
+				left_neighbour_index = webring_array.length - 1;
+			if (right_neighbour_index >= webring_array.length)
+				right_neighbour_index = 0;
+
+			// Return a tuple where the first object is the left neighbour, the second object is the right neighbour
+			return [
+				webring_array[left_neighbour_index],
+				webring_array[right_neighbour_index],
+			];
+		}
+
+		document.addEventListener('DOMContentLoaded', async () => {
+			const willsWebringOutput = document.querySelector(
+				'#wills-webring-output',
+			);
+			const webring = await get_webring_neighbours(
+				'https://alexrkeen.com',
+			);
+			willsWebringOutput.innerHTML = `<a class="webring-back" href=${webring[0].url}>${webring[0].title}</a> | <a class="webring-forward" href=${webring[1].url}>${webring[1].title}</a>`;
+		});
+	</script>  <footer> <a href="#" title="top"> <span class="visually-hidden">Go to top</span> <img src="/images/favicon.svg" alt="A monogram of the letters A K in a circle"> </a> </footer> </body> </html>
