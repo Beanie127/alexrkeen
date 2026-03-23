@@ -1,11 +1,11 @@
 <!DOCTYPE html><html lang="en"> <head><title>
 			Webrings | Alex Keen
-		</title><meta charset="UTF-8"><meta name="description" content="Webrings that I'm part of"><meta name="viewport" content="width=device-width,"><link rel="icon" href="/images/favicon.svg" type="image/svg+xml"><meta name="generator" content="Astro v6.0.8"><link rel="stylesheet" href="/_astro/Layout.D8GAa7eJ.css"></head> <body> <h1>Webrings</h1> <nav class="col-wide" data-astro-cid-dmqpwcec> <ul data-astro-cid-dmqpwcec> <li data-astro-cid-dmqpwcec><a href="/" data-astro-cid-dmqpwcec>alexrkeen</a></li> <li data-astro-cid-dmqpwcec> <a href="/webrings" data-astro-cid-dmqpwcec>webrings</a> </li> </ul> </nav>  <main class="col-center"> <p>Webrings are collections of sites, organised into a looping list
+		</title><meta charset="UTF-8"><meta name="description" content="Webrings that I'm part of"><meta name="viewport" content="width=device-width,"><link rel="icon" href="/images/favicon.svg" type="image/svg+xml"><meta name="generator" content="Astro v6.0.8"><link rel="stylesheet" href="/_astro/Layout.CRmssGU0.css"></head> <body> <h1>Webrings</h1> <nav class="col-wide" data-astro-cid-dmqpwcec> <ul data-astro-cid-dmqpwcec> <li data-astro-cid-dmqpwcec><a href="/" data-astro-cid-dmqpwcec>alexrkeen</a></li> <li data-astro-cid-dmqpwcec> <a href="/webrings" data-astro-cid-dmqpwcec>webrings</a> </li> </ul> </nav>  <main class="col-center"> <p>Webrings are collections of sites, organised into a looping list
 			that can be traversed in different directions. Webrings were created
 			before the days of Google, when the only way to find new websites
 			was from links on other websites. Their continued existence is an
 			effort to keep the indie web alive.
-</p> <ul class="card-container"><li><h3> <a class="webring-header" href="https://willdotwhite.github.io/webring/">Will's Webring</a> </h3> <p>A small group of game designers, mostly from the GMTK (Game
+</p> <ul class="card-container"><li><h3> <a class="webring-header" href="https://willdotwhite.github.io/webring/" rel="noopener noreferrer" target="_blank">Will's Webring</a> </h3> <p>A small group of game designers, mostly from the GMTK (Game
 					Makers Toolkit) community. Run by my friend Will.</p> <div id="wills-webring-output" class="webring-output"></div> </li></ul> </main> <style>
 		a.webring-back::before {
 			content: '← ';
@@ -72,6 +72,6 @@
 			const webring = await get_webring_neighbours(
 				'https://alexrkeen.com',
 			);
-			willsWebringOutput.innerHTML = `<a class="webring-back" href=${webring[0].url}>${webring[0].title}</a> | <a class="webring-forward" href=${webring[1].url}>${webring[1].title}</a>`;
+			willsWebringOutput.innerHTML = `<a class="webring-back" rel="noopener noreferrer" target="_blank" href=${webring[0].url}>${webring[0].title}</a> | <a class="webring-forward" rel="noopener noreferrer" target="_blank" href=${webring[1].url}>${webring[1].title}</a>`;
 		});
 	</script>  <footer> <a href="#" title="top"> <span class="visually-hidden">Go to top</span> <img src="/images/favicon.svg" alt="A monogram of the letters A K in a circle"> </a> </footer> </body> </html>

@@ -5,31 +5,25 @@ import Layout from '../layouts/Layout.astro';
 <Layout
 	title="Alex Keen"
 	description="The homepage of Alex Keen, an improviser, marketeer and designer based in Sheffield, South Yorkshire, UK.">
-	<div id="hero">
-		<div>
+	<section id="hero">
+		<figure>
 			<img
 				src="/images/26-profile-dithered.png"
 				alt="A dithered image of a man leaning against a brick wall."
 			/>
-			<p>Hi, I'm Alex. I design things and tell people stuff.</p>
-			<p>
-				I’m a nerd about improvisation, philosophy, psychology,
-				technology, creativity, storytelling, design, games and play.</p
+			<figcaption
+				>Hi, I'm <a href="/about">Alex</a>. I tell stories and design
+				things.</figcaption
 			>
-			<p>
-				Learn more <a href="/about">about me</a> or see some things I've done
-				and stuff I recommend below.
-			</p>
-		</div>
-	</div>
-	<section class="col-center">
+		</figure>
 		<nav>
 			<ul>
 				<li>
-					<h2>Works</h2>
+					<h2 id="works">Works</h2>
 					<ul>
 						<li><a href="/improv">improv</a></li>
 						<li><a href="/writing">writing</a></li>
+						<li><a href="/reaching-for-light">film</a></li>
 						<li><a href="/games">games</a></li>
 						<li>
 							<a href="/shoebox">shoebox</a>
@@ -37,7 +31,7 @@ import Layout from '../layouts/Layout.astro';
 					</ul>
 				</li>
 				<li>
-					<h2>Recommendations</h2>
+					<h2 id="recommendations">Recommendations</h2>
 					<ul>
 						<li><a href="/blogroll">blogroll</a></li>
 						<li><a href="/webrings">webrings</a></li>
@@ -45,7 +39,7 @@ import Layout from '../layouts/Layout.astro';
 					</ul>
 				</li>
 				<li>
-					<h2>Meta</h2>
+					<h2 id="meta">Meta</h2>
 					<ul>
 						<li><a href="/about">about</a></li>
 						<li><a href="/changelog">changelog</a></li>
@@ -58,10 +52,17 @@ import Layout from '../layouts/Layout.astro';
 </Layout>
 <style>
 	#hero {
-		grid-column: breakout;
-		padding-block: 3rem;
-		font-size: 1.2rem;
+		grid-column: center;
 	}
+
+	@media (width > 30rem) {
+		#hero {
+			padding-block: 3rem;
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
 	nav ul {
 		list-style-type: none;
 		padding-inline-start: 0;
@@ -73,7 +74,24 @@ import Layout from '../layouts/Layout.astro';
 		flex-wrap: wrap;
 	}
 
-	img {
-		/* filter: sepia(0.25) saturate(0.75) brightness(0.75); */
+	#works {
+		margin-block-start: 0;
+	}
+
+	figure {
+		inline-size: clamp(8rem, 80%, 20rem);
+		margin-inline: auto;
+	}
+
+	figure img {
+		float: unset;
+		inline-size: 100%;
+	}
+
+	figcaption {
+		padding: 0.2lh;
+		text-align: center;
+		text-wrap: balance;
+		font-style: italic;
 	}
 </style>

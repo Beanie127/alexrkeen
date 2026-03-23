@@ -19,6 +19,8 @@ import Layout from '../layouts/Layout.astro';
 					<a
 						class="webring-header"
 						href="https://willdotwhite.github.io/webring/"
+						rel="noopener noreferrer"
+						target="_blank"
 						>Will's Webring</a
 					>
 				</h3>
@@ -100,7 +102,7 @@ import Layout from '../layouts/Layout.astro';
 			const webring = await get_webring_neighbours(
 				'https://alexrkeen.com',
 			);
-			willsWebringOutput.innerHTML = `<a class="webring-back" href=${webring[0].url}>${webring[0].title}</a> | <a class="webring-forward" href=${webring[1].url}>${webring[1].title}</a>`;
+			willsWebringOutput.innerHTML = `<a class="webring-back" rel="noopener noreferrer" target="_blank" href=${webring[0].url}>${webring[0].title}</a> | <a class="webring-forward" rel="noopener noreferrer" target="_blank" href=${webring[1].url}>${webring[1].title}</a>`;
 		});
 	</script>
 </Layout>
