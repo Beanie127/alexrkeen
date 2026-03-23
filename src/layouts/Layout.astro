@@ -260,12 +260,10 @@ const { title, description, noFooter = false } = Astro.props;
 
 			a[href^='http']::after {
 				content: '\00A0\2197';
-				font-family: 'Segoe UI Symbol';
 			}
 
 			a[href^='mailto']::after {
 				content: '\00A0\2709';
-				font-family: 'Segoe UI Symbol';
 			}
 
 			a::before,
