@@ -1,11 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-const articles = Object.values(
-	await import.meta.glob('../writing/*.md', {
-		eager: true,
-	})
-);
-console.log('Hello');
 ---
 
 <Layout
@@ -13,7 +7,7 @@ console.log('Hello');
 	description="">
 	<section
 		id="essays"
-		class="col-center">
+		class="col-breakout">
 		<h2>Articles on this site</h2>
 		<ul class="unmarked-list">
 			<li>
@@ -32,8 +26,8 @@ console.log('Hello');
 	</section>
 	<section
 		style="view-transition-name: other;"
-		class="col-wide">
-		<h2 class="col-center">External publications</h2>
+		class="col-breakout">
+		<h2>External publications</h2>
 		<ul class="card-container">
 			<li>
 				<h3>Alphabet of Hope</h3>
