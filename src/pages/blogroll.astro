@@ -1,5 +1,4 @@
 ---
-import type { arrayOutputType } from 'astro:schema';
 import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 const blogroll = await getCollection('blogs');
@@ -50,7 +49,7 @@ const blogroll = await getCollection('blogs');
 										Feed for {blog.id}
 									</a>
 								</li>
-							)
+							),
 						)}
 					</ul>
 				</details>
