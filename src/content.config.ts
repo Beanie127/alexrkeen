@@ -3,7 +3,7 @@ import { z } from "astro/zod"
 import { file } from "astro/loaders";
 
 const quotes = defineCollection({
-    loader: file("src/content/quotes.json"),
+    loader: file("src/collections/quotes.json"),
     schema: z.object({
         id: z.string(),
         author: z.string(),
@@ -14,7 +14,7 @@ const quotes = defineCollection({
 })
 
 const blogs = defineCollection({
-    loader: file("src/content/blogs.json"),
+    loader: file("src/collections/blogs.json"),
     schema: z.object({
         id: z.string(),
         items: z.array(z.object({
