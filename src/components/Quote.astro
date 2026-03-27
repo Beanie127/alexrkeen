@@ -17,9 +17,9 @@ const { id, author, url, source, category } = Astro.props;
 		<cite>
 			<span class="author">{author}</span>
 			<div class="source">
-				<a href={url}>
-					{source}
-				</a>
+				{url ? `<a href=${url}>` : ``}
+				{source}
+				{url ? `</a>` : ``}
 			</div>
 		</cite>
 	</figcaption>
