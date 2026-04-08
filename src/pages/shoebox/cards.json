@@ -1,0 +1,10 @@
+[
+    {
+        "title": "Ace of Wands",
+        "suit": "wands",
+        "rank": "ace",
+        "collectable": false,
+        "attackValue": 0,
+        "scoreValue": 0
+    }
+]
