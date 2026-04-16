@@ -14,14 +14,14 @@ const quotes = defineCollection({
 })
 
 const blogs = defineCollection({
-    loader: file("src/collections/blogs.json"),
+    loader: file("src/collections/feeds/feeds.json"),
     schema: z.object({
         id: z.string(),
         items: z.array(z.object({
             id: z.string(),
             xmlUrl: z.string(),
             htmlUrl: z.string(),
-            description: z.string().optional()
+            description: z.union([z.string(), z.null()])
         }))
     })
 })

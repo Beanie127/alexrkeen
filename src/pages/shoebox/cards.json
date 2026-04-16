@@ -1,10 +1,265 @@
 [
     {
-        "title": "Ace of Wands",
-        "suit": "wands",
-        "rank": "ace",
-        "collectable": false,
-        "attackValue": 0,
-        "scoreValue": 0
+        "name": "The Fool",
+        "collect": "cleanup",
+        "scoreValue": "6",
+        "description": "The Fool is a Scroll of Light. If it appears, the scroll remains in the turn and can be collected with treasure if the turn is won. If your last torch appears and you have the Scroll of Light in your hand, you may play the scroll immediately in the doom track and place the last torch on the bottom of the deck. An ethereal light appears in the air above you. Hopefully you can make it out of the dungeon while the spell lasts, for the scroll can only be used once. If you run out of cards and the last torch appears again, it must be played. Your light spell runs out, and again you’re doomed to darkness, death, or worse."
+    },
+    {
+        "name": "Ace of Swords",
+        "collect": "immediate",
+        "description": "The darkness of the dungeon is immense and merciless. The aces in the deck represent your supply of torches. Each one that appears marks the dwindling of your torch supply. When a torch card appears, even as a discard, play it immediately in the doom track above the dungeon area. If the last torch card is played, you are doomed to be lost in the darkness of the dungeon, until you are consumed by monsters or become one yourself. And thus, your game is over."
+    },
+    {
+        "name": "Ace of Coins",
+        "collect": "immediate",
+        "description": "The darkness of the dungeon is immense and merciless. The aces in the deck represent your supply of torches. Each one that appears marks the dwindling of your torch supply. When a torch card appears, even as a discard, play it immediately in the doom track above the dungeon area. If the last torch card is played, you are doomed to be lost in the darkness of the dungeon, until you are consumed by monsters or become one yourself. And thus, your game is over."
+    },
+    {
+        "name": "Ace of Wands",
+        "collect": "immediate",
+        "description": "The darkness of the dungeon is immense and merciless. The aces in the deck represent your supply of torches. Each one that appears marks the dwindling of your torch supply. When a torch card appears, even as a discard, play it immediately in the doom track above the dungeon area. If the last torch card is played, you are doomed to be lost in the darkness of the dungeon, until you are consumed by monsters or become one yourself. And thus, your game is over."
+    },
+    {
+        "name": "Ace of Cups",
+        "collect": "immediate",
+        "description": "The darkness of the dungeon is immense and merciless. The aces in the deck represent your supply of torches. Each one that appears marks the dwindling of your torch supply. When a torch card appears, even as a discard, play it immediately in the doom track above the dungeon area. If the last torch card is played, you are doomed to be lost in the darkness of the dungeon, until you are consumed by monsters or become one yourself. And thus, your game is over."
+    },
+    {
+        "name": "2 of Wands",
+        "collect": false,
+        "attackValue": 2,
+        "description": "As encounters, the 2-10 of wands (♣) are sealed doors. You can play only one action card when trying to open such a door. If the door is opened, the turn is over and you can collect any treasure inside. If the door is not opened, unless you play Pick Lock (N♣) immediately, you must discard a number of cards from the deck equal to the door minus your action card."
+    },
+    {
+        "name": "3 of Wands",
+        "collect": false,
+        "attackValue": 3,
+        "description": "As encounters, the 2-10 of wands (♣) are sealed doors. You can play only one action card when trying to open such a door. If the door is opened, the turn is over and you can collect any treasure inside. If the door is not opened, unless you play Pick Lock (N♣) immediately, you must discard a number of cards from the deck equal to the door minus your action card."
+    },
+    {
+        "name": "4 of Wands",
+        "collect": false,
+        "attackValue": 4,
+        "description": "As encounters, the 2-10 of wands (♣) are sealed doors. You can play only one action card when trying to open such a door. If the door is opened, the turn is over and you can collect any treasure inside. If the door is not opened, unless you play Pick Lock (N♣) immediately, you must discard a number of cards from the deck equal to the door minus your action card."
+    },
+    {
+        "name": "5 of Wands",
+        "collect": false,
+        "attackValue": 5,
+        "description": "As encounters, the 2-10 of wands (♣) are sealed doors. You can play only one action card when trying to open such a door. If the door is opened, the turn is over and you can collect any treasure inside. If the door is not opened, unless you play Pick Lock (N♣) immediately, you must discard a number of cards from the deck equal to the door minus your action card."
+    },
+    {
+        "name": "6 of Wands",
+        "collect": false,
+        "attackValue": 6,
+        "description": "As encounters, the 2-10 of wands (♣) are sealed doors. You can play only one action card when trying to open such a door. If the door is opened, the turn is over and you can collect any treasure inside. If the door is not opened, unless you play Pick Lock (N♣) immediately, you must discard a number of cards from the deck equal to the door minus your action card."
+    },
+    {
+        "name": "7 of Wands",
+        "collect": false,
+        "attackValue": 7,
+        "scoreValue": 0,
+        "description": "As encounters, the 2-10 of wands (♣) are sealed doors. You can play only one action card when trying to open such a door. If the door is opened, the turn is over and you can collect any treasure inside. If the door is not opened, unless you play Pick Lock (N♣) immediately, you must discard a number of cards from the deck equal to the door minus your action card."
+    },
+    {
+        "name": "8 of Wands",
+        "collect": false,
+        "attackValue": 8,
+        "description": "As encounters, the 2-10 of wands (♣) are sealed doors. You can play only one action card when trying to open such a door. If the door is opened, the turn is over and you can collect any treasure inside. If the door is not opened, unless you play Pick Lock (N♣) immediately, you must discard a number of cards from the deck equal to the door minus your action card."
+    },
+    {
+        "name": "9 of Wands",
+        "collect": false,
+        "attackValue": 9,
+        "description": "As encounters, the 2-10 of wands (♣) are sealed doors. You can play only one action card when trying to open such a door. If the door is opened, the turn is over and you can collect any treasure inside. If the door is not opened, unless you play Pick Lock (N♣) immediately, you must discard a number of cards from the deck equal to the door minus your action card."
+    },
+    {
+        "name": "10 of Wands",
+        "collect": false,
+        "attackValue": 10,
+        "description": "As encounters, the 2-10 of wands (♣) are sealed doors. You can play only one action card when trying to open such a door. If the door is opened, the turn is over and you can collect any treasure inside. If the door is not opened, unless you play Pick Lock (N♣) immediately, you must discard a number of cards from the deck equal to the door minus your action card."
+    },
+    {
+        "name": "2 of Swords",
+        "collect": false,
+        "attackValue": 2,
+        "description": "As encounters, the 2-10 of swords (♠) are guardian monsters. Any action card defeats the monster if it is equal to or greater than the monster card. If an action card is less than the monster, you take damage equal to the monster minus the action card. To win the encounter, you must continue to play cards, taking damage as indicated, until you defeat the monster with an action card, a divine favor, or Go Berserk (N♠). When you defeat a monster, collect its treasure and end the turn."
+    },
+    {
+        "name": "3 of Swords",
+        "collect": false,
+        "attackValue": 3,
+        "description": "As encounters, the 2-10 of swords (♠) are guardian monsters. Any action card defeats the monster if it is equal to or greater than the monster card. If an action card is less than the monster, you take damage equal to the monster minus the action card. To win the encounter, you must continue to play cards, taking damage as indicated, until you defeat the monster with an action card, a divine favor, or Go Berserk (N♠). When you defeat a monster, collect its treasure and end the turn."
+    },
+    {
+        "name": "4 of Swords",
+        "collect": false,
+        "attackValue": 4,
+        "description": "As encounters, the 2-10 of swords (♠) are guardian monsters. Any action card defeats the monster if it is equal to or greater than the monster card. If an action card is less than the monster, you take damage equal to the monster minus the action card. To win the encounter, you must continue to play cards, taking damage as indicated, until you defeat the monster with an action card, a divine favor, or Go Berserk (N♠). When you defeat a monster, collect its treasure and end the turn."
+    },
+    {
+        "name": "5 of Swords",
+        "collect": false,
+        "attackValue": 5,
+        "description": "As encounters, the 2-10 of swords (♠) are guardian monsters. Any action card defeats the monster if it is equal to or greater than the monster card. If an action card is less than the monster, you take damage equal to the monster minus the action card. To win the encounter, you must continue to play cards, taking damage as indicated, until you defeat the monster with an action card, a divine favor, or Go Berserk (N♠). When you defeat a monster, collect its treasure and end the turn."
+    },
+    {
+        "name": "6 of Swords",
+        "collect": false,
+        "attackValue": 6,
+        "description": "As encounters, the 2-10 of swords (♠) are guardian monsters. Any action card defeats the monster if it is equal to or greater than the monster card. If an action card is less than the monster, you take damage equal to the monster minus the action card. To win the encounter, you must continue to play cards, taking damage as indicated, until you defeat the monster with an action card, a divine favor, or Go Berserk (N♠). When you defeat a monster, collect its treasure and end the turn."
+    },
+    {
+        "name": "7 of Swords",
+        "collect": false,
+        "attackValue": 7,
+        "description": "As encounters, the 2-10 of swords (♠) are guardian monsters. Any action card defeats the monster if it is equal to or greater than the monster card. If an action card is less than the monster, you take damage equal to the monster minus the action card. To win the encounter, you must continue to play cards, taking damage as indicated, until you defeat the monster with an action card, a divine favor, or Go Berserk (N♠). When you defeat a monster, collect its treasure and end the turn."
+    },
+    {
+        "name": "8 of Swords",
+        "collect": false,
+        "attackValue": 8,
+        "scoreValue": 0,
+        "description": "As encounters, the 2-10 of swords (♠) are guardian monsters. Any action card defeats the monster if it is equal to or greater than the monster card. If an action card is less than the monster, you take damage equal to the monster minus the action card. To win the encounter, you must continue to play cards, taking damage as indicated, until you defeat the monster with an action card, a divine favor, or Go Berserk (N♠). When you defeat a monster, collect its treasure and end the turn."
+    },
+    {
+        "name": "9 of Swords",
+        "collect": false,
+        "attackValue": 9,
+        "description": "As encounters, the 2-10 of swords (♠) are guardian monsters. Any action card defeats the monster if it is equal to or greater than the monster card. If an action card is less than the monster, you take damage equal to the monster minus the action card. To win the encounter, you must continue to play cards, taking damage as indicated, until you defeat the monster with an action card, a divine favor, or Go Berserk (N♠). When you defeat a monster, collect its treasure and end the turn."
+    },
+    {
+        "name": "10 of Swords",
+        "collect": false,
+        "attackValue": 10,
+        "description": "As encounters, the 2-10 of swords (♠) are guardian monsters. Any action card defeats the monster if it is equal to or greater than the monster card. If an action card is less than the monster, you take damage equal to the monster minus the action card. To win the encounter, you must continue to play cards, taking damage as indicated, until you defeat the monster with an action card, a divine favor, or Go Berserk (N♠). When you defeat a monster, collect its treasure and end the turn."
+    },
+    {
+        "name": "2 of Coins",
+        "collect": "cleanup",
+        "attackValue": 2,
+        "scoreValue": 2,
+        "description": "As encounters, the 2-10 of coins (♦) are treasure traps. You have only one chance to pass a trap, with a divine favor, Disarm Mechanism (N♦), or a single action card. If the trap is passed, the turn is over and you may collect the treasure. Note, however, that if the turn contains only treasure, you must leave one treasure card behind to mark the turn. If the trap is not passed, you take damage equal to the trap minus your action card. The turn is over, no treasure is collected, and any treasure showing must be turned face down in the stack with the rest of the turn."
+    },
+    {
+        "name": "3 of Coins",
+        "collect": "cleanup",
+        "attackValue": 3,
+        "scoreValue": 3,
+        "description": "As encounters, the 2-10 of coins (♦) are treasure traps. You have only one chance to pass a trap, with a divine favor, Disarm Mechanism (N♦), or a single action card. If the trap is passed, the turn is over and you may collect the treasure. Note, however, that if the turn contains only treasure, you must leave one treasure card behind to mark the turn. If the trap is not passed, you take damage equal to the trap minus your action card. The turn is over, no treasure is collected, and any treasure showing must be turned face down in the stack with the rest of the turn."
+    },
+    {
+        "name": "4 of Coins",
+        "collect": "cleanup",
+        "attackValue": 4,
+        "scoreValue": 4,
+        "description": "As encounters, the 2-10 of coins (♦) are treasure traps. You have only one chance to pass a trap, with a divine favor, Disarm Mechanism (N♦), or a single action card. If the trap is passed, the turn is over and you may collect the treasure. Note, however, that if the turn contains only treasure, you must leave one treasure card behind to mark the turn. If the trap is not passed, you take damage equal to the trap minus your action card. The turn is over, no treasure is collected, and any treasure showing must be turned face down in the stack with the rest of the turn."
+    },
+    {
+        "name": "5 of Coins",
+        "collect": "cleanup",
+        "attackValue": 5,
+        "scoreValue": 5,
+        "description": "As encounters, the 2-10 of coins (♦) are treasure traps. You have only one chance to pass a trap, with a divine favor, Disarm Mechanism (N♦), or a single action card. If the trap is passed, the turn is over and you may collect the treasure. Note, however, that if the turn contains only treasure, you must leave one treasure card behind to mark the turn. If the trap is not passed, you take damage equal to the trap minus your action card. The turn is over, no treasure is collected, and any treasure showing must be turned face down in the stack with the rest of the turn."
+    },
+    {
+        "name": "6 of Coins",
+        "collect": "cleanup",
+        "attackValue": 6,
+        "scoreValue": 6,
+        "description": "As encounters, the 2-10 of coins (♦) are treasure traps. You have only one chance to pass a trap, with a divine favor, Disarm Mechanism (N♦), or a single action card. If the trap is passed, the turn is over and you may collect the treasure. Note, however, that if the turn contains only treasure, you must leave one treasure card behind to mark the turn. If the trap is not passed, you take damage equal to the trap minus your action card. The turn is over, no treasure is collected, and any treasure showing must be turned face down in the stack with the rest of the turn."
+    },
+    {
+        "name": "7 of Coins",
+        "collect": "cleanup",
+        "attackValue": 7,
+        "scoreValue": 7,
+        "description": "As encounters, the 2-10 of coins (♦) are treasure traps. You have only one chance to pass a trap, with a divine favor, Disarm Mechanism (N♦), or a single action card. If the trap is passed, the turn is over and you may collect the treasure. Note, however, that if the turn contains only treasure, you must leave one treasure card behind to mark the turn. If the trap is not passed, you take damage equal to the trap minus your action card. The turn is over, no treasure is collected, and any treasure showing must be turned face down in the stack with the rest of the turn."
+    },
+    {
+        "name": "8 of Coins",
+        "collect": "cleanup",
+        "attackValue": 8,
+        "scoreValue": 8,
+        "description": "As encounters, the 2-10 of coins (♦) are treasure traps. You have only one chance to pass a trap, with a divine favor, Disarm Mechanism (N♦), or a single action card. If the trap is passed, the turn is over and you may collect the treasure. Note, however, that if the turn contains only treasure, you must leave one treasure card behind to mark the turn. If the trap is not passed, you take damage equal to the trap minus your action card. The turn is over, no treasure is collected, and any treasure showing must be turned face down in the stack with the rest of the turn."
+    },
+    {
+        "name": "9 of Coins",
+        "collect": "cleanup",
+        "attackValue": 9,
+        "scoreValue": 9,
+        "description": "As encounters, the 2-10 of coins (♦) are treasure traps. You have only one chance to pass a trap, with a divine favor, Disarm Mechanism (N♦), or a single action card. If the trap is passed, the turn is over and you may collect the treasure. Note, however, that if the turn contains only treasure, you must leave one treasure card behind to mark the turn. If the trap is not passed, you take damage equal to the trap minus your action card. The turn is over, no treasure is collected, and any treasure showing must be turned face down in the stack with the rest of the turn."
+    },
+    {
+        "name": "10 of Coins",
+        "collect": "cleanup",
+        "attackValue": 10,
+        "scoreValue": 10,
+        "description": "As encounters, the 2-10 of coins (♦) are treasure traps. You have only one chance to pass a trap, with a divine favor, Disarm Mechanism (N♦), or a single action card. If the trap is passed, the turn is over and you may collect the treasure. Note, however, that if the turn contains only treasure, you must leave one treasure card behind to mark the turn. If the trap is not passed, you take damage equal to the trap minus your action card. The turn is over, no treasure is collected, and any treasure showing must be turned face down in the stack with the rest of the turn."
+    },
+    {
+        "name": "Knight of Wands",
+        "collect": "immediate",
+        "description": "The knights (N) of each suit represent a variety skills. Knights are collected immediately into the hand when they appear, and may be played on a turn at any time for the following effects: Go Berserk (N♠) beats any monster; Disarm Mechanism (N♦) disables any trap; and Pick Lock (N♣) opens any door. Each skill can only be played once. At the conclusion of a turn, used skills get stacked with any remaining cards to mark the turn."
+    },
+    {
+        "name": "Knight of Swords",
+        "collect": "immediate",
+        "description": "The knights (N) of each suit represent a variety skills. Knights are collected immediately into the hand when they appear, and may be played on a turn at any time for the following effects: Go Berserk (N♠) beats any monster; Disarm Mechanism (N♦) disables any trap; and Pick Lock (N♣) opens any door. Each skill can only be played once. At the conclusion of a turn, used skills get stacked with any remaining cards to mark the turn."
+    },
+    {
+        "name": "Knight of Cups",
+        "collect": "immediate",
+        "description": "The knights (N) of each suit represent a variety skills. Knights are collected immediately into the hand when they appear, and may be played on a turn at any time for the following effects: Go Berserk (N♠) beats any monster; Disarm Mechanism (N♦) disables any trap; and Pick Lock (N♣) opens any door. Each skill can only be played once. At the conclusion of a turn, used skills get stacked with any remaining cards to mark the turn."
+    },
+    {
+        "name": "Knight of Coins",
+        "collect": "immediate",
+        "description": "The knights (N) of each suit represent a variety skills. Knights are collected immediately into the hand when they appear, and may be played on a turn at any time for the following effects: Go Berserk (N♠) beats any monster; Disarm Mechanism (N♦) disables any trap; and Pick Lock (N♣) opens any door. Each skill can only be played once. At the conclusion of a turn, used skills get stacked with any remaining cards to mark the turn."
+    },
+    {
+        "name": "Queen of Wands",
+        "collect": "immediate",
+        "description": "The queens (Q) are the divine favors of the goddess. They win any encounter on a turn in which they appear. If any appear before the encounter card, the encounter is automatically won when it appears. If two divine favors appear on a single turn, there is no additional benefit aside from being extra blessed in the encounter. Divine favors can only appear once, and are turned face down with the stack when the turn is concluded."
+    },
+    {
+        "name": "Queen of Cups",
+        "collect": "immediate",
+        "description": "The queens (Q) are the divine favors of the goddess. They win any encounter on a turn in which they appear. If any appear before the encounter card, the encounter is automatically won when it appears. If two divine favors appear on a single turn, there is no additional benefit aside from being extra blessed in the encounter. Divine favors can only appear once, and are turned face down with the stack when the turn is concluded."
+    },
+    {
+        "name": "Queen of Swords",
+        "collect": "immediate",
+        "description": "The queens (Q) are the divine favors of the goddess. They win any encounter on a turn in which they appear. If any appear before the encounter card, the encounter is automatically won when it appears. If two divine favors appear on a single turn, there is no additional benefit aside from being extra blessed in the encounter. Divine favors can only appear once, and are turned face down with the stack when the turn is concluded."
+    },
+    {
+        "name": "Queen of Coins",
+        "collect": "immediate",
+        "description": "The queens (Q) are the divine favors of the goddess. They win any encounter on a turn in which they appear. If any appear before the encounter card, the encounter is automatically won when it appears. If two divine favors appear on a single turn, there is no additional benefit aside from being extra blessed in the encounter. Divine favors can only appear once, and are turned face down with the stack when the turn is concluded."
+    },
+    {
+        "name": "King of Wands",
+        "collect": "cleanup",
+        "description": "The kings (K) are the hoards of ancient tombs. They remain in the turn, and can be collected into the hand only if the turn is won.",
+        "scoreValue": 10
+    },
+    {
+        "name": "King of Cups",
+        "collect": "cleanup",
+        "description": "The kings (K) are the hoards of ancient tombs. They remain in the turn, and can be collected into the hand only if the turn is won.",
+        "scoreValue": 10
+    },
+    {
+        "name": "King of Swords",
+        "collect": "cleanup",
+        "description": "The kings (K) are the hoards of ancient tombs. They remain in the turn, and can be collected into the hand only if the turn is won.",
+        "scoreValue": 10
+    },
+    {
+        "name": "King of Coins",
+        "collect": "cleanup",
+        "description": "The kings (K) are the hoards of ancient tombs. They remain in the turn, and can be collected into the hand only if the turn is won.",
+        "scoreValue": 10
     }
 ]

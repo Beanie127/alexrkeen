@@ -18,39 +18,34 @@ const blogroll = await getCollection('blogs');
 	<section class="col-wide">
 		{
 			blogroll.map((collection) => (
-				<details name="feed-categories">
+				<details
+					name="feed-categories"
+					data-category={collection.id}>
 					<summary>
 						<h2>{collection.id}</h2>
 					</summary>
 					<ul class="card-container">
-						{collection.data.items.map(
-							(blog: {
-								id: string;
-								description?: string;
-								htmlUrl: string;
-								xmlUrl: string;
-							}) => (
-								<li>
-									<h3>
-										<a
-											href={blog.htmlUrl}
-											target="_blank"
-											rel="noopener noreferrer">
-											{blog.id}
-										</a>
-									</h3>
-									{blog.description ?
-										<p>{blog.description}</p>
-									:	''}
+						{collection.data.items.map((blog) => (
+							<li>
+								<h3>
 									<a
-										href={blog.xmlUrl}
+										href={blog.htmlUrl}
 										target="_blank"
 										rel="noopener noreferrer">
-										Feed for {blog.id}
+										{blog.id}
 									</a>
-								</li>
-							),
-						)}
+								</h3>
+								{blog.description != null ?
+									<p>{blog.description}</p>
+								:	''}
+								<a
+									href={blog.xmlUrl}
+									target="_blank"
+									rel="noopener noreferrer">
+									Feed for {blog.id}
+								</a>
+							</li>
+						))}
 					</ul>
 				</details>
 			))
@@ -64,4 +59,7 @@ const blogroll = await getCollection('blogs');
 			content: '';
 		}
 	</style>
+	<script>
+		document.querySelector('[data-category="Uncategorized"]')?.remove();
+	</script>
 </Layout>
