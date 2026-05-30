@@ -1,20 +1,30 @@
 import xml.etree.ElementTree as ET
 import json
 
-tree = ET.parse("feeds.opml.xml")
-body = tree.getroot()[1]
-array = []
-for category in body:
-    _category = {"id": category.attrib["text"], "items": []}
-    for feed in category:
-        _title = feed.get("text")
-        _xmlUrl = feed.get("xmlUrl")
-        _htmlUrl = feed.get("htmlUrl")
-        _description = feed.get("description")
-        _category["items"].append({"id": _title, "xmlUrl": _xmlUrl, "htmlUrl": _htmlUrl, "description": _description})
-    array.append(_category)
-output = json.dumps(array)
+def _build_feed(feed: ET) -> dict[str, str | None]:
+    """Collects an RSS feed's title (as id), xmlURL, htmlURL and description"""
+    return {
+        "id": feed.get("text"),
+        "xmlUrl": feed.get("xmlUrl"),
+        "htmlUrl": feed.get("htmlUrl"),
+        "description": feed.get("description")
+    }
 
-with open("feeds.json", "w") as f:
-    f.write(output)
-print("Feeds.json refreshed!")
+def main():
+    tree = ET.parse("feeds.opml.xml")
+    body = tree.getroot()[1]
+    feed_categories = [
+        {
+            "id": category.attrib["text"],
+            "items":[_build_feed(feed) for feed in category]
+        }
+        for category in body
+    ]
+    output = json.dumps(feed_categories)
+
+    with open("feeds.json", "w") as f:
+        f.write(output)
+    print("Feeds.json refreshed!")
+
+if __name__ == "__main__":
+    main()
