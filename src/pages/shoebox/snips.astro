@@ -45,7 +45,7 @@ function shuffle(array) {
 			><Code
 				code="// Random pick functions
 function randomIntTween(min, max) {
-    const range = max - min;
+    const range = max - min; // excludes the max; if you want to include the max, add 1 here
     const result = min + Math.floor(Math.random() * range);
     return result;
 }
