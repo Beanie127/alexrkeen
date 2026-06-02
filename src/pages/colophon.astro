@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+const currentYear = new Date().getFullYear().toString();
 ---
 
 <Layout
@@ -29,13 +30,13 @@ import Layout from '../layouts/Layout.astro';
 		<p>
 			The whole site is &copy; Alex R. Keen 2021&ndash;<span
 				id="current-year">
-				2022
+				{currentYear}
 			</span>
 		</p>
 	</div>
 </Layout>
-<script>
-	const year = document.querySelector('#current-year') as HTMLSpanElement;
+<script is:inline>
+	const year = document.querySelector('#current-year');
 	const currentYear = new Date().getFullYear().toString();
 	year.textContent = currentYear;
 </script>

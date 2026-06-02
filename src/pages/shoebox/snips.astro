@@ -29,8 +29,8 @@ const $$ = function (target, origin = document) {
 				lang="js"
 			/>
 		</li>
-		<li
-			><Code
+		<li>
+			<Code
 				code="//randomise the order of an array
 function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -41,13 +41,18 @@ function shuffle(array) {
 				lang="js"
 			/>
 		</li>
-		<li
-			><Code
+		<li>
+			<Code
 				code="// Random pick functions
-function randomIntTween(min, max) {
-    const range = max - min; // excludes the max; if you want to include the max, add 1 here
-    const result = min + Math.floor(Math.random() * range);
-    return result;
+function randomIntTween(min, max, inclusive = false) {
+    let range;
+    if (inclusive) {
+        range = max - min + 1;
+    } else {
+        range = max - min;
+    }
+const result = min + Math.floor(Math.random() * range);
+return result;
 }
 
 function bellCurveTween(min, max) {
@@ -66,7 +71,7 @@ function pickFrom(array, bellCurve = false) {
     return array[index];
 }"
 				lang="js"
-			/></li
-		>
+			/>
+		</li>
 	</ul>
 </Layout>

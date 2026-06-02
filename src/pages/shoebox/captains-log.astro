@@ -8,14 +8,14 @@ import Layout from '../../layouts/Layout.astro';
 	<div
 		id="game"
 		class="col-wide">
-		<output
-			><p
-				>You are the captain of a starship. Your vessel is small, your
+		<output>
+			<p>
+				You are the captain of a starship. Your vessel is small, your
 				crew is smaller, and your mission through space is perilous and
-				vital.<br /> Type GO to take the helm.</p
-			></output
-		><div
-			>Input command:
+				vital.<br /> Type GO to take the helm.
+			</p>
+		</output><div>
+			Input command:
 			<input
 				type="text"
 				name="terminal"
@@ -23,11 +23,12 @@ import Layout from '../../layouts/Layout.astro';
 				autocomplete="off"
 			/>
 		</div>
-		<div id="status"
-			>Haul: <span id="haul">4</span> | Encounters remaining: <span
-				id="encounters-remaining">8</span
-			></div
-		>
+		<div id="status">
+			Haul: <span id="haul">4</span> | Encounters remaining: <span
+				id="encounters-remaining">
+				8
+			</span>
+		</div>
 	</div>
 </Layout>
 <script is:inline>
