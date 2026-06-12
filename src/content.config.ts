@@ -1,29 +1,30 @@
-import { defineCollection } from "astro:content";
-import { z } from "astro/zod"
-import { file } from "astro/loaders";
+import { defineCollection } from 'astro:content';
+import { z } from 'astro/zod';
+import { file } from 'astro/loaders';
 
 const quotes = defineCollection({
-    loader: file("src/collections/quotes.json"),
-    schema: z.object({
-        id: z.string(),
-        author: z.string(),
-        source: z.string().optional(),
-        url: z.string().optional(),
-        category: z.string().optional()
-    })
-})
+	loader: file('src/collections/quotes.json'),
+	schema: z.object({
+		author: z.string(),
+		source: z.string().optional(),
+		url: z.string().optional(),
+		category: z.string().optional(),
+	}),
+});
 
 const blogs = defineCollection({
-    loader: file("src/collections/feeds/feeds.json"),
-    schema: z.object({
-        id: z.string(),
-        items: z.array(z.object({
-            id: z.string(),
-            xmlUrl: z.string(),
-            htmlUrl: z.string(),
-            description: z.union([z.string(), z.null()])
-        }))
-    })
-})
+	loader: file('src/collections/feeds/feeds.json'),
+	schema: z.object({
+		id: z.string(),
+		items: z.array(
+			z.object({
+				id: z.string(),
+				xmlUrl: z.string(),
+				htmlUrl: z.string(),
+				description: z.union([z.string(), z.null()]),
+			}),
+		),
+	}),
+});
 
-export const collections = {quotes, blogs}
+export const collections = { quotes, blogs };
