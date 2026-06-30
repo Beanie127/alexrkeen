@@ -1,0 +1,22 @@
+{
+    "short_name": "Imprompt",
+    "name": "Imprompt — Tools For Improv",
+    "id": "imprompt",
+    "icons": [
+        {
+            "src": "./images/icon-192.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "./images/icon-512.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
+    ],
+    "start_url": "/improv-tools/",
+    "background_color": "#0E0A0F",
+    "display": "standalone",
+    "theme_color": "#D3A95F",
+    "description": "A set of tools for improvisers, including a prompt generator with a range of categories, a shortform game picker with filters, and a random player picker."
+}
