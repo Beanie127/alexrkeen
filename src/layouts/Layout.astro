@@ -3,11 +3,10 @@ import Nav from '../components/Nav.astro';
 interface Props {
 	title: string;
 	description: string;
-	noFooter?: boolean;
 	noStyle?: boolean;
 }
 
-const { title, description, noFooter = false, noStyle = false } = Astro.props;
+const { title, description,  noStyle = false } = Astro.props;
 ---
 
 <!doctype html>
@@ -405,7 +404,7 @@ footer img {
 		/>
 	</head>
 	<body>
-		<header>
+		{noStyle ? "" : <header>
 			<a
 				id="home-link"
 				href="/"
@@ -419,6 +418,7 @@ footer img {
 			</a>
 			<h1>{title}</h1>
 		</header>
+        }
 		<slot />
 	</body>
 </html>
