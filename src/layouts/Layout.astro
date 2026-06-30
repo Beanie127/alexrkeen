@@ -6,7 +6,7 @@ interface Props {
 	noStyle?: boolean;
 }
 
-const { title, description, noStyle = false } = Astro.props;
+const { title, description } = Astro.props;
 ---
 
 <!doctype html>
@@ -35,7 +35,22 @@ const { title, description, noStyle = false } = Astro.props;
 		/>
 	</head>
 	<body>
-		<style>
+		<header>
+			<a
+				id="home-link"
+				href="/"
+				title="home">
+				<span class="visually-hidden">Home</span>
+				<img
+					width="100"
+					src="/images/favicon.svg"
+					alt="A monogram of the letters A K in a circle"
+				/>
+			</a>
+			<h1>{title}</h1>
+		</header>
+		<slot />
+		<style is:global>
 			@layer reset {
 				/* RESET */
 
@@ -174,7 +189,7 @@ const { title, description, noStyle = false } = Astro.props;
 				scrollbar-gutter: stable both-edges;
 			}
 
-			:where(body):where(> *) {
+			body > * {
 				grid-column: center;
 			}
 
@@ -402,21 +417,5 @@ const { title, description, noStyle = false } = Astro.props;
 				width: 1px;
 			}
 		</style>
-
-		<header>
-			<a
-				id="home-link"
-				href="/"
-				title="tome">
-				<span class="visually-hidden">Home</span>
-				<img
-					width="100"
-					src="/images/favicon.svg"
-					alt="A monogram of the letters A K in a circle"
-				/>
-			</a>
-			<h1>{title}</h1>
-		</header>
-		<slot />
 	</body>
 </html>
