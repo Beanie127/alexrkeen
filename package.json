@@ -9,7 +9,11 @@
     "astro": "astro"
   },
   "dependencies": {
+<<<<<<< HEAD
     "astro": "^7.0.5"
+=======
+    "astro": "^7.0.4"
+>>>>>>> 6b3cea02ef277a7b0271bfa69d016e50b39e3d1e
   },
   "devDependencies": {
     "@types/node": "^25.3.0"
