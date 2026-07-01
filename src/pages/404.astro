@@ -52,30 +52,11 @@ interface quote {
 			}
 		</style>
 		<script type="module">
-			import quotes from '/js/quotes.js';
 			const quoteDisplay = document.querySelector('#quote-display');
+			const quotes = document.querySelectorAll('.quote');
 			const quote = quotes[Math.floor(Math.random() * quotes.length)];
 			console.log(quote);
-			quoteDisplay.innerHTML = `
-    <figure class="quote">
-	<blockquote style="padding-block-start:0">
-		${quote.text}
-	</blockquote>
-	<figcaption>
-		<cite>
-			<span class="author">${quote.author}</span>
-			${
-				quote.source ?
-					`<div class="source">
-				${quote.url ? `<a href=${quote.url}>` : ''}
-					${quote.source}
-				${quote.url ? '</a>' : ''}`
-				:	''
-			}
-			</div>
-		</cite>
-	</figcaption>
-</figure>`;
+			quoteDisplay.innerHTML = quote;
 		</script>
 	</section></Layout
 >

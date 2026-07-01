@@ -1,12 +1,10 @@
 ---
-import Nav from '../components/Nav.astro';
 interface Props {
 	title: string;
 	description: string;
-	noFooter?: boolean;
 }
 
-const { title, description, noFooter = false } = Astro.props;
+const { title, description } = Astro.props;
 ---
 
 <!doctype html>
@@ -35,24 +33,21 @@ const { title, description, noFooter = false } = Astro.props;
 		/>
 	</head>
 	<body>
-		<h1>{title}</h1>
-		<Nav />
+		<header>
+			<a
+				id="home-link"
+				href="/"
+				title="home">
+				<span class="visually-hidden">Home</span>
+				<img
+					width="100"
+					src="/images/favicon.svg"
+					alt="A monogram of the letters A K in a circle"
+				/>
+			</a>
+			<h1>{title}</h1>
+		</header>
 		<slot />
-		{
-			noFooter ? '' : (
-				<footer>
-					<a
-						href="#"
-						title="top">
-						<span class="visually-hidden">Go to top</span>
-						<img
-							src="/images/favicon.svg"
-							alt="A monogram of the letters A K in a circle"
-						/>
-					</a>
-				</footer>
-			)
-		}
 		<style is:global>
 			@layer reset {
 				/* RESET */
@@ -110,7 +105,7 @@ const { title, description, noFooter = false } = Astro.props;
 				li,
 				blockquote,
 				table {
-					line-height: calc(1em + 0.4rem);
+					line-height: calc(1em + 0.5rem);
 					text-wrap: pretty;
 				}
 			}
@@ -133,18 +128,26 @@ const { title, description, noFooter = false } = Astro.props;
 
 			:root {
 				--bg-color: hsl(357 12 12);
-				--mg-color: hsl(357 38 15);
+				--mg-color: hsl(357 18 18);
 				--accent-color: hsl(13 69 59);
 				--text-color: hsl(40 31 70);
 				--h-color: hsl(40 100 69);
-				/* --text-color: hsl(58 57 92); */
-				/* --bg-color: hsl(8 12 15); */
+				--bg-color: hsl(44 56 93);
+				--mg-color: hsl(70 27 85);
+				--h-color: hsl(78 35 30);
+				--accent-color: hsl(13 99 39);
+				--text-color: hsl(80 12 15);
+				--text-color: hsl(44 86 93);
+				--bg-color: hsl(80 10 10);
+				--mg-color: hsl(100 12 15);
+				--h-color: hsl(78 40 70);
+				--accent-color: hsl(13 99 69);
 			}
 
 			/* TYPOGRAPHY */
 
 			html {
-				font-size: clamp(1.1rem, 0.9rem + 0.45vw, 1.3rem);
+				font-size: clamp(1.1rem, 0.9rem + 0.45vw, 1.4rem);
 				font-family:
 					'Crimson Pro', 'Garamond', Georgia, Times,
 					'Times New Roman', serif;
@@ -164,13 +167,7 @@ const { title, description, noFooter = false } = Astro.props;
 
 			h1 {
 				font-weight: 900;
-				/* text-transform: lowercase; */
-				padding-block: 5px;
-				background: var(--accent-color);
-				color: var(--bg-color);
-				margin-block: 0;
-				grid-column: full-bleed;
-				text-align: center;
+				/* color: var(--accent-color); */
 			}
 
 			/* LAYOUT */
@@ -190,7 +187,7 @@ const { title, description, noFooter = false } = Astro.props;
 				scrollbar-gutter: stable both-edges;
 			}
 
-			:where(body):where(> *) {
+			body > * {
 				grid-column: center;
 			}
 
@@ -259,11 +256,11 @@ const { title, description, noFooter = false } = Astro.props;
 			}
 
 			a[href^='http']::after {
-				content: '\00A0\2197';
+				content: '\2197';
 			}
 
 			a[href^='mailto']::after {
-				content: '\00A0\2709';
+				content: '\2709';
 			}
 
 			a::before,
@@ -272,6 +269,7 @@ const { title, description, noFooter = false } = Astro.props;
 				font-weight: bold;
 				font-family: 'Segoe UI Symbol', monospace;
 				font-variant-emoji: text;
+				font-size: 0.9em;
 			}
 
 			/* IMAGES & FIGURES */
@@ -363,6 +361,20 @@ const { title, description, noFooter = false } = Astro.props;
 				z-index: 1;
 			}
 
+			header {
+				display: flex;
+				block-size: 4rem;
+				padding: 1rem;
+				gap: 1rem;
+				align-items: center;
+				& img {
+					block-size: 4rem;
+				}
+				& #home-link {
+					flex-shrink: 0;
+				}
+			}
+
 			/* return to top link */
 			footer {
 				inline-size: 100%;
@@ -379,7 +391,7 @@ const { title, description, noFooter = false } = Astro.props;
 				float: unset;
 				padding: 0;
 			}
-			@media (prefers-reduced-motion: no-preference) {
+			/* @media (prefers-reduced-motion: no-preference) {
 				footer img {
 					animation: bob ease-in-out infinite 3s;
 				}
@@ -388,7 +400,7 @@ const { title, description, noFooter = false } = Astro.props;
 						transform: translateY(-1em);
 					}
 				}
-			}
+			} */
 
 			/* utilities */
 
