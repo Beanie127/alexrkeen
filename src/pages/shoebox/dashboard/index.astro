@@ -1,0 +1,665 @@
+---
+import { getCollection } from 'astro:content';
+import Quote from '../../../components/Quote.astro';
+const quotes: Array<quote> = await getCollection('quotes');
+interface quote {
+	id: string;
+	data: { author: string; url?: string; source?: string; category?: string };
+}
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>Dashboard</title>
+	</head>
+
+	<body>
+		<style is:inline>
+			*,
+			*::before,
+			*::after {
+				box-sizing: border-box;
+			}
+
+			:root {
+				--hue: 320;
+				--max-temp: 20;
+				--min-temp: 12;
+				--thermometer-max: 25;
+			}
+
+			@property --hour {
+				syntax: '<number>';
+				initial-value: 0;
+				inherits: true;
+			}
+
+			@property --minute {
+				syntax: '<number>';
+				initial-value: 0;
+				inherits: true;
+			}
+
+			@property --second {
+				syntax: '<number>';
+				initial-value: 0;
+				inherits: true;
+			}
+
+			body {
+				margin: 0;
+				padding: 1rem;
+				background-color: hsl(var(--hue) 60 80);
+
+				@media (width > 800px) {
+					display: grid;
+					grid-template-columns: repeat(3, 1fr);
+					gap: 1rem;
+
+					section:not(.full-width) {
+						place-self: center;
+					}
+				}
+			}
+
+			h1 {
+				text-align: center;
+			}
+
+			.full-width {
+				grid-column: 1 / -1;
+			}
+
+			.glossy {
+				background: hsl(var(--hue) 50 85);
+				padding: 1rem;
+				border-radius: 1rem;
+				box-shadow: inset 0 1rem 5rem -1rem hsl(var(--hue) 60 95);
+			}
+
+			.icon {
+				background: hsl(var(--hue) 60 60);
+				aspect-ratio: 1;
+			}
+
+			#clock {
+				--saturation: 75;
+				--lightness: 75;
+				--hourDegs: calc(var(--hour, 0) * 30);
+				--minuteDegs: calc(var(--minute, 0) * 6);
+				margin-inline: auto;
+				margin-block: 1rem;
+				block-size: min(20rem, 90vmin);
+				aspect-ratio: 1;
+				border-radius: 100%;
+				/* border: 2px solid hsl(var(--hue) 60 60); */
+				/* box-shadow: inset 0px 0px 40px hsl(var(--hue) 60 70); */
+				/* background: radial-gradient(hsl(var(--hue) 60 80) 75%, hsl(var(--hue) 60 65)); */
+				display: grid;
+				place-items: center;
+				will-change: contents;
+				overflow: hidden;
+
+				* {
+					grid-area: 1/1;
+					aspect-ratio: inherit;
+					border-radius: inherit;
+					filter: blur(0.5px);
+				}
+			}
+
+			#hour {
+				block-size: 50%;
+				background: conic-gradient(
+					from calc(var(--hourDegs) * 1deg),
+					hsl(var(--hourDegs) var(--saturation) var(--lightness) / 0)
+						60%,
+					hsl(var(--hourDegs) var(--saturation) var(--lightness)) 90%
+				);
+			}
+
+			#minute {
+				block-size: 95%;
+				background: conic-gradient(
+					from calc(var(--minuteDegs) * 1deg),
+					hsl(
+							var(--minuteDegs) var(--saturation)
+								var(--lightness) / 0
+						)
+						60%,
+					hsl(var(--minuteDegs) var(--saturation) var(--lightness))
+						90%
+				);
+			}
+
+			#second {
+				border-radius: none;
+				block-size: 100%;
+				background: linear-gradient(
+					to right,
+					transparent calc(50% - 0.5px),
+					hsl(var(--hue) 60 40) 0 50%,
+					transparent calc(50% + 0.5px)
+				);
+				mask-image: linear-gradient(black 50%, transparent 50%);
+				transform: rotate(calc(var(--second, 0) * 6deg));
+			}
+
+			#center-spot {
+				block-size: 15%;
+				background-image:
+					url('/images/favicon.svg'),
+					linear-gradient(
+						hsl(var(--hue) 60 80),
+						hsl(var(--hue) 60 80)
+					);
+				z-index: 10;
+				border: 2px solid hsl(var(--hue) 60 80);
+			}
+
+			#thermometer {
+				display: grid;
+				inline-size: min(90vw, 25rem);
+				grid-template-rows: max-content 20px;
+				column-gap: 5px;
+				grid-template-columns: repeat(26, 1fr);
+
+				> * {
+					display: grid;
+					grid-template-columns: subgrid;
+					grid-template-rows: 1fr;
+					grid-column: 1 / -1;
+				}
+			}
+
+			#graduations {
+				text-align: right;
+				font-family: monospace;
+				font-size: 1rem;
+				transform: translateX(-0.5lh);
+
+				& span[data-temp]::before {
+					content: attr(data-temp);
+				}
+			}
+
+			#mercury-vessel {
+				border: thin solid hsl(var(--hue) 60 70);
+				box-shadow: inset 0px 0px 2px hsl(var(--hue) 60 70);
+				grid-column-end: -2;
+				background: hsl(0 0 100 / 0.25);
+				border-radius: 10px;
+				overflow: hidden;
+			}
+
+			#mercury {
+				background: linear-gradient(
+					to left,
+					hsl(calc((35 - var(--max-temp)) * 6.25) 60 50),
+					hsl(calc((35 - var(--min-temp)) * 6.25) 60 50)
+				);
+				border-radius: 5px;
+				grid-column: calc(
+						26 - var(--thermometer-max) + var(--min-temp)
+					) /
+					calc(26 - var(--thermometer-max) + var(--max-temp));
+			}
+
+			#daily-forecast {
+				font-size: 1.2rem;
+
+				& .icon {
+					inline-size: 5rem;
+					/* padding-inline-end: 1rem; */
+				}
+			}
+
+			#hourly-wrapper {
+				inline-size: max-content;
+				max-inline-size: 100%;
+				overflow-inline: scroll;
+				scrollbar-color: hsl(var(--hue) 60 60) hsl(var(--hue) 60 85);
+				scrollbar-width: thin;
+				scrollbar-gutter: auto;
+			}
+
+			#hourly-forecast {
+				text-align: center;
+			}
+
+			#hourly-forecast td {
+				inline-size: 8ch;
+				min-inline-size: 8ch;
+				padding: 0.5ch;
+				font-variant-emoji: text;
+
+				+ td {
+					border-inline-start: thin solid hsl(var(--hue) 60 70);
+				}
+			}
+
+			#hourly-forecast span::after {
+				font-size: 0.75rem;
+				opacity: 0.5;
+			}
+
+			#t-temperature span::before {
+				content: '🌡 ';
+			}
+
+			#t-temperature span::after {
+				content: '°C';
+			}
+
+			#t-rain span::before {
+				content: '☔ ';
+			}
+
+			#t-rain span::after {
+				content: '%';
+			}
+
+			#t-wind span::before {
+				position: relative;
+				content: '↑';
+				display: inline-block;
+				margin-inline-end: 0.5ch;
+				rotate: var(--wind-angle, 0deg);
+				font-weight: bold;
+			}
+
+			#t-wind span::after {
+				content: 'mph';
+			}
+		</style>
+		<section class="full-width">
+			<h1></h1>
+		</section>
+		<section>
+			<div
+				id="qotd"
+				class="glossy">
+			</div>
+		</section>
+		<section>
+			<div
+				id="clock"
+				class="glossy">
+				<div id="minute"></div>
+				<div id="hour"></div>
+				<div id="second"></div>
+				<div id="center-spot"></div>
+			</div>
+		</section>
+
+		<section>
+			<div id="daily-forecast">
+				<table class="glossy">
+					<tr>
+						<td>
+							<div
+								class="icon"
+								style="mask-image: url('/images/wi/wi-sunrise.svg')">
+							</div>
+						</td>
+						<td id="sunrise"></td>
+						<td>
+							<div
+								class="icon"
+								style="mask-image: url('/images/wi/wi-sunset.svg')">
+							</div>
+						</td>
+						<td id="sunset"></td>
+					</tr>
+					<tr>
+						<td>
+							<div
+								class="icon"
+								style="mask-image: url('/images/wi/wi-raindrops.svg')">
+							</div>
+						</td>
+						<td id="precipitation-chance"></td>
+						<td>
+							<div
+								class="icon"
+								style="mask-image: url('/images/wi/wi-windy.svg')">
+							</div>
+						</td>
+						<td id="gusts"></td>
+					</tr>
+					<tr>
+						<td colspan="4">
+							<div id="thermometer">
+								<div id="graduations">
+									<div><span data-temp="0"></span></div>
+									<div></div>
+									<div></div>
+									<div></div>
+									<div></div>
+									<div><span data-temp="5"></span></div>
+									<div></div>
+									<div></div>
+									<div></div>
+									<div></div>
+									<div><span data-temp="10"></span></div>
+									<div></div>
+									<div></div>
+									<div></div>
+									<div></div>
+									<div><span data-temp="15"></span></div>
+									<div></div>
+									<div></div>
+									<div></div>
+									<div></div>
+									<div><span data-temp="20"></span></div>
+									<div></div>
+									<div></div>
+									<div></div>
+									<div></div>
+									<div><span data-temp="25"></span></div>
+								</div>
+								<div id="mercury-vessel">
+									<div id="mercury"></div>
+								</div>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</section>
+		<section class="full-width">
+			<div
+				id="hourly-wrapper"
+				class="glossy">
+				<table id="hourly-forecast">
+					<thead>
+						<tr></tr>
+					</thead>
+					<tbody>
+						<tr id="t-conditions"></tr>
+						<tr id="t-temperature"></tr>
+						<tr id="t-rain"></tr>
+						<tr id="t-wind"></tr>
+					</tbody>
+				</table>
+			</div>
+		</section>
+		<div
+			hidden="true"
+			id="quote-repo">
+			{
+				quotes.map((quote) => (
+					<Quote
+						id={quote.id}
+						author={quote.data.author}
+						category={quote.data.category}
+						url={quote.data.url}
+						source={quote.data.source}
+					/>
+				))
+			}
+		</div>
+	</body>
+	<script is:inline>
+		const clock = document.querySelector('#clock');
+		function updateClock() {
+			const moment = new Date();
+			// console.log(moment);
+			const minute = moment.getMinutes();
+			const hour = moment.getHours();
+			const second = moment.getSeconds();
+			clock.style.setProperty('--hour', hour);
+			clock.style.setProperty('--minute', minute);
+			clock.style.setProperty('--second', second);
+		}
+
+		updateClock();
+		setInterval(updateClock, 500);
+	</script>
+	<script is:inline>
+		const body = document.querySelector('body');
+		const weatherCodes = {
+			0: {
+				description: 'Clear sky',
+				img: { day: 'wi-day-sunny', night: 'wi-night-clear' },
+			},
+			1: {
+				description: 'Mainly clear',
+				img: {
+					day: 'wi-day-sunny-overcast',
+					night: 'wi-night-alt-partly-cloudy',
+				},
+			},
+			2: {
+				description: 'Partly cloudy',
+				img: { day: 'wi-day-cloudy', night: 'wi-night-alt-cloudy' },
+			},
+			3: {
+				description: 'Overcast',
+				img: { day: 'wi-cloud', night: 'wi-cloud' },
+			},
+			45: { description: 'Fog', img: { day: 'wi-fog', night: 'wi-fog' } },
+			48: {
+				description: 'Rime fog',
+				img: { day: 'wi-fog', night: 'wi-night-fog' },
+			},
+			51: {
+				description: 'Light drizzle',
+				img: { day: 'wi-day-showers', night: 'wi-night-alt-showers' },
+			},
+			53: {
+				description: 'Moderate drizzle',
+				img: { day: 'wi-day-rain', night: 'wi-night-alt-rain' },
+			},
+			55: {
+				description: 'Dense drizzle',
+				img: { day: 'wi-sprinkle', night: 'wi-sprinkle' },
+			},
+			56: {
+				description: 'Light freezing drizzle',
+				img: { day: 'wi-day-sleet', night: 'wi-night-alt-sleet' },
+			},
+			57: {
+				description: 'Dense freezing drizzle',
+				img: { day: 'wi-sleet', night: 'wi-sleet' },
+			},
+			61: {
+				description: 'Light rain',
+				img: { day: 'wi-showers', night: 'wi-night-alt-showers' },
+			},
+			63: {
+				description: 'Moderate rain',
+				img: { day: 'wi-rain-mix', night: 'wi-rain-mix' },
+			},
+			65: {
+				description: 'Dense rain',
+				img: { day: 'wi-rain', night: 'wi-rain' },
+			},
+			66: {
+				description: 'Light freezing rain',
+				img: { day: 'wi-day-sleet', night: 'wi-night-alt-sleet' },
+			},
+			67: {
+				description: 'Dense freezing rain',
+				img: { day: 'wi-sleet', night: 'wi-sleet' },
+			},
+			71: {
+				description: 'Light snowfall',
+				img: { day: 'wi-day-snow', night: 'wi-night-alt-snow' },
+			},
+			73: {
+				description: 'Moderate snowfall',
+				img: { day: 'wi-snow', night: 'wi-snow' },
+			},
+			75: {
+				description: 'Dense snowfall',
+				img: { day: 'wi-snowflake-cold', night: 'wi-snowflake-cold' },
+			},
+			77: {
+				description: 'Snow grains',
+				img: { day: 'wi-snow-wind', night: 'wi-snow-wind' },
+			},
+			80: {
+				description: 'Slight rain showers',
+				img: { day: 'wi-day-showers', night: 'wi-night-showers' },
+			},
+			81: {
+				description: 'Moderate rain showers',
+				img: { day: 'wi-day-rain-mix', night: 'wi-night-alt-rain-mix' },
+			},
+			82: {
+				description: 'Violent rain showers',
+				img: { day: 'wi-day-rain', night: 'wi-night-alt-rain' },
+			},
+			85: {
+				description: 'Slight snow showers',
+				img: { day: 'wi-day-snow', night: 'wi-night-alt-snow' },
+			},
+			86: {
+				description: 'heavy snow showers',
+				img: { day: 'wi-snow', night: 'wi-snow' },
+			},
+			95: {
+				description: 'Thunderstorm',
+				img: { day: 'wi-thunderstorm', night: 'wi-thunderstorm' },
+			},
+			96: {
+				description: 'Thunderstorm with slight hail',
+				img: { day: 'wi-storm-showers', night: 'wi-storm-showers' },
+			},
+			97: {
+				description: 'Thunderstorm with heavy hail',
+				img: { day: 'wi-storm-showers', night: 'wi-storm-showers' },
+			},
+		};
+		const now = new Date();
+		function setDate() {
+			document.querySelector('h1').textContent = now.toLocaleDateString(
+				'en-GB',
+				{
+					weekday: 'long',
+					year: 'numeric',
+					month: 'long',
+					day: 'numeric',
+				},
+			);
+		}
+		async function getData() {
+			const response = await fetch(
+				'https://api.open-meteo.com/v1/forecast?latitude=53.4&longitude=-1.5&daily=temperature_2m_max,temperature_2m_min,sunset,sunrise,wind_gusts_10m_max,precipitation_sum,precipitation_probability_max,temperature_2m_mean,weather_code&hourly=temperature_2m,precipitation_probability,wind_speed_10m,wind_direction_10m,weather_code,precipitation,is_day&forecast_days=3&wind_speed_unit=mph&timezone=Europe%2FLondon',
+			);
+			const data = await response.json();
+			console.log(data);
+			return data;
+		}
+
+		function setThermometerMax(maxTemp) {
+			const thermometerMax = Math.ceil(maxTemp / 5) * 5 + 5;
+			console.log('Thermometer Max', thermometerMax);
+			const graduations = document.querySelectorAll('[data-temp]');
+			let markerTemp = thermometerMax - 25;
+			for (const graduation of graduations) {
+				graduation.dataset.temp = markerTemp;
+				markerTemp += 5;
+				body.style.setProperty('--thermometer-max', thermometerMax);
+			}
+		}
+
+		function setTemps(temps) {
+			body.style.setProperty('--max-temp', Math.round(temps.max));
+			body.style.setProperty('--min-temp', Math.round(temps.min));
+			body.style.setProperty('--avg-temp', Math.round(temps.avg));
+		}
+
+		function setHue(temp) {
+			let hue = temp;
+			if (hue > 35) {
+				hue = 35;
+			} else if (hue < 0) {
+				hue = 0;
+			}
+			hue = (35 - hue) * 6.25;
+			return hue;
+		}
+
+		function setHourlyForecast(data) {
+			const table = document.querySelector('#hourly-forecast');
+			const thead = table.querySelector('thead tr');
+			const tConditions = table.querySelector('#t-conditions');
+			const tTemperature = table.querySelector('#t-temperature');
+			const tWind = table.querySelector('#t-wind');
+			const tRain = table.querySelector('#t-rain');
+			const hourly = data.hourly;
+			const sunrise = Number.parseInt(
+				data.daily.sunrise[0].slice(11, 13),
+			);
+			const sunset = Number.parseInt(data.daily.sunset[0].slice(11, 13));
+			console.log('Sunrise', sunrise, 'Sunset', sunset);
+			const currentTime = new Date();
+			const currentHour = Number.parseInt(currentTime.getHours());
+			for (let i = currentHour; i < currentHour + 24; i++) {
+				const time = hourly.time[i].slice(11);
+				thead.innerHTML += `<th><span>${time}</span></th>`;
+				tTemperature.innerHTML += `<td><span>${Math.round(hourly.temperature_2m[i])}</span></td>`;
+				tRain.innerHTML += `<td><span>${hourly.precipitation_probability[i]}</span></td>`;
+				tWind.innerHTML += `<td><span style="--wind-angle:${Number.parseInt(hourly.wind_direction_10m[i])}deg">${Math.round(hourly.wind_speed_10m[i])}</span></td>`;
+				let timeOfDay = hourly.is_day[i] ? 'day' : 'night';
+				tConditions.innerHTML += `<td><div class="icon" style="--hue: ${setHue(hourly.temperature_2m[i])}; mask-image:url('/images/wi/${weatherCodes[hourly.weather_code[i]].img[timeOfDay]}.svg')"></div></td>`;
+			}
+		}
+
+		function setDailyForecast(data) {
+			document.querySelector('#sunrise').textContent =
+				data.daily.sunrise[0].toString().slice(11);
+			document.querySelector('#sunset').textContent = data.daily.sunset[0]
+				.toString()
+				.slice(11);
+			// document.querySelector("#conditions").innerHTML = weatherCodes[data.daily.weather_code[0]].description.toLowerCase()
+			document.querySelector('#gusts').textContent =
+				Math.round(data.daily.wind_gusts_10m_max[0]) + 'mph';
+			document.querySelector('#precipitation-chance').textContent =
+				data.daily.precipitation_probability_max[0] + '%';
+		}
+
+		document.addEventListener('DOMContentLoaded', async () => {
+			const data = await getData();
+			await setTemps({
+				max: data.daily.temperature_2m_max[0],
+				min: data.daily.temperature_2m_min[0],
+				avg: data.daily.temperature_2m_mean[0],
+			});
+			await body.style.setProperty(
+				'--hue',
+				setHue(data.daily.temperature_2m_mean[0]),
+			);
+			await setThermometerMax(data.daily.temperature_2m_max[0]);
+			await setHourlyForecast(data);
+			await setDailyForecast(data);
+			setDate();
+		});
+	</script>
+	<script is:inline>
+		function dayOfYear(date) {
+			const doy = Math.floor(
+				(date - new Date(date.getFullYear(), 0, 0)) /
+					1000 /
+					60 /
+					60 /
+					24,
+			);
+			console.log(doy);
+			return doy;
+		}
+		const quotes = document
+			.querySelector('#quote-repo')
+			.querySelectorAll('.quote');
+		const qotdIndex = Math.round((dayOfYear(now) / 365) * quotes.length);
+		document.querySelector('#qotd').appendChild(quotes[qotdIndex]);
+	</script>
+</html>
