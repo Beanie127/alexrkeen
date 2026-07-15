@@ -62,18 +62,26 @@ interface quote {
 					grid-template-columns: repeat(3, 1fr);
 					gap: 1rem;
 
+					section {
+						margin: 0;
+					}
 					section:not(.full-width) {
 						place-self: center;
 					}
 				}
 			}
 
-			h1 {
-				text-align: center;
+			section {
+				margin-block: 1rem;
+				margin-inline: auto;
 			}
 
 			.full-width {
 				grid-column: 1 / -1;
+			}
+
+			h1 {
+				text-align: center;
 			}
 
 			.glossy {
@@ -118,9 +126,9 @@ interface quote {
 				block-size: 50%;
 				background: conic-gradient(
 					from calc(var(--hourDegs) * 1deg),
+					hsl(var(--hourDegs) var(--saturation) var(--lightness)) 10%,
 					hsl(var(--hourDegs) var(--saturation) var(--lightness) / 0)
-						60%,
-					hsl(var(--hourDegs) var(--saturation) var(--lightness)) 90%
+						40%
 				);
 			}
 
