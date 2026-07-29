@@ -4,7 +4,7 @@
         "lines": [
             "Piccadilly"
         ],
-        "zones": [
+        "zone": [
             6
         ]
     },
@@ -13,7 +13,7 @@
         "lines": [
             "Piccadilly"
         ],
-        "zones": [
+        "zone": [
             6
         ]
     },
@@ -22,7 +22,7 @@
         "lines": [
             "Piccadilly"
         ],
-        "zones": [
+        "zone": [
             5,
             6
         ]
@@ -32,7 +32,7 @@
         "lines": [
             "Victoria"
         ],
-        "zones": [
+        "zone": [
             1
         ]
     },
@@ -41,7 +41,7 @@
         "lines": [
             "Victoria"
         ],
-        "zones": [
+        "zone": [
             2
         ]
     },
@@ -50,7 +50,7 @@
         "lines": [
             "Victoria"
         ],
-        "zones": [
+        "zone": [
             12
         ]
     },
@@ -59,16 +59,17 @@
         "lines": [
             "Victoria"
         ],
-        "zones": [
+        "zone": [
             3
         ]
     },
     {
         "name": "Highbury & Islington",
         "lines": [
-            "Victoria"
+            "Victoria",
+            "British Rail"
         ],
-        "zones": [
+        "zone": [
             2
         ]
     },
@@ -77,7 +78,7 @@
         "lines": [
             "Victoria"
         ],
-        "zones": [
+        "zone": [
             3
         ]
     },
@@ -86,7 +87,7 @@
         "lines": [
             "Victoria"
         ],
-        "zones": [
+        "zone": [
             3
         ]
     },
@@ -95,7 +96,7 @@
         "lines": [
             "Victoria"
         ],
-        "zones": [
+        "zone": [
             3
         ]
     },
@@ -104,7 +105,7 @@
         "lines": [
             "Central"
         ],
-        "zones": [
+        "zone": [
             6
         ]
     },
@@ -113,7 +114,7 @@
         "lines": [
             "Central"
         ],
-        "zones": [
+        "zone": [
             6
         ]
     },
@@ -122,7 +123,7 @@
         "lines": [
             "Central"
         ],
-        "zones": [
+        "zone": [
             6
         ]
     },
@@ -131,7 +132,7 @@
         "lines": [
             "Central"
         ],
-        "zones": [
+        "zone": [
             5
         ]
     },
@@ -140,7 +141,7 @@
         "lines": [
             "Central"
         ],
-        "zones": [
+        "zone": [
             5
         ]
     },
@@ -149,7 +150,7 @@
         "lines": [
             "Central"
         ],
-        "zones": [
+        "zone": [
             5
         ]
     },
@@ -158,7 +159,7 @@
         "lines": [
             "Central"
         ],
-        "zones": [
+        "zone": [
             4
         ]
     },
@@ -167,7 +168,7 @@
         "lines": [
             "Central"
         ],
-        "zones": [
+        "zone": [
             4
         ]
     },
@@ -176,7 +177,7 @@
         "lines": [
             "Central"
         ],
-        "zones": [
+        "zone": [
             6
         ]
     },
@@ -185,7 +186,7 @@
         "lines": [
             "Central"
         ],
-        "zones": [
+        "zone": [
             5
         ]
     },
@@ -194,7 +195,7 @@
         "lines": [
             "Central"
         ],
-        "zones": [
+        "zone": [
             4
         ]
     },
@@ -203,7 +204,7 @@
         "lines": [
             "Central"
         ],
-        "zones": [
+        "zone": [
             6
         ]
     },
@@ -212,7 +213,7 @@
         "lines": [
             "Central"
         ],
-        "zones": [
+        "zone": [
             4
         ]
     },
@@ -221,7 +222,7 @@
         "lines": [
             "Central"
         ],
-        "zones": [
+        "zone": [
             4
         ]
     },
@@ -230,7 +231,7 @@
         "lines": [
             "Central"
         ],
-        "zones": [
+        "zone": [
             4
         ]
     },
@@ -239,7 +240,7 @@
         "lines": [
             "Central"
         ],
-        "zones": [
+        "zone": [
             4
         ]
     },
@@ -248,7 +249,7 @@
         "lines": [
             "Central"
         ],
-        "zones": [
+        "zone": [
             4
         ]
     },
@@ -257,7 +258,7 @@
         "lines": [
             "Central"
         ],
-        "zones": [
+        "zone": [
             4
         ]
     },
@@ -266,7 +267,7 @@
         "lines": [
             "Central"
         ],
-        "zones": [
+        "zone": [
             4
         ]
     },
@@ -275,7 +276,7 @@
         "lines": [
             "Central"
         ],
-        "zones": [
+        "zone": [
             4
         ]
     },
@@ -284,7 +285,7 @@
         "lines": [
             "Central"
         ],
-        "zones": [
+        "zone": [
             4
         ]
     },
@@ -293,7 +294,7 @@
         "lines": [
             "Central"
         ],
-        "zones": [
+        "zone": [
             4
         ]
     },
@@ -302,7 +303,7 @@
         "lines": [
             "Central"
         ],
-        "zones": [
+        "zone": [
             2
         ]
     },
@@ -311,7 +312,7 @@
         "lines": [
             "Central"
         ],
-        "zones": [
+        "zone": [
             4
         ]
     },
@@ -320,7 +321,7 @@
         "lines": [
             "Central"
         ],
-        "zones": [
+        "zone": [
             3
         ]
     },
@@ -329,7 +330,7 @@
         "lines": [
             "Central"
         ],
-        "zones": [
+        "zone": [
             4
         ]
     },
@@ -338,7 +339,7 @@
         "lines": [
             "Central"
         ],
-        "zones": [
+        "zone": [
             3
         ]
     },
@@ -347,7 +348,7 @@
         "lines": [
             "Central"
         ],
-        "zones": [
+        "zone": [
             3,
             4
         ]
@@ -357,7 +358,7 @@
         "lines": [
             "Central"
         ],
-        "zones": [
+        "zone": [
             2
         ]
     },
@@ -365,9 +366,11 @@
         "name": "Stratford",
         "lines": [
             "Central",
-            "Jubilee"
+            "Jubilee",
+            "DLR",
+            "British Rail"
         ],
-        "zones": [
+        "zone": [
             2,
             3
         ]
@@ -377,7 +380,7 @@
         "lines": [
             "Northern"
         ],
-        "zones": [
+        "zone": [
             4
         ]
     },
@@ -386,7 +389,7 @@
         "lines": [
             "Northern"
         ],
-        "zones": [
+        "zone": [
             3
         ]
     },
@@ -395,7 +398,7 @@
         "lines": [
             "Northern"
         ],
-        "zones": [
+        "zone": [
             4
         ]
     },
@@ -404,7 +407,7 @@
         "lines": [
             "Northern"
         ],
-        "zones": [
+        "zone": [
             5
         ]
     },
@@ -413,7 +416,7 @@
         "lines": [
             "Northern"
         ],
-        "zones": [
+        "zone": [
             4
         ]
     },
@@ -422,7 +425,7 @@
         "lines": [
             "Northern"
         ],
-        "zones": [
+        "zone": [
             4
         ]
     },
@@ -431,7 +434,7 @@
         "lines": [
             "Northern"
         ],
-        "zones": [
+        "zone": [
             4
         ]
     },
@@ -440,7 +443,7 @@
         "lines": [
             "Jubilee"
         ],
-        "zones": [
+        "zone": [
             2
         ]
     },
@@ -449,7 +452,7 @@
         "lines": [
             "Jubilee"
         ],
-        "zones": [
+        "zone": [
             2
         ]
     },
@@ -458,7 +461,7 @@
         "lines": [
             "Northern"
         ],
-        "zones": [
+        "zone": [
             3
         ]
     },
@@ -467,7 +470,7 @@
         "lines": [
             "District"
         ],
-        "zones": [
+        "zone": [
             6
         ]
     },
@@ -476,7 +479,7 @@
         "lines": [
             "District"
         ],
-        "zones": [
+        "zone": [
             6
         ]
     },
@@ -485,7 +488,7 @@
         "lines": [
             "Jubilee"
         ],
-        "zones": [
+        "zone": [
             4
         ]
     },
@@ -494,7 +497,7 @@
         "lines": [
             "Metropolitan"
         ],
-        "zones": [
+        "zone": [
             6
         ]
     },
@@ -503,7 +506,7 @@
         "lines": [
             "Piccadilly"
         ],
-        "zones": [
+        "zone": [
             5
         ]
     },
@@ -512,7 +515,7 @@
         "lines": [
             "Bakerloo"
         ],
-        "zones": [
+        "zone": [
             4
         ]
     },
@@ -521,7 +524,7 @@
         "lines": [
             "Piccadilly"
         ],
-        "zones": [
+        "zone": [
             5
         ]
     },
@@ -530,7 +533,7 @@
         "lines": [
             "Piccadilly"
         ],
-        "zones": [
+        "zone": [
             4
         ]
     },
@@ -539,7 +542,7 @@
         "lines": [
             "Jubilee"
         ],
-        "zones": [
+        "zone": [
             5
         ]
     },
@@ -548,7 +551,7 @@
         "lines": [
             "Jubilee"
         ],
-        "zones": [
+        "zone": [
             4
         ]
     },
@@ -557,7 +560,7 @@
         "lines": [
             "Jubilee"
         ],
-        "zones": [
+        "zone": [
             5
         ]
     },
@@ -566,7 +569,7 @@
         "lines": [
             "Piccadilly"
         ],
-        "zones": [
+        "zone": [
             4
         ]
     },
@@ -575,7 +578,7 @@
         "lines": [
             "Piccadilly"
         ],
-        "zones": [
+        "zone": [
             3,
             4
         ]
@@ -585,7 +588,7 @@
         "lines": [
             "Piccadilly"
         ],
-        "zones": [
+        "zone": [
             2,
             3
         ]
@@ -595,7 +598,7 @@
         "lines": [
             "Piccadilly"
         ],
-        "zones": [
+        "zone": [
             3
         ]
     },
@@ -604,7 +607,7 @@
         "lines": [
             "Piccadilly"
         ],
-        "zones": [
+        "zone": [
             3
         ]
     },
@@ -613,7 +616,7 @@
         "lines": [
             "District"
         ],
-        "zones": [
+        "zone": [
             5
         ]
     },
@@ -622,7 +625,7 @@
         "lines": [
             "District"
         ],
-        "zones": [
+        "zone": [
             4
         ]
     },
@@ -631,7 +634,7 @@
         "lines": [
             "District"
         ],
-        "zones": [
+        "zone": [
             5
         ]
     },
@@ -640,7 +643,7 @@
         "lines": [
             "Northern"
         ],
-        "zones": [
+        "zone": [
             3
         ]
     },
@@ -649,7 +652,7 @@
         "lines": [
             "Northern"
         ],
-        "zones": [
+        "zone": [
             2,
             3
         ]
@@ -659,7 +662,7 @@
         "lines": [
             "Northern"
         ],
-        "zones": [
+        "zone": [
             3
         ]
     },
@@ -668,7 +671,7 @@
         "lines": [
             "Northern"
         ],
-        "zones": [
+        "zone": [
             4
         ]
     },
@@ -677,7 +680,7 @@
         "lines": [
             "Northern"
         ],
-        "zones": [
+        "zone": [
             3,
             4
         ]
@@ -687,7 +690,7 @@
         "lines": [
             "Northern"
         ],
-        "zones": [
+        "zone": [
             3
         ]
     },
@@ -696,7 +699,7 @@
         "lines": [
             "Northern"
         ],
-        "zones": [
+        "zone": [
             3
         ]
     },
@@ -705,7 +708,7 @@
         "lines": [
             "Metropolitan"
         ],
-        "zones": [
+        "zone": [
             6
         ]
     },
@@ -714,7 +717,7 @@
         "lines": [
             "Metropolitan"
         ],
-        "zones": [
+        "zone": [
             6
         ]
     },
@@ -723,7 +726,7 @@
         "lines": [
             "Northern"
         ],
-        "zones": [
+        "zone": [
             4
         ]
     },
@@ -732,7 +735,7 @@
         "lines": [
             "Northern"
         ],
-        "zones": [
+        "zone": [
             4
         ]
     },
@@ -741,7 +744,7 @@
         "lines": [
             "Northern"
         ],
-        "zones": [
+        "zone": [
             5
         ]
     },
@@ -751,7 +754,7 @@
             "Metropolitan",
             "Piccadilly"
         ],
-        "zones": [
+        "zone": [
             6
         ]
     },
@@ -760,7 +763,7 @@
         "lines": [
             "Northern"
         ],
-        "zones": [
+        "zone": [
             3
         ]
     },
@@ -769,7 +772,7 @@
         "lines": [
             "Northern"
         ],
-        "zones": [
+        "zone": [
             3,
             4
         ]
@@ -779,7 +782,7 @@
         "lines": [
             "Central"
         ],
-        "zones": [
+        "zone": [
             2,
             3
         ]
@@ -789,7 +792,7 @@
         "lines": [
             "Central"
         ],
-        "zones": [
+        "zone": [
             3
         ]
     },
@@ -798,7 +801,7 @@
         "lines": [
             "Metropolitan"
         ],
-        "zones": [
+        "zone": [
             4
         ]
     },
@@ -807,7 +810,7 @@
         "lines": [
             "Central"
         ],
-        "zones": [
+        "zone": [
             2
         ]
     },
@@ -816,7 +819,7 @@
         "lines": [
             "Bakerloo"
         ],
-        "zones": [
+        "zone": [
             3
         ]
     },
@@ -825,7 +828,7 @@
         "lines": [
             "Bakerloo"
         ],
-        "zones": [
+        "zone": [
             5
         ]
     },
@@ -834,7 +837,7 @@
         "lines": [
             "Bakerloo"
         ],
-        "zones": [
+        "zone": [
             4
         ]
     },
@@ -843,7 +846,7 @@
         "lines": [
             "Bakerloo"
         ],
-        "zones": [
+        "zone": [
             4
         ]
     },
@@ -852,7 +855,7 @@
         "lines": [
             "Bakerloo"
         ],
-        "zones": [
+        "zone": [
             3
         ]
     },
@@ -861,7 +864,7 @@
         "lines": [
             "Bakerloo"
         ],
-        "zones": [
+        "zone": [
             4
         ]
     },
@@ -870,7 +873,7 @@
         "lines": [
             "Bakerloo"
         ],
-        "zones": [
+        "zone": [
             2
         ]
     },
@@ -879,16 +882,17 @@
         "lines": [
             "Bakerloo"
         ],
-        "zones": [
+        "zone": [
             2
         ]
     },
     {
         "name": "Willesden Junction",
         "lines": [
-            "Bakerloo"
+            "Bakerloo",
+            "British Rail"
         ],
-        "zones": [
+        "zone": [
             2,
             3
         ]
@@ -898,7 +902,7 @@
         "lines": [
             "Metropolitan"
         ],
-        "zones": [
+        "zone": [
             5
         ]
     },
@@ -907,7 +911,7 @@
         "lines": [
             "Bakerloo"
         ],
-        "zones": [
+        "zone": [
             2
         ]
     },
@@ -916,7 +920,7 @@
         "lines": [
             "Bakerloo"
         ],
-        "zones": [
+        "zone": [
             2
         ]
     },
@@ -925,7 +929,7 @@
         "lines": [
             "Bakerloo"
         ],
-        "zones": [
+        "zone": [
             2
         ]
     },
@@ -935,7 +939,7 @@
             "H&C",
             "Circle"
         ],
-        "zones": [
+        "zone": [
             2
         ]
     },
@@ -944,7 +948,7 @@
         "lines": [
             "Metropolitan"
         ],
-        "zones": [
+        "zone": [
             5
         ]
     },
@@ -954,7 +958,7 @@
             "Metropolitan",
             "Piccadilly"
         ],
-        "zones": [
+        "zone": [
             6
         ]
     },
@@ -963,7 +967,7 @@
         "lines": [
             "District"
         ],
-        "zones": [
+        "zone": [
             2
         ]
     },
@@ -972,7 +976,7 @@
         "lines": [
             "Metropolitan"
         ],
-        "zones": [
+        "zone": [
             6
         ]
     },
@@ -981,7 +985,7 @@
         "lines": [
             "Jubilee"
         ],
-        "zones": [
+        "zone": [
             3
         ]
     },
@@ -990,7 +994,7 @@
         "lines": [
             "Piccadilly"
         ],
-        "zones": [
+        "zone": [
             4
         ]
     },
@@ -999,7 +1003,7 @@
         "lines": [
             "Metropolitan"
         ],
-        "zones": [
+        "zone": [
             4
         ]
     },
@@ -1008,7 +1012,7 @@
         "lines": [
             "Piccadilly"
         ],
-        "zones": [
+        "zone": [
             3
         ]
     },
@@ -1017,7 +1021,7 @@
         "lines": [
             "Northern"
         ],
-        "zones": [
+        "zone": [
             2,
             3
         ]
@@ -1027,7 +1031,7 @@
         "lines": [
             "Northern"
         ],
-        "zones": [
+        "zone": [
             2
         ]
     },
@@ -1036,7 +1040,7 @@
         "lines": [
             "Northern"
         ],
-        "zones": [
+        "zone": [
             2
         ]
     },
@@ -1045,7 +1049,7 @@
         "lines": [
             "Northern"
         ],
-        "zones": [
+        "zone": [
             2
         ]
     },
@@ -1055,7 +1059,7 @@
             "Northern",
             "Victoria"
         ],
-        "zones": [
+        "zone": [
             1
         ]
     },
@@ -1064,7 +1068,7 @@
         "lines": [
             "Northern"
         ],
-        "zones": [
+        "zone": [
             3
         ]
     },
@@ -1073,7 +1077,7 @@
         "lines": [
             "Northern"
         ],
-        "zones": [
+        "zone": [
             1
         ]
     },
@@ -1082,7 +1086,7 @@
         "lines": [
             "Northern"
         ],
-        "zones": [
+        "zone": [
             2,
             3
         ]
@@ -1090,9 +1094,10 @@
     {
         "name": "Kentish Town",
         "lines": [
-            "Northern"
+            "Northern",
+            "British Rail"
         ],
-        "zones": [
+        "zone": [
             2
         ]
     },
@@ -1101,7 +1106,7 @@
         "lines": [
             "Northern"
         ],
-        "zones": [
+        "zone": [
             2
         ]
     },
@@ -1110,7 +1115,7 @@
         "lines": [
             "Northern"
         ],
-        "zones": [
+        "zone": [
             2
         ]
     },
@@ -1120,7 +1125,7 @@
             "Northern",
             "Victoria"
         ],
-        "zones": [
+        "zone": [
             1
         ]
     },
@@ -1129,7 +1134,7 @@
         "lines": [
             "Bakerloo"
         ],
-        "zones": [
+        "zone": [
             1
         ]
     },
@@ -1138,7 +1143,7 @@
         "lines": [
             "Piccadilly"
         ],
-        "zones": [
+        "zone": [
             1
         ]
     },
@@ -1147,7 +1152,7 @@
         "lines": [
             "Bakerloo"
         ],
-        "zones": [
+        "zone": [
             1
         ]
     },
@@ -1156,7 +1161,7 @@
         "lines": [
             "Piccadilly"
         ],
-        "zones": [
+        "zone": [
             2
         ]
     },
@@ -1165,34 +1170,39 @@
         "lines": [
             "Piccadilly"
         ],
-        "zones": [
+        "zone": [
             2
         ]
     },
     {
         "name": "Finsbury Park",
         "lines": [
-            "PiccadillyVictoria"
+            "Piccadilly",
+            "Victoria",
+            "British Rail"
         ],
-        "zones": [
+        "zone": [
             2
         ]
     },
     {
         "name": "Green Park",
         "lines": [
-            "PiccadillyVictoriaJubilee"
+            "Piccadilly",
+            "Victoria",
+            "Jubilee"
         ],
-        "zones": [
+        "zone": [
             1
         ]
     },
     {
         "name": "Holborn",
         "lines": [
-            "CentralPiccadilly"
+            "Central",
+            "Piccadilly"
         ],
-        "zones": [
+        "zone": [
             1
         ]
     },
@@ -1201,7 +1211,7 @@
         "lines": [
             "Piccadilly"
         ],
-        "zones": [
+        "zone": [
             2
         ]
     },
@@ -1210,7 +1220,7 @@
         "lines": [
             "Piccadilly"
         ],
-        "zones": [
+        "zone": [
             1
         ]
     },
@@ -1219,16 +1229,17 @@
         "lines": [
             "Piccadilly"
         ],
-        "zones": [
+        "zone": [
             1
         ]
     },
     {
         "name": "Leicester Square",
         "lines": [
-            "PiccadillyNorthern"
+            "Piccadilly",
+            "Northern"
         ],
-        "zones": [
+        "zone": [
             1
         ]
     },
@@ -1237,16 +1248,17 @@
         "lines": [
             "Piccadilly"
         ],
-        "zones": [
+        "zone": [
             1
         ]
     },
     {
         "name": "Eastcote",
         "lines": [
-            "MetropolitanPiccadilly"
+            "Metropolitan",
+            "Piccadilly"
         ],
-        "zones": [
+        "zone": [
             5
         ]
     },
@@ -1256,16 +1268,17 @@
             "Metropolitan",
             "Piccadilly"
         ],
-        "zones": [
+        "zone": [
             5
         ]
     },
     {
         "name": "Charing Cross",
         "lines": [
-            "BakerlooNorthern"
+            "Bakerloo",
+            "Northern"
         ],
-        "zones": [
+        "zone": [
             1
         ]
     },
@@ -1274,7 +1287,7 @@
         "lines": [
             "Bakerloo"
         ],
-        "zones": [
+        "zone": [
             1
         ]
     },
@@ -1284,7 +1297,7 @@
             "Bakerloo",
             "Piccadilly"
         ],
-        "zones": [
+        "zone": [
             1
         ]
     },
@@ -1293,7 +1306,7 @@
         "lines": [
             "Bakerloo"
         ],
-        "zones": [
+        "zone": [
             1
         ]
     },
@@ -1303,9 +1316,10 @@
             "W&C",
             "Bakerloo",
             "Northern",
-            "Jubilee"
+            "Jubilee",
+            "British Rail"
         ],
-        "zones": [
+        "zone": [
             1
         ]
     },
@@ -1315,7 +1329,7 @@
             "District",
             "Piccadilly"
         ],
-        "zones": [
+        "zone": [
             2
         ]
     },
@@ -1325,7 +1339,7 @@
             "Metropolitan",
             "Piccadilly"
         ],
-        "zones": [
+        "zone": [
             6
         ]
     },
@@ -1335,7 +1349,7 @@
             "Metropolitan",
             "Piccadilly"
         ],
-        "zones": [
+        "zone": [
             6
         ]
     },
@@ -1345,7 +1359,7 @@
             "Metropolitan",
             "Piccadilly"
         ],
-        "zones": [
+        "zone": [
             6
         ]
     },
@@ -1354,7 +1368,7 @@
         "lines": [
             "Piccadilly"
         ],
-        "zones": [
+        "zone": [
             4
         ]
     },
@@ -1363,7 +1377,7 @@
         "lines": [
             "Piccadilly"
         ],
-        "zones": [
+        "zone": [
             5
         ]
     },
@@ -1372,7 +1386,7 @@
         "lines": [
             "Piccadilly"
         ],
-        "zones": [
+        "zone": [
             4
         ]
     },
@@ -1381,7 +1395,7 @@
         "lines": [
             "Piccadilly"
         ],
-        "zones": [
+        "zone": [
             4
         ]
     },
@@ -1390,7 +1404,7 @@
         "lines": [
             "Piccadilly"
         ],
-        "zones": [
+        "zone": [
             3
         ]
     },
@@ -1399,7 +1413,7 @@
         "lines": [
             "Piccadilly"
         ],
-        "zones": [
+        "zone": [
             3
         ]
     },
@@ -1409,7 +1423,7 @@
             "District",
             "H&C"
         ],
-        "zones": [
+        "zone": [
             2
         ]
     },
@@ -1417,9 +1431,10 @@
         "name": "Bow Road",
         "lines": [
             "District",
-            "H&C"
+            "H&C",
+            "DLR"
         ],
-        "zones": [
+        "zone": [
             2
         ]
     },
@@ -1429,7 +1444,7 @@
             "District",
             "H&C"
         ],
-        "zones": [
+        "zone": [
             4
         ]
     },
@@ -1439,7 +1454,7 @@
             "District",
             "H&C"
         ],
-        "zones": [
+        "zone": [
             2,
             3
         ]
@@ -1449,7 +1464,7 @@
         "lines": [
             "District"
         ],
-        "zones": [
+        "zone": [
             5
         ]
     },
@@ -1459,7 +1474,7 @@
             "District",
             "H&C"
         ],
-        "zones": [
+        "zone": [
             3,
             4
         ]
@@ -1469,7 +1484,7 @@
         "lines": [
             "District"
         ],
-        "zones": [
+        "zone": [
             6
         ]
     },
@@ -1480,7 +1495,7 @@
             "H&C",
             "Central"
         ],
-        "zones": [
+        "zone": [
             2
         ]
     },
@@ -1490,7 +1505,7 @@
             "District",
             "H&C"
         ],
-        "zones": [
+        "zone": [
             3
         ]
     },
@@ -1499,7 +1514,7 @@
         "lines": [
             "District"
         ],
-        "zones": [
+        "zone": [
             6
         ]
     },
@@ -1509,7 +1524,7 @@
             "District",
             "H&C"
         ],
-        "zones": [
+        "zone": [
             3
         ]
     },
@@ -1518,9 +1533,10 @@
         "lines": [
             "District",
             "H&C",
-            "Jubilee"
+            "Jubilee",
+            "British Rail"
         ],
-        "zones": [
+        "zone": [
             2,
             3
         ]
@@ -1530,16 +1546,17 @@
         "lines": [
             "Northern"
         ],
-        "zones": [
+        "zone": [
             1
         ]
     },
     {
         "name": "Old Street",
         "lines": [
-            "Northern"
+            "Northern",
+            "British Rail"
         ],
-        "zones": [
+        "zone": [
             1
         ]
     },
@@ -1549,7 +1566,7 @@
             "Central",
             "Jubilee"
         ],
-        "zones": [
+        "zone": [
             1
         ]
     },
@@ -1558,7 +1575,7 @@
         "lines": [
             "Central"
         ],
-        "zones": [
+        "zone": [
             1
         ]
     },
@@ -1567,7 +1584,7 @@
         "lines": [
             "Central"
         ],
-        "zones": [
+        "zone": [
             2
         ]
     },
@@ -1576,7 +1593,7 @@
         "lines": [
             "Central"
         ],
-        "zones": [
+        "zone": [
             1
         ]
     },
@@ -1585,7 +1602,7 @@
         "lines": [
             "Central"
         ],
-        "zones": [
+        "zone": [
             1
         ]
     },
@@ -1596,7 +1613,7 @@
             "Bakerloo",
             "Victoria"
         ],
-        "zones": [
+        "zone": [
             1
         ]
     },
@@ -1605,7 +1622,7 @@
         "lines": [
             "Central"
         ],
-        "zones": [
+        "zone": [
             1
         ]
     },
@@ -1614,7 +1631,7 @@
         "lines": [
             "Central"
         ],
-        "zones": [
+        "zone": [
             1
         ]
     },
@@ -1623,7 +1640,7 @@
         "lines": [
             "Central"
         ],
-        "zones": [
+        "zone": [
             2
         ]
     },
@@ -1633,7 +1650,7 @@
             "Central",
             "Northern"
         ],
-        "zones": [
+        "zone": [
             1
         ]
     },
@@ -1642,7 +1659,7 @@
         "lines": [
             "Northern"
         ],
-        "zones": [
+        "zone": [
             2
         ]
     },
@@ -1651,7 +1668,7 @@
         "lines": [
             "Northern"
         ],
-        "zones": [
+        "zone": [
             2
         ]
     },
@@ -1661,7 +1678,7 @@
             "Northern",
             "Jubilee"
         ],
-        "zones": [
+        "zone": [
             1
         ]
     },
@@ -1672,7 +1689,7 @@
             "Northern",
             "Central"
         ],
-        "zones": [
+        "zone": [
             1
         ]
     },
@@ -1682,7 +1699,7 @@
             "Metropolitan",
             "Jubilee"
         ],
-        "zones": [
+        "zone": [
             4
         ]
     },
@@ -1691,7 +1708,7 @@
         "lines": [
             "Metropolitan"
         ],
-        "zones": [
+        "zone": [
             6
         ]
     },
@@ -1700,7 +1717,7 @@
         "lines": [
             "Northern"
         ],
-        "zones": [
+        "zone": [
             1
         ]
     },
@@ -1708,9 +1725,10 @@
         "name": "Elephant & Castle",
         "lines": [
             "Northern",
-            "Bakerloo"
+            "Bakerloo",
+            "British Rail"
         ],
-        "zones": [
+        "zone": [
             12
         ]
     },
@@ -1719,7 +1737,7 @@
         "lines": [
             "Northern"
         ],
-        "zones": [
+        "zone": [
             12
         ]
     },
@@ -1728,7 +1746,7 @@
         "lines": [
             "Northern"
         ],
-        "zones": [
+        "zone": [
             2
         ]
     },
@@ -1738,7 +1756,7 @@
             "Northern",
             "Victoria"
         ],
-        "zones": [
+        "zone": [
             2
         ]
     },
@@ -1747,7 +1765,7 @@
         "lines": [
             "Metropolitan"
         ],
-        "zones": [
+        "zone": [
             6
         ]
     },
@@ -1756,7 +1774,7 @@
         "lines": [
             "Metropolitan"
         ],
-        "zones": [
+        "zone": [
             6
         ]
     },
@@ -1765,7 +1783,7 @@
         "lines": [
             "Metropolitan"
         ],
-        "zones": [
+        "zone": [
             6
         ]
     },
@@ -1774,7 +1792,7 @@
         "lines": [
             "District"
         ],
-        "zones": [
+        "zone": [
             2,
             3
         ]
@@ -1784,7 +1802,7 @@
         "lines": [
             "District"
         ],
-        "zones": [
+        "zone": [
             3
         ]
     },
@@ -1793,7 +1811,7 @@
         "lines": [
             "District"
         ],
-        "zones": [
+        "zone": [
             3
         ]
     },
@@ -1802,7 +1820,7 @@
         "lines": [
             "District"
         ],
-        "zones": [
+        "zone": [
             3
         ]
     },
@@ -1811,7 +1829,7 @@
         "lines": [
             "Metropolitan"
         ],
-        "zones": [
+        "zone": [
             6
         ]
     },
@@ -1820,7 +1838,7 @@
         "lines": [
             "Metropolitan"
         ],
-        "zones": [
+        "zone": [
             6
         ]
     },
@@ -1829,7 +1847,7 @@
         "lines": [
             "Piccadilly"
         ],
-        "zones": [
+        "zone": [
             4
         ]
     },
@@ -1838,7 +1856,7 @@
         "lines": [
             "Metropolitan"
         ],
-        "zones": [
+        "zone": [
             5
         ]
     },
@@ -1846,9 +1864,11 @@
         "name": "Aldgate East",
         "lines": [
             "H&C",
-            "District"
+            "District",
+            "DLR",
+            "East London"
         ],
-        "zones": [
+        "zone": [
             1
         ]
     },
@@ -1856,9 +1876,10 @@
         "name": "Cannon Street",
         "lines": [
             "District",
-            "Circle"
+            "Circle",
+            "DLR"
         ],
-        "zones": [
+        "zone": [
             1
         ]
     },
@@ -1866,9 +1887,10 @@
         "name": "Monument",
         "lines": [
             "District",
-            "Circle"
+            "Circle",
+            "DLR"
         ],
-        "zones": [
+        "zone": [
             1
         ]
     },
@@ -1876,9 +1898,10 @@
         "name": "Whitechapel",
         "lines": [
             "District",
-            "H&C"
+            "H&C",
+            "East London"
         ],
-        "zones": [
+        "zone": [
             2
         ]
     },
@@ -1887,7 +1910,7 @@
         "lines": [
             "Piccadilly"
         ],
-        "zones": [
+        "zone": [
             5
         ]
     },
@@ -1896,7 +1919,7 @@
         "lines": [
             "Piccadilly"
         ],
-        "zones": [
+        "zone": [
             4
         ]
     },
@@ -1905,7 +1928,7 @@
         "lines": [
             "Piccadilly"
         ],
-        "zones": [
+        "zone": [
             4
         ]
     },
@@ -1914,7 +1937,7 @@
         "lines": [
             "Piccadilly"
         ],
-        "zones": [
+        "zone": [
             3
         ]
     },
@@ -1922,9 +1945,10 @@
         "name": "Tower Hill",
         "lines": [
             "District",
-            "Circle"
+            "Circle",
+            "DLR"
         ],
-        "zones": [
+        "zone": [
             1
         ]
     },
@@ -1933,7 +1957,7 @@
         "lines": [
             "Metropolitan"
         ],
-        "zones": [
+        "zone": [
             5
         ]
     },
@@ -1942,7 +1966,7 @@
         "lines": [
             "Jubilee"
         ],
-        "zones": [
+        "zone": [
             3
         ]
     },
@@ -1951,7 +1975,7 @@
         "lines": [
             "District"
         ],
-        "zones": [
+        "zone": [
             2
         ]
     },
@@ -1960,7 +1984,7 @@
         "lines": [
             "District"
         ],
-        "zones": [
+        "zone": [
             2
         ]
     },
@@ -1969,7 +1993,7 @@
         "lines": [
             "District"
         ],
-        "zones": [
+        "zone": [
             2
         ]
     },
@@ -1978,7 +2002,7 @@
         "lines": [
             "Jubilee"
         ],
-        "zones": [
+        "zone": [
             2
         ]
     },
@@ -1987,7 +2011,7 @@
         "lines": [
             "Jubilee"
         ],
-        "zones": [
+        "zone": [
             2,
             3
         ]
@@ -1998,7 +2022,7 @@
             "District",
             "Piccadilly"
         ],
-        "zones": [
+        "zone": [
             3
         ]
     },
@@ -2007,7 +2031,7 @@
         "lines": [
             "District"
         ],
-        "zones": [
+        "zone": [
             3
         ]
     },
@@ -2017,7 +2041,7 @@
             "District",
             "Central"
         ],
-        "zones": [
+        "zone": [
             3
         ]
     },
@@ -2027,7 +2051,7 @@
             "District",
             "Piccadilly"
         ],
-        "zones": [
+        "zone": [
             3
         ]
     },
@@ -2037,34 +2061,37 @@
             "Metropolitan",
             "Jubilee"
         ],
-        "zones": [
+        "zone": [
             2
         ]
     },
     {
         "name": "West Hampstead",
         "lines": [
-            "Jubilee"
+            "Jubilee",
+            "British Rail"
         ],
-        "zones": [
+        "zone": [
             2
         ]
     },
     {
         "name": "Gunnersbury",
         "lines": [
-            "District"
+            "District",
+            "British Rail"
         ],
-        "zones": [
+        "zone": [
             3
         ]
     },
     {
         "name": "Kew Gardens",
         "lines": [
-            "District"
+            "District",
+            "British Rail"
         ],
-        "zones": [
+        "zone": [
             3,
             4
         ]
@@ -2074,16 +2101,17 @@
         "lines": [
             "District"
         ],
-        "zones": [
+        "zone": [
             2
         ]
     },
     {
         "name": "Richmond",
         "lines": [
-            "District"
+            "District",
+            "British Rail"
         ],
-        "zones": [
+        "zone": [
             4
         ]
     },
@@ -2093,7 +2121,7 @@
             "District",
             "Piccadilly"
         ],
-        "zones": [
+        "zone": [
             2,
             3
         ]
@@ -2104,7 +2132,7 @@
             "Metropolitan",
             "Circle"
         ],
-        "zones": [
+        "zone": [
             1
         ]
     },
@@ -2116,7 +2144,7 @@
             "Circle",
             "H&C"
         ],
-        "zones": [
+        "zone": [
             1
         ]
     },
@@ -2126,7 +2154,7 @@
             "District",
             "Piccadilly"
         ],
-        "zones": [
+        "zone": [
             2
         ]
     },
@@ -2135,7 +2163,7 @@
         "lines": [
             "District"
         ],
-        "zones": [
+        "zone": [
             2
         ]
     },
@@ -2145,7 +2173,7 @@
             "District",
             "Piccadilly"
         ],
-        "zones": [
+        "zone": [
             12
         ]
     },
@@ -2155,7 +2183,7 @@
             "H&C",
             "Circle"
         ],
-        "zones": [
+        "zone": [
             2
         ]
     },
@@ -2165,7 +2193,7 @@
             "District",
             "Circle"
         ],
-        "zones": [
+        "zone": [
             1
         ]
     },
@@ -2173,9 +2201,10 @@
         "name": "Blackfriars",
         "lines": [
             "District",
-            "Circle"
+            "Circle",
+            "British Rail"
         ],
-        "zones": [
+        "zone": [
             1
         ]
     },
@@ -2187,7 +2216,7 @@
             "Northern",
             "Circle"
         ],
-        "zones": [
+        "zone": [
             1
         ]
     },
@@ -2197,7 +2226,7 @@
             "District",
             "Circle"
         ],
-        "zones": [
+        "zone": [
             1
         ]
     },
@@ -2206,7 +2235,7 @@
         "lines": [
             "District"
         ],
-        "zones": [
+        "zone": [
             2
         ]
     },
@@ -2216,7 +2245,7 @@
             "District",
             "Circle"
         ],
-        "zones": [
+        "zone": [
             1
         ]
     },
@@ -2226,7 +2255,7 @@
             "District",
             "Circle"
         ],
-        "zones": [
+        "zone": [
             1
         ]
     },
@@ -2237,7 +2266,7 @@
             "Piccadilly",
             "Circle"
         ],
-        "zones": [
+        "zone": [
             1
         ]
     },
@@ -2248,7 +2277,7 @@
             "Circle",
             "Victoria"
         ],
-        "zones": [
+        "zone": [
             1
         ]
     },
@@ -2259,7 +2288,7 @@
             "Circle",
             "Jubilee"
         ],
-        "zones": [
+        "zone": [
             1
         ]
     },
@@ -2269,7 +2298,7 @@
             "H&C",
             "Circle"
         ],
-        "zones": [
+        "zone": [
             2
         ]
     },
@@ -2279,7 +2308,7 @@
             "District",
             "Circle"
         ],
-        "zones": [
+        "zone": [
             1
         ]
     },
@@ -2290,7 +2319,7 @@
             "Piccadilly",
             "Circle"
         ],
-        "zones": [
+        "zone": [
             1
         ]
     },
@@ -2300,7 +2329,7 @@
             "District",
             "Circle"
         ],
-        "zones": [
+        "zone": [
             1
         ]
     },
@@ -2311,7 +2340,7 @@
             "Central",
             "Circle"
         ],
-        "zones": [
+        "zone": [
             12
         ]
     },
@@ -2322,7 +2351,7 @@
             "Circle",
             "Bakerloo"
         ],
-        "zones": [
+        "zone": [
             1
         ]
     },
@@ -2332,7 +2361,7 @@
             "H&C",
             "Circle"
         ],
-        "zones": [
+        "zone": [
             2
         ]
     },
@@ -2343,7 +2372,7 @@
             "Circle",
             "H&C"
         ],
-        "zones": [
+        "zone": [
             1
         ]
     },
@@ -2353,9 +2382,10 @@
             "Metropolitan",
             "Northern",
             "Circle",
-            "H&C"
+            "H&C",
+            "British Rail"
         ],
-        "zones": [
+        "zone": [
             1
         ]
     },
@@ -2364,7 +2394,7 @@
         "lines": [
             "District"
         ],
-        "zones": [
+        "zone": [
             2
         ]
     },
@@ -2374,7 +2404,7 @@
             "H&C",
             "Circle"
         ],
-        "zones": [
+        "zone": [
             2
         ]
     },
@@ -2384,7 +2414,7 @@
             "H&C",
             "Circle"
         ],
-        "zones": [
+        "zone": [
             2
         ]
     },
@@ -2394,7 +2424,7 @@
             "H&C",
             "Circle"
         ],
-        "zones": [
+        "zone": [
             2
         ]
     },
@@ -2407,7 +2437,7 @@
             "Jubilee",
             "H&C"
         ],
-        "zones": [
+        "zone": [
             1
         ]
     },
@@ -2418,7 +2448,7 @@
             "District",
             "Circle"
         ],
-        "zones": [
+        "zone": [
             1
         ]
     },
@@ -2429,7 +2459,7 @@
             "Circle",
             "H&C"
         ],
-        "zones": [
+        "zone": [
             1
         ]
     },
@@ -2438,9 +2468,10 @@
         "lines": [
             "Metropolitan",
             "Circle",
-            "H&C"
+            "H&C",
+            "British Rail"
         ],
-        "zones": [
+        "zone": [
             1
         ]
     },
@@ -2451,8 +2482,334 @@
             "Circle",
             "H&C"
         ],
-        "zones": [
+        "zone": [
             1
+        ]
+    },
+    {
+        "name": "Paddington",
+        "lines": [
+            "H&C",
+            "Circle"
+        ],
+        "zone": [
+            1
+        ]
+    },
+    {
+        "name": "North Woolwich",
+        "lines": [
+            "British Rail"
+        ],
+        "zone": [
+            3
+        ]
+    },
+    {
+        "name": "Silvertown & London City Airport",
+        "lines": [
+            "British Rail"
+        ],
+        "zone": [
+            3
+        ]
+    },
+    {
+        "name": "Custom House",
+        "lines": [
+            "British Rail"
+        ],
+        "zone": [
+            3
+        ]
+    },
+    {
+        "name": "Canning Town",
+        "lines": [
+            "British Rail"
+        ],
+        "zone": [
+            2
+        ]
+    },
+    {
+        "name": "Hackney Wick",
+        "lines": [
+            "British Rail"
+        ],
+        "zone": [
+            2
+        ]
+    },
+    {
+        "name": "Homerton",
+        "lines": [
+            "British Rail"
+        ],
+        "zone": [
+            2
+        ]
+    },
+    {
+        "name": "Hackney Central",
+        "lines": [
+            "British Rail"
+        ],
+        "zone": [
+            2
+        ]
+    },
+    {
+        "name": "Dalston Kingsland",
+        "lines": [
+            "British Rail"
+        ],
+        "zone": [
+            2
+        ]
+    },
+    {
+        "name": "Canonbury",
+        "lines": [
+            "British Rail"
+        ],
+        "zone": [
+            2
+        ]
+    },
+    {
+        "name": "Caledonian Road & Barnsbury",
+        "lines": [
+            "British Rail"
+        ],
+        "zone": [
+            2
+        ]
+    },
+    {
+        "name": "Camden Road",
+        "lines": [
+            "British Rail"
+        ],
+        "zone": [
+            2
+        ]
+    },
+    {
+        "name": "Kentish Town West",
+        "lines": [
+            "British Rail"
+        ],
+        "zone": [
+            2
+        ]
+    },
+    {
+        "name": "Gospel Oak",
+        "lines": [
+            "British Rail"
+        ],
+        "zone": [
+            2
+        ]
+    },
+    {
+        "name": "Hampstead Heath",
+        "lines": [
+            "British Rail"
+        ],
+        "zone": [
+            2
+        ]
+    },
+    {
+        "name": "Finchley Road & Frognal",
+        "lines": [
+            "British Rail"
+        ],
+        "zone": [
+            2
+        ]
+    },
+    {
+        "name": "Brondesbury",
+        "lines": [
+            "British Rail"
+        ],
+        "zone": [
+            2
+        ]
+    },
+    {
+        "name": "Brondesbury Park",
+        "lines": [
+            "British Rail"
+        ],
+        "zone": [
+            2
+        ]
+    },
+    {
+        "name": "Kensal Rise",
+        "lines": [
+            "British Rail"
+        ],
+        "zone": [
+            2
+        ]
+    },
+    {
+        "name": "Acton Central",
+        "lines": [
+            "British Rail"
+        ],
+        "zone": [
+            3
+        ]
+    },
+    {
+        "name": "South Acton",
+        "lines": [
+            "British Rail"
+        ],
+        "zone": [
+            3
+        ]
+    },
+    {
+        "name": "Essex Road",
+        "lines": [
+            "British Rail"
+        ],
+        "zone": [
+            2
+        ]
+    },
+    {
+        "name": "Drayton Park",
+        "lines": [
+            "British Rail"
+        ],
+        "zone": [
+            3
+        ]
+    },
+    {
+        "name": "Island Gardens",
+        "lines": [
+            "DLR"
+        ],
+        "zone": [
+            2
+        ]
+    },
+    {
+        "name": "Mudchute",
+        "lines": [
+            "DLR"
+        ],
+        "zone": [
+            2
+        ]
+    },
+    {
+        "name": "Crossharbour",
+        "lines": [
+            "DLR"
+        ],
+        "zone": [
+            2
+        ]
+    },
+    {
+        "name": "South Quay",
+        "lines": [
+            "DLR"
+        ],
+        "zone": [
+            2
+        ]
+    },
+    {
+        "name": "Heron Quays",
+        "lines": [
+            "DLR"
+        ],
+        "zone": [
+            2
+        ]
+    },
+    {
+        "name": "Canary Wharf",
+        "lines": [
+            "DLR"
+        ],
+        "zone": [
+            2
+        ]
+    },
+    {
+        "name": "Westferry",
+        "lines": [
+            "DLR"
+        ],
+        "zone": [
+            2
+        ]
+    },
+    {
+        "name": "Limehouse",
+        "lines": [
+            "DLR"
+        ],
+        "zone": [
+            2
+        ]
+    },
+    {
+        "name": "Shadwell",
+        "lines": [
+            "DLR",
+            "East London"
+        ],
+        "zone": [
+            2
+        ]
+    },
+    {
+        "name": "Poplar",
+        "lines": [
+            "DLR"
+        ],
+        "zone": [
+            2
+        ]
+    },
+    {
+        "name": "All Saints",
+        "lines": [
+            "DLR"
+        ],
+        "zone": [
+            2
+        ]
+    },
+    {
+        "name": "Devons Road",
+        "lines": [
+            "DLR"
+        ],
+        "zone": [
+            2
+        ]
+    },
+    {
+        "name": "Bow Church",
+        "lines": [
+            "DLR"
+        ],
+        "zone": [
+            2
         ]
     },
     {
@@ -2463,19 +2820,10 @@
             "Piccadilly",
             "Circle",
             "Victoria",
-            "H&C"
-        ],
-        "zones": [
-            1
-        ]
-    },
-    {
-        "name": "Paddington",
-        "lines": [
             "H&C",
-            "Circle"
+            "British Rail"
         ],
-        "zones": [
+        "zone": [
             1
         ]
     }
