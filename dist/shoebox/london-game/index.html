@@ -243,14 +243,11 @@
     })
 
     swap.addEventListener("click", () => {
-        const index = Number.parseInt(window.prompt("Which station would you like to switch? Type 1–6")) - 1;
-        console.log("Request to switch:", index)
-        if (index < 0 || index > 5 || index == NaN) {
-            return;
-        };
+        const index = Number(window.prompt("Which station would you like to switch? Type 1–6")) - 1;
+        if (isNaN(index) || index < 1 || index > 6 || index == false) return;
+        targets.children.item(index).remove();
         const zone = Math.ceil(Math.random() * 6);
         const newStation = game.pickStation({ zone: zone });
-        targets.children.item(index).remove();
         targets.innerHTML += generateTarget(newStation);
     })
 
