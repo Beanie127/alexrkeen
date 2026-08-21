@@ -17,9 +17,6 @@ interface quote {
 			content="width=device-width, initial-scale=1.0"
 		/>
 		<title>Dashboard</title>
-	</head>
-
-	<body>
 		<style is:inline>
 			*,
 			*::before,
@@ -50,6 +47,23 @@ interface quote {
 				syntax: '<number>';
 				initial-value: 0;
 				inherits: true;
+			}
+
+			@font-face {
+				font-family: 'Crimson Pro';
+				src: url('/fonts/CrimsonPro-VariableFont_wght.ttf');
+				font-style: normal;
+				font-weight: 100 900;
+			}
+			@font-face {
+				font-family: 'Crimson Pro';
+				src: url('/fonts/CrimsonPro-Italic-VariableFont_wght.ttf');
+				font-style: italic;
+				font-weight: 100 900;
+			}
+
+			html {
+				font-family: 'Crimson Pro';
 			}
 
 			body {
@@ -96,6 +110,16 @@ interface quote {
 				aspect-ratio: 1;
 			}
 
+			#qotd {
+				blockquote {
+					font-size: 1.1em;
+					margin-inline: 0;
+					&::first-letter {
+						font-size: 2rem;
+						color: hsl(var(--hue) 90 20);
+					}
+				}
+			}
 			#clock {
 				--saturation: 75;
 				--lightness: 75;
@@ -223,7 +247,7 @@ interface quote {
 				font-size: 1.2rem;
 
 				& .icon {
-					inline-size: 5rem;
+					inline-size: clamp(2rem, 25vi, 5rem);
 					/* padding-inline-end: 1rem; */
 				}
 			}
@@ -286,6 +310,9 @@ interface quote {
 				content: 'mph';
 			}
 		</style>
+	</head>
+
+	<body>
 		<section class="full-width">
 			<h1></h1>
 		</section>
@@ -305,7 +332,6 @@ interface quote {
 				<div id="center-spot"></div>
 			</div>
 		</section>
-
 		<section>
 			<div id="daily-forecast">
 				<table class="glossy">
