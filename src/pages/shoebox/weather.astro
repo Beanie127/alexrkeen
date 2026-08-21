@@ -1,6 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
-import Quote from '../../../components/Quote.astro';
+import Quote from '../../components/Quote.astro';
 const quotes: Array<quote> = await getCollection('quotes');
 interface quote {
 	id: string;
@@ -64,6 +64,7 @@ interface quote {
 
 			html {
 				font-family: 'Crimson Pro';
+				font-variant-numeric: lining-nums;
 			}
 
 			body {
@@ -212,7 +213,6 @@ interface quote {
 
 			#graduations {
 				text-align: right;
-				font-family: monospace;
 				font-size: 1rem;
 				transform: translateX(-0.5lh);
 
