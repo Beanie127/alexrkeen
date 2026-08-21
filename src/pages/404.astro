@@ -55,7 +55,8 @@ interface quote {
 			const quotes = document.querySelectorAll('.quote');
 			const quote = quotes[Math.floor(Math.random() * quotes.length)];
 			console.log(quote);
-			quoteDisplay.innerHTML = quote;
+			quoteDisplay.innerHTML = '';
+			quoteDisplay.appendChild(quote);
 		</script>
 	</section></Layout
 >

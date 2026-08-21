@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The London Game | Alex R Keen</title>
+    <style>
+        @font-face {
+            font-family: "Cabin";
+            src: url("/fonts/Cabin-VariableFont_wdth,wght.ttf");
+            font-weight: 400 700;
+        }
+
+        :root {
+            --tfl-blue: rgb(0, 25, 168);
+            --tfl-red: rgb(225, 37, 27);
+            --tfl-yellow: rgb(225, 205, 0);
+            --tfl-green: rgb(0, 121, 52);
+            --tfl-bakerloo: rgb(178, 99, 0);
+            --tfl-central: rgb(220, 36, 31);
+            --tfl-circle: rgb(225, 200, 10);
+            --tfl-district: rgb(0, 125, 50);
+            --tfl-dlr: rgb(0, 175, 170);
+            --tfl-h-c: rgb(245, 137, 166);
+            --tfl-jubilee: rgb(131, 141, 147);
+            --tfl-metropolitan: rgb(155, 0, 88);
+            --tfl-northern: rgb(0, 0, 0);
+            --tfl-piccadilly: rgb(0, 25, 168);
+            --tfl-victoria: rgb(3, 155, 229);
+            --tfl-w-c: rgb(118, 208, 189);
+            --british-rail-red: rgb(239, 60, 36);
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        html {
+            font-family: "Cabin", system-ui;
+            font-size: 112.5%;
+        }
+
+        body {
+            display: grid;
+            justify-content: center;
+        }
+
+        #controls {
+            display: flex;
+            gap: 1rem;
+        }
+
+        button {
+            border: none;
+            font-family: inherit;
+            font-size: 1rem;
+            padding: 10px 15px;
+            border-radius: calc(infinity * 1px);
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 0.5ch 1ch;
+        }
+
+        thead,
+        tr:nth-of-type(2n) {
+            background: #ddd;
+        }
+
+        td:last-of-type {
+            text-align: center;
+        }
+
+        th {
+            text-align: start;
+        }
+
+        .visited {
+            text-decoration: line-through;
+        }
+
+        label {
+            color: var(--tfl-blue);
+        }
+
+        [type="checkbox"] {
+            height: 2rem;
+            width: 2rem;
+        }
+
+
+        .bakerloo {
+            color: var(--tfl-bakerloo)
+        }
+
+        .central {
+            color: var(--tfl-central)
+        }
+
+        .circle {
+            color: var(--tfl-circle)
+        }
+
+        .district {
+            color: var(--tfl-district)
+        }
+
+        .dlr {
+            color: var(--tfl-dlr)
+        }
+
+        .h-c {
+            color: var(--tfl-h-c)
+        }
+
+        .jubilee {
+            color: var(--tfl-jubilee);
+        }
+
+        .metropolitan {
+            color: var(--tfl-metropolitan)
+        }
+
+        .northern {
+            color: var(--tfl-northern)
+        }
+
+        .piccadilly {
+            color: var(--tfl-piccadilly)
+        }
+
+        .victoria {
+            color: var(--tfl-victoria)
+        }
+
+        .w-c {
+            color: var(--tfl-w-c)
+        }
+
+        .british-rail {
+            color: var(--british-rail-red);
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <h1>The London Game</h1>
+        <div id="controls"><button id="new-game">New game</button><button id="swap">Swap a station</button></div>
+        <div>
+            <h2>Your Targets</h2>
+            <table>
+                <tbody id="targets">
+                </tbody>
+            </table>
+        </div>
+    </main>
+</body>
+<script type="module">
+    import stations from "/stations.json" with {type: "json"};
+
+    class Game {
+        constructor() {
+            this.stations = [...stations]
+        }
+
+        shuffleStations() {
+            for (let i = this.stations.length - 1; i > 0; i--) {
+                let j = Math.floor(Math.random() * (i + 1));
+                [this.stations[i], this.stations[j]] = [this.stations[j], this.stations[i]];
+            }
+        }
+
+        pickStation(params) {
+            let station;
+            if (params.zone && params.line) {
+                station = this.stations.find(_station => _station.zone == params.zone && _station.lines.includes(params.line))
+            } else if (params.zone) {
+                station = this.stations.find(_station => _station.zone == params.zone)
+            } else if (params.line) {
+                station = this.stations.find(_station => _station.lines.includes(params.line))
+            } else {
+                station.this.stations[0]
+            }
+            const i = this.stations.indexOf(station)
+            this.stations.splice(i, 1)
+            return station;
+        }
+
+        pickStartingList() {
+            const list = []
+            for (let i = 0; i < 6; i++) {
+                const zone = i + 1
+                list.push(this.pickStation({ zone: zone }))
+            }
+            return list;
+        }
+    }
+
+    const targets = document.querySelector("#targets")
+    const newGame = document.querySelector("#new-game")
+    const swap = document.querySelector("#swap")
+
+    let game = new Game();
+    game.shuffleStations();
+    targets.innerHTML = generateTargets()
+
+    function kebab(string) {
+        return string.toLowerCase().replaceAll(" ", "-").replaceAll("&", "-")
+    }
+
+    function generateTarget(station) {
+        return `<tr>
+            <td><button data-visit id="visit-${kebab(station.name)}">Visit</button></td>
+            <td>${station.name}</td>
+            <td>${station.lines.map(line => " " + `<span class="${kebab(line)}">${line}</span>`)}</td>
+            <td>${station.zone}</td>
+        </tr>
+        `
+    }
+
+    function generateTargets() {
+        const startingList = game.pickStartingList();
+        let response = "";
+        startingList.forEach(station => response += generateTarget(station))
+        return response;
+    }
+
+    newGame.addEventListener("click", () => {
+        if (window.confirm("Start a new game?")) {
+            game = new Game();
+            game.shuffleStations();
+            targets.innerHTML = generateTargets();
+        }
+    })
+
+    swap.addEventListener("click", () => {
+        const index = Number(window.prompt("Which station would you like to switch? Type 1–6")) - 1;
+        if (isNaN(index) || index < 1 || index > 6 || index == false) return;
+        targets.children.item(index).remove();
+        const zone = Math.ceil(Math.random() * 6);
+        const newStation = game.pickStation({ zone: zone });
+        targets.innerHTML += generateTarget(newStation);
+    })
+
+    targets.addEventListener("click", (e) => {
+        if (e.target.tagName == "BUTTON") {
+            const station = e.target.closest("tr").children.item(1).textContent;
+            const message = "Visit " + station + "?"
+            if (window.confirm(message)) {
+                e.target.closest("tr").classList.add("visited");
+            }
+        }
+        if (targets.querySelectorAll(".visited").length == 6) {
+            window.confirm("You win!")
+        }
+    })
+
+
+</script>
+
+</html>
