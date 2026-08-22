@@ -31,24 +31,6 @@ interface quote {
 				--thermometer-max: 25;
 			}
 
-			@property --hour {
-				syntax: '<number>';
-				initial-value: 0;
-				inherits: true;
-			}
-
-			@property --minute {
-				syntax: '<number>';
-				initial-value: 0;
-				inherits: true;
-			}
-
-			@property --second {
-				syntax: '<number>';
-				initial-value: 0;
-				inherits: true;
-			}
-
 			@font-face {
 				font-family: 'Crimson Pro';
 				src: url('/fonts/CrimsonPro-VariableFont_wght.ttf');
@@ -64,6 +46,7 @@ interface quote {
 
 			html {
 				font-family: 'Crimson Pro';
+				font-size: 120%;
 				font-variant-numeric: lining-nums;
 			}
 
@@ -71,11 +54,13 @@ interface quote {
 				margin: 0;
 				padding: 1rem;
 				background-color: hsl(var(--hue) 60 80);
+				max-inline-size: 1200px;
+				margin-inline: auto;
 
 				@media (width > 800px) {
 					display: grid;
-					grid-template-columns: repeat(3, 1fr);
-					gap: 1rem;
+					grid-template-columns: repeat(2, 1fr);
+					gap: 2rem;
 
 					section {
 						margin: 0;
@@ -111,94 +96,32 @@ interface quote {
 				aspect-ratio: 1;
 			}
 
-			#qotd {
-				blockquote {
-					font-size: 1.1em;
-					margin-inline: 0;
-					&::first-letter {
-						font-size: 2rem;
-						color: hsl(var(--hue) 90 20);
-					}
-				}
-			}
-			#clock {
-				--saturation: 75;
-				--lightness: 75;
-				--hourDegs: calc(var(--hour, 0) * 30);
-				--minuteDegs: calc(var(--minute, 0) * 6);
-				margin-inline: auto;
-				margin-block: 1rem;
-				block-size: min(20rem, 90vmin);
-				aspect-ratio: 1;
-				border-radius: 100%;
-				/* border: 2px solid hsl(var(--hue) 60 60); */
-				/* box-shadow: inset 0px 0px 40px hsl(var(--hue) 60 70); */
-				/* background: radial-gradient(hsl(var(--hue) 60 80) 75%, hsl(var(--hue) 60 65)); */
+			#daily-forecast {
 				display: grid;
+				grid-template-columns: 1fr 1fr;
 				place-items: center;
-				will-change: contents;
-				overflow: hidden;
-
-				* {
-					grid-area: 1/1;
-					aspect-ratio: inherit;
-					border-radius: inherit;
-					filter: blur(0.5px);
+				span {
+					font-size: 1.5em;
 				}
-			}
 
-			#hour {
-				block-size: 50%;
-				background: conic-gradient(
-					from calc(var(--hourDegs) * 1deg),
-					hsl(var(--hourDegs) var(--saturation) var(--lightness)) 10%,
-					hsl(var(--hourDegs) var(--saturation) var(--lightness) / 0)
-						40%
-				);
-			}
-
-			#minute {
-				block-size: 95%;
-				background: conic-gradient(
-					from calc(var(--minuteDegs) * 1deg),
-					hsl(
-							var(--minuteDegs) var(--saturation)
-								var(--lightness) / 0
-						)
-						60%,
-					hsl(var(--minuteDegs) var(--saturation) var(--lightness))
-						90%
-				);
-			}
-
-			#second {
-				border-radius: none;
-				block-size: 100%;
-				background: linear-gradient(
-					to right,
-					transparent calc(50% - 0.5px),
-					hsl(var(--hue) 60 40) 0 50%,
-					transparent calc(50% + 0.5px)
-				);
-				mask-image: linear-gradient(black 50%, transparent 50%);
-				transform: rotate(calc(var(--second, 0) * 6deg));
-			}
-
-			#center-spot {
-				block-size: 15%;
-				background-image:
-					url('/images/favicon.svg'),
-					linear-gradient(
-						hsl(var(--hue) 60 80),
-						hsl(var(--hue) 60 80)
-					);
-				z-index: 10;
-				border: 2px solid hsl(var(--hue) 60 80);
+				> div:not(#thermometer) {
+					display: grid;
+					grid-template-columns: inherit;
+					place-items: center;
+				}
+				& .icon {
+					margin-inline: auto;
+					inline-size: 4rem;
+					display: inline-block;
+					/* padding-inline-end: 1rem; */
+				}
 			}
 
 			#thermometer {
+				grid-column: 1 / -1;
+				margin: 2rem auto 0;
 				display: grid;
-				inline-size: min(90vw, 25rem);
+				inline-size: 100%;
 				grid-template-rows: max-content 20px;
 				column-gap: 5px;
 				grid-template-columns: repeat(26, 1fr);
@@ -212,11 +135,8 @@ interface quote {
 			}
 
 			#graduations {
-				text-align: right;
-				font-size: 1rem;
-				transform: translateX(-0.5lh);
-
-				& span[data-temp]::before {
+				font-size: 0.8rem;
+				span[data-temp]::before {
 					content: attr(data-temp);
 				}
 			}
@@ -224,7 +144,7 @@ interface quote {
 			#mercury-vessel {
 				border: thin solid hsl(var(--hue) 60 70);
 				box-shadow: inset 0px 0px 2px hsl(var(--hue) 60 70);
-				grid-column-end: -2;
+				grid-column-end: -1;
 				background: hsl(0 0 100 / 0.25);
 				border-radius: 10px;
 				overflow: hidden;
@@ -243,18 +163,24 @@ interface quote {
 					calc(26 - var(--thermometer-max) + var(--max-temp));
 			}
 
-			#daily-forecast {
-				font-size: 1.2rem;
-
-				& .icon {
-					inline-size: clamp(2rem, 25vi, 5rem);
-					/* padding-inline-end: 1rem; */
+			#qotd {
+				grid-area: 2 / 2 /3 / 3;
+				figure {
+					padding: 0;
+					margin: 0;
+					text-align: center;
+					text-wrap: balance;
+				}
+				blockquote {
+					font-size: 1.2em;
+					margin: 0 0 1rem;
+					&::first-letter {
+						font-size: 2rem;
+						color: hsl(var(--hue) 90 20);
+					}
 				}
 			}
-
 			#hourly-wrapper {
-				inline-size: max-content;
-				max-inline-size: 100%;
 				overflow-inline: scroll;
 				scrollbar-color: hsl(var(--hue) 60 60) hsl(var(--hue) 60 85);
 				scrollbar-width: thin;
@@ -277,7 +203,7 @@ interface quote {
 			}
 
 			#hourly-forecast span::after {
-				font-size: 0.75rem;
+				font-size: 0.75em;
 				opacity: 0.5;
 			}
 
@@ -316,113 +242,91 @@ interface quote {
 		<section class="full-width">
 			<h1></h1>
 		</section>
-		<section>
+		<section
+			id="daily-forecast"
+			class="glossy">
+			<div>
+				<div
+					class="icon"
+					style="mask-image: url('/images/wi/wi-sunrise.svg')">
+				</div>
+				<span id="sunrise"></span>
+			</div>
+			<div>
+				<div
+					class="icon"
+					style="mask-image: url('/images/wi/wi-sunset.svg')">
+				</div>
+				<span id="sunset"></span>
+			</div>
+			<div>
+				<div
+					class="icon"
+					style="mask-image: url('/images/wi/wi-raindrops.svg')">
+				</div>
+				<span id="precipitation-chance"></span>
+			</div>
+			<div>
+				<div
+					class="icon"
+					style="mask-image: url('/images/wi/wi-windy.svg')">
+				</div>
+				<span id="gusts"></span>
+			</div>
 			<div
-				id="qotd"
-				class="glossy">
+				id="thermometer"
+				class="span-2">
+				<div id="graduations">
+					<div><span data-temp="0"></span></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div><span data-temp="5"></span></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div><span data-temp="10"></span></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div><span data-temp="15"></span></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div><span data-temp="20"></span></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div><span data-temp="25"></span></div>
+				</div>
+				<div id="mercury-vessel">
+					<div id="mercury"></div>
+				</div>
 			</div>
 		</section>
-		<section>
-			<div
-				id="clock"
-				class="glossy">
-				<div id="minute"></div>
-				<div id="hour"></div>
-				<div id="second"></div>
-				<div id="center-spot"></div>
-			</div>
+		<section
+			class="full-width glossy"
+			id="hourly-wrapper">
+			<table id="hourly-forecast">
+				<thead>
+					<tr></tr>
+				</thead>
+				<tbody>
+					<tr id="t-conditions"></tr>
+					<tr id="t-temperature"></tr>
+					<tr id="t-rain"></tr>
+					<tr id="t-wind"></tr>
+				</tbody>
+			</table>
 		</section>
-		<section>
-			<div id="daily-forecast">
-				<table class="glossy">
-					<tr>
-						<td>
-							<div
-								class="icon"
-								style="mask-image: url('/images/wi/wi-sunrise.svg')">
-							</div>
-						</td>
-						<td id="sunrise"></td>
-						<td>
-							<div
-								class="icon"
-								style="mask-image: url('/images/wi/wi-sunset.svg')">
-							</div>
-						</td>
-						<td id="sunset"></td>
-					</tr>
-					<tr>
-						<td>
-							<div
-								class="icon"
-								style="mask-image: url('/images/wi/wi-raindrops.svg')">
-							</div>
-						</td>
-						<td id="precipitation-chance"></td>
-						<td>
-							<div
-								class="icon"
-								style="mask-image: url('/images/wi/wi-windy.svg')">
-							</div>
-						</td>
-						<td id="gusts"></td>
-					</tr>
-					<tr>
-						<td colspan="4">
-							<div id="thermometer">
-								<div id="graduations">
-									<div><span data-temp="0"></span></div>
-									<div></div>
-									<div></div>
-									<div></div>
-									<div></div>
-									<div><span data-temp="5"></span></div>
-									<div></div>
-									<div></div>
-									<div></div>
-									<div></div>
-									<div><span data-temp="10"></span></div>
-									<div></div>
-									<div></div>
-									<div></div>
-									<div></div>
-									<div><span data-temp="15"></span></div>
-									<div></div>
-									<div></div>
-									<div></div>
-									<div></div>
-									<div><span data-temp="20"></span></div>
-									<div></div>
-									<div></div>
-									<div></div>
-									<div></div>
-									<div><span data-temp="25"></span></div>
-								</div>
-								<div id="mercury-vessel">
-									<div id="mercury"></div>
-								</div>
-							</div>
-						</td>
-					</tr>
-				</table>
-			</div>
-		</section>
-		<section class="full-width">
-			<div
-				id="hourly-wrapper"
-				class="glossy">
-				<table id="hourly-forecast">
-					<thead>
-						<tr></tr>
-					</thead>
-					<tbody>
-						<tr id="t-conditions"></tr>
-						<tr id="t-temperature"></tr>
-						<tr id="t-rain"></tr>
-						<tr id="t-wind"></tr>
-					</tbody>
-				</table>
-			</div>
+		<section
+			id="qotd"
+			class="glossy">
 		</section>
 		<div
 			hidden="true"
@@ -440,22 +344,6 @@ interface quote {
 			}
 		</div>
 	</body>
-	<script is:inline>
-		const clock = document.querySelector('#clock');
-		function updateClock() {
-			const moment = new Date();
-			// console.log(moment);
-			const minute = moment.getMinutes();
-			const hour = moment.getHours();
-			const second = moment.getSeconds();
-			clock.style.setProperty('--hour', hour);
-			clock.style.setProperty('--minute', minute);
-			clock.style.setProperty('--second', second);
-		}
-
-		updateClock();
-		setInterval(updateClock, 500);
-	</script>
 	<script is:inline>
 		const body = document.querySelector('body');
 		const weatherCodes = {
