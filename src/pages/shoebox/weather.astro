@@ -140,7 +140,7 @@ interface quote {
 
 				> * {
 					display: grid;
-					grid-template-columns: subgrid;
+					grid-template-columns: inherit;
 					grid-template-rows: 1fr;
 					grid-column: 1 / -1;
 				}
@@ -162,6 +162,7 @@ interface quote {
 				background: hsl(0 0 100 / 0.25);
 				border-radius: 10px;
 				overflow: hidden;
+				column-rule: thin solid hsl(0 0 50 / 0.1);
 			}
 
 			#mercury {
