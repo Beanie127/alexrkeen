@@ -29,12 +29,17 @@
 				font-family: 'Crimson Pro';
 				font-size: 120%;
 				font-variant-numeric: lining-nums;
+				color-scheme: light;
 			}
 
 			body {
 				margin: 0;
 				padding: 1rem;
-				background-color: hsl(var(--hue) 60 80);
+				background-color: light-dark(
+					hsl(var(--hue) 60 80),
+					hsl(var(--hue) 60 8)
+				);
+				color: light-dark(hsl(var(--hue) 60 10), hsl(var(--hue) 60 95));
 				max-inline-size: 1200px;
 				margin-inline: auto;
 
@@ -66,14 +71,21 @@
 			}
 
 			.glossy {
-				background: hsl(var(--hue) 50 85);
+				background: light-dark(
+					hsl(var(--hue) 50 85),
+					hsl(var(--hue) 50 15)
+				);
 				padding: 1rem;
 				border-radius: 1rem;
-				box-shadow: inset 0 1rem 5rem -1rem hsl(var(--hue) 60 95);
+				box-shadow: inset 0 1rem 5rem -1rem
+					light-dark(hsl(var(--hue) 60 95), hsl(var(--hue) 60 20));
 			}
 
 			.icon {
-				background: hsl(var(--hue) 60 60);
+				background: light-dark(
+					hsl(var(--hue) 60 60),
+					hsl(var(--hue) 60 40)
+				);
 				aspect-ratio: 1;
 			}
 
@@ -123,8 +135,10 @@
 			}
 
 			#mercury-vessel {
-				border: thin solid hsl(var(--hue) 60 70);
-				box-shadow: inset 0px 0px 2px hsl(var(--hue) 60 70);
+				border: thin solid
+					light-dark(hsl(var(--hue) 60 70), hsl(var(--hue) 60 30));
+				box-shadow: inset 0px 0px 2px
+					light-dark(hsl(var(--hue) 60 70), hsl(var(--hue) 60 30));
 				grid-column-end: -1;
 				background: hsl(0 0 100 / 0.25);
 				border-radius: 10px;
@@ -157,7 +171,10 @@
 					margin: 0 0 1rem;
 					&::first-letter {
 						font-size: 2rem;
-						color: hsl(var(--hue) 90 20);
+						color: light-dark(
+							hsl(var(--hue) 90 20),
+							hsl(var(--hue) 90 80)
+						);
 					}
 				}
 			}
@@ -170,6 +187,7 @@
 
 			#hourly-forecast {
 				text-align: center;
+				border-collapse: collapse;
 			}
 
 			#hourly-forecast td {
@@ -179,13 +197,14 @@
 				font-variant-emoji: text;
 
 				+ td {
-					border-inline-start: thin solid hsl(var(--hue) 60 70);
+					border-inline-start: thin solid
+						light-dark(hsl(var(--hue) 60 70), hsl(var(--hue) 60 20));
 				}
 			}
 
 			#hourly-forecast span::after {
 				font-size: 0.75em;
-				opacity: 0.5;
+				opacity: 0.75;
 			}
 
 			#t-temperature span::before {
@@ -383,6 +402,20 @@
 			return hue;
 		}
 
+		function setColorScheme(data) {
+			const currentTime = new Date();
+			const currentHour = Number.parseInt(currentTime.getHours());
+			if (data.hourly.is_day[currentHour]) {
+				document
+					.querySelector('html')
+					.style.setProperty('color-scheme', 'light');
+			} else {
+				document
+					.querySelector('html')
+					.style.setProperty('color-scheme', 'dark');
+			}
+		}
+
 		function setHourlyForecast(data) {
 			const table = document.querySelector('#hourly-forecast');
 			const thead = table.querySelector('thead tr');
@@ -391,11 +424,6 @@
 			const tWind = table.querySelector('#t-wind');
 			const tRain = table.querySelector('#t-rain');
 			const hourly = data.hourly;
-			const sunrise = Number.parseInt(
-				data.daily.sunrise[0].slice(11, 13),
-			);
-			const sunset = Number.parseInt(data.daily.sunset[0].slice(11, 13));
-			console.log('Sunrise', sunrise, 'Sunset', sunset);
 			const currentTime = new Date();
 			const currentHour = Number.parseInt(currentTime.getHours());
 			for (let i = currentHour; i < currentHour + 24; i++) {
@@ -436,6 +464,7 @@
 			await setThermometerMax(data.daily.temperature_2m_max[0]);
 			await setHourlyForecast(data);
 			await setDailyForecast(data);
+			await setColorScheme(data);
 			setDate();
 		});
 	</script><script>
