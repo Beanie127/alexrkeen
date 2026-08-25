@@ -1,5 +1,100 @@
 [
     {
+        "id": "Career Skills",
+        "items": [
+            {
+                "id": "alexwlchan",
+                "xmlUrl": "https://alexwlchan.net/atom.xml",
+                "htmlUrl": "https://alexwlchan.net/",
+                "description": "Alex Chan's personal website"
+            },
+            {
+                "id": "A List Apart: The Full Feed",
+                "xmlUrl": "https://alistapart.com/main/feed/",
+                "htmlUrl": "https://alistapart.com/",
+                "description": "Articles for people who make web sites."
+            },
+            {
+                "id": "Brand Anatomy",
+                "xmlUrl": "https://brandanatomy101.substack.com/feed",
+                "htmlUrl": "https://brandanatomy101.substack.com/",
+                "description": "A Marketing Doctor's (MD) do's and don'ts of brand strategy."
+            },
+            {
+                "id": "CodePen",
+                "xmlUrl": "https://blog.codepen.io/feed/",
+                "htmlUrl": "https://blog.codepen.io/",
+                "description": null
+            },
+            {
+                "id": "Content Layer",
+                "xmlUrl": "https://contentlayer.substack.com/feed",
+                "htmlUrl": "https://contentlayer.substack.com/",
+                "description": "Notes on how writing, design, brand, UX, and product combine to make things people can understand and use."
+            },
+            {
+                "id": "CSS Tip: Learn CSS the easy way",
+                "xmlUrl": "https://css-tip.com/feed/feed.xml",
+                "htmlUrl": "https://css-tip.com/",
+                "description": "The best place to keep up to date with the new CSS features. Daily CSS tips and tricks to become a better web developer."
+            },
+            {
+                "id": "Go Make Things",
+                "xmlUrl": "https://gomakethings.com/feed/index.xml",
+                "htmlUrl": "https://gomakethings.com/articles",
+                "description": "Chris Ferdinandi is a web developer with ADHD, helping people build the web better."
+            },
+            {
+                "id": "Harry Cresswell Links",
+                "xmlUrl": "https://harrycresswell.com/links/feed.xml",
+                "htmlUrl": "https://harrycresswell.com/links/",
+                "description": "Recent content in Links on Harry Cresswell"
+            },
+            {
+                "id": "Josh Collinsworth",
+                "xmlUrl": "https://joshcollinsworth.com/api/rss.xml",
+                "htmlUrl": "https://joshcollinsworth.com/",
+                "description": "Josh Collinsworth's blog"
+            },
+            {
+                "id": "Ludicity",
+                "xmlUrl": "https://ludic.mataroa.blog/rss/",
+                "htmlUrl": "https://ludic.mataroa.blog/",
+                "description": "Nikhil Suresh writes about software and software culture."
+            },
+            {
+                "id": "Raw Signal",
+                "xmlUrl": "https://www.rawsignal.ca/newsletter-archive/feed/",
+                "htmlUrl": "https://www.rawsignal.ca/newsletter-archive/",
+                "description": "We build better bosses."
+            },
+            {
+                "id": "The Index by Piccalilli",
+                "xmlUrl": "https://piccalil.li/the-index/feed.xml",
+                "htmlUrl": "https://piccalil.li/the-index/",
+                "description": "High quality, curated design, dev and tech links. Twice a week."
+            },
+            {
+                "id": "Tone Knob",
+                "xmlUrl": "https://toneofvoice.substack.com/feed",
+                "htmlUrl": "https://toneofvoice.substack.com/",
+                "description": "Taking a nerd's-eye view of brands doing interesting things with their language and tone of voice. Monthly. Written by Nick Parker. www.nickparker.co.uk"
+            },
+            {
+                "id": "Web Weekly",
+                "xmlUrl": "https://webweekly.email/rss.xml",
+                "htmlUrl": "https://webweekly.email/",
+                "description": "A weekly newsletter about web development, tooling, and the latest trends in the web platform."
+            },
+            {
+                "id": "Working Notes",
+                "xmlUrl": "https://buttondown.com/16by9/rss",
+                "htmlUrl": "https://buttondown.com/16by9",
+                "description": "A short and useful newsletter for people who look after websites."
+            }
+        ]
+    },
+    {
         "id": "Comics",
         "items": [
             {
@@ -55,6 +150,12 @@
                 "xmlUrl": "https://illustrated.substack.com/feed",
                 "htmlUrl": "https://illustrated.substack.com/",
                 "description": "Graphic mumblings and ravings. Illustrated dissections of life. A merry chase."
+            },
+            {
+                "id": "Katalina Krimson Wants to Try Human Flesh!!",
+                "xmlUrl": "https://kkwtthf.thecomicseries.com/rss",
+                "htmlUrl": "https://kkwtthf.thecomicseries.com/",
+                "description": "Katalina Krimson is a teenage girl that likes to browse dubiously legal forums and has a hunger for something that is never legal to obtain."
             },
             {
                 "id": "Last Place Comics",
@@ -113,7 +214,78 @@
         ]
     },
     {
-        "id": "Entertaining",
+        "id": "Educational",
+        "items": [
+            {
+                "id": "1000-Word Philosophy: An Introductory Anthology",
+                "xmlUrl": "https://1000wordphilosophy.com/feed/",
+                "htmlUrl": "https://1000wordphilosophy.com/",
+                "description": "Philosophy, One Thousand Words at a Time"
+            },
+            {
+                "id": "A Collection of Unmitigated Pedantry",
+                "xmlUrl": "https://acoup.blog/feed/",
+                "htmlUrl": "https://acoup.blog/",
+                "description": "A look at history and popular culture"
+            },
+            {
+                "id": "Mr. and Mrs. Psmith\u2019s Bookshelf",
+                "xmlUrl": "https://www.thepsmiths.com/feed",
+                "htmlUrl": "https://www.thepsmiths.com/",
+                "description": "The P is silent, as in pshrimp or pseudonym."
+            },
+            {
+                "id": "Nicky's Blog!",
+                "xmlUrl": "https://blog.ncase.me/feed.xml",
+                "htmlUrl": "https://blog.ncase.me/",
+                "description": "I make occasional pictures & words"
+            },
+            {
+                "id": "Obsidian Iceberg",
+                "xmlUrl": "https://www.eleanorkonik.com/feed?ref=eleanorkonik.com",
+                "htmlUrl": "https://eleanorkonik.substack.com/",
+                "description": "Insightful lessons from history, science, & real life... aimed at autodidacts, productivity nerds, efficient thinkers & tech junkies."
+            },
+            {
+                "id": "Our World in Data",
+                "xmlUrl": "https://ourworldindata.org/atom.xml",
+                "htmlUrl": "https://ourworldindata.org/",
+                "description": "Research and data to make progress against the world\u2019s largest problems"
+            },
+            {
+                "id": "Scope of Work",
+                "xmlUrl": "https://www.scopeofwork.net/rss/",
+                "htmlUrl": "https://www.scopeofwork.net/",
+                "description": "Excellent writing about the physical world."
+            },
+            {
+                "id": "The Quantum Cat",
+                "xmlUrl": "https://www.thequantumcat.space/feed",
+                "htmlUrl": "https://www.thequantumcat.space/",
+                "description": "Musings on space, science and the future of humanity"
+            },
+            {
+                "id": "University of Winds",
+                "xmlUrl": "https://www.uofwinds.com/rss/",
+                "htmlUrl": "https://www.uofwinds.com/",
+                "description": "Three links to wonderful and thought-provoking things every other Saturday morning from Mita Williams."
+            },
+            {
+                "id": "Wait But Why",
+                "xmlUrl": "https://waitbutwhy.com/feed",
+                "htmlUrl": "https://waitbutwhy.com/",
+                "description": null
+            },
+            {
+                "id": "weird medieval guys",
+                "xmlUrl": "https://weirdmedievalguys.substack.com/feed",
+                "htmlUrl": "https://weirdmedievalguys.substack.com/",
+                "description": "the only substack that is about weird medieval guys :)"
+            }
+        ]
+    },
+    {
+        "id": "Entertainment",
         "items": [
             {
                 "id": "Heart Wired",
@@ -122,14 +294,8 @@
                 "description": "Weekly Attempts at Contemplation and Comedy"
             },
             {
-                "id": "keen about travelling",
-                "xmlUrl": "https://georgiakeen.substack.com/feed",
-                "htmlUrl": "https://georgiakeen.substack.com/",
-                "description": "A 24 year old\u2019s travels, escaping the corporate ladder (a break taken after a long three year career) and fundamentally a digital diary, enjoy x"
-            },
-            {
                 "id": "Naive Weekly",
-                "xmlUrl": "https://www.naiveweekly.com/feed",
+                "xmlUrl": "https://kristoffer.substack.com/feed",
                 "htmlUrl": "https://www.naiveweekly.com/",
                 "description": "A Sunday email with links to the quiet, odd and poetic web."
             },
@@ -169,12 +335,6 @@
         "id": "Fiction",
         "items": [
             {
-                "id": "Another World, According to German Standards",
-                "xmlUrl": "https://www.royalroad.com/syndication/150811",
-                "htmlUrl": "https://www.royalroad.com/fiction/syndication/150811",
-                "description": "Latest updates of (Another World, According to German Standards )"
-            },
-            {
                 "id": "Super Supportive",
                 "xmlUrl": "https://www.royalroad.com/fiction/syndication/63759",
                 "htmlUrl": "https://www.royalroad.com/fiction/syndication/63759",
@@ -212,84 +372,7 @@
         ]
     },
     {
-        "id": "Informative",
-        "items": [
-            {
-                "id": "1000-Word Philosophy: An Introductory Anthology",
-                "xmlUrl": "https://1000wordphilosophy.com/feed/",
-                "htmlUrl": "https://1000wordphilosophy.com/",
-                "description": "Philosophy, One Thousand Words at a Time"
-            },
-            {
-                "id": "A Collection of Unmitigated Pedantry",
-                "xmlUrl": "https://acoup.blog/feed/",
-                "htmlUrl": "https://acoup.blog/",
-                "description": "A look at history and popular culture"
-            },
-            {
-                "id": "Infinite Scroll",
-                "xmlUrl": "https://www.infinitescroll.us/feed",
-                "htmlUrl": "https://www.infinitescroll.us/",
-                "description": "The Politics of Posting and the Social Internet"
-            },
-            {
-                "id": "Mr. and Mrs. Psmith\u2019s Bookshelf",
-                "xmlUrl": "https://www.thepsmiths.com/feed",
-                "htmlUrl": "https://www.thepsmiths.com/",
-                "description": "The P is silent, as in pshrimp or pseudonym."
-            },
-            {
-                "id": "Nicky's Blog!",
-                "xmlUrl": "https://blog.ncase.me/feed.xml",
-                "htmlUrl": "https://blog.ncase.me/",
-                "description": "I make occasional pictures & words"
-            },
-            {
-                "id": "Obsidian Iceberg",
-                "xmlUrl": "https://www.eleanorkonik.com/feed?ref=eleanorkonik.com",
-                "htmlUrl": "https://eleanorkonik.substack.com/",
-                "description": "Insightful lessons from history, science, & real life... aimed at autodidacts, productivity nerds, efficient thinkers & tech junkies."
-            },
-            {
-                "id": "Scope of Work",
-                "xmlUrl": "https://www.scopeofwork.net/rss/",
-                "htmlUrl": "https://www.scopeofwork.net/",
-                "description": "Excellent writing about the physical world."
-            },
-            {
-                "id": "The Quantum Cat",
-                "xmlUrl": "https://www.thequantumcat.space/feed",
-                "htmlUrl": "https://www.thequantumcat.space/",
-                "description": "Musings on space, science and the future of humanity"
-            },
-            {
-                "id": "University of Winds",
-                "xmlUrl": "https://www.uofwinds.com/rss/",
-                "htmlUrl": "https://www.uofwinds.com/",
-                "description": "Three links to wonderful and thought-provoking things every other Saturday morning from Mita Williams."
-            },
-            {
-                "id": "Wait But Why",
-                "xmlUrl": "https://waitbutwhy.com/feed",
-                "htmlUrl": "https://waitbutwhy.com/",
-                "description": null
-            },
-            {
-                "id": "weird medieval guys",
-                "xmlUrl": "https://weirdmedievalguys.substack.com/feed",
-                "htmlUrl": "https://weirdmedievalguys.substack.com/",
-                "description": "the only substack that is about weird medieval guys :)"
-            },
-            {
-                "id": "Writing \uff06 Such",
-                "xmlUrl": "https://writingandsuch.substack.com/feed",
-                "htmlUrl": "https://writingandsuch.substack.com/",
-                "description": "Writings about writing (but also reading and other such things)."
-            }
-        ]
-    },
-    {
-        "id": "Links & Recs",
+        "id": "Links & Recommendations",
         "items": [
             {
                 "id": "10+1 Things",
@@ -317,114 +400,14 @@
             },
             {
                 "id": "Wallabag",
-                "xmlUrl": "https://self.alexrkeen.com/read-later/feed/alexrkeen/SL419ZcAghRQmki/all",
-                "htmlUrl": "https://self.alexrkeen.com/read-later/unread/list",
+                "xmlUrl": "https://home.alexrkeen.com/read-later/feed/alexrkeen/SL419ZcAghRQmki/all",
+                "htmlUrl": "https://home.alexrkeen.com/read-later/unread/list",
                 "description": "Atom feed for unread entries"
             }
         ]
     },
     {
-        "id": "Marketing",
-        "items": [
-            {
-                "id": "Brand Anatomy",
-                "xmlUrl": "https://brandanatomy101.substack.com/feed",
-                "htmlUrl": "https://brandanatomy101.substack.com/",
-                "description": "A Marketing Doctor's (MD) do's and don'ts of brand strategy."
-            },
-            {
-                "id": "Tone Knob",
-                "xmlUrl": "https://toneofvoice.substack.com/feed",
-                "htmlUrl": "https://toneofvoice.substack.com/",
-                "description": "Taking a nerd's-eye view of brands doing interesting things with their language and tone of voice. Monthly. Written by Nick Parker. www.nickparker.co.uk"
-            }
-        ]
-    },
-    {
-        "id": "Political",
-        "items": [
-            {
-                "id": "all the heterosexual nonsense",
-                "xmlUrl": "https://heterosexualnonsense.substack.com/feed",
-                "htmlUrl": "https://heterosexualnonsense.substack.com/",
-                "description": "A culture, news and comedy newsletter, with a focus on queer culture, news and issues from Rebecca Shaw and Patrick Lenton."
-            },
-            {
-                "id": "Candy for Breakfast",
-                "xmlUrl": "https://www.candyforbreakfast.email/feed",
-                "htmlUrl": "https://www.candyforbreakfast.email/",
-                "description": "Funny feelings, weird careers, making art, American history, and how to be alive."
-            },
-            {
-                "id": "Ed Zitron's Where's Your Ed At",
-                "xmlUrl": "https://www.wheresyoured.at/rss/",
-                "htmlUrl": "https://www.wheresyoured.at/",
-                "description": "The Words of Ed Zitron, a PR person and writer."
-            },
-            {
-                "id": "Garbage Day",
-                "xmlUrl": "https://rss.beehiiv.com/feeds/owMwaGYU36.xml",
-                "htmlUrl": "https://www.garbageday.email/",
-                "description": "A newsletter about having fun online"
-            },
-            {
-                "id": "HeydonWorks",
-                "xmlUrl": "https://heydonworks.com/feed.xml",
-                "htmlUrl": "https://heydonworks.com/",
-                "description": "Writing and creative coding from Heydon Pickering"
-            },
-            {
-                "id": "Internal exile",
-                "xmlUrl": "https://robhorning.substack.com/feed",
-                "htmlUrl": "https://robhorning.substack.com/",
-                "description": "about technology, art, philosophy"
-            },
-            {
-                "id": "Jason Pargin's Newsletter",
-                "xmlUrl": "https://jasonpargin.substack.com/feed",
-                "htmlUrl": "https://jasonpargin.substack.com/",
-                "description": "Something seems off about the world, I'm trying to get to the bottom of it"
-            },
-            {
-                "id": "Number One With A Bullard",
-                "xmlUrl": "https://gabebullard.substack.com/feed",
-                "htmlUrl": "https://gabebullard.substack.com/",
-                "description": "Notes on our nostalgic era. Pop culture anxieties. Pieces of history. Occasional jokes."
-            },
-            {
-                "id": "Pluralistic: Daily links from Cory Doctorow",
-                "xmlUrl": "https://pluralistic.net/feed/",
-                "htmlUrl": "https://pluralistic.net/",
-                "description": "No trackers, no ads. Black type, white background. Privacy policy: we don't collect or retain any data at all ever period."
-            },
-            {
-                "id": "Read Max",
-                "xmlUrl": "https://maxread.substack.com/feed",
-                "htmlUrl": "https://maxread.substack.com/",
-                "description": "Explaining the weird new future, one newsletter at a time. Subscribe for a twice weekly delivery of internet culture, mega-platform grotesquerie, crypto conspiracies, deep forum lore, fringe politics, and other artifacts of what's to come."
-            },
-            {
-                "id": "Sheffield Tribune",
-                "xmlUrl": "https://www.sheffieldtribune.co.uk/rss/",
-                "htmlUrl": "https://www.sheffieldtribune.co.uk/",
-                "description": "Sheffield's quality newspaper, delivered via email."
-            },
-            {
-                "id": "The Culture Shock",
-                "xmlUrl": "https://thecharrette.substack.com/feed",
-                "htmlUrl": "https://thecharrette.substack.com",
-                "description": "Obsessively interested in everything."
-            },
-            {
-                "id": "The Index",
-                "xmlUrl": "https://rss.beehiiv.com/feeds/wL4lUJI3RH.xml",
-                "htmlUrl": "https://www.theindex.media/",
-                "description": "Notes on tech + culture + politics."
-            }
-        ]
-    },
-    {
-        "id": "Practical Philosophy",
+        "id": "Philosophy & Self Improvement",
         "items": [
             {
                 "id": "Brangus",
@@ -457,6 +440,12 @@
                 "description": "Making sense of people"
             },
             {
+                "id": "Knowingless",
+                "xmlUrl": "https://aella.substack.com/feed",
+                "htmlUrl": "https://aella.substack.com/",
+                "description": "sex, psychedelics, and social analysis"
+            },
+            {
                 "id": "Locally Optimal",
                 "xmlUrl": "https://chrislakin.blog/feed",
                 "htmlUrl": "https://chrislakin.blog/",
@@ -475,16 +464,16 @@
                 "description": "These heavy sands are language tide and wind have silted here"
             },
             {
-                "id": "Psychiatry at the Margins",
-                "xmlUrl": "https://www.psychiatrymargins.com/feed",
-                "htmlUrl": "https://www.psychiatrymargins.com/",
-                "description": "Exploring critical, philosophical, and scientific debates in psychiatric practice and the psy-sciences"
-            },
-            {
                 "id": "Ralph Ammer",
                 "xmlUrl": "https://ralphammer.com/feed/",
                 "htmlUrl": "https://ralphammer.com/",
                 "description": null
+            },
+            {
+                "id": "Sasha's 'Newsletter'",
+                "xmlUrl": "https://sashachapin.substack.com/feed",
+                "htmlUrl": "https://sashachapin.substack.com/",
+                "description": "a jpg of water in a dry municipality"
             },
             {
                 "id": "Stay Grounded",
@@ -499,22 +488,28 @@
                 "description": "Thinking about technology, society, and the good life."
             },
             {
-                "id": "The Future Hunter",
-                "xmlUrl": "https://thefuturehunter.substack.com/feed",
-                "htmlUrl": "https://thefuturehunter.substack.com/",
-                "description": "Thinking about what\u2019s coming next \ud83d\udd2e"
-            },
-            {
                 "id": "The Linchpin",
                 "xmlUrl": "https://linch.substack.com/feed",
                 "htmlUrl": "https://linch.substack.com/",
                 "description": "The art of noticing what matters. Finding and sharing the weird and wonderful patterns of the world"
             },
             {
+                "id": "The Shadowed Archive",
+                "xmlUrl": "https://theshadowedarchive.substack.com/feed",
+                "htmlUrl": "https://theshadowedarchive.substack.com/",
+                "description": "I write about labyrinths, dreams, paradoxes, and the absurdities of existence. Logic is optional. This Substack is for those who find beauty in the uncanny, comfort in the uncomfortable, and meaning in the unfinished."
+            },
+            {
                 "id": "Tom Mewett",
                 "xmlUrl": "https://tmewett.com/feed.xml",
                 "htmlUrl": "https://tmewett.com/",
                 "description": null
+            },
+            {
+                "id": "Transmissions from the floor",
+                "xmlUrl": "https://arcove.substack.com/feed",
+                "htmlUrl": "https://arcove.substack.com/",
+                "description": "Exploring the intersections between creativity, psychology, art, and the human experience"
             },
             {
                 "id": "Useful Fictions",
@@ -524,7 +519,7 @@
             },
             {
                 "id": "Westenberg.",
-                "xmlUrl": "https://www.joanwestenberg.com/rss/",
+                "xmlUrl": "https://www.joanwestenberg.com/feed",
                 "htmlUrl": "https://www.joanwestenberg.com/",
                 "description": "Field Notes on Now."
             }
@@ -576,18 +571,6 @@
                 "description": "Econ, science, and culture. Also, occasional actual radar."
             },
             {
-                "id": "Knowingless",
-                "xmlUrl": "https://aella.substack.com/feed",
-                "htmlUrl": "https://aella.substack.com/",
-                "description": "sex, psychedelics, and social analysis"
-            },
-            {
-                "id": "Our World in Data",
-                "xmlUrl": "https://ourworldindata.org/atom.xml",
-                "htmlUrl": "https://ourworldindata.org/",
-                "description": "Research and data to make progress against the world\u2019s largest problems"
-            },
-            {
                 "id": "Play Makes Us Human",
                 "xmlUrl": "https://petergray.substack.com/feed",
                 "htmlUrl": "https://petergray.substack.com/",
@@ -634,6 +617,107 @@
                 "xmlUrl": "https://unpublishablepapers.substack.com/feed",
                 "htmlUrl": "https://unpublishablepapers.substack.com/",
                 "description": "Ideas about what makes humans so brilliant, terrible, and utterly weird -- none of which would make it past peer-review."
+            }
+        ]
+    },
+    {
+        "id": "Society & Politics",
+        "items": [
+            {
+                "id": "all the heterosexual nonsense",
+                "xmlUrl": "https://heterosexualnonsense.substack.com/feed",
+                "htmlUrl": "https://heterosexualnonsense.substack.com/",
+                "description": "A culture, news and comedy newsletter, with a focus on queer culture, news and issues from Rebecca Shaw and Patrick Lenton."
+            },
+            {
+                "id": "A working library",
+                "xmlUrl": "https://aworkinglibrary.com/feed/index.xml",
+                "htmlUrl": "https: //aworkinglibrary.com/",
+                "description": "A working library is a project about work, reading & technology by mandy brown"
+            },
+            {
+                "id": "Barks by Aria Salvatrice - Aria.dog",
+                "xmlUrl": "https://aria.dog/barks/rss.xml",
+                "htmlUrl": "https://aria.dog/barks/",
+                "description": "Every new bark on Aria Salvatrice\u2019s weblog."
+            },
+            {
+                "id": "Candy for Breakfast",
+                "xmlUrl": "https://www.candyforbreakfast.email/feed",
+                "htmlUrl": "https://www.candyforbreakfast.email/",
+                "description": "Funny feelings, weird careers, making art, American history, and how to be alive."
+            },
+            {
+                "id": "Crooked Timber",
+                "xmlUrl": "https://crookedtimber.org/feed/",
+                "htmlUrl": "https://crookedtimber.org/",
+                "description": "Out of the crooked timber of humanity, no straight thing was ever made"
+            },
+            {
+                "id": "Ed Zitron's Where's Your Ed At",
+                "xmlUrl": "https://www.wheresyoured.at/rss/",
+                "htmlUrl": "https://www.wheresyoured.at/",
+                "description": "The Words of Ed Zitron, a PR person and writer."
+            },
+            {
+                "id": "Garbage Day",
+                "xmlUrl": "https://rss.beehiiv.com/feeds/owMwaGYU36.xml",
+                "htmlUrl": "https://www.garbageday.email/",
+                "description": "A newsletter about having fun online"
+            },
+            {
+                "id": "HeydonWorks",
+                "xmlUrl": "https://heydonworks.com/feed.xml",
+                "htmlUrl": "https://heydonworks.com/",
+                "description": "Writing and creative coding from Heydon Pickering"
+            },
+            {
+                "id": "Internal exile",
+                "xmlUrl": "https://robhorning.substack.com/feed",
+                "htmlUrl": "https://robhorning.substack.com/",
+                "description": "about technology, art, philosophy"
+            },
+            {
+                "id": "Jason Pargin's Newsletter",
+                "xmlUrl": "https://jasonpargin.substack.com/feed",
+                "htmlUrl": "https://jasonpargin.substack.com/",
+                "description": "Something seems off about the world, I'm trying to get to the bottom of it"
+            },
+            {
+                "id": "Number One With A Bullard",
+                "xmlUrl": "https://gabebullard.substack.com/feed",
+                "htmlUrl": "https://gabebullard.substack.com/",
+                "description": "Notes on our nostalgic era. Pop culture anxieties. Pieces of history. Occasional jokes."
+            },
+            {
+                "id": "Pluralistic: Daily links from Cory Doctorow",
+                "xmlUrl": "https://pluralistic.net/feed/",
+                "htmlUrl": "https://pluralistic.net/",
+                "description": "No trackers, no ads. Black type, white background. Privacy policy: we don't collect or retain any data at all ever period."
+            },
+            {
+                "id": "Sheffield Tribune",
+                "xmlUrl": "https://www.sheffieldtribune.co.uk/rss/",
+                "htmlUrl": "https://www.sheffieldtribune.co.uk/",
+                "description": "Sheffield's quality newspaper, delivered via email."
+            },
+            {
+                "id": "The Argument",
+                "xmlUrl": "https://www.theargumentmag.com/feed",
+                "htmlUrl": "https://www.theargumentmag.com/",
+                "description": "Join Us. We're Libbing Out."
+            },
+            {
+                "id": "The Culture Shock",
+                "xmlUrl": "https://thecharrette.substack.com/feed",
+                "htmlUrl": "https://thecharrette.substack.com",
+                "description": "Obsessively interested in everything."
+            },
+            {
+                "id": "The Index",
+                "xmlUrl": "https://rss.beehiiv.com/feeds/wL4lUJI3RH.xml",
+                "htmlUrl": "https://www.theindex.media/",
+                "description": "Notes on tech + culture + politics."
             }
         ]
     },
@@ -689,6 +773,12 @@
                 "description": "A blog for practical advice, turn-key resources, tips, and examples of how to run a roleplaying game."
             },
             {
+                "id": "Stories by Jay Dragon on Medium",
+                "xmlUrl": "https://possumcreek.medium.com/feed",
+                "htmlUrl": "https://medium.com/@possumcreek?source=rss-567e1925a7fd------2",
+                "description": "Stories by Jay Dragon on Medium"
+            },
+            {
                 "id": "Stout Stoat News",
                 "xmlUrl": "https://stoutstoat.substack.com/feed",
                 "htmlUrl": "https://stoutstoat.substack.com/",
@@ -702,7 +792,7 @@
             },
             {
                 "id": "The Indie Game Reading Club",
-                "xmlUrl": "https://www.indiegamereadingclub.com/feed/",
+                "xmlUrl": "https://indiegamereadingclub.com/feed/",
                 "htmlUrl": "https://www.indiegamereadingclub.com/",
                 "description": "Deep reads, analysis, and talk about small press roleplaying"
             },
@@ -717,81 +807,6 @@
                 "xmlUrl": "https://the-only-edition.com/feed/",
                 "htmlUrl": "https://the-only-edition.com/",
                 "description": "The Only Tabletop News Site"
-            }
-        ]
-    },
-    {
-        "id": "Uncategorized",
-        "items": []
-    },
-    {
-        "id": "Webdev",
-        "items": [
-            {
-                "id": "alexwlchan",
-                "xmlUrl": "https://alexwlchan.net/atom.xml",
-                "htmlUrl": "https://alexwlchan.net/",
-                "description": "Alex Chan's personal website"
-            },
-            {
-                "id": "A List Apart: The Full Feed",
-                "xmlUrl": "https://alistapart.com/main/feed/",
-                "htmlUrl": "https://alistapart.com/",
-                "description": "Articles for people who make web sites."
-            },
-            {
-                "id": "CodePen",
-                "xmlUrl": "https://blog.codepen.io/feed/",
-                "htmlUrl": "https://blog.codepen.io/",
-                "description": null
-            },
-            {
-                "id": "CSS Tip: Learn CSS the easy way",
-                "xmlUrl": "https://css-tip.com/feed/feed.xml",
-                "htmlUrl": "https://css-tip.com/",
-                "description": "The best place to keep up to date with the new CSS features. Daily CSS tips and tricks to become a better web developer."
-            },
-            {
-                "id": "Go Make Things",
-                "xmlUrl": "https://gomakethings.com/feed/index.xml",
-                "htmlUrl": "https://gomakethings.com/articles",
-                "description": "Chris Ferdinandi is a web developer with ADHD, helping people build the web better."
-            },
-            {
-                "id": "Harry Cresswell Links",
-                "xmlUrl": "https://harrycresswell.com/links/feed.xml",
-                "htmlUrl": "https://harrycresswell.com/links/",
-                "description": "Recent content in Links on Harry Cresswell"
-            },
-            {
-                "id": "Harry Cresswell Newsletter",
-                "xmlUrl": "https://harrycresswell.com/newsletter/feed.xml",
-                "htmlUrl": "https://harrycresswell.com/newsletter/",
-                "description": "Recent content in Newsletter on Harry Cresswell"
-            },
-            {
-                "id": "Ludicity",
-                "xmlUrl": "https://ludic.mataroa.blog/rss/",
-                "htmlUrl": "https://ludic.mataroa.blog/",
-                "description": "<blockquote>\n\n\"While I'm deeply sympathetic, the author should be discussing their issues with a therapist rather than spreading this on the internet.\"\n</blockquote>\n\nI finally rage-quit and started an IT consultancy, Hermit Tech. If you're an engineer whose company is doing crazy things and there might still be room for an intervention (i.e, there must be at least one sane person in leadership), you can book time directly on my calendar and we can figure out a game plan! I've worked with some readers before and everyone had a good time. We've developed bold, innovative technology, such as not lying, the ability to explain things to laymen, and actually knowing how to ship on time.\n\nIf you live in Melbourne, this final link straight-up arranges an in-person meeting at a nice coffee place. I also talk to most readers who want to chat, but you'll have to email me.\n\nI read all mail without exception, and love getting it. I may not respond, but I'll always read! You can reach me at: ludicity.hackernews@gmail.com.\n\nMy podcast, \"Does A Frog Have Scorpion Nature\", where I talk to people I like, and sometimes find blog post inspiration.\n\nYou can also catch me on Mastodon.\n\nLiberapay | Patreon to support me writing taking time off to write amidst the difficulty of launching a business."
-            },
-            {
-                "id": "The Index by Piccalilli",
-                "xmlUrl": "https://piccalil.li/the-index/feed.xml",
-                "htmlUrl": "https://piccalil.li/the-index/",
-                "description": "High quality, curated design, dev and tech links. Twice a week."
-            },
-            {
-                "id": "Web Weekly",
-                "xmlUrl": "https://webweekly.email/rss.xml",
-                "htmlUrl": "https://webweekly.email/",
-                "description": "A weekly newsletter about web development, tooling, and the latest trends in the web platform."
-            },
-            {
-                "id": "Working Notes",
-                "xmlUrl": "https://buttondown.com/16by9/rss",
-                "htmlUrl": "https://buttondown.com/16by9",
-                "description": "A short and useful newsletter for people who look after websites."
             }
         ]
     }
