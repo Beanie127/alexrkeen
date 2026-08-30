@@ -1,12 +1,12 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+import Layout from '@layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 const quotes: Array<quote> = await getCollection('quotes');
 interface quote {
 	id: string;
 	data: { author: string; url?: string; source?: string; category?: string };
 }
-import Quote from '../../components/Quote.astro';
+import Quote from '@components/Quote.astro';
 ---
 
 <Layout
