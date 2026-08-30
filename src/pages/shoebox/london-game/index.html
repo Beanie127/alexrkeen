@@ -245,10 +245,9 @@
     swap.addEventListener("click", () => {
         const index = Number(window.prompt("Which station would you like to switch? Type 1–6")) - 1;
         if (isNaN(index) || index < 1 || index > 6 || index == false) return;
-        targets.children.item(index).remove();
         const zone = Math.ceil(Math.random() * 6);
         const newStation = game.pickStation({ zone: zone });
-        targets.innerHTML += generateTarget(newStation);
+        targets.children.item(index).innerHTML = generateTarget(newStation);
     })
 
     targets.addEventListener("click", (e) => {

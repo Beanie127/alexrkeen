@@ -11,10 +11,6 @@ import ToggleTabs from '@components/ToggleTabs.astro';
 			content="width=device-width, initial-scale=1.0"
 		/>
 		<link
-			rel="stylesheet"
-			href="style.css"
-		/>
-		<link
 			rel="manifest"
 			href="/improv-tools/manifest.webmanifest"
 		/>
@@ -26,7 +22,7 @@ import ToggleTabs from '@components/ToggleTabs.astro';
 		<script is:inline>
 			navigator.serviceWorker.register('/improv-tools/serviceworker.js');
 		</script>
-		<style>
+		<style is:inline>
 			:root {
 				--bg-color: hsl(70 11 5);
 				--mg-color: hsl(70 11 12);
@@ -240,37 +236,6 @@ import ToggleTabs from '@components/ToggleTabs.astro';
     } */
 			}
 
-			/* toggle-tab 
-
-			toggle-tabs {
-				tt-selector {
-					list-style-type: none;
-					display: flex;
-					gap: 1ch;
-					padding: 0;
-					border-block-end: thin solid var(--h-color);
-				}
-
-				tt-selector li {
-					flex: 1 1 0%;
-				}
-
-				tt-selector a {
-					padding: 1rem;
-					background: var(--mg-color);
-					border-radius: 1rem 1rem 0 0;
-					text-decoration: none;
-					color: currentColor;
-					display: block;
-					text-align: center;
-				}
-
-				[aria-selected='true'] {
-					background: var(--h-color);
-				}
-			} */
-		</style>
-		<style is:inline>
 			[type='checkbox'] {
 				display: none;
 			}
@@ -567,20 +532,18 @@ import ToggleTabs from '@components/ToggleTabs.astro';
 				</div>
 			</ToggleTabs>
 		</main>
-
-		<!-- <script
-			type="module"
-			src="/js/toggle-tabs.js"
-		></script> -->
 		<script
+			is:inline
 			type="module"
 			src="/improv-tools/suggestions.js"
 		></script>
 		<script
+			is:inline
 			type="module"
 			src="/improv-tools/games.js"
 		></script>
 		<script
+			is:inline
 			type="module"
 			src="/improv-tools/players.js"
 		></script>
