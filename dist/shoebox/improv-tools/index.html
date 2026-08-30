@@ -26,6 +26,7 @@
 		gap: 1ch;
 		padding: 0;
 		border-block-end: thin solid var(--h-color);
+		anchor-name: --toggle-tabs-selector;
 		> li {
 			flex: 1 1 0%;
 			> a {
@@ -42,6 +43,35 @@
 	[aria-selected='true'] {
 		background: var(--h-color);
 		/* color: var(--bg-color); */
+	}
+	[role='tabpanel'] {
+		display: none;
+
+		&.is-visible {
+			display: block;
+		}
+	}
+	@supports (position-anchor: --a) {
+		[role='tabpanel'] {
+			position: absolute;
+			position-anchor: --toggle-tabs-selector;
+			top: calc(anchor(bottom) + 10px);
+			left: anchor(left);
+			right: anchor(right);
+			opacity: 0;
+			filter: brightness(50%) blur(5px);
+			transition-property: all;
+			transition-duration: 200ms;
+			transition-behavior: allow-discrete;
+			&.is-visible {
+				opacity: 1;
+				filter: brightness(100%);
+				@starting-style {
+					opacity: 0;
+					filter: brightness(50%) blur(5px);
+				}
+			}
+		}
 	}
 </style><toggle-tabs><ul data-astro-cid-4ekbofuk><li data-astro-cid-4ekbofuk><a href="#players" data-astro-cid-4ekbofuk>Players</a></li><li data-astro-cid-4ekbofuk><a href="#games" data-astro-cid-4ekbofuk>Games</a></li><li data-astro-cid-4ekbofuk><a href="#suggestions" data-astro-cid-4ekbofuk>Suggestions</a></li></ul><div id="players" data-astro-cid-4ekbofuk><form id="add-player" data-astro-cid-4ekbofuk><output id="player-output" class="output" data-astro-cid-4ekbofuk><ul data-astro-cid-4ekbofuk></ul></output><div class="flex" id="controls" data-astro-cid-4ekbofuk><button type="button" id="pick-player" data-astro-cid-4ekbofuk>Pick a player</button><button type="button" id="reset-checkboxes" data-astro-cid-4ekbofuk>Reset checkboxes</button><button type="button" id="remove-all-players" data-astro-cid-4ekbofuk>Remove all players</button></div><fieldset class="flex" data-astro-cid-4ekbofuk><legend data-astro-cid-4ekbofuk>Add a new player</legend><label for="player" data-astro-cid-4ekbofuk>Name:<input type="text" name="player" id="player" data-astro-cid-4ekbofuk></label><button type="submit" data-astro-cid-4ekbofuk>Add player</button></fieldset></form><ul id="player-list" class="listless" data-astro-cid-4ekbofuk></ul></div><div id="games" data-astro-cid-4ekbofuk><form id="game-generator" data-astro-cid-4ekbofuk><output data-astro-cid-4ekbofuk><ul id="current-game" class="listless" hidden data-astro-cid-4ekbofuk><li data-astro-cid-4ekbofuk><strong data-astro-cid-4ekbofuk>Name:</strong> <span id="game-name" data-astro-cid-4ekbofuk></span></li><li data-astro-cid-4ekbofuk><strong data-astro-cid-4ekbofuk>Players:</strong> <span id="game-player-count" data-astro-cid-4ekbofuk></span></li><li id="game-description" data-astro-cid-4ekbofuk></li></ul></output><div class="flex" data-astro-cid-4ekbofuk><button type="submit" data-astro-cid-4ekbofuk>Get a game</button><button type="button" id="game-reset" data-astro-cid-4ekbofuk>Reset</button></div><fieldset class="flex" data-astro-cid-4ekbofuk><legend data-astro-cid-4ekbofuk>Difficulties</legend><label data-astro-cid-4ekbofuk><input type="checkbox" name="difficulty" value="easy" checked data-astro-cid-4ekbofuk>Easy</label><label data-astro-cid-4ekbofuk><input type="checkbox" name="difficulty" value="medium" checked data-astro-cid-4ekbofuk>Medium</label><label data-astro-cid-4ekbofuk><input type="checkbox" name="difficulty" value="hard" checked data-astro-cid-4ekbofuk>Hard</label></fieldset><fieldset class="flex" data-astro-cid-4ekbofuk><legend data-astro-cid-4ekbofuk>Players</legend><label data-astro-cid-4ekbofuk><input type="checkbox" name="playerCount" value="2" checked data-astro-cid-4ekbofuk>2</label><label data-astro-cid-4ekbofuk><input type="checkbox" name="playerCount" value="3" checked data-astro-cid-4ekbofuk>3</label><label data-astro-cid-4ekbofuk><input type="checkbox" name="playerCount" value="4" checked data-astro-cid-4ekbofuk>4</label><label data-astro-cid-4ekbofuk><input type="checkbox" name="playerCount" value="6" data-astro-cid-4ekbofuk>6</label></fieldset><fieldset class="flex" data-astro-cid-4ekbofuk><legend data-astro-cid-4ekbofuk>Categories</legend><label data-astro-cid-4ekbofuk><input type="checkbox" name="tag" value="physical" checked data-astro-cid-4ekbofuk>Physical</label><label data-astro-cid-4ekbofuk><input type="checkbox" name="tag" value="talking heads" checked data-astro-cid-4ekbofuk>Talking Heads</label><label data-astro-cid-4ekbofuk><input type="checkbox" name="tag" value="guessing" checked data-astro-cid-4ekbofuk>Guessing Game</label><label data-astro-cid-4ekbofuk><input type="checkbox" name="tag" value="mime" checked data-astro-cid-4ekbofuk>Mime</label><label data-astro-cid-4ekbofuk><input type="checkbox" name="tag" value="scene" checked data-astro-cid-4ekbofuk>Scene</label></fieldset></form></div><div id="suggestions" data-astro-cid-4ekbofuk><form id="prompt-generator" data-astro-cid-4ekbofuk><output id="suggestion-output" class="output" data-astro-cid-4ekbofuk><ul data-astro-cid-4ekbofuk></ul></output><div class="flex" data-astro-cid-4ekbofuk><button type="submit" data-astro-cid-4ekbofuk>Get a suggestion</button></div><fieldset class="flex" data-astro-cid-4ekbofuk><legend data-astro-cid-4ekbofuk>Suggestion type</legend><label for="any" data-astro-cid-4ekbofuk><input type="radio" id="any" name="type" value="any" checked data-astro-cid-4ekbofuk>any</label><label for="job" data-astro-cid-4ekbofuk><input type="radio" id="job" name="type" value="job" data-astro-cid-4ekbofuk>job</label><label for="activity" data-astro-cid-4ekbofuk><input type="radio" id="activity" name="type" value="activity" data-astro-cid-4ekbofuk>activity</label><label for="event" data-astro-cid-4ekbofuk><input type="radio" id="event" name="type" value="event" data-astro-cid-4ekbofuk>event</label><label for="object" data-astro-cid-4ekbofuk><input type="radio" id="object" name="type" value="object" data-astro-cid-4ekbofuk>object</label><label for="emotion" data-astro-cid-4ekbofuk><input type="radio" id="emotion" name="type" value="emotion" data-astro-cid-4ekbofuk>emotion</label><label for="relationship" data-astro-cid-4ekbofuk><input type="radio" id="relationship" name="type" value="relationship" data-astro-cid-4ekbofuk>relationship</label><label for="location" data-astro-cid-4ekbofuk><input type="radio" id="location" name="type" value="location" data-astro-cid-4ekbofuk>location</label><label for="story" data-astro-cid-4ekbofuk><input type="radio" id="story" name="type" value="story" data-astro-cid-4ekbofuk>story</label></fieldset></form></div></toggle-tabs><script>
 	customElements.define(
@@ -65,6 +95,8 @@
 				const tabs = this.querySelectorAll('div');
 				const listItems = this.tabList.querySelectorAll('li');
 				const links = this.tabList.querySelectorAll('a');
+
+				tabs[0].classList.toggle('is-visible');
 
 				// Add ARIA to list
 				this.tabList.setAttribute('role', 'tablist');
@@ -104,11 +136,6 @@
 					// Add ARIA to tab pane
 					tabPane.setAttribute('role', 'tabpanel');
 					tabPane.setAttribute('aria-labelledby', link.id);
-
-					// If not the active pane, hide it
-					if (index > 0) {
-						tabPane.setAttribute('hidden', '');
-					}
 				});
 
 				// Listen for events
@@ -183,29 +210,28 @@
 			 * Toggle tab visibility
 			 * @param  {Node} tab The tab to show
 			 */
-			toggle(tab) {
+			toggle(newTab) {
 				// Get the target tab pane
-				let tabPane = this.querySelector(tab.hash);
-				if (!tabPane) return;
+				let newPane = this.querySelector(newTab.hash);
+				if (!newPane) return;
 
 				// Get the current tab and content
-				let currentTab = tab
+				let oldTab = newTab
 					.closest('[role="tablist"]')
 					.querySelector('[aria-selected="true"]');
-				let currentPane = document.querySelector(currentTab.hash);
+				let oldPane = document.querySelector(oldTab.hash);
 
-				// Update the selected tab
-				tab.setAttribute('aria-selected', true);
-				currentTab.setAttribute('aria-selected', false);
+				oldTab.setAttribute('aria-selected', false);
+				oldTab.removeAttribute('tabindex');
+				oldPane.classList.toggle('is-visible');
 
-				// Update the visible tabPane
-				tabPane.removeAttribute('hidden');
-				currentPane.setAttribute('hidden', '');
-
-				// Make sure current tab can be focused and other tabs cannot
-				tab.removeAttribute('tabindex');
-				currentTab.setAttribute('tabindex', -1);
+				newTab.setAttribute('aria-selected', true);
+				newTab.setAttribute('tabindex', -1);
+				newPane.classList.toggle('is-visible');
 			}
 		},
 	);
-</script></main><script type="module" src="/js/toggle-tabs.js"></script><script type="module" src="/improv-tools/suggestions.js"></script><script type="module" src="/improv-tools/games.js"></script><script type="module" src="/improv-tools/players.js"></script></body></html>
+</script></main><!-- <script
+			type="module"
+			src="/js/toggle-tabs.js"
+		></script> --><script type="module" src="/improv-tools/suggestions.js"></script><script type="module" src="/improv-tools/games.js"></script><script type="module" src="/improv-tools/players.js"></script></body></html>

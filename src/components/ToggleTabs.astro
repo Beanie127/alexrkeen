@@ -5,6 +5,7 @@
 		gap: 1ch;
 		padding: 0;
 		border-block-end: thin solid var(--h-color);
+		anchor-name: --toggle-tabs-selector;
 		> li {
 			flex: 1 1 0%;
 			> a {
@@ -21,6 +22,35 @@
 	[aria-selected='true'] {
 		background: var(--h-color);
 		/* color: var(--bg-color); */
+	}
+	[role='tabpanel'] {
+		display: none;
+
+		&.is-visible {
+			display: block;
+		}
+	}
+	@supports (position-anchor: --a) {
+		[role='tabpanel'] {
+			position: absolute;
+			position-anchor: --toggle-tabs-selector;
+			top: calc(anchor(bottom) + 10px);
+			left: anchor(left);
+			right: anchor(right);
+			opacity: 0;
+			filter: brightness(50%) blur(5px);
+			transition-property: all;
+			transition-duration: 200ms;
+			transition-behavior: allow-discrete;
+			&.is-visible {
+				opacity: 1;
+				filter: brightness(100%);
+				@starting-style {
+					opacity: 0;
+					filter: brightness(50%) blur(5px);
+				}
+			}
+		}
 	}
 </style>
 
@@ -47,6 +77,8 @@
 				const tabs = this.querySelectorAll('div');
 				const listItems = this.tabList.querySelectorAll('li');
 				const links = this.tabList.querySelectorAll('a');
+
+				tabs[0].classList.toggle('is-visible');
 
 				// Add ARIA to list
 				this.tabList.setAttribute('role', 'tablist');
@@ -86,11 +118,6 @@
 					// Add ARIA to tab pane
 					tabPane.setAttribute('role', 'tabpanel');
 					tabPane.setAttribute('aria-labelledby', link.id);
-
-					// If not the active pane, hide it
-					if (index > 0) {
-						tabPane.setAttribute('hidden', '');
-					}
 				});
 
 				// Listen for events
@@ -165,28 +192,24 @@
 			 * Toggle tab visibility
 			 * @param  {Node} tab The tab to show
 			 */
-			toggle(tab) {
+			toggle(newTab) {
 				// Get the target tab pane
-				let tabPane = this.querySelector(tab.hash);
-				if (!tabPane) return;
+				let newPane = this.querySelector(newTab.hash);
+				if (!newPane) return;
 
 				// Get the current tab and content
-				let currentTab = tab
+				let oldTab = newTab
 					.closest('[role="tablist"]')
 					.querySelector('[aria-selected="true"]');
-				let currentPane = document.querySelector(currentTab.hash);
+				let oldPane = document.querySelector(oldTab.hash);
 
-				// Update the selected tab
-				tab.setAttribute('aria-selected', true);
-				currentTab.setAttribute('aria-selected', false);
+				oldTab.setAttribute('aria-selected', false);
+				oldTab.removeAttribute('tabindex');
+				oldPane.classList.toggle('is-visible');
 
-				// Update the visible tabPane
-				tabPane.removeAttribute('hidden');
-				currentPane.setAttribute('hidden', '');
-
-				// Make sure current tab can be focused and other tabs cannot
-				tab.removeAttribute('tabindex');
-				currentTab.setAttribute('tabindex', -1);
+				newTab.setAttribute('aria-selected', true);
+				newTab.setAttribute('tabindex', -1);
+				newPane.classList.toggle('is-visible');
 			}
 		},
 	);
