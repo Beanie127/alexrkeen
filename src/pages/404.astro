@@ -1,62 +1,60 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Quote from '../components/Quote.astro';
-import { getCollection } from 'astro:content';
-const quotes: Array<quote> = await getCollection('quotes');
+import Layout from "../layouts/Layout.astro";
+import Quote from "../components/Quote.astro";
+import { getCollection } from "astro:content";
+const quotes: Array<quote> = await getCollection("quotes");
 interface quote {
-	id: string;
-	data: { author: string; url?: string; source?: string; category?: string };
+    id: string;
+    data: { author: string; url?: string; source?: string; category?: string };
 }
 ---
 
 <Layout
-	title="Page not found!"
-	description="The page you are looking for could not be found."
-	><section class="col-center">
-		<p>The page you are looking for could not be found!</p>
-		<p>
-			Your best for finding whatever you're looking for is to <a href="/">
-				go back to the index
-			</a>.
-		</p>
-		<p>Meanwhile, here's some wisdom:</p>
-		<div id="quote-display"></div>
-		<div
-			hidden
-			id="quote-store">
-			{
-				quotes.map((quote) => {
-					return (
-						<Quote
-							id={quote.id}
-							source={quote.data.source}
-							url={quote.data.url}
-							category={quote.data.category}
-							author={quote.data.author}
-						/>
-					);
-				})
-			}
-		</div>
-		<style>
-			a[href=''],
-			a:not([href]) {
-				text-decoration: none;
-			}
-			.source {
-				margin-inline-start: 1ch;
-				font-style: normal;
-				text-transform: uppercase;
-				font-size: 0.8rem;
-			}
-		</style>
-		<script type="module">
-			const quoteDisplay = document.querySelector('#quote-display');
-			const quotes = document.querySelectorAll('.quote');
-			const quote = quotes[Math.floor(Math.random() * quotes.length)];
-			console.log(quote);
-			quoteDisplay.innerHTML = '';
-			quoteDisplay.appendChild(quote);
-		</script>
-	</section></Layout
+    title="Page not found!"
+    description="The page you are looking for could not be found."
+    ><section class="col-center">
+        <p>The page you are looking for could not be found!</p>
+        <p>
+            Your best for finding whatever you're looking for is to <a href="/">
+                go back to the index
+            </a>.
+        </p>
+        <p>Meanwhile, here's some wisdom:</p>
+        <div id="quote-display"></div>
+        <div hidden id="quote-store">
+            {
+                quotes.map((quote) => {
+                    return (
+                        <Quote
+                            id={quote.id}
+                            source={quote.data.source}
+                            url={quote.data.url}
+                            category={quote.data.category}
+                            author={quote.data.author}
+                        />
+                    );
+                })
+            }
+        </div>
+        <style>
+            a[href=""],
+            a:not([href]) {
+                text-decoration: none;
+            }
+            .source {
+                margin-inline-start: 1ch;
+                font-style: normal;
+                text-transform: uppercase;
+                font-size: 0.8rem;
+            }
+        </style>
+        <script type="module" is:inline>
+            const quoteDisplay = document.querySelector("#quote-display");
+            const quotes = document.querySelectorAll(".quote");
+            const quote = quotes[Math.floor(Math.random() * quotes.length)];
+            console.log(quote);
+            quoteDisplay.innerHTML = "";
+            quoteDisplay.appendChild(quote);
+        </script>
+    </section></Layout
 >
