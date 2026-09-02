@@ -253,8 +253,7 @@
     targets.addEventListener("click", (e) => {
         if (e.target.tagName == "BUTTON") {
             const station = e.target.closest("tr").children.item(1).textContent;
-            const message = "Visit " + station + "?"
-            if (window.confirm(message)) {
+            if (window.confirm(`Have you visited ${station}?`)) {
                 e.target.closest("tr").classList.add("visited");
             }
         }
