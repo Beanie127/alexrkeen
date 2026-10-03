@@ -6,5 +6,18 @@
     ],
     "exclude": [
         "dist"
-    ]
+    ],
+    "compilerOptions": {
+        "paths": {
+            "@layouts/*": [
+                "./src/layouts/*"
+            ],
+            "@components/*": [
+                "./src/components/*"
+            ],
+            "@collections/*": [
+                "./src/collections/*"
+            ]
+        }
+    }
 }

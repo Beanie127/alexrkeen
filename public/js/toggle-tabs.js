@@ -10,9 +10,6 @@ customElements.define(
 
 			// Define properties
 			this.tabList = this.querySelector('ul');
-
-			// Setup UI
-			this.setup();
 		}
 
 		/**
@@ -109,7 +106,8 @@ customElements.define(
 		/**
 		 * Add buttons and hide content on page load
 		 */
-		setup() {
+		connectedCallback() {
+			console.log('toggle-tabs connected!');
 			// Only run if there are tabs
 			if (!this.tabList) return;
 
@@ -161,4 +159,33 @@ customElements.define(
 			document.addEventListener('keydown', this);
 		}
 	},
+);
+
+customElements.define(
+	'tt-selector',
+	class extends HTMLUListElement {
+		constructor() {
+			super();
+		}
+		connectedCallback() {
+			this.setAttribute('role', 'tablist');
+			this.querySelectorAll('li').forEach((li) =>
+				li.setAttribute('role', 'presentation'),
+			);
+		}
+	},
+	{ extends: 'ul' },
+);
+
+customElements.define(
+	'tt-tab',
+	class extends HTMLDivElement {
+		constructor() {
+			super();
+		}
+		connectedCallback() {
+			this.setAttribute('role', 'tab');
+		}
+	},
+	{ extends: 'div' },
 );

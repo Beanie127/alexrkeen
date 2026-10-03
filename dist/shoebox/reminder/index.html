@@ -1,0 +1,267 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="manifest" href="./manifest.webmanifest"><link rel="apple-touch-icon" href="./images/icon-192.png"><title>Daily Reminder</title><meta name="description" content="Remind you of thing"><script>
+			navigator.serviceWorker.register('./serviceworker.js');
+		</script><style>
+			:root {
+				--bg-color: hsl(70 11 5);
+				--mg-color: hsl(70 11 12);
+				--text-color: hsl(40 24 70);
+				--h-color: hsl(70 62 20);
+				--accent-color: hsl(70 62 20);
+			}
+
+			/* font & base colour settings */
+			html {
+				font-size: clamp(1rem, 0.8rem + 1vi, 1.25rem);
+				font-family:
+					system-ui,
+					-apple-system,
+					BlinkMacSystemFont,
+					'Segoe UI',
+					Roboto,
+					Oxygen,
+					Ubuntu,
+					Cantarell,
+					'Open Sans',
+					'Helvetica Neue',
+					sans-serif;
+				line-height: 1.1;
+				background-color: var(--bg-color);
+				color: var(--text-color);
+				box-sizing: border-box;
+			}
+
+			body {
+				scrollbar-gutter: stable both-edges;
+				margin-block: 0;
+			}
+
+			/* box-sizing fix */
+			*:not(img),
+			*:before,
+			*:after {
+				box-sizing: inherit;
+			}
+
+			/* layout */
+
+			main,
+			article {
+				-webkit-margin-before: clamp(1rem, 2vh, 3rem);
+				margin-block-start: clamp(1rem, 2vh, 3rem);
+				-webkit-margin-after: 6rem;
+				margin-block-end: 6rem;
+				margin-inline: auto;
+				max-inline-size: 100ch;
+				padding: 0rem 1rem;
+				font-weight: 400;
+				grid-column: 2 / 3;
+			}
+
+			.flex {
+				margin: 2em auto;
+				inline-size: calc(100% - 4rem);
+				display: flex;
+				flex-wrap: wrap;
+				gap: 1ch;
+				justify-content: space-around;
+				align-items: center;
+			}
+
+			.flex.btn-flex {
+				flex-basis: 100%;
+			}
+
+			/* elements */
+
+			input[type='checkbox'],
+			input[type='radio'] {
+				position: relative;
+				appearance: none;
+				inline-size: 1rem;
+				aspect-ratio: 1;
+				background: var(--mg-color);
+				border: thin solid var(--accent-color);
+				border-radius: 5px;
+
+				&:checked {
+					&::before {
+						content: '';
+						background: var(--h-color);
+						position: absolute;
+						inset: 25%;
+						inline-size: 50%;
+						aspect-ratio: 1;
+						border-radius: 2px;
+					}
+				}
+			}
+			input[type='radio'] {
+				border-radius: 100%;
+				transform: translateY(0.25rem);
+				margin-inline-end: 0.75ch;
+				&:checked::before {
+					border-radius: 100%;
+				}
+			}
+
+			fieldset {
+				background: var(--mg-color);
+				border: thin dashed var(--h-color);
+				border-radius: 8px;
+			}
+
+			fieldset legend {
+				font-weight: bold;
+				padding-inline: 1ch;
+			}
+
+			hr {
+				border: none;
+				border-block-end: thick solid var(--h-color);
+				margin-block: 1rem;
+			}
+			h1 {
+				text-align: center;
+			}
+
+			button {
+				border: thin solid var(--h-color);
+				border-radius: 5px;
+				padding: 0.5em 1em;
+				background: var(--bg-color);
+				font-size: 0.7em;
+				text-transform: uppercase;
+				color: inherit;
+			}
+
+			output {
+				display: grid;
+				margin-block: 1rem;
+				border: thin solid var(--accent-color);
+				border-radius: 1rem;
+				min-block-size: 4lh;
+				padding: 1rem;
+				place-items: center;
+				text-align: center;
+				font-size: 1.25em;
+				font-weight: 250;
+				line-height: 1.1;
+				&.output {
+					block-size: 4lh;
+					overflow-y: scroll;
+					& ul {
+						list-style: none;
+						padding: 0;
+						& li:first-of-type {
+							font-size: 1.55em;
+						}
+					}
+				}
+			}
+
+			.listless {
+				list-style-type: none;
+				padding-inline-start: 0;
+			}
+
+			[type='checkbox'] {
+				display: none;
+			}
+			label:has([type='checkbox']) {
+				border: 1px solid var(--accent-color);
+				padding: 5px 1ch;
+				border-radius: 10px;
+			}
+			label:has([type='checkbox']:checked) {
+				background: var(--h-color);
+				/* color: var(--bg-color); */
+			}
+
+			label:has([type='checkbox']:not(:checked)) {
+				color: gray;
+				text-decoration: line-through;
+			}
+		</style></head><body><main><style>
+		#scorecard {
+			display: grid;
+			inline-size: max-content;
+			grid-template-columns: repeat(7, 2rem);
+			grid-template-rows: repeat(4, 2rem);
+			> * {
+				width: 95%;
+				height: 95%;
+				border-radius: 4px;
+				place-self: center;
+				background: hsl(0 0 40);
+				&.success {
+					background: hsl(90 50 60);
+				}
+
+				&.partial {
+					background: hsl(45 50 60);
+				}
+
+				&.failure {
+					background: hsl(0 50 60);
+				}
+				&.active {
+					background: hsl(160 70 60);
+				}
+			}
+		}
+	</style><button id="btn-brush">I did the thing!</button><div id="scorecard"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div><script>
+		const scorecard = document.querySelector('#scorecard');
+		const btnBrush = document.querySelector('#btn-brush');
+		const score = [
+			-1, 2, 1, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+			-1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+		];
+
+		/** @function renderScore
+		 *
+		 */
+		function renderScore() {
+			const markers = scorecard.querySelectorAll('div');
+			for (let i = 0; i < markers.length; i++) {
+				markers[i].classList == '';
+				if (score[i] == 0) {
+					markers[i].classList.add('failure');
+				}
+				if (score[i] == 1) {
+					markers[i].classList.add('partial');
+				}
+				if (score[i] == 2) {
+					markers[i].classList.add('success');
+				}
+			}
+		}
+		renderScore();
+		/** @function isWithinWindow
+		 * checks if the current time is between the given hours
+		 * @param {number} startHour The hour that the window starts
+		 * @param {number} endHour The hour that the window ends
+		 * @returns {bool}
+		 */
+		function isWithinWindow(startHour, endHour) {
+			const currentHour = Temporal.Now.plainDateISO().hour;
+			if (currentHour < startHour) return false;
+			if (currentHour >= endHour) return false;
+			return true;
+		}
+
+		function openWindow() {}
+
+		class Day {
+			constructor() {
+				this.date = Temporal.Now.plainDateISO().dayOfYear;
+				this.windowOpen = false;
+				this.teethAreBrushed = false;
+			}
+
+			brushTeeth() {
+				this.teethAreBrushed = true;
+			}
+		}
+
+		// Each day create a new Day
+	</script></main></body></html>

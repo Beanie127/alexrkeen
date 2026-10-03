@@ -1,0 +1,124 @@
+---
+import PWA from '@layouts/PWA.astro';
+---
+
+<PWA
+	title="Daily Reminder"
+	description="Remind you of thing">
+	<style is:inline>
+		#scorecard {
+			display: grid;
+			inline-size: max-content;
+			grid-template-columns: repeat(7, 2rem);
+			grid-template-rows: repeat(4, 2rem);
+			> * {
+				width: 95%;
+				height: 95%;
+				border-radius: 4px;
+				place-self: center;
+				background: hsl(0 0 40);
+				&.success {
+					background: hsl(90 50 60);
+				}
+
+				&.partial {
+					background: hsl(45 50 60);
+				}
+
+				&.failure {
+					background: hsl(0 50 60);
+				}
+				&.active {
+					background: hsl(160 70 60);
+				}
+			}
+		}
+	</style>
+	<button id="btn-brush">I did the thing!</button>
+	<div id="scorecard">
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+	</div>
+	<script is:inline>
+		const scorecard = document.querySelector('#scorecard');
+		const btnBrush = document.querySelector('#btn-brush');
+		const score = [
+			-1, 2, 1, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+			-1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+		];
+
+		/** @function renderScore
+		 *
+		 */
+		function renderScore() {
+			const markers = scorecard.querySelectorAll('div');
+			for (let i = 0; i < markers.length; i++) {
+				markers[i].classList == '';
+				if (score[i] == 0) {
+					markers[i].classList.add('failure');
+				}
+				if (score[i] == 1) {
+					markers[i].classList.add('partial');
+				}
+				if (score[i] == 2) {
+					markers[i].classList.add('success');
+				}
+			}
+		}
+		renderScore();
+		/** @function isWithinWindow
+		 * checks if the current time is between the given hours
+		 * @param {number} startHour The hour that the window starts
+		 * @param {number} endHour The hour that the window ends
+		 * @returns {bool}
+		 */
+		function isWithinWindow(startHour, endHour) {
+			const currentHour = Temporal.Now.plainDateISO().hour;
+			if (currentHour < startHour) return false;
+			if (currentHour >= endHour) return false;
+			return true;
+		}
+
+		function openWindow() {}
+
+		class Day {
+			constructor() {
+				this.date = Temporal.Now.plainDateISO().dayOfYear;
+				this.windowOpen = false;
+				this.teethAreBrushed = false;
+			}
+
+			brushTeeth() {
+				this.teethAreBrushed = true;
+			}
+		}
+
+		// Each day create a new Day
+	</script>
+</PWA>
