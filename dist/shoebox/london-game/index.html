@@ -154,8 +154,9 @@
             <h1>The London Game</h1>
             <div id="controls">
                 <button id="new-game">New game</button
-                ><button id="swap">Swap a station</button
+                ><button id="swap">Swap a target station</button
                 ><button id="roll">Roll dice</button>
+                <button id="change">Change lines</button>
             </div>
             <div>
                 <h2>Dice</h2>
@@ -171,6 +172,19 @@
     </body>
     <script type="module">
         import stations from "/stations.json" with { type: "json" };
+        const events = [
+            "Opponent to your left can send you to any station",
+            "Send any opponent to any station",
+            "You must join another player on the board",
+            "You must summon another player to your place",
+            "You must swap one of your target stations",
+            "You may swap one of your target stations",
+            "Block a station",
+            "Open a blocked station",
+            "Player to your left may block a station",
+            "Take another turn",
+            "Skip your next turn",
+        ];
 
         class Game {
             constructor() {
@@ -225,6 +239,7 @@
         const newGame = document.querySelector("#new-game");
         const swap = document.querySelector("#swap");
         const roll = document.querySelector("#roll");
+        const change = document.querySelector("#change");
         const rollOutput = document.querySelector("#roll-output");
 
         let game = new Game();
@@ -235,6 +250,11 @@
             const a = Math.ceil(Math.random() * 6);
             const b = Math.ceil(Math.random() * 6);
             return [a, b];
+        }
+
+        function rollEvent() {
+            const index = Math.floor(Math.random() * events.length);
+            return events[index];
         }
 
         function kebab(string) {
@@ -271,48 +291,27 @@
             }
         });
 
-        swap.addEventListener("click", () => {
-            const index =
-                Number(
-                    window.prompt(
-                        "Which station would you like to switch? Type 1–6",
-                    ),
-                ) - 1;
-            if (isNaN(index) || index < 1 || index > 6 || index == false)
-                return;
-            const zone = Math.ceil(Math.random() * 6);
-            const newStation = game.pickStation({ zone: zone });
-            targets.children.item(index).innerHTML = generateTarget(newStation);
-        });
-
-        targets.addEventListener("click", (e) => {
-            if (e.target.tagName == "BUTTON") {
-                const station = e.target
-                    .closest("tr")
-                    .children.item(1).textContent;
-                if (window.confirm(`Have you visited ${station}?`)) {
-                    e.target.closest("tr").classList.add("visited");
-                }
-            }
-        });
-
         roll.addEventListener("click", () => {
             const outcome = rollDice();
             rollOutput.textContent = `${outcome[0]} + ${outcome[1]} = ${outcome[0] + outcome[1]}`;
         });
 
         swap.addEventListener("click", () => {
-            const index =
-                Number(
-                    window.prompt(
-                        "Which station would you like to switch? Type 1–6",
-                    ),
-                ) - 1;
+            const index = Number(
+                window.prompt(
+                    "Which station would you like to switch? Type 1–6",
+                ),
+            );
             if (isNaN(index) || index < 1 || index > 6 || index == false)
                 return;
             const zone = Math.ceil(Math.random() * 6);
             const newStation = game.pickStation({ zone: zone });
-            targets.children.item(index).innerHTML = generateTarget(newStation);
+            targets.children.item(index - 1).innerHTML =
+                generateTarget(newStation);
+        });
+
+        change.addEventListener("click", () => {
+            window.alert(rollEvent());
         });
 
         targets.addEventListener("click", (e) => {
@@ -325,7 +324,7 @@
                 }
             }
             if (targets.querySelectorAll(".visited").length == 6) {
-                window.confirm("You win!");
+                window.confirm("Get back to King's Cross to win!");
             }
         });
     </script>
