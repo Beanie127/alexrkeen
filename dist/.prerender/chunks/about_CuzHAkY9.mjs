@@ -1,0 +1,23 @@
+import { t as __exportAll } from "./rolldown-runtime_D7D4PA-g.mjs";
+import { a as renderComponent, f as renderTemplate, g as maybeRenderHead, w as createComponent } from "./server_ucNOZgWh.mjs";
+import "./compiler_D5Hgm0ZG.mjs";
+import { t as $$Layout } from "./Layout_DYwVF9yM.mjs";
+//#region src/pages/about.astro
+var about_exports = /* @__PURE__ */ __exportAll({
+	default: () => $$About,
+	file: () => $$file,
+	url: () => $$url
+});
+var $$About = createComponent(($$result, $$props, $$slots) => {
+	return renderTemplate`${renderComponent($$result, "Layout", $$Layout, {
+		"title": "About Me",
+		"description": "About Alex Keen"
+	}, { "default": ($$result) => renderTemplate`${maybeRenderHead($$result)}<main class="col-center"><p>Hi, I'm Alex. I'm a storyteller, designer and strategist who's nerdy about improvisation, stories, philosophy, psychology, technology, culture, creativity, games and play.</p><p>Professionally, I'm an expert at marketing and brand strategy, specialising in copywriting, web development, graphic design and video editing. I practice those skills as Head of Business Development at <a href="https://www.ferrio.com" rel="noopener noreferrer" target="_blank">Ferrio</a>, a specialist software company serving the facilities management industry.</p><p>In the real world, I do a lot of improv comedy — I’ve created and toured multiple award-winning shows, organised local and national improv events and taught the artform. I also play, run and design tabletop roleplaying games, read a lot and write a little.</p><p>I live in Sheffield, England with my husband, who <a href="https://www.loxleywoodcraft.com/" rel="noopener noreferrer" target="_blank">makes beautiful things from wood</a>. I have no pets or children, thank you.</p><p>I don’t like social media. If you want to get in touch with me, <a href="mailto:anti-spam-measure-delete-me/alexrkeen@gmx.com?subject=EDIT EMAIL ADDRESS AND SUBJECT LINE">just send me an email</a>.</p></main><aside class="col-breakout"><h3>Things celebrities have said about my work</h3><ul class="card-container"><li><figure class="quote"><blockquote>Really powerful. I have no idea how you do it</blockquote><figcaption><cite>Alistair McGowan</cite></figcaption></figure></li><li><figure class="quote"><blockquote>This guy's a f***ing genius!</blockquote><figcaption><cite>Michael Bublé</cite></figcaption></figure></li><li><figure class="quote"><blockquote>Great show, man!</blockquote><figcaption><cite>Sam Reich</cite></figcaption></figure></li><li><figure class="quote"><blockquote>I don't get it.</blockquote><cite>Roland Emmerich</cite></figure></li></ul></aside>` })}`;
+}, "/home/alexrkeen/Sync/webdev/alexrkeen/src/pages/about.astro", void 0);
+var $$file = "/home/alexrkeen/Sync/webdev/alexrkeen/src/pages/about.astro";
+var $$url = "/about";
+//#endregion
+//#region \0virtual:astro:page:src/pages/about@_@astro
+var page = () => about_exports;
+//#endregion
+export { page };

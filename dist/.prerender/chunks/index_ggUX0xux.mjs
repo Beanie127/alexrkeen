@@ -1,4 +1,8 @@
-<!doctype html>
+import { t as __exportAll } from "./rolldown-runtime_D7D4PA-g.mjs";
+//#region src/pages/shoebox/london-game/index.html
+var london_game_exports = /* @__PURE__ */ __exportAll({ default: () => render });
+function render({ slots: ___SLOTS___ }) {
+	return `<!doctype html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
@@ -245,13 +249,13 @@
         }
 
         function generateTarget(station) {
-            return `<tr>
-                <td><button data-visit id="visit-${kebab(station.name)}">Visit</button></td>
-                <td>${station.name}</td>
-                <td>${station.lines.map((line) => " " + `<span class="${kebab(line)}">${line}</span>`)}</td>
-                <td>${station.zone}</td>
+            return \`<tr>
+                <td><button data-visit id="visit-\${kebab(station.name)}">Visit</button></td>
+                <td>\${station.name}</td>
+                <td>\${station.lines.map((line) => " " + \`<span class="\${kebab(line)}">\${line}</span>\`)}</td>
+                <td>\${station.zone}</td>
             </tr>
-            `;
+            \`;
         }
 
         function generateTargets() {
@@ -290,7 +294,7 @@
                 const station = e.target
                     .closest("tr")
                     .children.item(1).textContent;
-                if (window.confirm(`Have you visited ${station}?`)) {
+                if (window.confirm(\`Have you visited \${station}?\`)) {
                     e.target.closest("tr").classList.add("visited");
                 }
             }
@@ -298,7 +302,7 @@
 
         roll.addEventListener("click", () => {
             const outcome = rollDice();
-            rollOutput.textContent = `${outcome[0]} + ${outcome[1]} = ${outcome[0] + outcome[1]}`;
+            rollOutput.textContent = \`\${outcome[0]} + \${outcome[1]} = \${outcome[0] + outcome[1]}\`;
         });
 
         swap.addEventListener("click", () => {
@@ -320,7 +324,7 @@
                 const station = e.target
                     .closest("tr")
                     .children.item(1).textContent;
-                if (window.confirm(`Have you visited ${station}?`)) {
+                if (window.confirm(\`Have you visited \${station}?\`)) {
                     e.target.closest("tr").classList.add("visited");
                 }
             }
@@ -328,5 +332,13 @@
                 window.confirm("You win!");
             }
         });
-    </script>
+    <\/script>
 </html>
+`;
+}
+render["astro:html"] = true;
+//#endregion
+//#region \0virtual:astro:page:src/pages/shoebox/london-game/index@_@html
+var page = () => london_game_exports;
+//#endregion
+export { page };

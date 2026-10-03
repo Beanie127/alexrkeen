@@ -246,15 +246,14 @@
 
         function generateTarget(station) {
             return `<tr>
-            <td><button data-visit id="visit-${kebab(station.name)}">Visit</button></td>
-            <td>${station.name}</td>
-            <td>${station.lines.map((line) => " " + `<span class="${kebab(line)}">${line}</span>`)}</td>
-            <td>${station.zone}</td>
-        </tr>
-        `;
+                <td><button data-visit id="visit-${kebab(station.name)}">Visit</button></td>
+                <td>${station.name}</td>
+                <td>${station.lines.map((line) => " " + `<span class="${kebab(line)}">${line}</span>`)}</td>
+                <td>${station.zone}</td>
+            </tr>
+            `;
         }
 
-<<<<<<< HEAD
         function generateTargets() {
             const startingList = game.pickStartingList();
             let response = "";
@@ -269,21 +268,31 @@
                 game = new Game();
                 game.shuffleStations();
                 targets.innerHTML = generateTargets();
-=======
-    swap.addEventListener("click", () => {
-        const index = Number(window.prompt("Which station would you like to switch? Type 1–6")) - 1;
-        if (isNaN(index) || index < 1 || index > 6 || index == false) return;
-        const zone = Math.ceil(Math.random() * 6);
-        const newStation = game.pickStation({ zone: zone });
-        targets.children.item(index).innerHTML = generateTarget(newStation);
-    })
+            }
+        });
 
-    targets.addEventListener("click", (e) => {
-        if (e.target.tagName == "BUTTON") {
-            const station = e.target.closest("tr").children.item(1).textContent;
-            if (window.confirm(`Have you visited ${station}?`)) {
-                e.target.closest("tr").classList.add("visited");
->>>>>>> 9fa9cf5a769bb9da7bc7a9bc67778232da408d9e
+        swap.addEventListener("click", () => {
+            const index =
+                Number(
+                    window.prompt(
+                        "Which station would you like to switch? Type 1–6",
+                    ),
+                ) - 1;
+            if (isNaN(index) || index < 1 || index > 6 || index == false)
+                return;
+            const zone = Math.ceil(Math.random() * 6);
+            const newStation = game.pickStation({ zone: zone });
+            targets.children.item(index).innerHTML = generateTarget(newStation);
+        });
+
+        targets.addEventListener("click", (e) => {
+            if (e.target.tagName == "BUTTON") {
+                const station = e.target
+                    .closest("tr")
+                    .children.item(1).textContent;
+                if (window.confirm(`Have you visited ${station}?`)) {
+                    e.target.closest("tr").classList.add("visited");
+                }
             }
         });
 

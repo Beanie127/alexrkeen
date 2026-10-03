@@ -1,0 +1,91 @@
+import { t as __exportAll } from "./rolldown-runtime_D7D4PA-g.mjs";
+import { a as renderComponent, f as renderTemplate, g as maybeRenderHead, w as createComponent } from "./server_ucNOZgWh.mjs";
+import "./compiler_D5Hgm0ZG.mjs";
+import { t as $$Layout } from "./Layout_DYwVF9yM.mjs";
+//#region src/pages/webrings.astro
+var webrings_exports = /* @__PURE__ */ __exportAll({
+	default: () => $$Webrings,
+	file: () => $$file,
+	url: () => $$url
+});
+var $$Webrings = createComponent(($$result, $$props, $$slots) => {
+	return renderTemplate`${renderComponent($$result, "Layout", $$Layout, {
+		"title": "Webrings",
+		"description": "Webrings that I'm part of"
+	}, { "default": async ($$result) => renderTemplate`${maybeRenderHead($$result)}<main class="col-center"><p>Webrings are collections of sites, organised into a looping list that can be traversed in different directions. Webrings were created before the days of Google, when the only way to find new websites was from links on other websites. Their continued existence is an effort to keep the indie web alive.</p><ul class="card-container"><li><h3><a class="webring-header" href="https://willdotwhite.github.io/webring/" rel="noopener noreferrer" target="_blank">Will's Webring</a></h3><p>A small group of game designers, mostly from the GMTK (Game Makers Toolkit) community. Run by my friend Will.</p><div id="wills-webring-output" class="webring-output"></div></li></ul></main><style>
+		a.webring-back::before {
+			content: '← ';
+		}
+		a.webring-back::after {
+			content: '';
+		}
+		a.webring-forward::after {
+			content: ' →';
+		}
+		.webring-output {
+			display: flex;
+			justify-content: center;
+			gap: 1ch;
+			flex-wrap: wrap;
+		}
+	</style><script>
+		/**
+		 * Get the webring neighbours for your URL!
+		 * @credit Sophie<sophies.games>
+		 */
+		async function get_webring_neighbours(my_url) {
+			// Fetch webring json array
+			const request = await fetch(
+				'https://willdotwhite.github.io/webring/data.json',
+			);
+			const webring_array = await request.json();
+
+			// URLs are case-insensitive, so checks should be done with both sides of a comparison lowercased
+			my_url = my_url.toLowerCase();
+
+			// Find the index of your website in the ring
+			const my_index = webring_array.findIndex((obj) =>
+				obj.url.toLowerCase().includes(my_url),
+			);
+			if (my_index === -1) {
+				throw new Error(
+					\`Your URL "\${my_url}" was not found in the webring.\`,
+				);
+			}
+
+			// Your left neighbour is the one before you in the list, hence -1
+			// Your right neighbour is the one after you in the list, hence +1
+			let left_neighbour_index = my_index - 1;
+			let right_neighbour_index = my_index + 1;
+
+			// To make the "ring" part of "webring" work we then wrap around to the start/end if either the left/right indicies go out of bounds
+			if (left_neighbour_index < 0)
+				left_neighbour_index = webring_array.length - 1;
+			if (right_neighbour_index >= webring_array.length)
+				right_neighbour_index = 0;
+
+			// Return a tuple where the first object is the left neighbour, the second object is the right neighbour
+			return [
+				webring_array[left_neighbour_index],
+				webring_array[right_neighbour_index],
+			];
+		}
+
+		document.addEventListener('DOMContentLoaded', async () => {
+			const willsWebringOutput = document.querySelector(
+				'#wills-webring-output',
+			);
+			const webring = await get_webring_neighbours(
+				'https://alexrkeen.com',
+			);
+			willsWebringOutput.innerHTML = \`<a class="webring-back" rel="noopener noreferrer" target="_blank" href=\${webring[0].url}>\${webring[0].title}</a> | <a class="webring-forward" rel="noopener noreferrer" target="_blank" href=\${webring[1].url}>\${webring[1].title}</a>\`;
+		});
+	<\/script>` })}`;
+}, "/home/alexrkeen/Sync/webdev/alexrkeen/src/pages/webrings.astro", void 0);
+var $$file = "/home/alexrkeen/Sync/webdev/alexrkeen/src/pages/webrings.astro";
+var $$url = "/webrings";
+//#endregion
+//#region \0virtual:astro:page:src/pages/webrings@_@astro
+var page = () => webrings_exports;
+//#endregion
+export { page };

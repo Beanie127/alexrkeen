@@ -1,0 +1,23 @@
+import { t as __exportAll } from "./rolldown-runtime_D7D4PA-g.mjs";
+import { a as renderComponent, f as renderTemplate, g as maybeRenderHead, w as createComponent } from "./server_ucNOZgWh.mjs";
+import "./compiler_D5Hgm0ZG.mjs";
+import { t as $$Layout } from "./Layout_DYwVF9yM.mjs";
+//#region src/pages/changelog.astro
+var changelog_exports = /* @__PURE__ */ __exportAll({
+	default: () => $$Changelog,
+	file: () => $$file,
+	url: () => $$url
+});
+var $$Changelog = createComponent(($$result, $$props, $$slots) => {
+	return renderTemplate`${renderComponent($$result, "Layout", $$Layout, {
+		"title": "Changelog",
+		"description": "A log of changes to the site"
+	}, { "default": ($$result) => renderTemplate`${maybeRenderHead($$result)}<ul class="card-container"><li><h3>2026-08-25</h3><ul><li>Additions: <ul><li><a href="/shoebox/weather">A weather report for Sheffield</a></li></ul></li><li>Changes: <ul><li>Updated <a href="/blogroll">blogroll</a></li></ul></li></ul></li><li><h3>2026-05-30</h3><ul><li>Changes: <ul><li>Updated <a href="/about">about</a></li><li>Removed breadcrumb nav in place of home link in header</li><li>Updated colour scheme</li></ul></li></ul></li><li><h3>2026-03-23</h3><ul><li>Additions: <ul><li><a href="/shoebox/snips">code snippets</a></li><li><a href="/webrings">webrings</a></li><li><a href="/reaching-for-light">film</a></li></ul></li><li>Changes: <ul><li>Moved all personal details to <a href="/about">about</a> and pushed navigation up into the main section on the homepage.</li></ul></li></ul></li><li><h3>2026-02-19</h3><ul><li>Additions: <ul><li><a href="/shoebox/clock">Clock</a></li></ul></li><li>Changes: <ul><li>Updated <a href="/using">using</a> with more details about open source software</li><li>Updated my job description on <a href="/about">about</a></li><li>Changed site colour palette</li></ul></li><li>Fixes: <ul><li>Breadcrumb navigation no longer adds an extra, empty link to the current page</li></ul></li></ul></li><li><h3>2025-09-04</h3><ul><li>Changes: <ul><li>Minor bugfixes</li><li>Repatriated <a href="/shoebox">shoebox</a> index</li><li>Updated <a href="/blogroll">blogroll</a></li></ul></li></ul></li><li><h3>2025-08-31</h3><ul><li>Changes: <ul><li>Updated site theme</li><li>Changed navigation model to breadcrumbs</li><li>Moved bio to <a href="/about">about</a></li></ul></li></ul></li><li><h3>2025-03-21</h3><ul><li>Changes: <ul><li>Updated site theme</li><li>Updated homepage copy</li><li>Removed redirects</li></ul></li></ul></li><li><h3>2024-11-22</h3><ul><li>Additions: <ul><li><a href="/changelog">changelog</a></li><li><a href="/colophon">colophon</a></li></ul></li><li>Changes: <ul><li>Updated site theme</li><li>renamed /testing to <a href="https://shoebox.alexrkeen.com">shoebox</a> and moved it to its own subdomain</li><li>split /links into <a href="/blogroll">blogroll</a> and<a href="/using">using</a></li></ul></li></ul></li></ul>` })}`;
+}, "/home/alexrkeen/Sync/webdev/alexrkeen/src/pages/changelog.astro", void 0);
+var $$file = "/home/alexrkeen/Sync/webdev/alexrkeen/src/pages/changelog.astro";
+var $$url = "/changelog";
+//#endregion
+//#region \0virtual:astro:page:src/pages/changelog@_@astro
+var page = () => changelog_exports;
+//#endregion
+export { page };
