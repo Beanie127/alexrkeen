@@ -2,12 +2,12 @@
 <opml xmlns:frss="https://freshrss.org/opml" version="2.0">
   <head>
     <title>FreshRSS</title>
-    <dateCreated>Tue, 25 Aug 2026 21:51:50 +0000</dateCreated>
+    <dateCreated>Tue, 03 Nov 2026 21:30:08 +0000</dateCreated>
   </head>
   <body>
     <outline text="Career Skills">
-      <outline text="alexwlchan" type="rss" xmlUrl="https://alexwlchan.net/atom.xml" htmlUrl="https://alexwlchan.net/" description="Alex Chan's personal website"/>
       <outline text="A List Apart: The Full Feed" type="rss" xmlUrl="https://alistapart.com/main/feed/" htmlUrl="https://alistapart.com/" description="Articles for people who make web sites."/>
+      <outline text="alexwlchan" type="rss" xmlUrl="https://alexwlchan.net/atom.xml" htmlUrl="https://alexwlchan.net/" description="Alex Chan's personal website"/>
       <outline text="Brand Anatomy" type="rss" xmlUrl="https://brandanatomy101.substack.com/feed" htmlUrl="https://brandanatomy101.substack.com/" description="A Marketing Doctor's (MD) do's and don'ts of brand strategy."/>
       <outline text="CodePen" type="rss" xmlUrl="https://blog.codepen.io/feed/" htmlUrl="https://blog.codepen.io/"/>
       <outline text="Content Layer" type="rss" xmlUrl="https://contentlayer.substack.com/feed" htmlUrl="https://contentlayer.substack.com/" description="Notes on how writing, design, brand, UX, and product combine to make things people can understand and use."/>
@@ -68,12 +68,6 @@
     <outline text="Fiction">
       <outline text="Super Supportive" type="rss" xmlUrl="https://www.royalroad.com/fiction/syndication/63759" htmlUrl="https://www.royalroad.com/fiction/syndication/63759" description="Latest updates of (Super Supportive)"/>
     </outline>
-    <outline text="Improv">
-      <outline text="Emily Murphy on Improv" type="rss" xmlUrl="https://medium.com/@emilymurphy045/feed" htmlUrl="https://medium.com/@emilymurphy045?source=rss-a49a98aa4119------2" description="Stories by Emily Murphy on Medium"/>
-      <outline text="Improv Chronicle Newsletter" type="rss" xmlUrl="https://improvchronicle.substack.com/feed" htmlUrl="https://improvchronicle.substack.com/" description="The world of improv in your inbox"/>
-      <outline text="Stories by On Cloud Nine on Medium" type="rss" xmlUrl="https://medium.com/@areewitoelar/feed" htmlUrl="https://medium.com/@areewitoelar?source=rss-d3637bdcf810------2" description="Stories by On Cloud Nine on Medium"/>
-      <outline text="Suggestion Box" type="rss" xmlUrl="https://suggestionboxbyshaunlowthian.substack.com/feed" htmlUrl="https://suggestionboxbyshaunlowthian.substack.com/" description="Notes and observations from improv comedy to unlock your creativity."/>
-    </outline>
     <outline text="Links &amp; Recommendations">
       <outline text="10+1 Things" type="rss" xmlUrl="https://newsletter.rishikeshs.com/feed" htmlUrl="https://rishikesh.substack.com/" description="11 interesting stories handpicked by a curious human's algorithm."/>
       <outline text="Five things on Friday" type="rss" xmlUrl="https://www.fivethingsonfriday.com/rss" htmlUrl="https://www.fivethingsonfriday.com/" description="&lt;p&gt;Established in 2011, &lt;a target=&quot;_blank&quot; rel=&quot;noopener noreferrer nofollow&quot; href=&quot;https://www.fivethingsonfriday.com/archive/&quot;&gt;Five things on Friday&lt;/a&gt; is a weekly/occasional newsletter written by me, &lt;a target=&quot;_blank&quot; rel=&quot;noopener noreferrer nofollow&quot; href=&quot;https://www.linkedin.com/in/whatleydude/&quot;&gt;James Whatley&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;It tries to be delivered to your inbox on Fridays but it often fails. Sometimes it arrives late. Sometimes it doesn’t arrive at all. But hey, it’s the thought that counts. &lt;/p&gt;&lt;p&gt;By day, I am an integrated strategist/planner working in advertising and communications. Often at the intersection of digital, entertainment, and brand.&lt;/p&gt;&lt;p&gt;Outside of working hours, I am a proud Dad, ardent gamer, and a regular roaster of potatoes.&lt;/p&gt;&lt;p&gt;As an interested human interested in interesting things, Five things on Friday is my way of a) collating the most interesting things I find on the internet and b) thinking out loud while reflecting on those things. &lt;/p&gt;&lt;p&gt;Along with work, life, culture and basically anything I feel like writing about.&lt;/p&gt;&lt;p&gt;If you're not sure then can find previous editions &lt;a target=&quot;_blank&quot; rel=&quot;noopener noreferrer nofollow&quot; href=&quot;https://buttondown.email/fivethingsonfriday/archive/&quot;&gt;right here&lt;/a&gt; but lots of people tell me they like it so you might too.&lt;/p&gt;&lt;p&gt;So that’s my pitch.&lt;/p&gt;&lt;p&gt;Five things on Friday. It doesn’t always come on Friday but you always get more than five things.&lt;/p&gt;&lt;p&gt;Want in?&lt;/p&gt;"/>
@@ -100,9 +94,9 @@
       <outline text="Tom Mewett" type="rss" xmlUrl="https://tmewett.com/feed.xml" htmlUrl="https://tmewett.com/"/>
       <outline text="Transmissions from the floor" type="rss" xmlUrl="https://arcove.substack.com/feed" htmlUrl="https://arcove.substack.com/" description="Exploring the intersections between creativity, psychology, art, and the human experience"/>
       <outline text="Useful Fictions" type="rss" xmlUrl="https://usefulfictions.substack.com/feed" htmlUrl="https://usefulfictions.substack.com/" description="all models are wrong, but some are useful"/>
-      <outline text="Westenberg." type="rss" xmlUrl="https://www.joanwestenberg.com/feed" htmlUrl="https://www.joanwestenberg.com/" description="Field Notes on Now."/>
     </outline>
     <outline text="Science &amp; Rationality">
+      <outline text="Alexander Wales" type="rss" xmlUrl="https://alexanderwales.substack.com/feed" htmlUrl="https://alexanderwales.substack.com/" description="Writer, software engineer&#10;https://alexanderwales.com/"/>
       <outline text="Astral Codex Ten" type="rss" xmlUrl="https://www.astralcodexten.com/feed" htmlUrl="https://astralcodexten.substack.com/" description="P(A|B) = [P(A)*P(B|A)]/P(B), all the rest is commentary."/>
       <outline text="Atoms vs Bits" type="rss" xmlUrl="https://www.atvbt.com/rss/" htmlUrl="https://www.atvbt.com/" description="Atoms vs Bits"/>
       <outline text="DYNOMIGHT INTERNET NEWSLETTER" type="rss" xmlUrl="https://dynomight.substack.com/feed" htmlUrl="https://dynomight.substack.com/" description="science and existential angst"/>
@@ -120,20 +114,23 @@
       <outline text="Unpublishable Papers" type="rss" xmlUrl="https://unpublishablepapers.substack.com/feed" htmlUrl="https://unpublishablepapers.substack.com/" description="Ideas about what makes humans so brilliant, terrible, and utterly weird -- none of which would make it past peer-review."/>
     </outline>
     <outline text="Society &amp; Politics">
-      <outline text="all the heterosexual nonsense" type="rss" xmlUrl="https://heterosexualnonsense.substack.com/feed" htmlUrl="https://heterosexualnonsense.substack.com/" description="A culture, news and comedy newsletter, with a focus on queer culture, news and issues from Rebecca Shaw and Patrick Lenton."/>
       <outline text="A working library" type="rss" xmlUrl="https://aworkinglibrary.com/feed/index.xml" description="A working library is a project about work, reading &amp; technology by mandy brown"/>
+      <outline text="all the heterosexual nonsense" type="rss" xmlUrl="https://heterosexualnonsense.substack.com/feed" htmlUrl="https://heterosexualnonsense.substack.com/" description="A culture, news and comedy newsletter, with a focus on queer culture, news and issues from Rebecca Shaw and Patrick Lenton."/>
       <outline text="Barks by Aria Salvatrice - Aria.dog" type="rss" xmlUrl="https://aria.dog/barks/rss.xml" htmlUrl="https://aria.dog/barks/" description="Every new bark on Aria Salvatrice’s weblog."/>
+      <outline text="Blood in the Machine" type="rss" xmlUrl="https://www.bloodinthemachine.com/feed" htmlUrl="https://www.bloodinthemachine.com/" description="Writing and reporting on AI, tech, labor and power. For everyone Silicon Valley is happening to."/>
       <outline text="Candy for Breakfast" type="rss" xmlUrl="https://www.candyforbreakfast.email/feed" htmlUrl="https://www.candyforbreakfast.email/" description="Funny feelings, weird careers, making art, American history, and how to be alive."/>
       <outline text="Crooked Timber" type="rss" xmlUrl="https://crookedtimber.org/feed/" htmlUrl="https://crookedtimber.org/" description="Out of the crooked timber of humanity, no straight thing was ever made"/>
       <outline text="Ed Zitron's Where's Your Ed At" type="rss" xmlUrl="https://www.wheresyoured.at/rss/" htmlUrl="https://www.wheresyoured.at/" description="The Words of Ed Zitron, a PR person and writer."/>
       <outline text="Garbage Day" type="rss" xmlUrl="https://rss.beehiiv.com/feeds/owMwaGYU36.xml" htmlUrl="https://www.garbageday.email/" description="A newsletter about having fun online"/>
+      <outline text="Genderbent" type="rss" xmlUrl="https://www.genderbent.co.uk/rss/" htmlUrl="https://www.genderbent.co.uk/" description="Nerdy and nuanced conversations about gender and (trans)masculinity"/>
       <outline text="HeydonWorks" type="rss" xmlUrl="https://heydonworks.com/feed.xml" htmlUrl="https://heydonworks.com/" description="Writing and creative coding from Heydon Pickering"/>
+      <outline text="How Things Work" type="rss" xmlUrl="https://www.hamiltonnolan.com/feed" htmlUrl="https://www.hamiltonnolan.com/" description="Labor, politics, and power."/>
       <outline text="Internal exile" type="rss" xmlUrl="https://robhorning.substack.com/feed" htmlUrl="https://robhorning.substack.com/" description="about technology, art, philosophy"/>
       <outline text="Jason Pargin's Newsletter" type="rss" xmlUrl="https://jasonpargin.substack.com/feed" htmlUrl="https://jasonpargin.substack.com/" description="Something seems off about the world, I'm trying to get to the bottom of it"/>
+      <outline text="Now Then Sheffield" type="rss" xmlUrl="https://feeds.nowthenmagazine.com/sheffield" htmlUrl="https://nowthenmagazine.com/" description="A Magazine for Sheffield"/>
       <outline text="Number One With A Bullard" type="rss" xmlUrl="https://gabebullard.substack.com/feed" htmlUrl="https://gabebullard.substack.com/" description="Notes on our nostalgic era. Pop culture anxieties. Pieces of history. Occasional jokes."/>
       <outline text="Pluralistic: Daily links from Cory Doctorow" type="rss" xmlUrl="https://pluralistic.net/feed/" htmlUrl="https://pluralistic.net/" description="No trackers, no ads. Black type, white background. Privacy policy: we don't collect or retain any data at all ever period."/>
       <outline text="Sheffield Tribune" type="rss" xmlUrl="https://www.sheffieldtribune.co.uk/rss/" htmlUrl="https://www.sheffieldtribune.co.uk/" description="Sheffield's quality newspaper, delivered via email."/>
-      <outline text="The Argument" type="rss" xmlUrl="https://www.theargumentmag.com/feed" htmlUrl="https://www.theargumentmag.com/" description="Join Us. We're Libbing Out."/>
       <outline text="The Culture Shock" type="rss" xmlUrl="https://thecharrette.substack.com/feed" htmlUrl="https://thecharrette.substack.com" description="Obsessively interested in everything."/>
       <outline text="The Index" type="rss" xmlUrl="https://rss.beehiiv.com/feeds/wL4lUJI3RH.xml" htmlUrl="https://www.theindex.media/" description="Notes on tech + culture + politics."/>
     </outline>
@@ -154,5 +151,12 @@
       <outline text="The Only Edition" type="rss" xmlUrl="https://the-only-edition.com/feed/" htmlUrl="https://the-only-edition.com/" description="The Only Tabletop News Site"/>
     </outline>
     <outline text="Uncategorized"/>
+    <outline text="Improv">
+      <outline text="Emily Murphy on Improv" type="rss" xmlUrl="https://medium.com/@emilymurphy045/feed" htmlUrl="https://medium.com/@emilymurphy045?source=rss-a49a98aa4119------2" description="Stories by Emily Murphy on Medium"/>
+      <outline text="Improv Chronicle Newsletter" type="rss" xmlUrl="https://improvchronicle.substack.com/feed" htmlUrl="https://improvchronicle.substack.com/" description="The world of improv in your inbox"/>
+      <outline text="Kornfeld ＆ Andrews" type="rss" xmlUrl="https://kornfeldandandrews.substack.com/feed" htmlUrl="https://kornfeldandandrews.substack.com/" description="Essays on Improvisation from Kornfeld &amp; Andrews out of The Magnet Theater in New York City"/>
+      <outline text="Stories by On Cloud Nine on Medium" type="rss" xmlUrl="https://medium.com/@areewitoelar/feed" htmlUrl="https://medium.com/@areewitoelar?source=rss-d3637bdcf810------2" description="Stories by On Cloud Nine on Medium"/>
+      <outline text="Suggestion Box" type="rss" xmlUrl="https://suggestionboxbyshaunlowthian.substack.com/feed" htmlUrl="https://suggestionboxbyshaunlowthian.substack.com/" description="Notes and observations from improv comedy to unlock your creativity."/>
+    </outline>
   </body>
 </opml>
